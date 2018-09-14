@@ -102,6 +102,16 @@ hr { width: 50%; border-color: $color-neutral; }
   border-bottom: solid thin;
 }
 
+.btn-outline-primary {
+  color: $color-neutral;
+  border-color: $color-neutral;
+}
+
+.btn-outline-primary:hover {
+  background-color: $color-neutral;
+  border-color: $color-neutral;
+}
+
 
 
 
