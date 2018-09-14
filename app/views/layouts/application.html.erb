@@ -1,15 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SSM</title>
+    <title>
+    <%= if content_for?(:title) then yield(:title) + ' | ' end %>
+    Stay Sane Mom
+  </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,800,800i|Sacramento|Work+Sans:200,400,700,900" rel="stylesheet">
   </head>
 
   <body>
+
+
+    <nav class="navbar bg-neutral">
+      <a class="navbar-brand" href="/">Social Stuff Goes Here</a>
+      <form class="form-inline">
+        <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary" %>
+        <div style="padding-left: 10px;">
+          <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline-primary" %>
+        </div>
+      </form>
+    </nav>
+
+    <div class="text-center row">
+      <div class="container">
+        <%= link_to root_path do %>
+            <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
+        <% end %>
+        <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from going crazy.</p>
+
+        <nav class="text-center">
+          <button class="btn nav-button color-house" type="button">House</button>
+          <button class="btn nav-button color-spouse" type="button">Spouse</button>
+          <button class="btn nav-button color-kids" type="button">Kids</button>
+          <button class="btn nav-button color-neutral" type="button">Blog</button>
+        </nav>
+      </div> <!-- container -->
+    </div> <!-- row -->
+
+
+
+
+
+
+    <!-- flash notice area -->
+      <div class="flash-notice-area">
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
+          </div>
+        <% elsif flash.now[:alert] %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:alert] %>
+          </div>
+        <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+      </div>
+    <!-- flash notice area -->
+
     <%= yield %>
+
   </body>
 </html>

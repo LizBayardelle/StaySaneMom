@@ -10,7 +10,127 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *
  *= require_self
  */
 
+
  @import "bootstrap";
+
+
+
+
+
+$font-sans: 'Work Sans', sans-serif;
+$font-serif:  'EB Garamond', serif;
+$font-script: 'Sacramento', cursive;
+
+.font-sans { font-family: $font-sans }
+.font-serif { font-family: $font-serif }
+.font-script { font-family: $font-script }
+
+$color-house: #6B9080;
+$color-spouse: #313E50;
+$color-kids: #EFB0A1;
+$color-neutral: #B7AD99;
+
+$transparent-house: rgba(107, 144, 128, 0.5);
+$transparent-spouse: rgba(49, 62, 80, 0.5);
+$transparent-kids: rgba(239, 176, 161, 0.5);
+$transparent-neutral: rgba(183, 173, 153, 0.25);
+
+.color-house { color: $color-house; }
+.color-spouse { color: $color-spouse; }
+.color-kids { color: $color-kids; }
+.color-neutral { color: $color-neutral; }
+
+.bg-house { background-color: $transparent-house; }
+.bg-spouse { background-color: $transparent-spouse; }
+.bg-kids { background-color: $transparent-kids; }
+.bg-neutral { background-color: $transparent-neutral; }
+
+* { font-family: $font-sans; }
+p { font-family: $font-serif; }
+
+hr { width: 50%; border-color: $color-neutral; }
+
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// -------- NAVBAR -----------
+// ---------------------------
+// ---------------------------
+
+.header-logo {
+  margin: 50px 0 5px 0;
+  height: 40px;
+}
+
+.header-tagline {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.header-tagline:hover {
+  text-decoration: none !important;
+}
+
+.nav-button {
+  font-family: $font-script;
+  display: inline-block;
+  font-size: 30px;
+  padding-top: 10px;
+  margin: 10px 10px 30px 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-button {
+    margin: 10px 5px 30px 5px;
+    font-size: 25px;
+  }
+}
+
+.nav-button:hover {
+  border-top: solid thin;
+  border-bottom: solid thin;
+}
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// -------- IMAGES -----------
+// ---------------------------
+// ---------------------------
+
+.image-wrap {
+    display: block;
+    height: 450px;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.image-wrap img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 800px) {
+  .image-wrap img {
+      display: block;
+      height: 450px;
+      width: auto !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+  }
+}
