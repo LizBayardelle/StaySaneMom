@@ -32,6 +32,10 @@ gem 'aws-sdk-s3', require: false
 gem 'simple_form_extension'
 gem 'recaptcha', require: "recaptcha/rails"
 
+group :production do
+  gem 'pg', '~> 0.20.0'
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
