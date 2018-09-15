@@ -14,61 +14,76 @@
   </head>
 
   <body>
+    <div class="non-footer">
 
-
-    <nav class="navbar bg-neutral">
-      <a class="navbar-brand" href="/">Social Stuff Goes Here</a>
-      <form class="form-inline">
-        <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary" %>
-        <div style="padding-left: 10px;">
-          <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline-primary" %>
+      <nav class="navbar bg-neutral">
+        <div class="navbar-brand">
+          <%= fa_icon "facebook-f", class: "social-icon color-neutral color-neutral-hover" %>
+          <%= fa_icon "pinterest-p", class: "social-icon color-neutral color-neutral-hover" %>
+          <%= fa_icon "amazon", class: "social-icon color-neutral color-neutral-hover" %>
         </div>
-      </form>
-    </nav>
+        <form class="form-inline">
+          <% if current_user %>
+            <%= link_to "My Account", user_path(current_user), class:"btn btn-outline-primary" %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary" %>
+            <div style="padding-left: 10px;">
+              <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline-primary" %>
+            </div>
+          <% end %>
+        </form>
+      </nav>
 
-    <div class="text-center row">
-      <div class="container">
-        <%= link_to root_path do %>
-            <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
-        <% end %>
-        <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from going crazy.</p>
+      <div class="text-center row">
+        <div class="container">
+          <%= link_to root_path do %>
+              <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
+          <% end %>
+          <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from going crazy.</p>
 
-        <nav class="text-center">
-          <button class="btn nav-button color-house" type="button">House</button>
-          <button class="btn nav-button color-spouse" type="button">Spouse</button>
-          <button class="btn nav-button color-kids" type="button">Kids</button>
-          <button class="btn nav-button color-neutral" type="button">Blog</button>
-        </nav>
-      </div> <!-- container -->
-    </div> <!-- row -->
-
-
+          <nav class="text-center">
+            <button class="btn nav-button color-house" type="button">House</button>
+            <button class="btn nav-button color-spouse" type="button">Spouse</button>
+            <button class="btn nav-button color-kids" type="button">Kids</button>
+            <button class="btn nav-button color-neutral" type="button">Blog</button>
+          </nav>
+        </div> <!-- container -->
+      </div> <!-- row -->
 
 
+      <!-- flash notice area -->
+        <div class="flash-notice-area">
+          <% if flash[:notice] %>
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:notice] %>
+            </div>
+          <% elsif flash.now[:alert] %>
+            <div class="alert alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash.now[:alert] %>
+            </div>
+          <% elsif flash[:alert] %>
+            <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+        </div>
+      <!-- flash notice area -->
 
+      <%= yield %>
 
-    <!-- flash notice area -->
-      <div class="flash-notice-area">
-        <% if flash[:notice] %>
-          <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:notice] %>
-          </div>
-        <% elsif flash.now[:alert] %>
-          <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash.now[:alert] %>
-          </div>
-        <% elsif flash[:alert] %>
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:alert] %>
-          </div>
-        <% end %>
-      </div>
-    <!-- flash notice area -->
+      <div class="buffer"></div>
+    </div> <!-- non-footer -->
 
-    <%= yield %>
+    <footer>
+      <div class="row">
+        <div class="container">
+          Words go here or something
+        </div> <!-- container -->
+      </div> <!-- row -->
+    </footer>
 
   </body>
 </html>

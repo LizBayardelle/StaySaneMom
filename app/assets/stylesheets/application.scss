@@ -33,6 +33,7 @@ $color-house: #84C99A;
 $color-spouse: #313E50;
 $color-kids: #EFB0A1;
 $color-neutral: #B7AD99;
+$color-black: #302D28;
 
 $transparent-house: rgba(132, 201, 154, 0.5);
 $transparent-spouse: rgba(49, 62, 80, 0.5);
@@ -43,16 +44,19 @@ $transparent-neutral: rgba(183, 173, 153, 0.25);
 .color-spouse { color: $color-spouse; }
 .color-kids { color: $color-kids; }
 .color-neutral { color: $color-neutral; }
+.color-neutral-hover:hover { color: $color-black; }
 
 .bg-house { background-color: $transparent-house; }
 .bg-spouse { background-color: $transparent-spouse; }
 .bg-kids { background-color: $transparent-kids; }
 .bg-neutral { background-color: $transparent-neutral; }
 
-* { font-family: $font-sans; }
+* { font-family: $font-sans; color: $color-black }
 p { font-family: $font-serif; }
 
 hr { width: 50%; border-color: $color-neutral; }
+
+.buffer { height: 50px; }
 
 
 
@@ -102,6 +106,16 @@ hr { width: 50%; border-color: $color-neutral; }
   border-bottom: solid thin;
 }
 
+.navbar {
+  height: 45px;
+}
+
+.navbar .btn-outline-primary {
+  height: 30px;
+  font-size: 14px;
+  padding: 4px 10px 4px 10px;
+}
+
 .btn-outline-primary {
   color: $color-neutral;
   border-color: $color-neutral;
@@ -112,6 +126,30 @@ hr { width: 50%; border-color: $color-neutral; }
   border-color: $color-neutral;
 }
 
+.social-icon {
+  height: 20px;
+  margin: 0 10px 0 10px;
+}
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// -------- FOOTER -----------
+// ---------------------------
+// ---------------------------
+
+.non-footer {
+  min-height: calc(100vh - 300px);
+}
+
+footer {
+  background-color: $transparent-neutral;
+  height: 300px;
+}
 
 
 
