@@ -74,15 +74,34 @@
 
       <%= yield %>
 
-      <div class="buffer"></div>
     </div> <!-- non-footer -->
 
     <footer>
       <div class="row">
-        <div class="container">
-          Words go here or something
-        </div> <!-- container -->
+        <div class="col-sm-8">
+          <div class="container">
+            <h5 class="text-center font-serif color-neutral">Stay Sane Mom is my contribution to the over-worked, under-slept, marker-stained, soul-hungry moms of the world.</h5>
+            <h5 class="text-center font-serif color-neutral">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real person as well.</h5>
+            <h5 class="text-center font-serif color-neutral">Sometimes you just need a little support along the way.</h5>
+            <h5 class="text-center font-serif color-neutral">I'm here for you.</h5>
+          </div> <!-- container -->
+        </div> <!-- left bit -->
+        <div class="col-sm-4">
+          <div class="container">
+            <p class="color-neutral">Guest Blogging Opportunities</p>
+            <hr>
+            <p class="color-neutral">Speaking Engagements</p>
+            <hr>
+            <p class="color-neutral">Other Stuff</p>
+          </div> <!-- container -->
+        </div> <!-- left bit -->
       </div> <!-- row -->
+      <div class="row">
+        <div class="container text-center">
+          <hr>
+          <p>Copyright &copy; <%= Time.current.year %> Stay Sane Mom</p>
+        </div> <!-- container -->
+      </div>
     </footer>
 
   </body>

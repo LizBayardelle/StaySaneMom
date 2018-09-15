@@ -33,7 +33,7 @@ $color-house: #84C99A;
 $color-spouse: #313E50;
 $color-kids: #EFB0A1;
 $color-neutral: #B7AD99;
-$color-black: #302D28;
+$color-black: #2D3142;
 
 $transparent-house: rgba(132, 201, 154, 0.5);
 $transparent-spouse: rgba(49, 62, 80, 0.5);
@@ -51,7 +51,7 @@ $transparent-neutral: rgba(183, 173, 153, 0.25);
 .bg-kids { background-color: $transparent-kids; }
 .bg-neutral { background-color: $transparent-neutral; }
 
-* { font-family: $font-sans; color: $color-black }
+* { font-family: $font-sans; color: $color-black; }
 p { font-family: $font-serif; }
 
 hr { width: 50%; border-color: $color-neutral; }
@@ -148,7 +148,9 @@ hr { width: 50%; border-color: $color-neutral; }
 
 footer {
   background-color: $transparent-neutral;
-  height: 300px;
+  min-height: 300px;
+  margin-top: 50px;
+  padding: 30px 0 10px 0;
 }
 
 
