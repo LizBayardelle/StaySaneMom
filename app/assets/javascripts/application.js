@@ -11,12 +11,16 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require popper
 //= require bootstrap
 
 
 
-
+// ALERT FADE AWAY
+$(document).on("ready page:load", function() {
+  setTimeout(function() { $(".alert").fadeOut(); }, 5000);
+});
 
 
 // Match Height JS below

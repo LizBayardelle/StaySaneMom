@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *
+ *= require_tree .
  *= require_self
  */
 
@@ -33,7 +34,7 @@ $color-house: #84C99A;
 $color-spouse: #313E50;
 $color-kids: #EFB0A1;
 $color-neutral: #B7AD99;
-$color-black: #2D3142;
+$color-black: #26010C;
 
 $transparent-house: rgba(132, 201, 154, 0.5);
 $transparent-spouse: rgba(49, 62, 80, 0.5);
@@ -53,12 +54,54 @@ $transparent-neutral: rgba(183, 173, 153, 0.25);
 
 * { font-family: $font-sans; color: $color-black; }
 p { font-family: $font-serif; }
+a { color: $color-neutral; }
+a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 
 hr { width: 50%; border-color: $color-neutral; }
 
 .buffer { height: 50px; }
 
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: rgba(183, 173, 153, 0.8);
+  box-shadow: 0 1px 1px rgba(183, 173, 153, 1) inset, 0 0 8px rgba(183, 173, 153, 0.6);
+  outline: 0 none;
+}
 
+.alert {
+  background-color: $transparent-neutral;
+  border-color: $color-neutral;
+  color: $color-neutral;
+  border-radius: 0px;
+}
+
+
+.card {
+  box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
+  border: 5px solid $transparent-neutral;
+}
+
+.card.padded {
+  padding: 40px 25px 40px 25px;
+}
+
+.card.hover:hover {
+  border: 5px solid $color-neutral;
+}
 
 
 
@@ -156,31 +199,16 @@ footer {
 
 
 
+
+
 // ---------------------------
 // ---------------------------
 // ---------------------------
 // -------- IMAGES -----------
 // ---------------------------
 // ---------------------------
-
-.image-wrap {
-    display: block;
-    height: 450px;
-    overflow: hidden;
-    max-width: 100%;
-}
-
-.image-wrap img {
-    width: 100%;
-    vertical-align: middle;
-}
-
-@media screen and (max-width: 800px) {
-  .image-wrap img {
-      display: block;
-      height: 450px;
-      width: auto !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-  }
+.frame {
+  height: 450px;
+  background: transparent no-repeat center;
+  background-size: cover;
 }
