@@ -89,7 +89,6 @@ input[type="color"]:focus,
   border-radius: 0px;
 }
 
-
 .card {
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
   border: 5px solid $transparent-neutral;
@@ -102,6 +101,7 @@ input[type="color"]:focus,
 .card.hover:hover {
   border: 5px solid $color-neutral;
 }
+
 
 
 
@@ -167,6 +167,12 @@ input[type="color"]:focus,
 .btn-outline-primary:hover {
   background-color: $color-neutral;
   border-color: $color-neutral;
+}
+
+.button-outline-primary, .button-outline-primary:focus, .button-outline-primary:active {
+  background-color: transparent;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 .social-icon {
