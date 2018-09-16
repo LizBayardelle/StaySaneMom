@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>Teaser:</strong>
+  <%= @blog.teaser %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @blog.body %>
+</p>
+
+<p>
+  <strong>Cta:</strong>
+  <%= @blog.cta %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @blog.category %>
+</p>
+
+<p>
+  <strong>Linked module:</strong>
+  <%= @blog.linked_module %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%= @blog.published %>
+</p>
+
+<p>
+  <strong>Published on:</strong>
+  <%= @blog.published_on %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @blog.user %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @blog.image %>
+</p>
+
+<p>
+  <strong>Pdf:</strong>
+  <%= @blog.pdf %>
+</p>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

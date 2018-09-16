@@ -8,8 +8,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,800,800i|Sacramento|Work+Sans:200,400,700,900" rel="stylesheet">
     <%#= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,16 +41,16 @@
         <%= link_to root_path do %>
             <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
         <% end %>
-        
+
         <div class="container">
           <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from going crazy.</p>
         </div> <!-- container -->
 
         <nav class="text-center">
-          <button class="btn nav-button color-house" type="button">House</button>
-          <button class="btn nav-button color-spouse" type="button">Spouse</button>
-          <button class="btn nav-button color-kids" type="button">Kids</button>
-          <button class="btn nav-button color-neutral" type="button">Blog</button>
+          <button class="btn nav-button color-house" type="button"><%= link_to "House", home_house_path, class: "color-house" %></button>
+          <button class="btn nav-button color-spouse" type="button"><%= link_to "Spouse", home_spouse_path, class: "color-spouse" %></button>
+          <button class="btn nav-button color-kids" type="button"><%= link_to "Kids", home_kids_path, class: "color-kids" %></button>
+          <button class="btn nav-button color-neutral" type="button"><%= link_to "Blog", blogs_path %></button>
         </nav>
       </div> <!-- container -->
 
@@ -104,7 +104,7 @@
         <div class="row">
           <div class="container text-center">
             <hr>
-            <p>Copyright &copy; <%= Time.current.year %> Stay Sane Mom</p>
+            <p class="color-neutral">Copyright &copy; <%= Time.current.year %> Stay Sane Mom</p>
           </div> <!-- container -->
         </div> <!-- row -->
       </div> <!-- container -->

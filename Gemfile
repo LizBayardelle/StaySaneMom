@@ -8,10 +8,8 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick'
 gem 'jquery-rails'
 gem 'devise'
 gem 'bootsnap'
@@ -29,8 +27,8 @@ gem 'aws-sdk' , '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'simple_form_extension'
 gem 'recaptcha', require: "recaptcha/rails"
-gem "font-awesome-rails"
-
+gem 'font-awesome-rails'
+gem 'trix', git: 'https://github.com/bcoia/trix.git'
 
 group :production do
   gem 'pg', '~> 0.20.0'

@@ -10,7 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_053010) do
+ActiveRecord::Schema.define(version: 2018_09_16_052922) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.string "teaser"
+    t.text "body"
+    t.string "cta"
+    t.string "category", default: "General"
+    t.string "linked_module"
+    t.boolean "published", default: false
+    t.datetime "published_on"
+    t.integer "user_id"
+    t.integer "image_id"
+    t.integer "pdf_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_blogs_on_image_id"
+    t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer "tag_id"
