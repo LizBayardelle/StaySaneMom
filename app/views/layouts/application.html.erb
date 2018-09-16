@@ -37,21 +37,22 @@
         </form>
       </nav>
 
-      <div class="container">
-        <div class="text-center row">
-          <%= link_to root_path do %>
-              <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
-          <% end %>
+      <div class="text-center">
+        <%= link_to root_path do %>
+            <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
+        <% end %>
+        
+        <div class="container">
           <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from going crazy.</p>
+        </div> <!-- container -->
 
-          <nav class="text-center">
-            <button class="btn nav-button color-house" type="button">House</button>
-            <button class="btn nav-button color-spouse" type="button">Spouse</button>
-            <button class="btn nav-button color-kids" type="button">Kids</button>
-            <button class="btn nav-button color-neutral" type="button">Blog</button>
-          </nav>
-      </div> <!-- row -->
-    </div> <!-- container -->
+        <nav class="text-center">
+          <button class="btn nav-button color-house" type="button">House</button>
+          <button class="btn nav-button color-spouse" type="button">Spouse</button>
+          <button class="btn nav-button color-kids" type="button">Kids</button>
+          <button class="btn nav-button color-neutral" type="button">Blog</button>
+        </nav>
+      </div> <!-- container -->
 
 
       <!-- flash notice area -->

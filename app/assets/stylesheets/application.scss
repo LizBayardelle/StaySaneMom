@@ -162,15 +162,17 @@ input[type="color"]:focus,
 .btn-outline-primary {
   color: $color-neutral;
   border-color: $color-neutral;
+  background-color: transparent !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: $color-neutral;
+  background-color: $color-neutral !important;
   border-color: $color-neutral;
+  font-weight: 400;
 }
 
 .button-outline-primary, .button-outline-primary:focus, .button-outline-primary:active {
-  background-color: transparent;
+  background-color: transparent !important;
   box-shadow: none;
   -webkit-box-shadow: none;
 }
