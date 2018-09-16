@@ -212,3 +212,9 @@ footer {
   background: transparent no-repeat center;
   background-size: cover;
 }
+
+@media screen and (min-width: 1500px) {
+  .frame {
+    height: 550px;
+  }
+}
