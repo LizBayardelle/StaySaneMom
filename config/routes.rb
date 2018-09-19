@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :blogs
   root 'home#index'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show]
 
   get 'home/index'

@@ -1,59 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="frame" style="background-image: url(<%= rails_blob_url(@blog.image) %>)"></div>
+<div class="over-frame-text">
+  <h1><%= @blog.title %></h1>
+  <div class="over-frame-bottom-row text-right">
+    <h3>From <%= @blog.category %> Blogs</h3>
+  </div> <!-- over-frame-text -->
+</div> <!-- over-frame-text -->
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+<div class="row">
+  <div class="container">
+    <% if current_user && current_user.admin %>
+      <div class="text-right">
+        <%= link_to "Edit Blog", edit_blog_path(@blog) %>
+      </div>
+    <% end %>
 
-<p>
-  <strong>Teaser:</strong>
-  <%= @blog.teaser %>
-</p>
+    <div class="buffer"></div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @blog.body %>
-</p>
+    <h2 class="text-center"><%= @blog.teaser %></h2>
 
-<p>
-  <strong>Cta:</strong>
-  <%= @blog.cta %>
-</p>
+    <%= render "layouts/hr" %>
 
-<p>
-  <strong>Category:</strong>
-  <%= @blog.category %>
-</p>
+    <%= @blog.body.html_safe %>
+    <h2 class="cta text-center"><%= link_to @blog.cta, rails_blob_url(@blog.pdf), target: "_blank" %></h2>
 
-<p>
-  <strong>Linked module:</strong>
-  <%= @blog.linked_module %>
-</p>
+    <strong>Category:</strong>  <%= @blog.category %>
+    <strong>Linked module:</strong>  <%= @blog.linked_module %>
+    <strong>Published:</strong>  <%= @blog.published %>
+    <strong>Published on:</strong>  <%= @blog.published_on %>
+    <strong>User:</strong>  <%= @blog.user %>
+    <strong>Image:</strong>  <%= @blog.image %>
 
-<p>
-  <strong>Published:</strong>
-  <%= @blog.published %>
-</p>
 
-<p>
-  <strong>Published on:</strong>
-  <%= @blog.published_on %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @blog.user %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @blog.image %>
-</p>
-
-<p>
-  <strong>Pdf:</strong>
-  <%= @blog.pdf %>
-</p>
-
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+    <%= link_to 'Edit', edit_blog_path(@blog) %> |
+    <%= link_to 'Back', blogs_path %>
+  </div> <!-- page container -->
+</div> <!-- row -->

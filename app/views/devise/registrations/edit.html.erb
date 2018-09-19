@@ -1,27 +1,85 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <h2 class="text-center">Edit My Information</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-  </div>
+    <div class="form-inputs row">
+      <div class="form-group col-sm-6">
+        <%= f.label "First Name (Visible to Other Members)" %>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div> <!-- form-group -->
+      <div class="form-group col-sm-6">
+        <%= f.label "Last Name" %>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div> <!-- form-group -->
+      <div class="form-group col-sm-12">
+        <%= f.label "What's your life philosophy, in one sentence? (Visible to Other Members)" %>
+        <%= f.text_field :tagline, class: "form-control" %>
+      </div> <!-- form-group -->
+      <div class="container">
+        <div class="form-group col-xs-12">
+          <%= f.label "Short Description of Yourself (Visible to Other Members)" %>
+          <%= f.text_area :bio, class: "form-control" %>
+        </div> <!-- form-group -->
+      </div> <!-- row -->
+      <div class="container">
+        <div class="form-group">
+          <%= f.label "Profile Picture" %><br />
+          <%= f.file_field :avatar, label: false %>
+        </div> <!-- form-group -->
+      </div> <!-- row -->
+      <div class="form-group col-sm-6">
+        <%= f.label "Email" %>
+        <%= f.text_field :email, class: "form-control", required: true, autofocus: true %>
+      </div> <!-- form-group -->
+      <div class="form-group col-sm-6">
+        <%= f.label "Current Password" %>
+        <%= f.password_field :current_password, class: "form-control", hint: "we need your current password to confirm your changes", required: true %>
+      </div> <!-- form-group -->
+      <p class="text-center passwordChangeTarget col-sm-12 color-neutral"><a>Want to change your password?</a></p>
+      <div class="d-none passwordChange row">
+          <div class="form-group col-sm-6">
+            <%= f.label "New Password" %>
+            <%= f.password_field :password, id: "newPW", autocomplete: "off", class: "form-control", hint: "leave it blank if you don't want to change it", required: false %>
+          </div> <!-- form-group -->
+          <div class="form-group col-sm-6">
+            <%= f.label "Confirm New Password" %>
+            <%= f.password_field :password_confirmation, id: "newPWconf", class: "form-control", required: false %>
+          </div> <!-- form-group -->
+          <p class="text-center passwordChangeNope col-sm-12 color-neutral"><a>Nevermind, don't change my password.</a></p>
+      </div> <!-- password change -->
+    </div> <!-- form inputs -->
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+    <div class="form-actions text-center">
+      <%= f.button :submit, "Update", class: "btn-outline-primary" %>
+    </div>
+  <% end %>
 
-<h3>Cancel my account</h3>
+  <%= render 'layouts/hr' %>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p class="text-center"><%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+  <div class="text-center"><%= button_to "Back", :back, class: "btn-outline-primary" %></div>
+</div> <!-- container -->
+
+<script>
+  $(document).ready(function(){
+      $(".passwordChangeTarget").click(function(){
+          $(".passwordChange").removeClass("d-none");
+          $(".passwordChangeTarget").addClass("d-none");
+          $(".passwordChangeNope").removeClass("d-none");
+      });
+      $(".passwordChangeNope").click(function(){
+          $(".passwordChange").addClass("d-none");
+          $(".passwordChangeTarget").removeClass("d-none");
+          $(".passwordChangeNope").addClass("d-none");
+          $('#newPW').val('');
+          $('#newPWconf').val('');
+      });
+  });
+</script>

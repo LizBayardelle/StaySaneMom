@@ -62,6 +62,7 @@ a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 hr { width: 50%; border-color: $color-neutral; }
 
 .buffer { height: 50px; }
+.half-buffer { height: 25px; }
 
 textarea:focus,
 input[type="text"]:focus,
@@ -230,4 +231,83 @@ footer {
   .frame {
     height: 550px;
   }
+}
+
+.over-frame-text {
+  position: relative;
+  margin-top: -400px;
+  height: 400px;
+}
+
+.over-frame-text h1 {
+  font-size: 60px;
+  font-weight: 800;
+  text-align: center;
+  color: white;
+}
+
+.over-frame-bottom-row {
+  position: absolute;
+  bottom: 0;
+}
+
+.over-frame-bottom-row h3 {
+  color: white;
+}
+
+@media screen and (min-width: 1500px) {
+  .over-frame-text {
+    height: 500px;
+    margin-top: 500px;
+  }
+}
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// -------- BIOBOX -----------
+// ---------------------------
+// ---------------------------
+
+.biobox {
+  border: solid thin $color-neutral;
+  background-color: $transparent-neutral;
+  border-radius: 15px;
+  padding: 25px 15px 25px 15px;
+}
+
+.biobox-image {
+  display: inline-block;
+}
+
+.biobox img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 15px;
+}
+
+.biobox-image {
+  display: inline-block;
+}
+
+.biobox h3 {
+  text-align: center;
+  color: $color-neutral;
+  font-family: $font-script;
+  margin-top: 15px;
+}
+
+.biobox h4 {
+  color: $color-neutral;
+  font-weight: 700;
+}
+
+.biobox p {
+  color: $color-neutral;
+  text-align: justify;
 }

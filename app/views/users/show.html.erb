@@ -1,37 +1,16 @@
-<div class="overlap-responsive-image">
-	<div class="row text-center">
-    <div class="container">
-	    <h1 class="over-image-text" style="margin: 30px 0 30px 0">The <%= current_user.last_name %> Family</h1>
-      <h3 class="over-image-text">Manage your family's information and settings here.</h3>
-  		<div class="hidden-xs" style="height: 50px"></div>
-			<%= link_to 'Edit My Information', edit_user_registration_path, class: "btn ghost hvr-grow" %>
-    </div> <!-- container -->
-	</div> <!-- row -->
-</div> <!-- overlap image -->
+<div class="container">
+	<div class="text-center">
+		<%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	</div> <!-- nav -->
 
-<div class="row background-white" style="padding-top: 15px">
-	<div class="container">
-		<div class="text-right">
-			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-		</div>
+	<div class="half-buffer"></div>
 
-		<h1 class="text-center">Family Information</h1>
+	<%= render "layouts/biobox", locals: { user: current_user } %>
 
-		<div class="row">
-			<div class="container">
-				<%#= render partial: "children/new" %>
-				<h2 class="font-hand">Kids<a href="#new-kid-popup" class="open-popup-link" style="margin-left: 15px"><i class="icon ion-plus green"></i></a></h2>
-				<div id="kids-list">
-					<%#= render 'kids' %>
-				</div>
-			</div> <!-- container -->
-		</div> <!-- row -->
+	<div class="half-buffer"></div>
 
-		<h1 class="text-center">Admin Stuff</h1>
+	<% if current_user.admin %>
+		<h2 class="text-center">Admin Stuff</h2>
 
-		<% if current_user.admin %>
-			<h2 class="font-hand">Suggestions</h2>
-			<%#= render 'suggestions' %>
-		<% end %>
-	</div> <!-- container -->
-</div> <!-- white background -->
+	<% end %>
+</div> <!-- container -->
