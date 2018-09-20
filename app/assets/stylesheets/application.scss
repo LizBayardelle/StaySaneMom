@@ -349,7 +349,16 @@ footer {
   position: relative;
   box-sizing: border-box;
   margin: 15px 0 15px 0;
-  height: 200px;
+  height: 250px;
+}
+
+.blog-frame {
+  display: inline-block;
+  height: 250px;
+  width: 25%;
+  background: transparent no-repeat center;
+  background-size: cover;
+  vertical-align: top;
 }
 
 .blog-card:hover {
@@ -408,15 +417,6 @@ footer {
   color: $color-neutral;
 }
 
-.blog-frame {
-  display: inline-block;
-  height: 200px;
-  width: 25%;
-  background: transparent no-repeat center;
-  background-size: cover;
-  vertical-align: top;
-}
-
 .blog-text {
   width: 74%;
   display: inline-block;
@@ -431,4 +431,30 @@ footer {
 
 .blog-card a:hover p {
   font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .blog-card {
+    position: relative;
+    box-sizing: border-box;
+    margin: 15px 0 15px 0;
+    height: auto;
+  }
+
+  .blog-frame {
+    display: block;
+    width: 100%;
+    height: 250px;
+    background: transparent no-repeat center;
+    background-size: cover;
+    vertical-align: top;
+  }
+
+  .blog-text {
+    margin-bottom: 50px;
+  }
+
+  .blog-card:hover .blog-frame {
+    width: 100%;
+  }
 }
