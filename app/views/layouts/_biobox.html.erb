@@ -1,14 +1,14 @@
   <div class="biobox row">
     <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3">
-      <%# if @user.avatar != nil %>
-        <%= image_tag @user.avatar %>
-      <%# else %>
-        <%#= image_tag "missing_avatar.jpg" %>
+      <% if @user.avatar_id %>
+        <%= image_tag rails_blob_url(@user.avatar) %>
+      <% else %>
+        <%= image_tag "missing_avatar.jpg" %>
         <h3><%= @user.first_name %><h3>
-      <%# end %>
+      <% end %>
     </div> <!-- biobox-image -->
     <div class="biobox-bio col-sm-9">
-      <h4><%= @user.tagline %></h4>
       <p><%= @user.bio %></p>
     </div> <!-- biobox-image -->
+    <h4 class="text-center"><%= @user.tagline %></h4>
   </div> <!-- biobox -->

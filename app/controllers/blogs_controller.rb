@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @user = User.where(id: @blog.user_id).first
   end
 
   # GET /blogs/new
@@ -49,6 +50,9 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+    if @blog.published
+      @blog.published_on = DateTime.current
+    end
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
@@ -73,11 +77,11 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :teaser, :body, :cta, :category, :linked_module, :published, :published_on, :user_id, :image, :pdf)
+      params.require(:blog).permit(:title, :teaser, :body, :cta, :category, :linked_module, :published, :published_on, :user_id, :image, :pdf, :slug)
     end
 end

@@ -17,21 +17,23 @@
     <div class="buffer"></div>
 
     <h2 class="text-center"><%= @blog.teaser %></h2>
+    <p class="text-center">Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
 
     <%= render "layouts/hr" %>
 
     <%= @blog.body.html_safe %>
     <h2 class="cta text-center"><%= link_to @blog.cta, rails_blob_url(@blog.pdf), target: "_blank" %></h2>
 
-    <strong>Category:</strong>  <%= @blog.category %>
-    <strong>Linked module:</strong>  <%= @blog.linked_module %>
-    <strong>Published:</strong>  <%= @blog.published %>
-    <strong>Published on:</strong>  <%= @blog.published_on %>
-    <strong>User:</strong>  <%= @blog.user %>
-    <strong>Image:</strong>  <%= @blog.image %>
+    <h2 class="text-center">About the Author</h2>
+    <div class="half-buffer"></div>
+    <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
 
-
-    <%= link_to 'Edit', edit_blog_path(@blog) %> |
-    <%= link_to 'Back', blogs_path %>
+    <div class="text-center">
+      <div class="half-buffer"></div>
+      <% if current_user.admin %>
+        <%= link_to 'Edit', edit_blog_path(@blog) %> |
+      <% end %>
+      <%= link_to 'Back', blogs_path %>
+    </div>
   </div> <!-- page container -->
 </div> <!-- row -->
