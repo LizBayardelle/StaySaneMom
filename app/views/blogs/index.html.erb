@@ -14,27 +14,29 @@
   <% @blogs.each do |blog| %>
     <%= link_to blog do %>
       <div class="blog-card">
-        <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
-        <div class="blog-text">
-          <% case blog.category %>
-          <% when "House" %>
-            <h2 class="color-house"><%= blog.title %></h2>
-          <% when "Spouse" %>
-            <h2 class="color-spouse"><%= blog.title %></h2>
-          <% when "Kids" %>
-            <h2 class="color-kids"><%= blog.title %></h2>
-          <% else %>
-            <h2 class="color-neutral"><%= blog.title %></h2>
-          <% end %>
-          <p><%= blog.teaser %></p>
-          <p class="published-on"><small>
-            Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
-            <% if current_user && current_user.admin %>
-                 | <%= link_to 'Edit', edit_blog_path(blog) %> |
-                <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          </small></p>
-        </div> <!-- blog-text -->
+        <% case blog.category %>
+        <% when "House" %>
+          <div class="house">
+        <% when "Spouse" %>
+          <div class="spouse">
+        <% when "Kids" %>
+          <div class="kids">
+        <% else %>
+          <div class="other">
+        <% end %>
+          <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
+          <div class="blog-text">
+            <h2><%= blog.title %></h2>
+            <p><%= blog.teaser %></p>
+            <p class="published-on"><small>
+              Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
+              <% if current_user && current_user.admin %>
+                   | <%= link_to 'Edit', edit_blog_path(blog) %> |
+                  <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </small></p>
+          </div> <!-- blog-text -->
+        </div> <!-- end case div -->
       </div> <!-- blog card -->
     <% end %>
   <% end %>

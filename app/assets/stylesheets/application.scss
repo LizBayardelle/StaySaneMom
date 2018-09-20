@@ -33,7 +33,7 @@ $font-script: 'Sacramento', cursive;
 .font-script { font-family: $font-script }
 
 $color-house: #84C99A;
-$color-spouse: #313E50;
+$color-spouse: #526887;
 $color-kids: #EFB0A1;
 $color-neutral: #B7AD99;
 $color-black: #26010C;
@@ -347,9 +347,65 @@ footer {
 
 .blog-card {
   position: relative;
-  border: thick solid transparent;
-  border-bottom: thin solid $color-neutral;
   box-sizing: border-box;
+  margin: 15px 0 15px 0;
+  height: 200px;
+}
+
+.blog-card:hover {
+  margin: 11px 0 19px 0;
+}
+
+.blog-card:hover .blog-frame {
+  width: calc(25% + -3px);
+}
+
+.blog-card .house {
+  border: thin solid $color-house;
+}
+
+.blog-card .spouse {
+  border: thin solid $color-spouse;
+}
+
+.blog-card .kids {
+  border: thin solid $color-kids;
+}
+
+.blog-card .other {
+  border: thin solid $color-neutral;
+}
+
+.blog-card:hover .house {
+  border: thick solid $color-house;
+}
+
+.blog-card:hover .spouse {
+  border: thick solid $color-spouse;
+}
+
+.blog-card:hover .kids {
+  border: thick solid $color-kids;
+}
+
+.blog-card:hover .other {
+  border: thick solid $color-neutral;
+}
+
+.blog-card .house h2 {
+  color: $color-house;
+}
+
+.blog-card .spouse h2 {
+  color: $color-spouse;
+}
+
+.blog-card .kids h2 {
+  color: $color-kids;
+}
+
+.blog-card .other h2 {
+  color: $color-neutral;
 }
 
 .blog-frame {
@@ -365,17 +421,12 @@ footer {
   width: 74%;
   display: inline-block;
   vertical-align: top;
-  padding: 10px 0 0 20px;
+  padding: 10px 20px 0 20px;
 }
 
 .blog-card .published-on {
   position: absolute;
   bottom: 0;
-}
-
-.blog-card:hover {
-  border: thick solid $color-neutral;
-  box-sizing: border-box;
 }
 
 .blog-card a:hover p {
