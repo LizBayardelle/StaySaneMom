@@ -23,7 +23,7 @@
 
     <%= @blog.body.html_safe %>
 
-    <% if @blog.pdf %>
+    <% if @blog.cta %>
       <h2 class="cta text-center"><%= link_to @blog.cta, rails_blob_url(@blog.pdf), target: "_blank" %></h2>
     <% end %>
 

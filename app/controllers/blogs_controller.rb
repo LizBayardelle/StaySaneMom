@@ -34,9 +34,13 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        @blog.image.purge
+        if @blog.image.attached?
+          @blog.image.purge
+        end
         @blog.image.attach(params[:image])
-        @blog.pdf.purge
+        if @blog.pdf.attached?
+          @blog.pdf.purge
+        end
         @blog.pdf.attach(params[:pdf])
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
@@ -53,6 +57,14 @@ class BlogsController < ApplicationController
     if @blog.published
       @blog.published_on = DateTime.current
     end
+    if @blog.image.attached?
+      @blog.image.purge
+    end
+    @blog.image.attach(params[:image])
+    if @blog.pdf.attached?
+      @blog.pdf.purge
+    end
+    @blog.pdf.attach(params[:pdf])
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
