@@ -140,8 +140,25 @@ input[type="color"]:focus,
   font-size: 30px;
   padding-top: 10px;
   margin: 10px 10px 20px 10px;
-  border-top: solid thin white;
-  border-top: solid thin white;
+}
+
+.nav-button a:hover {
+  font-weight: 700;
+}
+
+.nav-button a.color-house:hover {
+  color: $color-house;
+  border-color: $color-house;
+}
+
+.nav-button a.color-spouse:hover {
+  color: $color-spouse;
+  border-color: $color-spouse;
+}
+
+.nav-button a.color-kids:hover {
+  color: $color-kids;
+  border-color: $color-kids;
 }
 
 @media screen and (max-width: 800px) {
@@ -313,4 +330,54 @@ footer {
 .biobox p {
   color: $color-neutral;
   text-align: justify;
+}
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// --------- BLOGS -----------
+// ---------------------------
+// ---------------------------
+
+.blog-card {
+  position: relative;
+  border: thick solid transparent;
+  border-bottom: thin solid $color-neutral;
+  box-sizing: border-box;
+}
+
+.blog-frame {
+  display: inline-block;
+  height: 200px;
+  width: 25%;
+  background: transparent no-repeat center;
+  background-size: cover;
+  vertical-align: top;
+}
+
+.blog-text {
+  width: 74%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 0 0 20px;
+}
+
+.blog-card .published-on {
+  position: absolute;
+  bottom: 0;
+}
+
+.blog-card:hover {
+  border: thick solid $color-neutral;
+  box-sizing: border-box;
+}
+
+.blog-card a:hover p {
+  font-weight: 400;
 }
