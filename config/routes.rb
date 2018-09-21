@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'home/house'
   get 'home/spouse'
   get 'home/kids'
-
+  get 'home/tools'
 
 
 end
