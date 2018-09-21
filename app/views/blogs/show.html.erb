@@ -16,7 +16,7 @@
 
     <div class="buffer"></div>
 
-    <h2 class="text-center"><%= @blog.teaser %></h2>
+    <h3 class="text-center"><%= @blog.teaser %></h3>
     <p class="text-center">Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
 
     <%= render "layouts/hr" %>
