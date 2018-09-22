@@ -5,7 +5,8 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order("published_on DESC")
+    @blogs = Blog.where(published: true).order("published_on DESC")
+    @unpublished = Blog.where(published: false)
   end
 
   # GET /blogs/1

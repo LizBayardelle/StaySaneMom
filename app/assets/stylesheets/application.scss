@@ -370,6 +370,10 @@ footer {
   margin: 11px 0 19px 0;
 }
 
+.blog-card:hover p {
+  font-weight: 400 !important;
+}
+
 .blog-card:hover .blog-frame {
   width: calc(25% + -3px);
 }
