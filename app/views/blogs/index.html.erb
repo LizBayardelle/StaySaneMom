@@ -27,13 +27,17 @@
       <div class="blog-card">
         <% case blog.category %>
         <% when "House" %>
-          <div class="house">
+          <div class="house transparent-hover">
+            <div class="flag">House</div>
         <% when "Spouse" %>
-          <div class="spouse">
+          <div class="spouse transparent-hover">
+            <div class="flag">Spouse</div>
         <% when "Kids" %>
-          <div class="kids">
+          <div class="kids transparent-hover">
+            <div class="flag">Kids</div>
         <% else %>
-          <div class="other">
+          <div class="other transparent-hover neutral">
+            <div class="flag">Self</div>
         <% end %>
           <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
           <div class="blog-text">

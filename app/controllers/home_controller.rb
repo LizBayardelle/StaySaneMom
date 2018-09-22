@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    @blogs = Blog.order("published_on DESC").limit(3)
+    @all_blogs = Blog.all
   end
 
   def tools
@@ -12,5 +14,8 @@ class HomeController < ApplicationController
   end
 
   def kids
+  end
+
+  def self
   end
 end

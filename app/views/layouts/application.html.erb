@@ -26,6 +26,7 @@
           <%= fa_icon "amazon", class: "social-icon color-neutral color-neutral-hover" %>
         </div>
         <form class="form-inline">
+          <%= link_to "Free Tools", home_tools_path, class:"btn btn-outline-primary", style: "margin-right: 5px" %>
           <% if current_user %>
             <%= link_to "My Account", user_path(current_user), class:"btn btn-outline-primary" %>
           <% else %>
@@ -51,7 +52,7 @@
           <button class="btn nav-button color-house" type="button"><%= link_to "House", home_house_path, class: "color-house" %></button>
           <button class="btn nav-button color-spouse" type="button"><%= link_to "Spouse", home_spouse_path, class: "color-spouse" %></button>
           <button class="btn nav-button color-kids" type="button"><%= link_to "Kids", home_kids_path, class: "color-kids" %></button>
-          <button class="btn nav-button color-neutral" type="button"><%= link_to "Tools", home_tools_path %></button>
+          <button class="btn nav-button color-neutral" type="button"><%= link_to "Self", home_self_path %></button>
         </nav>
       </div> <!-- container -->
 
