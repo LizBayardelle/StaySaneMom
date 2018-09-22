@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :admin_only, only: [:new, :create, :update, :edit, :destroy]
 
   # GET /blogs
   # GET /blogs.json
@@ -91,6 +92,12 @@ class BlogsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.friendly.find(params[:id])
+    end
+
+    def admin_only
+      unless current_user && current_user.admin
+        redirect_to root_path, notice: 'Sorry, you have to be an admin to do that!'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

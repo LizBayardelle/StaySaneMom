@@ -33,6 +33,11 @@
           <%= f.file_field :avatar, label: false %>
         </div> <!-- form-group -->
       </div> <!-- row -->
+      <div class="container">
+        <div class="form-group">
+          <%= f.input :subscribed, label: "Subscribed to Blog" %>
+        </div> <!-- form-group -->
+      </div> <!-- row -->
       <div class="form-group col-sm-6">
         <%= f.label "Email" %>
         <%= f.text_field :email, class: "form-control", required: true, autofocus: true %>

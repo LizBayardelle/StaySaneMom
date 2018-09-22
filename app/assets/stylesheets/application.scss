@@ -207,6 +207,25 @@ input[type="color"]:focus,
   margin: 0 10px 0 10px;
 }
 
+.btn-outline-secondary {
+  color: white;
+  border-color: white;
+  background-color: transparent !important;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn-outline-secondary:hover {
+  color: $color-neutral;
+  border-color: $color-neutral;
+  background-color: white !important;
+}
+
+
+
+
 
 
 
@@ -366,6 +385,18 @@ footer {
   vertical-align: top;
 }
 
+.blog-text {
+  width: 74%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 20px 0 20px;
+}
+
+.blog-card .published-on {
+  position: absolute;
+  bottom: 0;
+}
+
 .blog-card:hover {
   margin: 11px 0 19px 0;
 }
@@ -424,22 +455,6 @@ footer {
 
 .blog-card .other h2 {
   color: $color-neutral;
-}
-
-.blog-text {
-  width: 74%;
-  display: inline-block;
-  vertical-align: top;
-  padding: 10px 20px 0 20px;
-}
-
-.blog-card .published-on {
-  position: absolute;
-  bottom: 0;
-}
-
-.blog-card a:hover p {
-  font-weight: 400;
 }
 
 @media screen and (max-width: 768px) {
