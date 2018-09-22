@@ -44,6 +44,7 @@ $transparent-spouse: rgba(49, 62, 80, 0.5);
 $transparent-kids: rgba(239, 176, 161, 0.5);
 $transparent-neutral: rgba(183, 173, 153, 0.4);
 
+.color-white { color: #FFFFFF; }
 .color-house { color: $color-house; }
 .color-spouse { color: $color-spouse; }
 .color-kids { color: $color-kids; }
@@ -145,6 +146,16 @@ input[type="color"]:focus,
 // ------ INDEX PAGE ---------
 // ---------------------------
 // ---------------------------
+
+.convert-kit .seva-form {
+  width: 100% !important;
+}
+
+
+.convert-kit .seva-form .formkit-field {
+  width: 200px !important;
+  display: inline-block !important;
+}
 
 .rounded-image {
   height: 160px;
@@ -379,6 +390,7 @@ footer {
 }
 
 .over-frame-bottom-row {
+  width: 100%;
   position: absolute;
   bottom: 0;
 }

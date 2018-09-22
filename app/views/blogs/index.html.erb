@@ -1,13 +1,12 @@
 <div class="frame" style="background-image: url(<%= asset_path "best-parenting-blog.jpg" %>)"></div>
 <div class="over-frame-text">
   <h1>The Stay Sane Blog</h1>
-  <div class="container text-center" style="margin-top: 225px"><h4>
-    <% if current_user %>
-      <%= link_to "Subscribe", edit_user_registration_path, class: "btn btn-outline-secondary" %>
-    <% else %>
-      <%= link_to "Subscribe", new_user_registration_path, class: "btn btn-outline-secondary" %>
-    <% end %>
-  </h4></div>
+  <div class="over-frame-bottom-row">
+    <div class="container">
+        <h4 class="color-white text-center">Get the latest tips delivered straight to your inbox.</h4>
+        <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
+    </div>
+  </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
 
