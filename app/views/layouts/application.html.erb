@@ -26,9 +26,11 @@
           <%= fa_icon "amazon", class: "social-icon color-neutral color-neutral-hover" %>
         </div>
         <form class="form-inline">
-          <%= link_to "Free Tools", home_tools_path, class:"btn btn-outline-primary", style: "margin-right: 5px" %>
+          <%= link_to "Free Tools", home_tools_path, class:"btn btn-outline-primary" %>
           <% if current_user %>
-            <%= link_to "My Account", user_path(current_user), class:"btn btn-outline-primary" %>
+            <div style="padding-left: 10px;">
+              <%= link_to "My Account", user_path(current_user), class:"btn btn-outline-primary" %>
+            </div>
           <% else %>
             <div style="padding-left: 10px;">
               <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary" %>
