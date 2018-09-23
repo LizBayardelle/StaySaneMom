@@ -56,7 +56,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
-    if @blog.published
+    if @blog.published && @blog.published_on == nil
       @blog.published_on = DateTime.current
     end
     if @blog.image.attached?
