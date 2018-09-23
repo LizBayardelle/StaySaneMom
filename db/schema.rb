@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_211442) do
+ActiveRecord::Schema.define(version: 2018_09_23_205522) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2018_09_19_211442) do
     t.string "title"
     t.string "teaser"
     t.text "body"
-    t.string "cta"
     t.string "category", default: "General"
     t.string "linked_module"
     t.boolean "published", default: false
@@ -48,6 +47,9 @@ ActiveRecord::Schema.define(version: 2018_09_19_211442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.string "cta_read_more", default: "Read More"
+    t.string "cta_pdf", default: "Get My Free PDF"
+    t.string "cta_video", default: "Watch the Video"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true

@@ -5,7 +5,7 @@
   <div class="form-inputs">
     <div class="form-group">
       <%= f.label :category %>
-      <%= f.select :category, options_for_select(['General', 'House', 'Spouse', 'Kids', 'Other'], { class: "form-control" }) %>
+      <%= f.select :category, options_for_select(['General', 'House', 'Spouse', 'Kids', 'Self', 'Other'], { class: "form-control" }) %>
     </div>
     <div class="form-group">
       <%= f.label :title %>
@@ -19,9 +19,17 @@
       <%= f.label :body %>
       <%= f.trix_editor :body %>
     </div>
-      <div class="form-group">
-      <%= f.label :cta %>
-      <%= f.text_field :cta, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label "Read More CTA" %>
+      <%= f.text_field :cta_read_more, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "CTA for PDF Downloads" %>
+      <%= f.text_field :cta_pdf, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "CTA for Free Video" %>
+      <%= f.text_field :cta_video, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :linked_module %>

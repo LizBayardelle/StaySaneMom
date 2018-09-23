@@ -3,5 +3,71 @@
 <div class="row">
   <div class="container">
 
+    <div class="recent-blogs">
+      <h2 class="text-center script-header">Related Blogs</h2>
+
+      <div class="row">
+        <% @recent_blogs.each do |blog| %>
+          <%= link_to blog do %>
+            <div class="col-lg-4"><div class="blog-card">
+              <% case blog.category %>
+              <% when "House" %>
+                <div class="house transparent-hover">
+                  <div class="flag">House</div>
+              <% when "Spouse" %>
+                <div class="spouse transparent-hover">
+                  <div class="flag">Spouse</div>
+              <% when "Kids" %>
+                <div class="kids transparent-hover">
+                  <div class="flag">Kids</div>
+              <% when "Self" %>
+                <div class="self transparent-hover">
+                  <div class="flag">Self</div>
+              <% else %>
+                <div class="other transparent-hover neutral">
+                  <div class="flag">Other</div>
+              <% end %>
+                <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
+                <div class="blog-text">
+                  <h2><%= blog.title %></h2>
+                  <p><%= blog.teaser %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span></p>
+                  <p class="published-on"><small>
+                    Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
+                    <% if current_user && current_user.admin %>
+                         | <%= link_to 'Edit', edit_blog_path(blog) %> |
+                        <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                  </small></p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div></div> <!-- blog card/col -->
+          <% end %>
+        <% end %>
+      </div> <!-- row -->
+    </div> <!-- recent blogs -->
+
+
+    <div class="container">
+      <div class="half-buffer"></div>
+      <h3 class="text-center">Older Blogs on Kids</h3>
+    </div> <!-- container -->
+
+    <% @other_blogs.each do |blog| %>
+      <div class="row">
+        <%= link_to blog, class: "weight-400 color-black color-neutral-hover font-serif" do %>
+          <h3 class="color-kids font-sans"><%= blog.title %></h3>
+          <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span><% end %></p>
+        <% end %>
+      </div> <!-- row -->
+    <% end %>
+
+
+
   </div> <!-- page container -->
 </div> <!-- row -->
+
+<script>
+  $(function() {
+    $('.blog-text').matchHeight();
+  });
+</script>

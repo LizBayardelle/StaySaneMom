@@ -35,6 +35,7 @@ $font-script: 'Sacramento', cursive;
 $color-house: #84C99A;
 $color-spouse: #526887;
 $color-kids: #EFB0A1;
+$color-self: #916999;
 $color-neutral: #B7AD99;
 $color-neutral-light: rgba(226,222,215,1);
 $color-black: #26010C;
@@ -42,28 +43,34 @@ $color-black: #26010C;
 $transparent-house: rgba(132, 201, 154, 0.5);
 $transparent-spouse: rgba(49, 62, 80, 0.5);
 $transparent-kids: rgba(239, 176, 161, 0.5);
+$transparent-self: rgba(145,105,153, 0.4);
 $transparent-neutral: rgba(183, 173, 153, 0.4);
 
 .color-white { color: #FFFFFF; }
 .color-house { color: $color-house; }
 .color-spouse { color: $color-spouse; }
 .color-kids { color: $color-kids; }
+.color-self { color: $color-self; }
 .color-neutral { color: $color-neutral; }
 .color-neutral-hover:hover { color: $color-black; }
+.color-black { color: $color-black; }
 
 .border-house { border: solid $color-house; }
 .border-spouse { border: solid $color-spouse; }
 .border-kids { border: solid $color-kids; }
+.border-self { border: solid $color-self; }
 .border-neutral { border: solid $color-neutral; }
 
 .bg-house { background-color: $transparent-house; }
 .bg-spouse { background-color: $transparent-spouse; }
 .bg-kids { background-color: $transparent-kids; }
+.bg-self { background-color: $transparent-self; }
 .bg-neutral { background-color: $transparent-neutral; }
 
 .transparent-hover.house:hover { background-color: $transparent-house; }
 .transparent-hover.spouse:hover { background-color: $transparent-spouse; }
 .transparent-hover.kids:hover { background-color: $transparent-kids; }
+.transparent-hover.self:hover { background-color: $transparent-self; }
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
 
 * { font-family: $font-sans; color: $color-black; }
@@ -74,6 +81,7 @@ a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 a.color-house:hover { color: $color-house; }
 a.color-spouse:hover { color: $color-spouse; }
 a.color-kids:hover { color: $color-kids; }
+a.color-self:hover { color: $color-self; }
 
 hr { width: 50%; border-color: $color-neutral; }
 
@@ -86,6 +94,8 @@ hr { width: 50%; border-color: $color-neutral; }
   background: transparent no-repeat center;
   background-size: cover;
 }
+
+.weight-400 { font-weight: 400 !important; }
 
 textarea:focus,
 input[type="text"]:focus,
@@ -132,6 +142,7 @@ input[type="color"]:focus,
   font-size: 70px;
   font-family: $font-script;
   margin: 50px 0 10px 0;
+  color: $color-neutral;
 }
 
 
@@ -251,25 +262,22 @@ input[type="color"]:focus,
   font-weight: 700;
 }
 
-.nav-button a.color-house:hover {
-  color: $color-house;
-  border-color: $color-house;
-}
-
-.nav-button a.color-spouse:hover {
-  color: $color-spouse;
-  border-color: $color-spouse;
-}
-
-.nav-button a.color-kids:hover {
-  color: $color-kids;
-  border-color: $color-kids;
-}
+.nav-button a.color-house:hover { color: $color-house; border-color: $color-house; }
+.nav-button a.color-spouse:hover { color: $color-spouse; border-color: $color-spouse; }
+.nav-button a.color-kids:hover { color: $color-kids; border-color: $color-kids; }
+.nav-button a.color-self:hover { color: $color-self; border-color: $color-self; }
 
 @media screen and (max-width: 800px) {
   .nav-button a {
-    margin: 10px 5px 30px 5px;
+    margin: 10px 0px 30px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
     font-size: 25px;
+  }
+
+  .nav-button {
+    padding-left: 3px;
+    padding-right: 3px;
   }
 }
 
@@ -484,6 +492,7 @@ footer {
 .house .flag { background-color: $color-house; }
 .spouse .flag { background-color: $color-spouse; }
 .kids .flag { background-color: $color-kids; }
+.self .flag { background-color: $color-self; }
 .neutral .flag { background-color: $color-neutral; }
 
 .blog-card {
@@ -522,37 +531,17 @@ footer {
   font-weight: 400 !important;
 }
 
-.blog-card .house {
-  border: thin solid $color-house;
-}
+.blog-card .house { border: thin solid $color-house; }
+.blog-card .spouse { border: thin solid $color-spouse; }
+.blog-card .kids { border: thin solid $color-kids; }
+.blog-card .self { border: thin solid $color-self; }
+.blog-card .other { border: thin solid $color-neutral; }
 
-.blog-card .spouse {
-  border: thin solid $color-spouse;
-}
-
-.blog-card .kids {
-  border: thin solid $color-kids;
-}
-
-.blog-card .other {
-  border: thin solid $color-neutral;
-}
-
-.blog-card .house h2 {
-  color: $color-house;
-}
-
-.blog-card .spouse h2 {
-  color: $color-spouse;
-}
-
-.blog-card .kids h2 {
-  color: $color-kids;
-}
-
-.blog-card .other h2 {
-  color: $color-neutral;
-}
+.blog-card .house h2 { color: $color-house; }
+.blog-card .spouse h2 { color: $color-spouse; }
+.blog-card .kids h2 { color: $color-kids; }
+.blog-card .self h2 { color: $color-self; }
+.blog-card .other h2 { color: $color-neutral; }
 
 @media screen and (max-width: 768px) {
   .blog-card {

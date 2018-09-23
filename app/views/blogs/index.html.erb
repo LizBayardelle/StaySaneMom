@@ -35,9 +35,12 @@
           <% when "Kids" %>
             <div class="kids transparent-hover">
               <div class="flag">Kids</div>
+          <% when "Self" %>
+            <div class="self transparent-hover">
+              <div class="flag">Self</div>
           <% else %>
             <div class="other transparent-hover neutral">
-              <div class="flag">Self</div>
+              <div class="flag">Other</div>
           <% end %>
             <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
             <div class="blog-text">

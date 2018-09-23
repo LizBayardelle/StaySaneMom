@@ -48,15 +48,15 @@
         <% end %>
 
         <div class="container">
-          <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from going crazy.</p>
+          <p class="header-tagline color-neutral">Leveraging organization, research, and humor to keep you from&nbsp;going&nbsp;crazy.</p>
         </div> <!-- container -->
 
         <nav class="text-center">
-          <button class="btn nav-button color-neutral" type="button"><%= link_to "Blog", blogs_path %></button>
           <button class="btn nav-button color-house" type="button"><%= link_to "House", home_house_path, class: "color-house" %></button>
           <button class="btn nav-button color-spouse" type="button"><%= link_to "Spouse", home_spouse_path, class: "color-spouse" %></button>
           <button class="btn nav-button color-kids" type="button"><%= link_to "Kids", home_kids_path, class: "color-kids" %></button>
-          <button class="btn nav-button color-neutral" type="button"><%= link_to "Self", home_self_path %></button>
+          <button class="btn nav-button color-self" type="button"><%= link_to "Self", home_self_path, class: "color-self" %></button>
+          <button class="btn nav-button color-neutral" type="button"><%= link_to "Blog", blogs_path %></button>
         </nav>
       </div> <!-- container -->
 
