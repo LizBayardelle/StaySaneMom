@@ -509,6 +509,10 @@ footer {
   padding: 10px 20px 0 20px;
 }
 
+.blog-text p {
+  font-weight: 400 !important;
+}
+
 .blog-card .published-on {
   position: absolute;
   bottom: 0;
@@ -582,7 +586,7 @@ footer {
     box-sizing: border-box;
     margin: 15px;
     height: auto;
-    display: inline-block;
+    display: inline-block !important;
   }
 
   .blog-frame {
