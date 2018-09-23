@@ -25,7 +25,7 @@
                 <p>Let's face it, we all wish we could keep a cleaner house.  No one likes coming home to laundry mountain and a dust bunny brigade.</p>
                 <p>Here you can learn how to keep the chaos at bay.</p>
               </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Get a Cleaner House", home_house_path, class: "color-house" %></h5>
+              <h5 class="text-center"><%= link_to "Clean My House", home_house_path, class: "color-house" %></h5>
               <% end %>
             </div></div> <!-- category div / col div -->
 
@@ -37,7 +37,7 @@
                 <p>It's hard to pay attention to your marriage when jobs, chores, obligations, and all these tiny humans keep demanding things of us.</p>
                 <p>These tools should help you keep a healthy marriage in spite of everything else you have going on.</p>
               </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Build Your Marriage", home_spouse_path, class: "color-spouse" %></h5>
+              <h5 class="text-center"><%= link_to "Build My Marriage", home_spouse_path, class: "color-spouse" %></h5>
               <% end %>
             </div></div> <!-- category div / col div -->
 
@@ -61,7 +61,7 @@
                 <p>You wear many different hats throughout the course of the day. (Mom, chauffeur, executive assistant, chef, the list goes on...)  However, you are (believe it or not) also allowed to take care of yourself as a person.</p>
                 <p>This section is for you if you're having trouble remembering who you were before you were "Mom".</p>
               </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Take Time for Yourself", home_self_path, class: "color-neutral" %></h5>
+              <h5 class="text-center"><%= link_to "Stay Sane", home_self_path, class: "color-neutral" %></h5>
               <% end %>
             </div></div> <!-- category div / col div -->
         </div> <!-- row -->
@@ -85,39 +85,41 @@
 
     <div class="recent-blogs">
       <h2 class="text-center script-header">Recent Blog Posts</h2>
-      <% @blogs.each do |blog| %>
-        <%= link_to blog do %>
-          <div class="blog-card">
-            <% case blog.category %>
-            <% when "House" %>
-              <div class="house transparent-hover">
-                <div class="flag">House</div>
-            <% when "Spouse" %>
-              <div class="spouse transparent-hover">
-                <div class="flag">Spouse</div>
-            <% when "Kids" %>
-              <div class="kids transparent-hover">
-                <div class="flag">Kids</div>
-            <% else %>
-              <div class="other transparent-hover neutral">
-                <div class="flag">Self</div>
-            <% end %>
-              <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
-              <div class="blog-text">
-                <h2><%= blog.title %></h2>
-                <p><%= blog.teaser %></p>
-                <p class="published-on"><small>
-                  Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
-                  <% if current_user && current_user.admin %>
-                       | <%= link_to 'Edit', edit_blog_path(blog) %> |
-                      <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <% end %>
-                </small></p>
-              </div> <!-- blog-text -->
-            </div> <!-- end case div -->
-          </div> <!-- blog card -->
+      <div class="row">
+        <% @blogs.each do |blog| %>
+          <%= link_to blog do %>
+            <div class="col-lg-4"><div class="blog-card">
+              <% case blog.category %>
+              <% when "House" %>
+                <div class="house transparent-hover">
+                  <div class="flag">House</div>
+              <% when "Spouse" %>
+                <div class="spouse transparent-hover">
+                  <div class="flag">Spouse</div>
+              <% when "Kids" %>
+                <div class="kids transparent-hover">
+                  <div class="flag">Kids</div>
+              <% else %>
+                <div class="other transparent-hover neutral">
+                  <div class="flag">Self</div>
+              <% end %>
+                <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
+                <div class="blog-text">
+                  <h2><%= blog.title %></h2>
+                  <p><%= blog.teaser %></p>
+                  <p class="published-on"><small>
+                    Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
+                    <% if current_user && current_user.admin %>
+                         | <%= link_to 'Edit', edit_blog_path(blog) %> |
+                        <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                  </small></p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div></div> <!-- blog card/col -->
+          <% end %>
         <% end %>
-      <% end %>
+      </div> <!-- row -->
 
       <h4 class="text-center"><%= link_to "See " + (@all_blogs.count - 3).to_s + " More Posts", blogs_path %></h4>
     </div> <!-- recent blogs -->
@@ -128,5 +130,6 @@
   <script>
     $(function() {
     	$('.category-div').matchHeight();
+      $('.blog-text').matchHeight();
     });
   </script>

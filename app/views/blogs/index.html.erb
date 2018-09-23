@@ -21,38 +21,48 @@
 
   <div class="half-buffer"></div>
 
-  <% @blogs.each do |blog| %>
-    <%= link_to blog do %>
-      <div class="blog-card">
-        <% case blog.category %>
-        <% when "House" %>
-          <div class="house transparent-hover">
-            <div class="flag">House</div>
-        <% when "Spouse" %>
-          <div class="spouse transparent-hover">
-            <div class="flag">Spouse</div>
-        <% when "Kids" %>
-          <div class="kids transparent-hover">
-            <div class="flag">Kids</div>
-        <% else %>
-          <div class="other transparent-hover neutral">
-            <div class="flag">Self</div>
-        <% end %>
-          <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
-          <div class="blog-text">
-            <h2><%= blog.title %></h2>
-            <p><%= blog.teaser %></p>
-            <p class="published-on"><small>
-              Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
-              <% if current_user && current_user.admin %>
-                   | <%= link_to 'Edit', edit_blog_path(blog) %> |
-                  <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
-            </small></p>
-          </div> <!-- blog-text -->
-        </div> <!-- end case div -->
-      </div> <!-- blog card -->
+  <div class="row">
+    <% @blogs.each do |blog| %>
+      <%= link_to blog do %>
+        <div class="col-lg-4"><div class="blog-card">
+          <% case blog.category %>
+          <% when "House" %>
+            <div class="house transparent-hover">
+              <div class="flag">House</div>
+          <% when "Spouse" %>
+            <div class="spouse transparent-hover">
+              <div class="flag">Spouse</div>
+          <% when "Kids" %>
+            <div class="kids transparent-hover">
+              <div class="flag">Kids</div>
+          <% else %>
+            <div class="other transparent-hover neutral">
+              <div class="flag">Self</div>
+          <% end %>
+            <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
+            <div class="blog-text">
+              <h2><%= blog.title %></h2>
+              <p><%= blog.teaser %></p>
+              <p class="published-on"><small>
+                Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
+                <% if current_user && current_user.admin %>
+                     | <%= link_to 'Edit', edit_blog_path(blog) %> |
+                    <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </small></p>
+            </div> <!-- blog-text -->
+          </div> <!-- end case div -->
+        </div></div> <!-- blog card/col -->
+      <% end %>
     <% end %>
-  <% end %>
+  </div> <!-- row -->
 
 </div> <!-- page container -->
+
+
+
+  <script>
+    $(function() {
+      $('.blog-text').matchHeight();
+    });
+  </script>

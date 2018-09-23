@@ -370,12 +370,6 @@ footer {
   background-size: cover;
 }
 
-@media screen and (min-width: 1500px) {
-  .frame {
-    height: 550px;
-  }
-}
-
 .over-frame-text {
   position: relative;
   margin-top: -400px;
@@ -400,9 +394,13 @@ footer {
 }
 
 @media screen and (min-width: 1500px) {
+  .frame {
+    height: 550px;
+  }
+
   .over-frame-text {
     height: 500px;
-    margin-top: 500px;
+    margin-top: -500px;
   }
 }
 
@@ -571,6 +569,34 @@ footer {
 
   .blog-text {
     margin-bottom: 50px;
+  }
+
+  .blog-card:hover .blog-frame {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .blog-card {
+    position: relative;
+    box-sizing: border-box;
+    margin: 15px;
+    height: auto;
+    display: inline-block;
+  }
+
+  .blog-frame {
+    display: block;
+    width: 100%;
+    height: 250px;
+    background: transparent no-repeat center;
+    background-size: cover;
+    vertical-align: top;
+  }
+
+  .blog-text {
+    margin-bottom: 50px;
+    width: 100%;
   }
 
   .blog-card:hover .blog-frame {
