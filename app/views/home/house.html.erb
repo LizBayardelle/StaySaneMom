@@ -6,11 +6,11 @@
       <h3 class="color-white text-center">Want 5 secret tips to get<br />(and keep) your house clean?</h3>
       <div class="text-center">
         <div class="half-buffer"></div>
-        <a class="btn btn-outline-secondary" data-formkit-toggle="fc44272232" href="https://pages.convertkit.com/fc44272232/68b4312c1e">Get My Free Tips</a>
+        <a href="#convertkitPopup" class="open-popup-link btn btn-outline-secondary">Get My Free Tips</a>
         <div class="buffer"></div>
-      </div>
-    </div>
-  </div> <!-- over-frame-text -->
+      </div> <!-- text center -->
+    </div> <!-- container -->
+  </div> <!-- over-frame-bottom-row -->
 </div> <!-- over-frame-text -->
 
 <div class="row">
@@ -62,7 +62,9 @@
 
     <div class="container">
       <div class="half-buffer"></div>
-      <h3 class="text-center">Older Blogs on House Stuff</h3>
+      <% if @other_blogs.count > 0 %>
+        <h3 class="text-center">Older Blogs on House Stuff</h3>
+      <% end %>
     </div> <!-- container -->
 
     <% @other_blogs.each do |blog| %>
@@ -79,8 +81,25 @@
   </div> <!-- page container -->
 </div> <!-- row -->
 
+
+<!-- form itself -->
+<div id="convertkitPopup" class="white-popup mfp-hide">
+  <script async data-uid="fcce48a626" src="https://f.convertkit.com/fcce48a626/999d19a7ee.js"></script>
+</div>
+
+
+
+
+
+
+
 <script>
   $(function() {
     $('.blog-text').matchHeight();
+  });
+
+  $('.open-popup-link').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
   });
 </script>

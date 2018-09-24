@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require popper
 //= require trix
+//= require magnific-popup
 
 
 

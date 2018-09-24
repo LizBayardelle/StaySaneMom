@@ -1,4 +1,17 @@
 <div class="frame" style="background-image: url(<%= asset_path "take-care-of-yourself.jpg" %>)"></div>
+<div class="over-frame-text convert-kit">
+  <h1>You matter too!</h1>
+  <div class="over-frame-bottom-row">
+    <div class="container">
+      <h3 class="color-white text-center">Even though you're a mom,<br />you can still accomplish incredible things.</h3>
+      <div class="text-center">
+        <div class="half-buffer"></div>
+        <a href="#convertkitPopup" class="open-popup-link btn btn-outline-secondary">Learn to Set Goals You Can't Help but Accomplish</a>
+        <div class="buffer"></div>
+      </div> <!-- text center -->
+    </div> <!-- container -->
+  </div> <!-- over-frame-bottom-row -->
+</div> <!-- over-frame-text -->
 
 <div class="row">
   <div class="container">
@@ -49,7 +62,9 @@
 
     <div class="container">
       <div class="half-buffer"></div>
-      <h3 class="text-center">Older Blogs on Being a Mom and a Person (Simultaneously)</h3>
+      <% if @other_blogs.count > 0 %>
+        <h3 class="text-center">Older Blogs on Being a Mom and a Person (Simultaneously)</h3>
+      <% end %>
     </div> <!-- container -->
 
     <% @other_blogs.each do |blog| %>
@@ -66,8 +81,25 @@
   </div> <!-- page container -->
 </div> <!-- row -->
 
+
+<!-- form itself -->
+<div id="convertkitPopup" class="white-popup mfp-hide">
+  <script async data-uid="ea9aafed0b" src="https://f.convertkit.com/ea9aafed0b/320ca1ea50.js"></script>
+</div>
+
+
+
+
+
+
+
 <script>
   $(function() {
     $('.blog-text').matchHeight();
+  });
+
+  $('.open-popup-link').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
   });
 </script>

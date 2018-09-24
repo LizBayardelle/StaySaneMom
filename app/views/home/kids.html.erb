@@ -1,4 +1,17 @@
 <div class="frame" style="background-image: url(<%= asset_path "raise_balanced_happy_kids.jpg" %>)"></div>
+<div class="over-frame-text convert-kit">
+  <h1>Messy, Adorable, Little Humans</h1>
+  <div class="over-frame-bottom-row">
+    <div class="container">
+      <h3 class="color-white text-center">Want to learn how to<br />make your kids more motivated?</h3>
+      <div class="text-center">
+        <div class="half-buffer"></div>
+        <a href="#convertkitPopup" class="open-popup-link btn btn-outline-secondary">Click Here for the Secret</a>
+        <div class="buffer"></div>
+      </div> <!-- text center -->
+    </div> <!-- container -->
+  </div> <!-- over-frame-bottom-row -->
+</div> <!-- over-frame-text -->
 
 <div class="row">
   <div class="container">
@@ -49,7 +62,9 @@
 
     <div class="container">
       <div class="half-buffer"></div>
-      <h3 class="text-center">Older Blogs on Kids</h3>
+      <% if @other_blogs.count > 0 %>
+        <h3 class="text-center">Older Blogs on Kids</h3>
+      <% end %>
     </div> <!-- container -->
 
     <% @other_blogs.each do |blog| %>
@@ -66,8 +81,25 @@
   </div> <!-- page container -->
 </div> <!-- row -->
 
+
+<!-- form itself -->
+<div id="convertkitPopup" class="white-popup mfp-hide">
+  <script async data-uid="1832c287ca" src="https://f.convertkit.com/1832c287ca/c10fa015bf.js"></script>
+</div>
+
+
+
+
+
+
+
 <script>
   $(function() {
     $('.blog-text').matchHeight();
+  });
+
+  $('.open-popup-link').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
   });
 </script>
