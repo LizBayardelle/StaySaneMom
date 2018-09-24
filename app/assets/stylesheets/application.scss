@@ -628,3 +628,11 @@ footer {
   margin: 15px;
   padding: 15px 10px 15px 10px;
 }
+
+.content-box .content-box-img {
+  height: 150px;
+  width: calc(100% + 20px);
+  margin: -15px -10px 15px -10px;
+  background: transparent no-repeat center;
+  background-size: cover;
+}

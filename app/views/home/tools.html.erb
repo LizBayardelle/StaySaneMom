@@ -1,7 +1,20 @@
 <div class="frame" style="background-image: url(<%= asset_path "tools.jpg" %>)"></div>
 
-<div class="row">
-  <div class="container">
+<div class="container">
+	<div class="row">
 
-  </div> <!-- page container -->
-</div> <!-- row -->
+    <div class="col-sm-6 col-lg-3"><div class="content-box border-neutral transparent-hover neutral">
+      <%= link_to tasks_path do %>
+        <div class="content-box-img" style="background-image: url(<%= asset_path "keep_house_clean.jpg" %>)"></div>
+        <div class="text">
+          <h2 class="color-neutral font-script text-center">To Do List</h2>
+          <p class="weight-400">Let's face it, we all wish we could keep a cleaner house.  No one likes coming home to laundry mountain and a dust bunny brigade.</p>
+          <p class="weight-400">Here you can learn how to keep the chaos at bay.</p>
+        </div> <!-- text -->
+        <h5 class="text-center"><%= link_to "Go to My List", tasks_path, class: "color-neutral" %></h5>
+      <% end %>
+    </div></div> <!-- category div / col div -->
+
+
+	</div> <!-- row -->
+</div> <!-- container -->

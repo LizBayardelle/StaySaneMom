@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :tasks
+  post "tasks/:id/check_task" => "tasks#check_task", as: "check_task"
+  post "tasks/:id/uncheck_task" => "tasks#uncheck_task", as: "uncheck_task"
+
   resources :blogs
   root 'home#index'
 
