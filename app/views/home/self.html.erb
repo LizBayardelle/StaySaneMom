@@ -64,17 +64,15 @@
       <div class="half-buffer"></div>
       <% if @other_blogs && @other_blogs.count > 0 %>
         <h3 class="text-center">Older Blogs on Being a Mom and a Person (Simultaneously)</h3>
+        <% @other_blogs.each do |blog| %>
+          <%= link_to blog, class: "weight-400 color-black color-neutral-hover font-serif" do %>
+            <h3 class="color-self font-sans"><%= blog.title %></h3>
+            <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span><% end %></p>
+          <% end %>
+        <% end %>
       <% end %>
     </div> <!-- container -->
 
-    <% @other_blogs.each do |blog| %>
-      <div class="row">
-        <%= link_to blog, class: "weight-400 color-black color-neutral-hover font-serif" do %>
-          <h3 class="color-self font-sans"><%= blog.title %></h3>
-          <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span><% end %></p>
-        <% end %>
-      </div> <!-- row -->
-    <% end %>
 
 
 
