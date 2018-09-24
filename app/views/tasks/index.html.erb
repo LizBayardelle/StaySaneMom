@@ -1,0 +1,77 @@
+<div class="frame" style="background-image: url(<%= asset_path "best-parenting-blog.jpg" %>)"></div>
+<div class="over-frame-text">
+  <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>To Do List</h1>
+  <div class="over-frame-bottom-row">
+    <div class="container">
+			<%= simple_form_for(@create_task, remote: true) do |f| %>
+				<div class="row">
+					<div class="col-xs-12 col-sm-9">
+						<%= f.text_field :name, id: "textField", placeholder: "What needs to get done?", class: "form-control" %>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<%= f.select :frequency, options_for_select([["One-Time", "OneTime"],["Daily", "Daily"],["Weekly", "Weekly"],["Monthly", "Monthly"]]), {}, {class: "form-control"} %>
+					</div>
+					<div class="container text-center">
+						<div class="half-buffer"></div>
+						<%= f.button :submit, class: "btn btn-outline-secondary" %>
+						<div class="half-buffer"></div>
+					</div>
+				</div> <!-- row -->
+			<% end %>
+    </div> <!-- container -->
+  </div> <!-- over-frame-text -->
+</div> <!-- over-frame-text -->
+
+<div class="half-buffer"></div>
+
+<% if current_user %>
+
+	<%= @user_tasks.each do |t|
+		t.name
+	end %>
+
+	  <div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-6 col-lg-12">
+			    <div class="content-box">
+			      <h2 class="font-script color-neutral text-center">One-Time Tasks</h2>
+						<div id="onetime-todo"><%= render partial: 'items', locals: { task: @one_time } %></div>
+						<div id="onetime-done"><%= render partial: 'done', locals: { task: @one_time_done } %></div>
+			    </div> <!-- content box -->
+				</div> <!-- col -->
+
+				<div class="col-xs-12 col-md-6 col-lg-4">
+			    <div class="content-box">
+			      <h2 class="font-script color-neutral text-center">Daily</h2>
+						<p class="text-center">These automatically uncheck at night so you have a fresh list&nbsp;in&nbsp;the&nbsp;morning.</p>
+			      <div id="daily-todo"><%= render partial: 'items', locals: { task: @daily } %></div>
+						<div id="daily-done"><%= render partial: 'done', locals: { task: @daily_done } %></div>
+			    </div> <!-- content box -->
+				</div> <!-- col -->
+
+				<div class="col-xs-12 col-md-6 col-lg-4">
+			    <div class="content-box">
+			      <h2 class="font-script color-neutral text-center">Weekly</h2>
+						<p class="text-center">These automatically uncheck Sunday night so you get a new list&nbsp;each&nbsp;Monday&nbsp;morning.</p>
+			      <div id="weekly-todo"><%= render partial: 'items', locals: { task: @weekly } %></div>
+						<div id="weekly-done"><%= render partial: 'done', locals: { task: @weekly_done } %></div>
+			    </div> <!-- content box -->
+				</div> <!-- col -->
+
+				<div class="col-xs-12  col-md-6 col-lg-4">
+			    <div class="content-box">
+			      <h2 class="font-script color-neutral text-center">Monthly</h2>
+						<p class="text-center">These automatically uncheck on the last day of the month so you start with a clean&nbsp;list&nbsp;each&nbsp;1st.</p>
+			      <div id="monthly-todo"><%= render partial: 'items', locals: { task: @monthly } %></div>
+						<div id="monthly-done"><%= render partial: 'done', locals: { task: @monthly_done } %></div>
+			    </div> <!-- content box -->
+				</div> <!-- col -->
+			</div> <!-- row -->
+	  </div> <!-- container -->
+<% end %> <!-- current_user -->
+
+<script>
+	$(document).ready(function() {
+		$('.content-box').matchHeight();
+	});
+</script>

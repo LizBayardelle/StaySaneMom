@@ -1,0 +1,11 @@
+$("#onetime-todo").html("<%= escape_javascript(render partial: 'items', locals: { task: @one_time }) %>")
+$("#onetime-done").html("<%= escape_javascript(render partial: 'done', locals: { task: @one_time_done }) %>")
+
+$("#daily-todo").html("<%= escape_javascript(render partial: 'items', locals: { task: @daily }) %>")
+$("#daily-done").html("<%= escape_javascript(render partial: 'done', locals: { task: @daily_done }) %>")
+
+$("#weekly-todo").html("<%= escape_javascript(render partial: 'items', locals: { task: @weekly }) %>")
+$("#weekly-done").html("<%= escape_javascript(render partial: 'done', locals: { task: @weekly_done }) %>")
+
+$("#monthly-todo").html("<%= escape_javascript(render partial: 'items', locals: { task: @monthly }) %>")
+$("#monthly-done").html("<%= escape_javascript(render partial: 'done', locals: { task: @monthly_done }) %>")

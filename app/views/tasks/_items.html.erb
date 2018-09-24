@@ -1,0 +1,19 @@
+<div class="to-do-list">
+  <% task.each do |task| %>
+    <p>
+      <%= link_to check_task_path(task), method: :post, remote: true do %>
+        <i class="icon ion-android-checkbox-outline-blank"></i>
+      <% end %>
+      <span id="task-show-hide">
+        <span>
+          <%= task.name %>
+        </span>
+        <span>
+          <%= link_to task_path(task), method: :delete, remote: true do %>
+            <i class="icon ion-close-circled" id=(task.id + "task") style="margin-left: 5px"></i>
+          <% end %>
+        </span>
+      </span>
+    </p>
+  <% end %>
+</div>
