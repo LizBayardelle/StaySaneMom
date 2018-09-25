@@ -36,9 +36,6 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        byebug
-        @blog.image.attach(params[:image])
-        @blog.pdf.attach(params[:pdf])
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
