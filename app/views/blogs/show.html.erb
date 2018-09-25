@@ -1,4 +1,4 @@
-<div class="frame" style="background-image: url(<%= rails_blob_url(@blog.image) %>)"></div>
+<div class="frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)"></div>
 <div class="over-frame-text">
   <h1><%= @blog.title %></h1>
   <div class="over-frame-bottom-row text-right">
