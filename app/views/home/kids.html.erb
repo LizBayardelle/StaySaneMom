@@ -40,7 +40,7 @@
                 <div class="other transparent-hover neutral">
                   <div class="flag">General</div>
               <% end %>
-                <div class="blog-frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)"></div>
+                <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)"></div>
                 <div class="blog-text">
                   <h2><%= blog.title %></h2>
                   <p><%= blog.teaser %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span></p>

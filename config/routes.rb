@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   get 'home/self'
   get 'home/tools'
 
-  resources :blogs
-  resources :comments, only: [:create, :index, :destroy]
+  resources :blogs do
+    resources :comments
+  end
+  post "comment/:id/approve" => "comments#approve_comment", as: "approve_comment"
+  post "comment/:id/unapprove" => "comments#unapprove_comment", as: "unapprove_comment"
+  post "comment/:id/comment_read" => "comments#comment_read", as: "comment_read"
+  post "comment/:id/comment_unread" => "comments#comment_unread", as: "comment_unread"
+
 
   resources :tasks
   post "tasks/:id/check_task" => "tasks#check_task", as: "check_task"

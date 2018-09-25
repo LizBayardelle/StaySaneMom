@@ -27,12 +27,51 @@
     <div class="half-buffer"></div>
     <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
 
-    <div class="text-center">
-      <div class="half-buffer"></div>
-      <% if current_user && current_user.admin %>
+    <% if current_user && current_user.admin %>
+      <div class="text-center">
+        <div class="half-buffer"></div>
         <%= link_to 'Edit', edit_blog_path(@blog) %> |
+        <%= link_to 'Back', blogs_path %>
+      </div>
+    <% end %>
+
+    <div class="new-comment">
+      <%= simple_form_for [@blog, Comment.new] do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs col-xs-12" style="margin-bottom: 10px">
+          <%= f.label "Add a Comment" %>
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+
+        <% if @user %>
+          <%= f.hidden_field :name, value: [@user.first_name, @user.last_name].join(' ') %>
+          <%= f.hidden_field :email, value: @user.email %>
+        <% else %>
+          <div class="form-inputs col-sm-6">
+            <%= f.label "Your Name" %>
+            <%= f.text_field :name, class: "form-control", required: true, placeholder: "e.g. Warren Buffett" %>
+          </div>
+          <div class="form-inputs col-sm-6">
+            <%= f.label "Your Email (Not Displayed)" %>
+            <%= f.text_field :email, class: "form-control", required: true, placeholder: "e.g. wbuffett@gmail.com" %>
+          </div>
+        <% end %>
+
+        <div class="form-actions text-right">
+          <%= f.button :submit, "Submit Comment", onclick: "ga('send',{'hitType': 'event','eventCategory': 'contribute', 'eventAction': 'Create Blog Comment'})" %>
+        </div>
       <% end %>
-      <%= link_to 'Back', blogs_path %>
     </div>
+
+    <h2><%= pluralize(@comments.count, "Comment") %></h2>
+    <div class="old-comment">
+      <% @comments.each do |comment| %>
+        <p style="margin-top: 10px"><strong><%= comment.body %></strong>
+          <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %><span class="glyphicon glyphicon-remove"></span><% end %><br />
+          <em>by <%= comment.name %> on <%= comment.created_at.to_formatted_s(:long) %></em></p>
+      <% end %>
+    </div>
+
   </div> <!-- page container -->
 </div> <!-- row -->
