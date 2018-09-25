@@ -15,9 +15,9 @@ class BlogsController < ApplicationController
   def show
     @user = User.where(id: @blog.user_id).first
     @comment = Comment.create
-    @comments = Comment.where(blog_id: @blog.id, approved: true)
+    @comments = Comment.where(blog_id: @blog.id)
     if current_user
-      @user = current_user
+      @comment_user = current_user
     end
   end
 

@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment = @blog.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to blog_path(@blog), notice: 'Your comment has been saved!  Once it is reviewed it will show up on the blog.'
+      redirect_to blog_path(@blog), notice: 'Your wisdom benefits moms everywhere!  Thank you for sharing!'
     else
       redirect_to blog_path(@blog), notice: 'Oops!  Your comment could not be saved at this time.'
     end

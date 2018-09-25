@@ -119,6 +119,10 @@ input[type="color"]:focus,
   outline: 0 none;
 }
 
+label {
+  text-transform: capitalize !important;
+}
+
 .alert {
   background-color: $transparent-neutral;
   border-color: $color-neutral;

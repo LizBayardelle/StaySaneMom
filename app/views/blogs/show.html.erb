@@ -39,39 +39,46 @@
       <%= simple_form_for [@blog, Comment.new] do |f| %>
         <%= f.error_notification %>
 
+        <div class="half-buffer"></div>
+        <h2 class="text-center">Share Your Two Cents!</h2>
+
         <div class="form-inputs col-xs-12" style="margin-bottom: 10px">
-          <%= f.label "Add a Comment" %>
-          <%= f.text_area :body, class: "form-control" %>
+          <%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
         </div>
 
-        <% if @user %>
-          <%= f.hidden_field :name, value: [@user.first_name, @user.last_name].join(' ') %>
-          <%= f.hidden_field :email, value: @user.email %>
+        <% if @comment_user %>
+          <%= f.hidden_field :name, value: [@comment_user.first_name, @comment_user.last_name].join(' ') %>
+          <%= f.hidden_field :email, value: @comment_user.email %>
         <% else %>
-          <div class="form-inputs col-sm-6">
-            <%= f.label "Your Name" %>
-            <%= f.text_field :name, class: "form-control", required: true, placeholder: "e.g. Warren Buffett" %>
-          </div>
-          <div class="form-inputs col-sm-6">
-            <%= f.label "Your Email (Not Displayed)" %>
-            <%= f.text_field :email, class: "form-control", required: true, placeholder: "e.g. wbuffett@gmail.com" %>
-          </div>
+          <div class="row">
+            <div class="form-inputs col-sm-6">
+              <%= f.label "Your Name" %>
+              <%= f.text_field :name, class: "form-control", required: true, placeholder: "e.g. Warren Buffett" %>
+            </div>
+            <div class="form-inputs col-sm-6">
+              <%= f.label "Your Email (Not Displayed)" %>
+              <%= f.text_field :email, class: "form-control", required: true, placeholder: "e.g. wbuffett@gmail.com" %>
+            </div>
+          </div> <!-- row -->
         <% end %>
 
         <div class="form-actions text-right">
-          <%= f.button :submit, "Submit Comment", onclick: "ga('send',{'hitType': 'event','eventCategory': 'contribute', 'eventAction': 'Create Blog Comment'})" %>
+          <div class="half-buffer"></div>
+          <%= f.button :submit, "Submit Comment", class: "btn btn-outline-primary" %>
         </div>
       <% end %>
     </div>
 
-    <h2><%= pluralize(@comments.count, "Comment") %></h2>
-    <div class="old-comment">
-      <% @comments.each do |comment| %>
-        <p style="margin-top: 10px"><strong><%= comment.body %></strong>
-          <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %><span class="glyphicon glyphicon-remove"></span><% end %><br />
-          <em>by <%= comment.name %> on <%= comment.created_at.to_formatted_s(:long) %></em></p>
-      <% end %>
-    </div>
+    <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
+    <% @comments.each do |comment| %>
+      <p style="margin-top: 10px"><strong><%= comment.body %></strong>
+        <% if current_user && current_user.admin %>
+          <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
+            <%= fa_icon "remove", class: "color-neutral color-neutral-hover" %>
+          <% end %><br />
+        <% end %>
+        <em class="color-neutral">by <%= comment.name %> on <%= comment.created_at.to_formatted_s(:long) %></em></p>
+    <% end %>
 
   </div> <!-- page container -->
 </div> <!-- row -->
