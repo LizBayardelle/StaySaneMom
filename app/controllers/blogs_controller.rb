@@ -36,13 +36,8 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        if @blog.image.attached?
-          @blog.image.purge
-        end
+        byebug
         @blog.image.attach(params[:image])
-        if @blog.pdf.attached?
-          @blog.pdf.purge
-        end
         @blog.pdf.attach(params[:pdf])
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
