@@ -1,5 +1,5 @@
   <div class="biobox row">
-    <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3">
+    <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
       <% if @user.avatar.attached? %>
         <%= image_tag rails_blob_url(@user.avatar) if @user.avatar.attached? %>
       <% else %>
