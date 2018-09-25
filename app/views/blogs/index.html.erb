@@ -42,19 +42,21 @@
             <div class="other transparent-hover neutral">
               <div class="flag">General</div>
           <% end %>
-            <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)"></div>
-            <div class="blog-text">
-              <h2><%= blog.title %></h2>
-              <p><%= blog.teaser %></p>
-              <p class="published-on"><small>
-                Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
-                <% if current_user && current_user.admin %>
-                     | <%= link_to 'Edit', edit_blog_path(blog) %> |
-                    <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <% end %>
-              </small></p>
-            </div> <!-- blog-text -->
-          </div> <!-- end case div -->
+              <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)"></div>
+              <div class="blog-text">
+                <h2><%= blog.title %></h2>
+                <p><%= blog.teaser %></p>
+                <p class="published-on"><small>
+                  Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
+                  <% if current_user && current_user.admin %>
+                       | <%= link_to 'Edit', edit_blog_path(blog) %> |
+                      <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% else %>
+                       | <%= link_to "Home", root_path %>
+                  <% end %>
+                </small></p>
+              </div> <!-- blog-text -->
+            </div> <!-- end case div -->
         </div></div> <!-- blog card/col -->
       <% end %>
     <% end %>

@@ -14,6 +14,11 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @user = User.where(id: @blog.user_id).first
+    @comment = Comment.create
+    @comments = Comment.where(blog_id: @blog.id, approved: true)
+    if current_user
+      @user = current_user
+    end
   end
 
   # GET /blogs/new

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to blog_path(@blog), notice: 'Your comment has been saved!  Once it is reviewed it will show up on the blog.'
     else
-      render :new
+      redirect_to blog_path(@blog), notice: 'Oops!  Your comment could not be saved at this time.'
     end
   end
 
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to blog_path(@blog), notice: 'Your comment has been successfully updated.'
     else
-      render :edit
+      redirect_to blog_path(@blog), notice: 'Oops!  Your comment could not be saved at this time.'
     end
   end
 

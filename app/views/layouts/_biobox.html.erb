@@ -1,7 +1,7 @@
   <div class="biobox row">
     <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3">
-      <% if @user.avatar_id %>
-        <%= image_tag rails_blob_url(@user.avatar) %>
+      <% if @user.avatar.attached? %>
+        <%= image_tag rails_blob_url(@user.avatar) if @user.avatar.attached? %>
       <% else %>
         <%= image_tag "missing_avatar.jpg" %>
         <h3><%= @user.first_name %><h3>
