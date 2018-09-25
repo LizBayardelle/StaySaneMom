@@ -115,6 +115,8 @@
                     <% if current_user && current_user.admin %>
                          | <%= link_to 'Edit', edit_blog_path(blog) %> |
                         <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% else %>
+                         | <%= link_to "Home", root_path %>
                     <% end %>
                   </small></p>
                 </div> <!-- blog-text -->
