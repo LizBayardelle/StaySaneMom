@@ -1,12 +1,12 @@
 <div class="frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)"></div>
 <div class="over-frame-text">
   <h1><%= @blog.title %></h1>
-  <div class="over-frame-bottom-row text-right">
+  <div class="over-frame-bottom-row text-right" style="padding-right: 30px">
     <h3>From <%= @blog.category %> Blogs</h3>
   </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
-<div class="row blog-show">
+<div class="blog-show">
   <div class="container">
     <% if current_user && current_user.admin %>
       <div class="text-right">
@@ -16,16 +16,18 @@
 
     <div class="buffer"></div>
 
-    <h3 class="text-center"><%= @blog.teaser %></h3>
+    <h4 class="text-center"><%= @blog.teaser %></h4>
     <p class="text-center">Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
 
     <%= render "layouts/hr" %>
 
     <%= @blog.body.html_safe %>
 
-    <h2 class="text-center">About the Author</h2>
-    <div class="half-buffer"></div>
-    <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
+    <div class="container">
+      <h2 class="text-center">About the Author</h2>
+      <div class="half-buffer"></div>
+      <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
+    </div> <!-- container -->
 
     <% if current_user && current_user.admin %>
       <div class="text-center">
@@ -69,6 +71,7 @@
       <% end %>
     </div>
 
+  <div class=""
     <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
     <% @comments.each do |comment| %>
       <p style="margin-top: 10px"><strong><%= comment.body %></strong>

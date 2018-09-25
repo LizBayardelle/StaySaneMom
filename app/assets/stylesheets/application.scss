@@ -163,8 +163,6 @@ label {
 
 
 
-
-
 // ---------------------------
 // ---------------------------
 // ---------------------------
@@ -639,4 +637,26 @@ footer {
   margin: -15px -10px 15px -10px;
   background: transparent no-repeat center;
   background-size: cover;
+}
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ------ MOBILE STYLES ------
+// ---------------------------
+// ---------------------------
+
+@media screen and (max-width: 768px) {
+  .over-frame-text h1 { font-size: 40px }
+  .script-header { font-size: 40px }
+
+  .blog-text { width: 100% }
+
+  .biobox img { display: block; left: auto; right: auto; width: 100px; }
 }
