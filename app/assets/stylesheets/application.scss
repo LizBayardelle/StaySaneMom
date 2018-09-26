@@ -628,7 +628,7 @@ footer {
   border: solid thin $color-neutral;
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
   margin: 15px;
-  padding: 15px 10px 15px 10px;
+  padding: 15px 25px 15px 25px;
 }
 
 .content-box .content-box-img {
@@ -639,6 +639,25 @@ footer {
   background-size: cover;
 }
 
+.done .icon, .done p {
+  color: $color-neutral-light;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.to-do-list p {
+  margin-bottom: 0px;
+}
+
+#task-show-hide > span {
+    display: none
+}
+#task-show-hide > span:first-child {
+    display: inline-block;
+}
+#task-show-hide:hover > span {
+    display: inline-block;
+}
 
 
 

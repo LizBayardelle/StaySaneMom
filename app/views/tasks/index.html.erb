@@ -26,42 +26,39 @@
 
 <% if current_user %>
 
-	<%= @user_tasks.each do |t|
-		t.name
-	end %>
-
 	  <div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-6 col-lg-12">
-			    <div class="content-box">
+			    <div class="content-box to-do">
 			      <h2 class="font-script color-neutral text-center">One-Time Tasks</h2>
+            <p class="text-center color-neutral">These tasks are here to stay, until you complete them.</p>
 						<div id="onetime-todo"><%= render partial: 'items', locals: { task: @one_time } %></div>
 						<div id="onetime-done"><%= render partial: 'done', locals: { task: @one_time_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
 
 				<div class="col-xs-12 col-md-6 col-lg-4">
-			    <div class="content-box">
+			    <div class="content-box to-do">
 			      <h2 class="font-script color-neutral text-center">Daily</h2>
-						<p class="text-center">These automatically uncheck at night so you have a fresh list&nbsp;in&nbsp;the&nbsp;morning.</p>
+						<p class="text-center color-neutral">These automatically uncheck at night so you have a fresh list&nbsp;in&nbsp;the&nbsp;morning.</p>
 			      <div id="daily-todo"><%= render partial: 'items', locals: { task: @daily } %></div>
 						<div id="daily-done"><%= render partial: 'done', locals: { task: @daily_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
 
 				<div class="col-xs-12 col-md-6 col-lg-4">
-			    <div class="content-box">
+			    <div class="content-box to-do">
 			      <h2 class="font-script color-neutral text-center">Weekly</h2>
-						<p class="text-center">These automatically uncheck Sunday night so you get a new list&nbsp;each&nbsp;Monday&nbsp;morning.</p>
+						<p class="text-center color-neutral">These automatically uncheck Sunday night so you get a new list&nbsp;each&nbsp;Monday&nbsp;morning.</p>
 			      <div id="weekly-todo"><%= render partial: 'items', locals: { task: @weekly } %></div>
 						<div id="weekly-done"><%= render partial: 'done', locals: { task: @weekly_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
 
 				<div class="col-xs-12  col-md-6 col-lg-4">
-			    <div class="content-box">
+			    <div class="content-box to-do">
 			      <h2 class="font-script color-neutral text-center">Monthly</h2>
-						<p class="text-center">These automatically uncheck on the last day of the month so you start with a clean&nbsp;list&nbsp;each&nbsp;1st.</p>
+						<p class="text-center color-neutral">These automatically uncheck on the last day of the month so you start with a clean&nbsp;list&nbsp;each&nbsp;1st.</p>
 			      <div id="monthly-todo"><%= render partial: 'items', locals: { task: @monthly } %></div>
 						<div id="monthly-done"><%= render partial: 'done', locals: { task: @monthly_done } %></div>
 			    </div> <!-- content box -->

@@ -2,12 +2,18 @@
   <% task.each do |task| %>
     <p>
       <%= link_to uncheck_task_path(task), method: :post, remote: true do %>
-        <i class="icon ion-android-checkbox-outline"></i>
+        <%= fa_icon "check-square", class: "color-neutral" %>
       <% end %>
       <%= task.name %>
       <%= link_to task_path(task), method: :delete, remote: true do %>
-        <i class="icon ion-close-circled" style="margin-left: 5px"></i>
+        <%= fa_icon "remove", id: (task.id.to_s + "task"), class: "color-neutral", style: "margin-left: 5px" %>
       <% end %>
     </p>
   <% end %>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$('.content-box').matchHeight();
+	});
+</script>
