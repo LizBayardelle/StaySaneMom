@@ -39,7 +39,7 @@ $color-kids: #EFB0A1;
 $color-self: #916999;
 $color-neutral: #B7AD99;
 $color-neutral-light: rgba(226,222,215,1);
-$color-black: #26010C;
+$color-black: #000000;
 
 $transparent-house: rgba(132, 201, 154, 0.5);
 $transparent-spouse: rgba(49, 62, 80, 0.5);
@@ -656,5 +656,5 @@ footer {
   .over-frame-text h1 { font-size: 40px }
   .script-header { font-size: 40px }
   .blog-text { width: 100% }
-  .biobox img { max-width: 150px }
+  .biobox img { max-width: 150px; margin-bottom: 15px;}
 }
