@@ -236,7 +236,18 @@ label {
 
 .navbar.bg-neutral {
   // position: fixed;
+  position: relative;
   width: 100%;
+  justify-content: left;
+}
+
+.navbar.bg-neutral p {
+  margin-top: 15px;
+}
+
+.account-buttons {
+  position: absolute;
+  right: 0;
 }
 
 .navbar.bg-neutral .btn-outline-primary {
@@ -328,8 +339,8 @@ label {
 }
 
 .social-icon {
-  height: 20px;
-  margin: 0 10px 0 10px;
+  margin: 0px 10px 0 10px;
+  font-size: 25px;
 }
 
 .btn-outline-secondary {

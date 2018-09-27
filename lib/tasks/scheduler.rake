@@ -10,7 +10,7 @@
   task purge_weekly: :environment do
     require 'time'
     t = Time.now
-    if t.sunday?
+    if t.monday?
       tasks = Task.where(frequency: "Weekly")
       tasks.each do |task|
         task.update_attributes(completed: false)
