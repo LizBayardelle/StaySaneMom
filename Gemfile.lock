@@ -763,6 +763,10 @@ GEM
     rack (2.0.5)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-tracker (1.7.0)
+      activesupport (>= 3.0)
+      rack (>= 1.4)
+      tilt (>= 1.4)
     rails (5.2.1)
       actioncable (= 5.2.1)
       actionmailer (= 5.2.1)
@@ -889,6 +893,7 @@ DEPENDENCIES
   pg (~> 0.20.0)
   puma (~> 3.11)
   puma_worker_killer
+  rack-tracker
   rails (~> 5.2.0)
   recaptcha
   sass-rails (~> 5.0)

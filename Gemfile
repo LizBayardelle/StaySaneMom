@@ -30,6 +30,7 @@ gem 'recaptcha', require: "recaptcha/rails"
 gem 'font-awesome-rails'
 gem 'trix', git: 'https://github.com/bcoia/trix.git'
 gem 'puma_worker_killer'
+gem 'rack-tracker'
 
 group :production do
   gem 'pg', '~> 0.20.0'
