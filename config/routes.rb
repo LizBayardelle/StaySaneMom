@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show]
 
+  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+
   get 'home/index'
   get 'home/house'
   get 'home/spouse'

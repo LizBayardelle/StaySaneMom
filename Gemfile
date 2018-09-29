@@ -31,6 +31,7 @@ gem 'font-awesome-rails'
 gem 'trix', git: 'https://github.com/bcoia/trix.git'
 gem 'puma_worker_killer'
 gem 'rack-tracker'
+gem 'high_voltage', '~> 3.1'
 
 group :production do
   gem 'pg', '~> 0.20.0'
