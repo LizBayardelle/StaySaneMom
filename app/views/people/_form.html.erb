@@ -1,5 +1,4 @@
 <div class="container">
-  <h2 class="text-center">Add a New Person</h2>
   <%= simple_form_for(@person) do |f| %>
 
     <div class="form-inputs">
@@ -58,8 +57,8 @@
 
     </div> <!-- form inputs -->
 
-    <div class="form-actions">
-      <%= f.button :submit, class: "btn btn-outline-primary" %>
+    <div class="form-actions text-center">
+      <%= f.button :submit, class: "btn btn-outline-primary", style: "margin-bottom: 10px" %>
     </div>
   <% end %>
 </div> <!-- container -->
