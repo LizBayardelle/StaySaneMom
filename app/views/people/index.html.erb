@@ -1,0 +1,164 @@
+<div class="frame" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)"></div>
+<div class="over-frame-text">
+  <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>Family</h1>
+  <div class="over-frame-bottom-row">
+    <div class="container text-center">
+      <a href="#newPersonPopup" class="open-popup-link btn btn-outline-secondary">Add New Person</a>
+      <div class="buffer"></div>
+    </div> <!-- container -->
+  </div> <!-- over-frame-text -->
+</div> <!-- over-frame-text -->
+
+<div class="half-buffer"></div>
+
+<div class="container">
+
+  <h1 class="text-center" style="margin-bottom: 0">My Tribe</h1>
+
+  <div class="text-center">
+    <div id="relationshipTarget" class="sortingTarget font-bold color-neutral">Sort by Relationship</div> |
+    <div id="groupTarget" class="sortingTarget color-neutral">Sort by Family Group</div> |
+    <div id="lastNameTarget" class="sortingTarget color-neutral">Sort by Last Name</div> |
+    <div id="birthdayTarget" class="sortingTarget color-neutral">Sort by Birthday</div>
+  </div>
+
+  <div class="half-buffer"></div>
+
+  <div id="relationship" class="sortingGroup">
+    <% @relationships.each do |relationship| %>
+      <h4 class="color-neutral"><%= relationship.pluralize(2) %></h4>
+      <% @people_last_name.each do |person| %>
+        <% if person.relationship == relationship %>
+          <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+          <p>
+            <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+            <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+            <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+            <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="group" class="sortingGroup d-none">
+    <% @groups.each do |group| %>
+      <h4 class="color-neutral"><%= group %></h4>
+      <% @people_last_name.each do |person| %>
+        <% if person.group == group %>
+          <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+          <p>
+            <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+            <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+            <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+            <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <div class="half-buffer"></div>
+
+    <h4 class="color-neutral">No Group Listed</h4>
+    <% @people_no_group.each do |person| %>
+      <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+      <p>
+        <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+        <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+        <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+        <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    <% end %>
+  </div>
+
+  <div id="lastName" class="sortingGroup d-none">
+    <% @people_last_name.each do |person| %>
+      <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+      <p>
+        <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+        <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+        <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+        <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    <% end %>
+  </div>
+
+  <div id="birthday" class="sortingGroup d-none">
+    <table>
+      <% @people_birthday.each do |person| %>
+        <tr>
+          <td><h5><%= person.birthday.strftime("%B %d") %></h5></td>
+          <td>
+            <h5 style="margin-bottom: 0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
+            <p>
+              <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+              <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+              <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </p>
+        </tr>
+      <% end %>
+    </table>
+
+    <div class="half-buffer"></div>
+
+    <h4 class="color-neutral">No Birthday Listed</h4>
+    <% @people_no_birthday.each do |person| %>
+      <h5 style="margin-bottom: 0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
+      <p>
+        <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+        <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+        <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    <% end %>
+  </div> <!-- birthday -->
+
+
+
+</div> <!-- container -->
+
+
+
+
+
+<!-- new person popup itself -->
+<div id="newPersonPopup" class="white-popup mfp-hide">
+  <%= render 'form', person: @person %>
+</div>
+
+
+<script>
+  $(function() {
+    $('.blog-text').matchHeight();
+  });
+
+  $('.open-popup-link').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+  });
+
+  $('#relationshipTarget').click(function(){
+    $('.sortingTarget').removeClass('font-bold');
+    $('#relationshipTarget').addClass('font-bold');
+    $('.sortingGroup').addClass('d-none');
+    $('#relationship').removeClass('d-none');
+  });
+  $('#groupTarget').click(function(){
+    $('.sortingTarget').removeClass('font-bold');
+    $('#groupTarget').addClass('font-bold');
+    $('.sortingGroup').addClass('d-none');
+    $('#group').removeClass('d-none');
+  });
+  $('#lastNameTarget').click(function(){
+    $('.sortingTarget').removeClass('font-bold');
+    $('#lastNameTarget').addClass('font-bold');
+    $('.sortingGroup').addClass('d-none');
+    $('#lastName').removeClass('d-none');
+  });
+  $('#birthdayTarget').click(function(){
+    $('.sortingTarget').removeClass('font-bold');
+    $('#birthdayTarget').addClass('font-bold');
+    $('.sortingGroup').addClass('d-none');
+    $('#birthday').removeClass('d-none');
+  });
+
+</script>

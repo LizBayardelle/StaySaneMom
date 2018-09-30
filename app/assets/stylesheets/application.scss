@@ -13,6 +13,7 @@
  *
  *= require trix
  *= require magnific-popup
+ *= require jquery-ui
  *= require_tree .
  *= require_self
  */
@@ -21,6 +22,7 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "trix";
+@import 'bootstrap-datetimepicker';
 
 
 
@@ -32,6 +34,7 @@ $font-script: 'Sacramento', cursive;
 .font-sans { font-family: $font-sans }
 .font-serif { font-family: $font-serif }
 .font-script { font-family: $font-script }
+.font-bold { font-weight: 700 }
 
 $color-house: #84C99A;
 $color-spouse: #526887;
@@ -96,6 +99,8 @@ hr { width: 50%; border-color: $color-neutral; }
   background-size: cover;
 }
 
+.datepicker {z-index:1151 !important;}
+
 .weight-400 { font-weight: 400 !important; }
 
 textarea:focus,
@@ -129,6 +134,12 @@ label {
   color: $color-neutral;
   border-radius: 0px;
 }
+
+td { padding: 5px 10px 5px 0px; vertical-align: top }
+td p { margin-bottom: 0 }
+
+
+
 
 .card {
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
@@ -344,7 +355,7 @@ label {
 }
 
 .btn-outline-secondary {
-  color: white;
+  color: white !important;
   border: solid medium white;
   background-color: transparent !important;
   padding: 5px 10px 5px 10px;
@@ -354,7 +365,7 @@ label {
 }
 
 .btn-outline-secondary:hover {
-  color: $color-neutral;
+  color: $color-neutral !important;
   border-color: $color-neutral;
   background-color: white !important;
 }
@@ -670,6 +681,23 @@ footer {
     display: inline-block;
 }
 
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ------ PEOPLE PAGES _------
+// ---------------------------
+// ---------------------------
+
+.sortingTarget {
+  display: inline-block;
+  font-family: $font-serif;
+  cursor: pointer;
+}
 
 
 

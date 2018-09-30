@@ -16,12 +16,17 @@
 //= require popper
 //= require trix
 //= require magnific-popup
-
+//= require jquery-ui
 
 
 // ALERT FADE AWAY
 $(document).on("ready page:load", function() {
   setTimeout(function() { $(".alert").fadeOut(); }, 5000);
+});
+
+// datepicker
+$(function() {
+    $('input.datepicker').data({behaviour: "datepicker"}).datepicker();
 });
 
 

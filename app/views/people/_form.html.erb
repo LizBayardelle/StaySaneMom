@@ -1,0 +1,65 @@
+<div class="container">
+  <h2 class="text-center">Add a New Person</h2>
+  <%= simple_form_for(@person) do |f| %>
+
+    <div class="form-inputs">
+
+      <div class="row">
+        <div class="form-group container">
+          <%= f.label :relationship %><br />
+          <%= f.select :relationship, options_for_select(['Child', 'Spouse', 'Relative', 'Friend', 'Colleague', 'Acquaintance', 'Other'], :selected => f.object.relationship), {}, { :class => 'span3 controls controls-row' } %>
+        </div> <!-- col -->
+      </div> <!-- row -->
+
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <%= f.input :first_name, required: true %>
+        </div> <!-- col -->
+        <div class="form-group col-sm-4">
+          <%= f.input :middle_name %>
+        </div> <!-- col -->
+        <div class="form-group col-sm-4">
+          <%= f.input :last_name, required: true %>
+        </div> <!-- col -->
+      </div> <!-- row -->
+
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <%= f.label "Family Group" %>
+          <%= f.text_field :group, class: "form-control", placeholder: "(e.g. The Jones Family, Kate & Rick's Family, etc.)" %>
+        </div> <!-- col -->
+      </div> <!-- row -->
+
+      <div class="row">
+        <div class="form-group col-sm-6 col-lg-3">
+          <%= f.label :anniversary %>
+          <%= f.text_field :anniversary, class: "form-control datepicker" %>
+        </div> <!-- col -->
+        <div class="form-group col-sm-6 col-lg-3">
+          <%= f.label :birthday %>
+          <%= f.text_field :birthday, class: "form-control datepicker" %>
+        </div> <!-- col -->
+        <div class="form-group col-sm-6 col-lg-3">
+          <%= f.label :other %>
+          <%= f.text_field :other, class: "form-control datepicker" %>
+        </div> <!-- col -->
+        <div class="form-group col-sm-6 col-lg-3">
+          <%= f.label "Description for Other" %>
+          <%= f.text_field  :other_date_name, class: "form-control" %>
+        </div> <!-- col -->
+      </div> <!-- row -->
+
+      <div class="row">
+        <div class="form-group container">
+          <%= f.label :notes %>
+          <%= f.text_area :notes, class: "form-control" %>
+        </div> <!-- col -->
+      </div> <!-- row -->
+
+    </div> <!-- form inputs -->
+
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+</div> <!-- container -->

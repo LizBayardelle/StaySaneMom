@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  resources :people
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show]
 
-  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
   get 'home/index'
   get 'home/house'
@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   post "tasks/:id/check_task" => "tasks#check_task", as: "check_task"
   post "tasks/:id/uncheck_task" => "tasks#uncheck_task", as: "uncheck_task"
 
+  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
 end

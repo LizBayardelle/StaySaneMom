@@ -30,10 +30,12 @@
     <div class="non-footer">
 
       <nav class="navbar bg-neutral text-center">
-        <p>
-          <%= link_to "To Do List", tasks_path %>
+        <p class="d-none d-sm-block">
+          <%= link_to "To Do", tasks_path %>
           <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
-          <%= link_to "All Tools", home_tools_path %>
+          <%= link_to "People", people_path %>
+          <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
+          <%= link_to "All Tools", static_path(:tools) %>
         </p>
         <form class="form-inline account-buttons">
           <% if current_user %>
@@ -48,8 +50,19 @@
             <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline-primary" %>
           </div>
           <% end %>
+          <div style="padding-right: 10px;">
+            <a class="btn btn-outline-primary" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/cd10cef13b/f2d65b6d27">Subscribe</a>
+          </div>
         </form>
       </nav>
+
+      <p class="text-center d-block d-sm-none" style="margin: 10px 0 -10px 0">
+        <%= link_to "To Do", tasks_path %>
+        <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
+        <%= link_to "People", people_path %>
+        <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
+        <%= link_to "All Tools", static_path(:tools) %>
+      </p>
 
       <div class="text-center">
         <%= link_to root_path do %>
