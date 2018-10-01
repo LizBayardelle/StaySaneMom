@@ -1,3 +1,10 @@
+<!-- page-specific content -->
+  <% title "My Tribe | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+  <% end %>
+<!-- page-specific content -->
+
 <div class="frame" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)"></div>
 <div class="over-frame-text">
   <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>Family</h1>

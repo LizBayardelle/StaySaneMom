@@ -1,3 +1,10 @@
+<!-- page-specific content -->
+  <% title "To Do List | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="Motherhood and house ownership come with a lot of tasks.  Keep your to do list organized and optimized here." />
+  <% end %>
+<!-- page-specific content -->
+
 <div class="frame" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)"></div>
 <div class="over-frame-text">
   <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>To Do List</h1>
