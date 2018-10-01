@@ -2,9 +2,13 @@
 <html>
   <head>
     <title>
-    <%= if content_for?(:title) then yield(:title) + ' | ' end %>
-    Stay Sane Mom
-  </title>
+      <%= if content_for?(:title) then yield(:title) + ' | ' end %>
+      Stay Sane Mom
+    </title>
+    <meta name='description'
+      content='<%= yield_meta_tag(:description, 'Helping overworked moms keep clean house, a healthy marriage, balanced kids, and stay sane on top of it all.') %>' />
+    <meta name='keywords'
+      content='<%= yield_meta_tag(:keywords, 'stay sane, mom, motherhood, wife, kids, sanity, happy, organization, research') %>' />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

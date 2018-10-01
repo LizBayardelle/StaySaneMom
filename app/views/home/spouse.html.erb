@@ -5,7 +5,7 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="frame" style="background-image: url(<%= asset_path "keep_marriage_healthy.jpg" %>)"></div>
+<div class="frame" style="background-image: url(<%= asset_path "keep_marriage_healthy.jpg" %>)"><div class="image-overlay-spouse"></div></div>
 <div class="over-frame-text convert-kit">
   <h1>Marriage is (Still) Important</h1>
   <div class="over-frame-bottom-row">
@@ -46,7 +46,20 @@
               <div class="other transparent-hover neutral">
                 <div class="flag">General</div>
             <% end %>
-              <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)"></div>
+              <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+                <% case blog.category %>
+                <% when "House" %>
+                  <div class="image-overlay-house"></div>
+                <% when "Spouse" %>
+                  <div class="image-overlay-spouse"></div>
+                <% when "Kids" %>
+                  <div class="image-overlay-kids"></div>
+                <% when "Self" %>
+                  <div class="image-overlay-self"></div>
+                <% else %>
+                  <div class="image-overlay-neutral"></div>
+                <% end %>
+              </div>
               <div class="blog-text">
                 <h2><%= blog.title %></h2>
                 <p><%= blog.teaser %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span></p>

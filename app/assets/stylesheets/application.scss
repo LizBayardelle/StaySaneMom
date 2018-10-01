@@ -47,8 +47,14 @@ $color-black: #000000;
 $transparent-house: rgba(132, 201, 154, 0.5);
 $transparent-spouse: rgba(49, 62, 80, 0.5);
 $transparent-kids: rgba(239, 176, 161, 0.5);
-$transparent-self: rgba(145,105,153, 0.4);
+$transparent-self: rgba(145, 105, 153, 0.4);
 $transparent-neutral: rgba(183, 173, 153, 0.4);
+
+.image-overlay-house { background-color: $transparent-house; width: 100%; height: 100%; }
+.image-overlay-spouse { background-color: $transparent-spouse; width: 100%; height: 100%; }
+.image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
+.image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
+.image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
 
 .color-white { color: #FFFFFF; }
 .color-house { color: $color-house; }
