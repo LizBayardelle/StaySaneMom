@@ -1,0 +1,39 @@
+<!-- page-specific content -->
+  <% title "Member List | SSM" %>
+<!-- page-specific content -->
+
+
+
+<div class="container">
+  <h1 class="text-center">Member List</h1>
+  <h5 class="text-center">Here's the lowdown...</h5>
+
+  <div class="half-buffer"></div>
+
+  <div class="row">
+    <table>
+      <th>
+        <td class="font-bold">Name</td>
+        <td class="font-bold">Activity</td>
+        <td class="font-bold">Email</td>
+      </th>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td><%= pluralize(user.comments.count, "Comment") %></td>
+          <td><%= mail_to user.email %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div> <!-- row -->
+
+</div> <!-- page container -->
+
+
+
+<script>
+  $(function() {
+    $('.blog-text').matchHeight();
+  });
+</script>

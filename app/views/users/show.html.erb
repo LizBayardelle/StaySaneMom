@@ -1,16 +1,37 @@
+<div class="frame" style="background-image: url(<%= asset_path "tools-for-homepage.jpg" %>)"><div class="image-overlay-neutral"></div></div>
+<div class="over-frame-text">
+  <h1>My Homepage</h1>
+  <div class="over-frame-bottom-row">
+    <div class="container">
+    </div>
+  </div> <!-- over-frame-text -->
+</div> <!-- over-frame-text -->
+
+
 <div class="container">
 	<div class="text-center">
 		<%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 	</div> <!-- nav -->
 
+
+
 	<div class="half-buffer"></div>
 
 	<%= render partial: "layouts/biobox", locals: { user: current_user } %>
 
-	<div class="half-buffer"></div>
+	<div class="buffer"></div>
 
 	<% if current_user.admin %>
 		<h2 class="text-center">Admin Stuff</h2>
+		<div class="half-buffer"></div>
+
+		<%= link_to users_path do %>
+			<div id="members" class="card padded">
+				<h3 class="text-center">Members</h3>
+				<p>Member Count: <%= @members.count - 1 %></p>
+				<p>New Members (This Week): <%= @new_members.count %></p>
+			</div>
+		<% end %>
 
 	<% end %>
 </div> <!-- container -->
