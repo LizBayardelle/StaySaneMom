@@ -41,7 +41,7 @@
     <div class="buffer"></div>
 
     <h4 class="text-center"><%= @blog.teaser %></h4>
-    <% if @blog.published %>
+    <% if @blog.published != nil %>
       <p class="text-center">Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
     <% end %>
 

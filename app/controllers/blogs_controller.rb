@@ -50,9 +50,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
-    if @blog.published && @blog.published_on.nil?
-      @blog.published_on = DateTime.current
-    end
+    @blog.published_on = DateTime.current if @blog.published && @blog.published_on.nil?
 
     if @blog.image.attached? && blog_params[:image].present?
       @blog.image.purge
