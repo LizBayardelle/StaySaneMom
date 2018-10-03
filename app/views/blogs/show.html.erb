@@ -2,7 +2,7 @@
   <% title @blog.title %>
   <%= content_for :head do %>
     <meta name="description" content="<%= @blog.teaser %>" />
-    <meta property="og:url" content="<%= url_for(@blog) %>" />
+    <meta property="og:url" content="<%= polymorphic_url(@blog) %>" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="<%= @blog.title %>" />
     <meta property="og:description" content="<%= @blog.teaser %>" />
