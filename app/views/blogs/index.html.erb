@@ -24,6 +24,13 @@
     <div class="text-right">
       <%= link_to 'New Blog', new_blog_path %>
     </div> <!-- right -->
+
+    <% if @unpublished.count > 0 %>
+      <h2>Unpublished Blogs</h2>
+      <% @unpublished.each do |blog| %>
+        <h5><%= link_to blog.title, blog_path(blog) %></h5>
+      <% end %>
+    <% end %>
   <% end %>
 
   <div class="half-buffer"></div>
