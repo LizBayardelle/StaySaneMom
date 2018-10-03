@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @members = User.all
     if User.last.created_at >= Date.today - 7
-      @new_members = User.find(:all, conditions: { created_at: Date.today - 7...Date.today})
+      @new_members = User.where("created_at >= ?", Time.zone.now.beginning_of_week)
     else
       @new_members = []
     end

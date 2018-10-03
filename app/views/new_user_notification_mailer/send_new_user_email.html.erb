@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.first_name %> just joined SSM!</h1>
+    <p>Here's the skivvy:</p>
+    <p>
+      Name:  <%= @user.first_name %> <%= @user.last_name %><br />
+      Email:  <%= mail_to @user.email %><br />
+    </p>
+  </body>
+</html>

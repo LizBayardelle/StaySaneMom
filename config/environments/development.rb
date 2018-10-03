@@ -8,9 +8,20 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-  
+
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # SENDGRID
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV["SENDGRID_USERNAME"],
+    :password => ENV["SENDGRID_PASSWORD"],
+    :domain => 'theStaySaneMom.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # Show full error reports.
   config.consider_all_requests_local = true

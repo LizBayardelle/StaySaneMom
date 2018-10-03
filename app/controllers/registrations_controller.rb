@@ -1,7 +1,14 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def create
+    super
+    if @user.persisted?
+      NewUserNotificationMailer.send_new_user_email(@user).deliver
+    end
+  end
+
   protected
-  
+
   def after_update_path_for(resource)
     user_path(resource)
   end
