@@ -9,9 +9,17 @@ class UsersController < ApplicationController
     else
       @new_members = []
     end
+
+    @client = Convertkit::Client.new
+    @subscribers = @client.subscribers.body
   end
 
   def index
     @users = User.all
+
+    @client = Convertkit::Client.new
+    @subscribers = @client.subscribers.body
+    @sequences = @client.sequences.body['courses']
+    @tags = @client.tags.body['tags']
   end
 end

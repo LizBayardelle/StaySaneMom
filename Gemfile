@@ -29,10 +29,12 @@ gem 'aws-sdk-s3', require: false
 gem 'simple_form_extension'
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'font-awesome-rails'
-gem 'trix', git: 'https://github.com/bcoia/trix.git'
+gem 'trix-rails', require: 'trix'
 gem 'puma_worker_killer'
 gem 'rack-tracker'
 gem 'high_voltage', '~> 3.1'
+gem 'convertkit-ruby', require: 'convertkit'
+gem 'dotenv-rails'
 
 group :production do
   gem 'pg', '~> 0.20.0'

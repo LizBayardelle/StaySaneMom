@@ -30,21 +30,20 @@
       </div> <!-- row -->
 
       <div class="row">
-        <div class="form-group col-sm-6 col-lg-3">
+        <div class="col-sm-4">
           <%= f.label :anniversary %>
-          <%= f.text_field :anniversary, class: "form-control datepicker" %>
+          <input type="text" class="form-control datepicker" data-datepicker-holder="#anniversaryHolder"/>
+          <%= f.hidden_field :anniversary, id: "anniversaryHolder" %>
         </div> <!-- col -->
-        <div class="form-group col-sm-6 col-lg-3">
+        <div class="col-sm-4">
           <%= f.label :birthday %>
-          <%= f.text_field :birthday, class: "form-control datepicker" %>
+          <input type="text" class="form-control datepicker" data-datepicker-holder="#birthdayHolder"/>
+          <%= f.hidden_field :birthday, id: "birthdayHolder" %>
         </div> <!-- col -->
-        <div class="form-group col-sm-6 col-lg-3">
+        <div class="col-sm-4">
           <%= f.label :other %>
-          <%= f.text_field :other, class: "form-control datepicker" %>
-        </div> <!-- col -->
-        <div class="form-group col-sm-6 col-lg-3">
-          <%= f.label "Description for Other" %>
-          <%= f.text_field  :other_date_name, class: "form-control" %>
+          <input type="text" class="form-control datepicker" data-datepicker-holder="#otherHolder"/>
+          <%= f.hidden_field :other, id: "otherHolder" %>
         </div> <!-- col -->
       </div> <!-- row -->
 
@@ -62,7 +61,3 @@
     </div>
   <% end %>
 </div> <!-- container -->
-
-<script>
-  $(".datepicker").datepicker("option", "altFormat", "yy-mm-dd");
-</script>

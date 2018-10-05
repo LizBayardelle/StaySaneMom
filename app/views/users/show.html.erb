@@ -15,6 +15,7 @@
 
 
 
+
 	<div class="half-buffer"></div>
 
 	<%= render partial: "layouts/biobox", locals: { user: current_user } %>
@@ -25,13 +26,32 @@
 		<h2 class="text-center">Admin Stuff</h2>
 		<div class="half-buffer"></div>
 
-		<%= link_to users_path do %>
-			<div id="members" class="card padded">
-				<h3 class="text-center">Members</h3>
-				<p>Member Count: <%= @members.count - 1 %></p>
-				<p>New Members (This Week): <%= @new_members.count %></p>
-			</div>
-		<% end %>
+    <div class="row">
+      <div class="col-sm-6 col-lg-4">
+        <%= link_to users_path do %>
+        <div id="subscribers" class="card padded">
+          <h3 class="text-center">Subscribers</h3>
+          <p>Total Subscribers: <%= @subscribers['total_subscribers'] %></p>
+        </div>
+      <% end %>
+    </div>
+
+  		<div class="col-sm-6 col-lg-4">
+        <%= link_to users_path do %>
+    			<div id="members" class="card padded">
+    				<h3 class="text-center">Members</h3>
+    				<p>Member Count: <%= @members.count - 1 %>
+              <br />New Members (This Week): <%= @new_members.count %></p>
+    			</div>
+    		<% end %>
+      </div>
+    </div> <!-- row -->
 
 	<% end %>
 </div> <!-- container -->
+
+<script>
+  $(function() {
+  	$('.card').matchHeight();
+  });
+</script>

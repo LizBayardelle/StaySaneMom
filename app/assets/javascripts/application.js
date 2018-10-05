@@ -25,10 +25,12 @@ $(document).on("ready page:load", function() {
 });
 
 // datepicker
-$(function() {
-    $('input.datepicker').data({behaviour: "datepicker"}).datepicker();
+// $(function() {
+//     $('input.datepicker').data({behaviour: "datepicker"}).datepicker({ altFormat: "yy-mm-dd" });
+// });
+$( ".datepicker" ).each(function() {
+  $(this).datepicker({ altFormat: "yy-mm-dd", altField: $(this).data('datepicker-holder') });
 });
-
 
 
 // GOOGLE ANALYTICS

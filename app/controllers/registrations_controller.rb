@@ -4,6 +4,10 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if @user.persisted?
       NewUserNotificationMailer.send_new_user_email(@user).deliver
+
+      @client = Convertkit::Client.new
+      @client.add_subscriber_to_sequence(269530, @user.email, options = {})
+      @client.add_subscriber_to_tag(627854, @user.email, options = {})
     end
   end
 

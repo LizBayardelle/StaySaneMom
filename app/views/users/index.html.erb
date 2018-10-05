@@ -5,11 +5,57 @@
 
 
 <div class="container">
-  <h1 class="text-center">Member List</h1>
-  <h5 class="text-center">Here's the lowdown...</h5>
+  <%= render 'layouts/hr' %>
+
+  <h1 class="text-center script-header">Members and Subscribers</h1>
 
   <div class="half-buffer"></div>
 
+  <h2 class="text-center">ConvertKit Info</h2>
+  <div class="row">
+    <div class="col-sm-6">
+      <h2 class="text-center">Sequences</h2>
+      <ul>
+        <% @sequences.each do |sequence| %>
+          <li><%= sequence['name'] %> (ID# <%= sequence['id'] %>)</li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-sm-6">
+      <h2 class="text-center">Tags</h2>
+      <ul>
+        <% @tags.each do |tag| %>
+          <li><%= tag['name'] %> (ID# <%= tag['id'] %>)</li>
+        <% end %>
+      </ul>
+    </div>
+  </div> <!-- convertkit row -->
+
+  <h2 class="text-center">Subscribers</h2>
+  <h5 class="text-center"><%= pluralize(@subscribers['total_subscribers'], 'subscriber') %></h5>
+  <div class="row">
+    <table>
+      <th>
+        <td class="font-bold">Name</td>
+        <td class="font-bold">Email</td>
+        <td class="font-bold">Lists</td>
+      </th>
+      <% @subscribers['subscribers'].each do |subscriber| %>
+        <tr>
+          <td><%= subscriber['state'] %></td>
+          <td><% if subscriber['first_name'] != nil %><%= subscriber['first_name'] %><% else %><em>Unlisted</em><% end %></td>
+          <td><%= mail_to subscriber['email_address'] %></td>
+          <td><%=  %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div> <!-- row -->
+
+  <div class="buffer"></div>
+
+  <h2 class="text-center">Site Members</h2>
+  <h5 class="text-center"><%= pluralize(@users.count, 'member') %></h5>
   <div class="row">
     <table>
       <th>
