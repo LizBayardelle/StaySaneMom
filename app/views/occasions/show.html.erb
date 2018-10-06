@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @occasion.person %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @occasion.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @occasion.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @occasion.date %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @occasion.notes %>
+</p>
+
+<%= link_to 'Edit', edit_occasion_path(@occasion) %> |
+<%= link_to 'Back', occasions_path %>
