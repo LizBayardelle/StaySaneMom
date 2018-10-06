@@ -29,16 +29,16 @@
         </div> <!-- col -->
       </div> <!-- row -->
 
-      <div class="row">
-        <div class="col-sm-4">
-          <%= f.label :anniversary %>
-          <input type="text" class="form-control datepicker" data-datepicker-holder="#anniversaryHolder"/>
-          <%= f.hidden_field :anniversary, id: "anniversaryHolder", class: "hiddenDateField" %>
-        </div> <!-- col -->
+      <div class="form-group row">
         <div class="col-sm-4">
           <%= f.label :birthday %>
           <input type="text" class="form-control datepicker" data-datepicker-holder="#birthdayHolder"/>
           <%= f.hidden_field :birthday, id: "birthdayHolder", class: "hiddenDateField" %>
+        </div> <!-- col -->
+        <div class="col-sm-4">
+          <%= f.label :anniversary %>
+          <input type="text" class="form-control datepicker" data-datepicker-holder="#anniversaryHolder"/>
+          <%= f.hidden_field :anniversary, id: "anniversaryHolder", class: "hiddenDateField" %>
         </div> <!-- col -->
         <div class="col-sm-4">
           <%= f.label :other %>
@@ -47,6 +47,12 @@
         </div> <!-- col -->
       </div> <!-- row -->
 
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <%= f.label "Label for Other Date" %>
+          <%= f.text_field :other_date_name, class: "form-control", placeholder: "e.g. Day We Met" %>
+        </div> <!-- col -->
+      </div> <!-- row -->
 
       <div class="row">
         <div class="form-group container">
