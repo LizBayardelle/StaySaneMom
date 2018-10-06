@@ -75,15 +75,6 @@
     <%= render "layouts/hr" %>
 
     <%= @blog.body.html_safe %>
-    <div class="half-buffer"></div>
-    <h2 class="text-center">Get Sanity, Delivered to Your Inbox.</h2>
-    <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
-
-    <div class="container">
-      <h2 class="text-center">About the Author</h2>
-      <div class="half-buffer"></div>
-      <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
-    </div> <!-- container -->
 
     <% if current_user && current_user.admin %>
       <div class="text-center">
@@ -92,6 +83,32 @@
         <%= link_to 'Back', blogs_path %>
       </div>
     <% end %>
+
+    <div class="half-buffer"></div>
+    <%= render "layouts/hr" %>
+    <div class="half-buffer"></div>
+
+    <div class="text-center">
+      <% if @blog.convertkit_href %>
+        <h2 class="text-center"><%= @blog.cta_pdf %></h2>
+        <% if @blog.convertkit_data_form_toggle %>
+          <a data-formkit-toggle="<%= @blog.convertkit_data_form_toggle %>" href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+        <% else %>
+          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="half-buffer"></div>
+    <%= render "layouts/hr" %>
+
+    <div class="half-buffer"></div>
+    <h2 class="text-center">Get Sanity, Delivered to Your Inbox.</h2>
+    <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
+
+    <div class="half-buffer"></div>
+    <%= render "layouts/hr" %>
+    <div class="half-buffer"></div>
 
     <div class="new-comment">
       <%= simple_form_for [@blog, Comment.new] do |f| %>
@@ -127,7 +144,6 @@
       <% end %>
     </div>
 
-  <div class=""
     <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
     <% @comments.each do |comment| %>
       <p style="margin-top: 10px"><strong><%= comment.body %></strong>
@@ -138,6 +154,16 @@
         <% end %>
         <em class="color-neutral">by <%= comment.name %> on <%= comment.created_at.to_formatted_s(:long) %></em></p>
     <% end %>
+
+    <div class="half-buffer"></div>
+    <%= render "layouts/hr" %>
+    <div class="half-buffer"></div>
+
+    <div class="container">
+      <h2 class="text-center">About the Author</h2>
+      <div class="half-buffer"></div>
+      <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
+    </div> <!-- container -->
 
   </div> <!-- page container -->
 </div> <!-- row -->

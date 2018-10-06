@@ -105,6 +105,8 @@ class BlogsController < ApplicationController
                   :cta_read_more,
                   :cta_pdf,
                   :cta_video,
+                  :convertkit_data_form_toggle,
+                  :convertkit_href,
                   :category,
                   :linked_module,
                   :published,
