@@ -18,8 +18,10 @@
       <%= f.label :notes %>
       <%= f.text_area :notes, class: "form-control" %>
     </div> <!-- col -->
-
-    <%= f.association :person %>
+    <div class="form-group collection-checkboxes">
+      <%= f.label "Who do you need to shop for?" %><br />
+      <%= f.collection_check_boxes(:people, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name) %>
+    </div> <!-- col -->
   </div>
 
   <div class="form-actions text-center">
