@@ -32,6 +32,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
+    p params
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     @blog.published_on = DateTime.current if @blog.published

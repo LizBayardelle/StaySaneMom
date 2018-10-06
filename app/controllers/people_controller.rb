@@ -34,7 +34,6 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     @person.user_id = current_user.id
 
-
     respond_to do |format|
       if @person.save
         format.html { redirect_to people_path, notice: 'Person was successfully created.' }
