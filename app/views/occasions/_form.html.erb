@@ -4,14 +4,25 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <div class="row">
+      <div class="form-group col-sm-6 ">
+        <%= f.input :name, required: true %>
+      </div> <!-- col -->
+      <div class="form-group col-sm-6">
+        <%= f.label :date %>
+        <input type="text" class="form-control datepicker" data-datepicker-holder="#dateHolder"/>
+        <%= f.hidden_field :date, id: "dateHolder", class: "hiddenDateField" %>
+      </div> <!-- col -->
+    </div> <!-- row -->
+    <div class="form-group">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, class: "form-control" %>
+    </div> <!-- col -->
+
     <%= f.association :person %>
-    <%= f.association :user %>
-    <%= f.input :name %>
-    <%= f.input :date %>
-    <%= f.input :notes %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions text-center">
+    <%= f.button :submit, class: "btn btn-outline-primary", style: "margin-bottom: 10px" %>
   </div>
 <% end %>

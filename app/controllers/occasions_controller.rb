@@ -1,10 +1,13 @@
 class OccasionsController < ApplicationController
   before_action :set_occasion, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /occasions
   # GET /occasions.json
   def index
-    @occasions = Occasion.all
+    @occasions = Occasion.where(user_id: current_user.id)
+    @occasion = Occasion.new
   end
 
   # GET /occasions/1
@@ -25,6 +28,7 @@ class OccasionsController < ApplicationController
   # POST /occasions.json
   def create
     @occasion = Occasion.new(occasion_params)
+    @occasion.user_id = current_user.id
 
     respond_to do |format|
       if @occasion.save
