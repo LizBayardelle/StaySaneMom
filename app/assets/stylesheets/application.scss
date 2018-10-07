@@ -84,7 +84,7 @@ $transparent-neutral: rgba(183, 173, 153, 0.4);
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
 
 * { font-family: $font-sans; color: $color-black; }
-p { font-family: $font-serif; }
+p, p a, p strong { font-family: $font-serif; }
 a { color: $color-neutral; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 
