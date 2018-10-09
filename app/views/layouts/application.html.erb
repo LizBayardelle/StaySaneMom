@@ -43,13 +43,13 @@
 
       <nav class="navbar bg-neutral text-center">
         <p class="d-none d-sm-block">
-          <%= link_to "To Do", tasks_path %>
+          <%= link_to "To Do", tasks_path, class: "no-hover" %>
           <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
-          <%= link_to "People", people_path %>
+          <%= link_to "People", people_path, class: "no-hover"  %>
           <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
-          <%= link_to "Gift Planner", occasions_path %>
-          <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
-          <%= link_to "All Tools", static_path(:tools) %>
+          <%#= link_to "Gift Planner", occasions_path, class: "no-hover"  %>
+          <!-- <span class="color-neutral" style="padding: 0 10px 0 10px">•</span> -->
+          <%= link_to "All Tools", static_path(:tools), class: "no-hover"  %>
         </p>
         <form class="form-inline account-buttons">
           <% if current_user %>
@@ -122,40 +122,47 @@
 
     </div> <!-- non-footer -->
 
-    <footer>
+    <div class="pre-footer text-center bg-neutral">
+      <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><%= fa_icon "facebook-f", class: "social-icon color-black" %></a>
+      <a href="https://www.pinterest.com/staysanemom/" target="_blank"><%= fa_icon "pinterest-p", class: "social-icon color-black" %></a>
+      <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><%= fa_icon "amazon", class: "social-icon color-black" %></a>
+      <hr />
       <div class="container">
         <div class="row">
           <div class="col-sm-8">
             <div class="container">
-              <h5 class="text-center font-serif color-neutral">Stay Sane Mom is my contribution to the over-worked, under-slept, marker-stained, soul-hungry moms of the world.</h5>
-              <h5 class="text-center font-serif color-neutral">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real person as well.</h5>
-              <h5 class="text-center font-serif color-neutral">Sometimes you just need a little support along the way.</h5>
-              <h5 class="text-center font-serif color-neutral">I'm here for you.</h5>
+              <h5 class="text-center font-serif">Stay Sane Mom is my contribution to the over-worked, under-slept, marker-stained, soul-hungry moms of the world, moms who just need a little support&nbsp;along&nbsp;the&nbsp;way.</h5>
+              <h5 class="text-center font-serif">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</h5>
+              <h5 class="text-center font-serif">I'm here for you.</h5>
             </div> <!-- container -->
           </div> <!-- left bit -->
           <div class="col-sm-4">
             <div class="container">
-              <div class="container text-center">
-                <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><%= fa_icon "facebook-f", class: "social-icon color-neutral color-neutral-hover" %></a>
-                <a href="https://www.pinterest.com/staysanemom/" target="_blank"><%= fa_icon "pinterest-p", class: "social-icon color-neutral color-neutral-hover" %></a>
-                <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><%= fa_icon "amazon", class: "social-icon color-neutral color-neutral-hover" %></a>
-              </div> <!-- container -->
-              <hr>
-              <p class="color-neutral"><%= link_to "About Me", static_path(:AboutMe), class: "font-serif" %></p>
-              <hr>
-              <p class="color-neutral">Guest Blogging</p>
-              <hr>
-              <p class="color-neutral">Speaking Engagements</p>
+              <div class="half-buffer"></div>
+              <p class="text-right font-bold"><%= link_to "About Me", static_path(:AboutMe), class: "font-serif color-black" %></p>
+              <p class="text-right font-bold">Guest Blogging</p>
+              <p class="text-right font-bold">Speaking Engagements</p>
             </div> <!-- container -->
           </div> <!-- left bit -->
         </div> <!-- row -->
-        <div class="row">
-          <div class="container text-center">
-            <hr>
-            <p class="color-neutral">Copyright &copy; <%= Time.current.year %> Stay Sane Mom</p>
-          </div> <!-- container -->
-        </div> <!-- row -->
       </div> <!-- container -->
+    </div> <!-- container -->
+
+    <footer>
+      <div class="row">
+        <div class="container text-center">
+          <p>I post a lot of links to internet things I find useful.  Some of these links (definitely not all, usually not even most) will occasionally be affiliate links, meaning if you make a purchase on their site after clicking on the link I would get a portion of the money you spend (without increasing your price, of course).</p>
+          <p>I will never link you to anything I don't own, love, and use in my own house.  I will never include an affiliate link to something I wouldn't recommend without one.  Basically, there are billions of things on the webbernet, so I'll only give you the very best.</p>
+        </div> <!-- container -->
+      </div> <!-- row -->
+
+
+      <div class="row">
+        <div class="container text-center">
+          <hr style="border-color: black">
+          <p>Copyright &copy; <%= Time.current.year %> Stay Sane Mom</p>
+        </div> <!-- container -->
+      </div> <!-- row -->
     </footer>
 
     <script>

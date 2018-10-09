@@ -20,7 +20,7 @@
     </div> <!-- col -->
     <div class="form-group collection-checkboxes">
       <%= f.label "Who do you need to shop for?" %><br />
-      <%= f.collection_check_boxes(:people, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name) %>
+      <%= f.collection_check_boxes(:people_ids, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name) %>
     </div> <!-- col -->
   </div>
 

@@ -71,6 +71,23 @@
     </div>
     <!-- Social Buttons -->
 
+    <% if @blog.convertkit_href %>
+      <div class="half-buffer"></div>
+      <%= render "layouts/hr" %>
+      <div class="half-buffer"></div>
+
+      <div class="text-center">
+        <h4 class="text-center">Want to cut to the chase?</h4>
+        <h2 class="text-center"><%= @blog.cta_pdf %></h2>
+        <% if @blog.convertkit_data_form_toggle %>
+          <a data-formkit-toggle="<%= @blog.convertkit_data_form_toggle %>" href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+        <% else %>
+          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+        <% end %>
+      </div>
+      <div class="half-buffer"></div>
+    <% end %>
+
 
     <%= render "layouts/hr" %>
 
@@ -84,20 +101,20 @@
       </div>
     <% end %>
 
-    <div class="half-buffer"></div>
-    <%= render "layouts/hr" %>
-    <div class="half-buffer"></div>
+    <% if @blog.convertkit_href %>
+      <div class="half-buffer"></div>
+      <%= render "layouts/hr" %>
+      <div class="half-buffer"></div>
 
-    <div class="text-center">
-      <% if @blog.convertkit_href %>
+      <div class="text-center">
         <h2 class="text-center"><%= @blog.cta_pdf %></h2>
         <% if @blog.convertkit_data_form_toggle %>
           <a data-formkit-toggle="<%= @blog.convertkit_data_form_toggle %>" href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
         <% else %>
           <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
     <div class="half-buffer"></div>
     <%= render "layouts/hr" %>
