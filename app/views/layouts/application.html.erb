@@ -126,6 +126,7 @@
       <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><%= fa_icon "facebook-f", class: "social-icon color-black" %></a>
       <a href="https://www.pinterest.com/staysanemom/" target="_blank"><%= fa_icon "pinterest-p", class: "social-icon color-black" %></a>
       <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><%= fa_icon "amazon", class: "social-icon color-black" %></a>
+      <%= mail_to("liz@theStaySaneMom.com") do %><%= fa_icon "envelope", class: "social-icon color-black" %><% end %>
       <hr />
       <div class="container">
         <div class="row">
@@ -139,6 +140,7 @@
           <div class="col-sm-4">
             <div class="container">
               <div class="half-buffer"></div>
+              <p class="text-right font-bold"><a href="https://pages.convertkit.com/4288387cd1/d606ae26d3" class="font-serif color-black" %>Contact Liz</a></p>
               <p class="text-right font-bold"><%= link_to "About Me", static_path(:AboutMe), class: "font-serif color-black" %></p>
               <p class="text-right font-bold">Guest Blogging</p>
               <p class="text-right font-bold">Speaking Engagements</p>

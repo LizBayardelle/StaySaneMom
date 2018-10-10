@@ -71,25 +71,34 @@
     </div>
     <!-- Social Buttons -->
 
-    <% if @blog.convertkit_href %>
-      <div class="half-buffer"></div>
-      <%= render "layouts/hr" %>
-      <div class="half-buffer"></div>
+  </div> <!-- container -->
 
-      <div class="text-center">
+
+  <div class="half-buffer"></div>
+
+  <% if @blog.convertkit_href %>
+    <div class="bg-neutral">
+      <div class="container text-center">
+
+        <div class="half-buffer"></div>
+
         <h4 class="text-center">Want to cut to the chase?</h4>
-        <h2 class="text-center"><%= @blog.cta_pdf %></h2>
+        <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
         <% if @blog.convertkit_data_form_toggle %>
           <a data-formkit-toggle="<%= @blog.convertkit_data_form_toggle %>" href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
         <% else %>
           <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
         <% end %>
-      </div>
-      <div class="half-buffer"></div>
-    <% end %>
+
+        <div class="half-buffer"></div>
+
+      </div> <!-- container -->
+    </div> <!-- bg row -->
+  <% end %>
 
 
-    <%= render "layouts/hr" %>
+  <div class="container">
+    <div class="half-buffer"></div>
 
     <%= @blog.body.html_safe %>
 
@@ -107,16 +116,17 @@
       <div class="half-buffer"></div>
 
       <div class="text-center">
+        <h4 class="text-center">Now that you've read all about it...</h4>
         <h2 class="text-center"><%= @blog.cta_pdf %></h2>
         <% if @blog.convertkit_data_form_toggle %>
           <a data-formkit-toggle="<%= @blog.convertkit_data_form_toggle %>" href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
         <% else %>
           <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
         <% end %>
+        <div class="half-buffer"></div>
       </div>
     <% end %>
   </div> <!-- container -->
-
 
     <div class="half-buffer"></div>
 

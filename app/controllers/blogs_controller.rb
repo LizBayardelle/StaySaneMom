@@ -34,7 +34,9 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
-    @blog.published_on = DateTime.current if @blog.published
+    if @blog.published
+      @blog.published_on = Time.now
+    end
 
     respond_to do |format|
       if @blog.save
@@ -50,7 +52,9 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
-    @blog.published_on = DateTime.current if @blog.published && @blog.published_on.nil?
+    if @blog.published && @blog.published_on.nil?
+      @blog.published_on = Time.now
+    end
 
     if @blog.image.attached? && blog_params[:image].present?
       @blog.image.purge

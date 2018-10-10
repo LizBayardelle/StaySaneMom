@@ -7,14 +7,17 @@
 
 <div class="frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)" role="img" aria-label="Overwhelmed mom acting like she's tearing her hair out."></div>
 
-<div class="over-frame-text convert-kit">
+<div class="over-frame-text">
   <h1>Need more sanity?</h1>
   <div class="over-frame-bottom-row">
-    <div class="container color-white text-center">
-      <h4 class="color-white text-center">Get the latest tips delivered straight to your inbox.</h4>
-      <span style="color: #ffffff"><script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script></span>
-      <div class="half-buffer"></div>
-    </div>
+    <div class="container">
+      <h3 class="color-white text-center">Get tips, free goodies, and tools to make your&nbsp;life&nbsp;easier.</h3>
+      <div class="text-center">
+        <div class="half-buffer"></div>
+          <a class="btn btn-outline-secondary" style="font-weight: 700; border: solid medium" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/2d8e722187/31069c0b92">Your Support System Awaits</a>
+        <div class="buffer"></div>
+      </div> <!-- text center -->
+    </div> <!-- container -->
   </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
@@ -156,9 +159,26 @@
   </div> <!-- page container -->
 
 
+
+  <!-- form itself -->
+  <div id="convertkitPopup" class="white-popup mfp-hide">
+    <script async data-uid="fcce48a626" src="https://f.convertkit.com/fcce48a626/999d19a7ee.js"></script>
+  </div>
+
+
+
+
+
+
+
   <script>
-    $(function() {
-    	$('.category-div').matchHeight();
-      $('.blog-text').matchHeight();
+  $(function() {
+    $('.category-div').matchHeight();
+    $('.blog-text').matchHeight();
+  });
+
+    $('.open-popup-link').magnificPopup({
+      type:'inline',
+      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
   </script>
