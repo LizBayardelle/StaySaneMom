@@ -23,7 +23,7 @@ gem 'stripe'
 gem 'figaro'
 gem 'magnific-popup-rails', '~> 1.1.0'
 gem 'simple_form'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
 gem 'aws-sdk' , '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'simple_form_extension'

@@ -27,6 +27,14 @@
   <div class="recent-blogs">
     <h2 class="text-center script-header">Related Blogs</h2>
 
+    <div class="text-center full-width"><div id="tag_cloud">
+      <h2>Looking for a specific topic?</h2>
+      <% tag_cloud @all_spouse_blogs.tag_counts, %w{s m l} do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+      <% end %>
+      <div class="half-buffer"></div>
+    </div></div>
+
     <div class="row">
       <% @recent_blogs.each do |blog| %>
         <%= link_to blog do %>
@@ -64,8 +72,12 @@
               </div>
               <div class="blog-text">
                 <h2><%= blog.title %></h2>
-                <p><%= blog.teaser %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span></p>
-                <p class="published-on"><small>
+                <p><%= blog.teaser %><span class="color-neutral font-serif" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
+                <p class="published-on">
+                  <strong>Categories:
+                    <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+                  </strong><br />
+                  <small>
                   Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
                   <% if current_user && current_user.admin %>
                        | <%= link_to 'Edit', edit_blog_path(blog) %> |

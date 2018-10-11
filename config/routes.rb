@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'home/self'
   get 'home/tools'
 
+  get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
     resources :comments
   end
@@ -21,7 +22,6 @@ Rails.application.routes.draw do
   post "comment/:id/unapprove" => "comments#unapprove_comment", as: "unapprove_comment"
   post "comment/:id/comment_read" => "comments#comment_read", as: "comment_read"
   post "comment/:id/comment_unread" => "comments#comment_unread", as: "comment_unread"
-
 
   resources :tasks
   post "tasks/:id/check_task" => "tasks#check_task", as: "check_task"

@@ -95,6 +95,21 @@ a.color-spouse:hover { color: $color-spouse; }
 a.color-kids:hover { color: $color-kids; }
 a.color-self:hover { color: $color-self; }
 
+.full-width {
+  width: 100%;
+}
+
+#tag_cloud {
+  width: 500px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 1.6em;
+  .s { font-size: 0.8em; }
+  .m { font-size: 1.2em; }
+  .l { font-size: 1.8em; }
+}
+
 hr { width: 50%; border-color: $color-neutral; }
 
 p.large-p, .large-p p {

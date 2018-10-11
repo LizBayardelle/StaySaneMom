@@ -876,7 +876,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on
+  acts-as-taggable-on (~> 6.0)
   aws-sdk (~> 3)
   aws-sdk-s3
   bcrypt (~> 3.1.7)

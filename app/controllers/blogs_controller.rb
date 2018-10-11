@@ -7,7 +7,13 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @blogs = Blog.where(published: true).order('published_on DESC')
+    if params[:tag]
+      @blogs = Blog.where(published: true).order('published_on DESC').tagged_with(params[:tag])
+    else
+      @blogs = Blog.where(published: true).order('published_on DESC')
+    end
     @unpublished = Blog.where(published: false)
+    @tags = Blog.tag_counts_on(:tags)
   end
 
   # GET /blogs/1
@@ -87,6 +93,15 @@ class BlogsController < ApplicationController
     end
   end
 
+
+  def tagged
+    if params[:tag].present?
+      @blogs = Blog.where(published: true).tagged_with(params[:tag]).order('published_on DESC')
+    else
+      @blogs = Blog.where(published: true).order('published_on DESC')
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -118,6 +133,7 @@ class BlogsController < ApplicationController
                   :user_id,
                   :image,
                   :pdf,
-                  :slug)
+                  :slug,
+                  :tag_list)
   end
 end

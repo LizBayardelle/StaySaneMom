@@ -73,6 +73,6 @@ class OccasionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def occasion_params
-      params.require(:occasion).permit(:person_id, :user_id, :name, :date, :notes, people_ids: [])
+      params.require(:occasion).permit(:person_id, :user_id, :name, :date, :notes, person_ids: [])
     end
 end
