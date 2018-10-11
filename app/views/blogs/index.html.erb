@@ -20,21 +20,10 @@
 </div> <!-- over-frame-text -->
 
 
-<div class="container">
-  <div class="half-buffer"></div>
 
-  <% if current_user && current_user.admin %>
-    <div class="text-right">
-      <%= link_to 'New Blog', new_blog_path %>
-    </div> <!-- right -->
 
-    <div class="text-center full-width"><div id="tag_cloud">
-      <h2>Looking for a specific topic?</h2>
-      <% tag_cloud Blog.tag_counts, %w{s m l} do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-      <% end %>
-    </div></div>
-
+<% if current_user && current_user.admin %>
+  <div class="bg-neutral"><div class="container">
     <% if @unpublished.count > 0 %>
       <div class="half-buffer"></div>
       <h2>Unpublished Blogs</h2>
@@ -42,8 +31,26 @@
         <h5><%= link_to blog.title, blog_path(blog) %></h5>
       <% end %>
     <% end %>
-  <% end %>
+    <div class="half-buffer"></div>
+  </div></div>
 
+  <div class="container">
+    <div class="text-right">
+      <div class="half-buffer"></div>
+      <%= link_to 'New Blog', new_blog_path %>
+    </div> <!-- right -->
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="half-buffer"></div>
+
+  <div class="text-center full-width"><div id="tag_cloud">
+    <h2>Looking for a specific topic?</h2>
+    <% tag_cloud Blog.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+    <% end %>
+  </div></div>
 
   <div class="half-buffer"></div>
 
