@@ -60,7 +60,11 @@
 
     <h4 class="text-center"><%= @blog.teaser %></h4>
     <% if @blog.published != false %>
-      <p class="text-center">Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
+      <p class="text-center">
+        <strong>Categories:
+          <%= raw @blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </strong><br />
+        Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
     <% end %>
 
     <!-- Social Buttons -->
@@ -78,7 +82,7 @@
 
   <div class="half-buffer"></div>
 
-  <% if @blog.convertkit_href %>
+  <% if @blog.cta_pdf != "" %>
     <div class="bg-neutral">
       <div class="container text-center">
 
@@ -112,7 +116,7 @@
       </div>
     <% end %>
 
-    <% if @blog.convertkit_href %>
+    <% if @blog.cta_pdf != "" %>
       <div class="half-buffer"></div>
       <%= render "layouts/hr" %>
       <div class="half-buffer"></div>

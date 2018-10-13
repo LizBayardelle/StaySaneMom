@@ -25,6 +25,7 @@ class BlogsController < ApplicationController
     if current_user
       @comment_user = current_user
     end
+    @tags = Blog.tag_counts_on(:tags)
   end
 
   # GET /blogs/new
