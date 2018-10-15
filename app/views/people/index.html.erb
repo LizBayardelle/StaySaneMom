@@ -40,9 +40,9 @@
         <% if person.relationship == relationship %>
           <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
           <p>
-            <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-            <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-            <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+            <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+            <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+            <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
             <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
           </p>
         <% end %>
@@ -57,9 +57,9 @@
         <% if person.group == group %>
           <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
           <p>
-            <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-            <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-            <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+            <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+            <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+            <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
             <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
           </p>
         <% end %>
@@ -72,9 +72,9 @@
     <% @people_no_group.each do |person| %>
       <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
       <p>
-        <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-        <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-        <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+        <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+        <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+        <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
         <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
     <% end %>
@@ -84,9 +84,9 @@
     <% @people_last_name.each do |person| %>
       <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
       <p>
-        <% if person.birthday %><%= person.birthday.strftime("%B %d") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-        <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-        <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+        <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
+        <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+        <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
         <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
     <% end %>
@@ -96,12 +96,12 @@
     <table>
       <% @people_birthday.each do |person| %>
         <tr>
-          <td><h5><%= person.birthday.strftime("%B %d") %></h5></td>
+          <td><h5><%= person.birthday.strftime("%B %e") %></h5></td>
           <td>
             <h5 style="margin-bottom: 0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
             <p>
-              <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-              <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+              <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+              <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
               <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
             </p>
         </tr>
@@ -114,8 +114,8 @@
     <% @people_no_birthday.each do |person| %>
       <h5 style="margin-bottom: 0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
       <p>
-        <% if person.anniversary %><%= person.anniversary.strftime("%B %d") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-        <% if person.other %><%= person.other.strftime("%B %d") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
+        <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
+        <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
         <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
     <% end %>

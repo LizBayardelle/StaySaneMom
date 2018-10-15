@@ -6,8 +6,10 @@ class OccasionsController < ApplicationController
   # GET /occasions
   # GET /occasions.json
   def index
-    @occasions = Occasion.where(user_id: current_user.id)
+    @occasions = Occasion.where(user_id: current_user.id).where("date > ?", Time.now).order("date ASC")
     @occasion = Occasion.new
+    @gifts = Gift.where(user_id: current_user.id)
+    @past_occasions = Occasion.where(user_id: current_user.id).where("date < ?", Time.now).order("date DESC")
   end
 
   # GET /occasions/1
@@ -31,7 +33,7 @@ class OccasionsController < ApplicationController
     @occasion.user_id = current_user.id
 
     respond_to do |format|
-      if @occasion.save
+      if @occasion.save!
         format.html { redirect_to occasions_url, notice: 'Occasion was successfully created.' }
         format.json { render :show, status: :created, location: @occasion }
       else
@@ -44,6 +46,7 @@ class OccasionsController < ApplicationController
   # PATCH/PUT /occasions/1
   # PATCH/PUT /occasions/1.json
   def update
+    @occasion.user_id = current_user.id
     respond_to do |format|
       if @occasion.update(occasion_params)
         format.html { redirect_to occasions_url, notice: 'Occasion was successfully updated.' }
@@ -73,6 +76,6 @@ class OccasionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def occasion_params
-      params.require(:occasion).permit(:person_id, :user_id, :name, :date, :notes, person_ids: [])
+      params.require(:occasion).permit(:user_id, :name, :date, :notes, person_ids: [])
     end
 end

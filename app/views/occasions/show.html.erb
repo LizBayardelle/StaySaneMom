@@ -1,29 +1,77 @@
-<p id="notice"><%= notice %></p>
+<!-- page-specific content -->
+  <% title @occasion.name %>
+  <%= content_for :head do %>
+    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+  <% end %>
+<!-- page-specific content -->
 
-<p>
-  <strong>Person:</strong>
-  <%= @occasion.person %>
-</p>
+<div class="bg-neutral" style="padding: 15px 15px 5px 15px">
+  <div class="text-center">
+    <h5 class="color-neutral"><%= link_to 'Change Recipients', edit_occasion_path(@occasion), class: "font-bold color-black font-serif" %> |
+      <%= link_to 'Back to My Occasions', occasions_path, class: "font-bold color-black font-serif" %>
+    </h5>
+  </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @occasion.user %>
-</p>
+<div class="container">
+  <div class="half-buffer"></div>
+  <h1 class="text-center font-script script-header" style="margin-bottom: 0px; margin-top: 10px; color: black"><%= @occasion.name %></h1>
+  <h4 class="text-center color-neutral" style="font-weight: 300; margin-top: -15px"><%= @occasion.date.strftime("%B %e, %Y") %></h4>
+  <%= render "layouts/hr" %>
+  <p class="text-center">Click on the checkmark next to someone's name to edit the information for their gift.<br />To add or remove recipients, click "Change Recipients".</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @occasion.name %>
-</p>
+  <div class="half-buffer"></div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @occasion.date %>
-</p>
+  <% if @occasion.notes != "" %><p class="text-center"><strong>Notes:</strong> <%= @occasion.notes %></p><% end %>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @occasion.notes %>
-</p>
+  <div class="row">
 
-<%= link_to 'Edit', edit_occasion_path(@occasion) %> |
-<%= link_to 'Back', occasions_path %>
+    <div class="col-sm-6">
+      <h2 class="text-center font-script">Still Need a Gift</h2>
+
+        <% @occasion.gifts.each do |gift| %>
+          <% if gift.purchased == false %>
+            <h5 style="font-weight: 300"><a href="#editGiftPopup<%= gift.id %>" class="open-popup-link" style="padding-right: 8px"><%= fa_icon "square-o" %></a> <%= gift.person.first_name + " " + gift.person.last_name %> (<% if gift.name %><%= gift.name %><% else %> ? <% end %>)</h5>
+
+            <!-- new person popup itself -->
+            <div id="editGiftPopup<%= gift.id %>" class="white-popup mfp-hide">
+              <h2 class="text-center">So what are we getting for <%= gift.person.first_name + " " + gift.person.last_name %>?</h2>
+              <%= render "gifts/form", gift: gift %>
+            </div>
+            <!-- ebd oioyo -->
+
+          <% end %>
+        <% end %>
+
+    </div> <!-- column -->
+
+    <div class="col-sm-6">
+      <h2 class="text-center font-script">Already Purchased</h2>
+      <% @occasion.gifts.each do |gift| %>
+        <% if gift.purchased == true %>
+          <h5 style="font-weight: 300"><a href="#editGiftPopup<%= gift.id %>" class="open-popup-link" style="padding-right: 8px"><%= fa_icon "check-square" %></a> <%= gift.name %> (for <%= gift.person.first_name + " " + gift.person.last_name %>)</h5>
+
+          <!-- new person popup itself -->
+          <div id="editGiftPopup<%= gift.id %>" class="white-popup mfp-hide">
+            <h2 class="text-center">So what are we getting for <%= gift.person.first_name + " " + gift.person.last_name %>?</h2>
+            <%= render "gifts/form", gift: gift %>
+          </div>
+          <!-- ebd oioyo -->
+
+        <% end %>
+      <% end %>
+    </div> <!-- column -->
+
+  </div> <!-- row -->
+
+</div> <!-- container -->
+
+
+
+
+<script>
+  $('.open-popup-link').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+  });
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_213051) do
+ActiveRecord::Schema.define(version: 2018_10_14_170913) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -84,6 +84,22 @@ ActiveRecord::Schema.define(version: 2018_10_06_213051) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "gifts", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 8, scale: 2
+    t.string "store"
+    t.text "notes"
+    t.boolean "purchased", default: false
+    t.integer "user_id"
+    t.integer "person_id", null: false
+    t.integer "occasion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["occasion_id"], name: "index_gifts_on_occasion_id"
+    t.index ["person_id"], name: "index_gifts_on_person_id"
+    t.index ["user_id"], name: "index_gifts_on_user_id"
+  end
+
   create_table "occasions", force: :cascade do |t|
     t.integer "person_id"
     t.integer "user_id"
@@ -92,13 +108,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_213051) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_occasions_on_person_id"
     t.index ["user_id"], name: "index_occasions_on_user_id"
-  end
-
-  create_table "occasions_people", id: false, force: :cascade do |t|
-    t.integer "occasion_id", null: false
-    t.integer "person_id", null: false
   end
 
   create_table "people", force: :cascade do |t|
@@ -116,7 +126,6 @@ ActiveRecord::Schema.define(version: 2018_10_06_213051) do
     t.datetime "updated_at", null: false
     t.string "group"
     t.integer "occasions_id"
-    t.index ["occasions_id"], name: "index_people_on_occasions_id"
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 

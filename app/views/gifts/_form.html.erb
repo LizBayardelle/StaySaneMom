@@ -1,0 +1,31 @@
+<%= simple_form_for(gift) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="form-group col-md-8">
+        <%= f.label "Gift Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div> <!-- col -->
+      <div class="form-group col-md-4">
+        <%= f.input :price, as: :currency %>
+      </div> <!-- col -->
+      <div class="form-group col-sm-12 ">
+        <%= f.label "Store" %>
+        <%= f.text_field :store, class: "form-control" %>
+      </div> <!-- col -->
+      <div class="form-group col-sm-12">
+        <%= f.label :notes %>
+        <%= f.text_area :notes, class: "form-control" %>
+      </div> <!-- col -->
+      <div class="form-group text-center">
+        <%= f.input :purchased %>
+      </div>
+    </div> <!-- row -->
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, class: "btn btn-outline-primary", style: "margin-bottom: 10px" %>
+  </div>
+<% end %>

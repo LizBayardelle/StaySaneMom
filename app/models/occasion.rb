@@ -1,4 +1,6 @@
 class Occasion < ApplicationRecord
-  has_and_belongs_to_many :people
+  # Relations
+  has_many :gifts, dependent: :destroy
+  has_many :people, through: :gifts
   belongs_to :user
 end
