@@ -5,7 +5,7 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="frame" style="background-image: url(<%= asset_path "tools.jpg" %>)"><div class="image-overlay-neutral"></div></div>
+<div class="header-frame frame" style="background-image: url(<%= asset_path "tools.jpg" %>)"><div class="image-overlay-neutral"><div class="inner-frame border-neutral"></div></div></div>
 <div class="over-frame-text">
   <div class="container">
   	<h1>Mom Tools</h1>
@@ -49,6 +49,17 @@
 			<% end %>
 		</div></div> <!-- category div / col div -->
 
+		<div class="col-sm-6 col-lg-3"><div class="content-box border-neutral transparent-hover neutral">
+			<%= link_to occasions_path do %>
+				<div class="content-box-img" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)"><div class="image-overlay-neutral"></div></div>
+				<div class="text">
+					<h2 class="color-neutral font-script text-center">Gift Organizer</h2>
+					<p class="weight-400">Let's face it.  Being the head of a household requires buying a lot of junk for a lot of people.</p>
+					<p class="weight-400">Use this easy tracker to figure out what you need to buy, for whom, and by when.  Without losing your marbles.</p>
+				</div> <!-- text -->
+				<h5 class="text-center"><%= link_to "Make Holidays Less Stressful", tasks_path, class: "color-neutral" %></h5>
+			<% end %>
+		</div></div> <!-- category div / col div -->
 
 	</div> <!-- row -->
 </div> <!-- container -->

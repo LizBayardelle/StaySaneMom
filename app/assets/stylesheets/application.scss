@@ -18,14 +18,10 @@
  *= require_self
  */
 
-
 @import "bootstrap";
 @import "font-awesome";
 @import "trix";
 @import 'bootstrap-datetimepicker';
-
-
-
 
 $font-sans: 'Work Sans', sans-serif;
 $font-serif:  'EB Garamond', serif;
@@ -49,12 +45,6 @@ $transparent-spouse: rgba(49, 62, 80, 0.5);
 $transparent-kids: rgba(239, 176, 161, 0.5);
 $transparent-self: rgba(145, 105, 153, 0.4);
 $transparent-neutral: rgba(183, 173, 153, 0.4);
-
-.image-overlay-house { background-color: $transparent-house; width: 100%; height: 100%; }
-.image-overlay-spouse { background-color: $transparent-spouse; width: 100%; height: 100%; }
-.image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
-.image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
-.image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
 
 .color-white, .color-white * { color: #FFFFFF; }
 .color-house { color: $color-house; }
@@ -121,11 +111,6 @@ p.large-p, .large-p p {
 .half-buffer { height: 25px; }
 
 .btn { background: transparent; }
-
-.frame {
-  background: transparent no-repeat center;
-  background-size: cover;
-}
 
 .datepicker {z-index:1151 !important;}
 
@@ -198,6 +183,125 @@ td p { margin-bottom: 0 }
   max-width: 500px;
   margin: 20px auto;
 }
+
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ------ IMAGES ---------
+// ---------------------------
+// ---------------------------
+
+.frame {
+  background: transparent no-repeat center;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-overlay { position: relative; width: 100%; height: 100% }
+.image-overlay-house { background-color: $transparent-house; width: 100%; height: 100%; }
+.image-overlay-spouse { background-color: $transparent-spouse; width: 100%; height: 100%; }
+.image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
+.image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
+.image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
+
+
+.over-frame-text {
+  position: relative;
+  margin-top: -400px;
+  height: 400px;
+}
+
+.over-frame-text h1 {
+  font-size: 60px;
+  font-weight: 800;
+  text-align: center;
+  color: white;
+}
+
+.over-frame-bottom-row {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.over-frame-bottom-row h3 {
+  color: white;
+}
+
+.header-frame {
+  height: 450px;
+}
+// XS DEVICES
+@media screen and (max-width: 768px) {
+  .inner-frame {
+    border-color: transparent !important;
+  }
+}
+
+// SMALL DEVICES
+@media screen and (min-width: 768px) {
+  .header-frame {
+    width: 750px;
+    margin: 20px 0 0px -20px;
+    z-index: 10;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: visible;
+  }
+
+  .inner-frame {
+    position: absolute;
+    display: block;
+    height: 490px;
+    margin-top: -20px;
+    width: 710px;
+    margin-left: 20px;
+    overflow: visible;
+    z-index: 20;
+  }
+
+  .over-frame-text {
+    margin-bottom: 40px; // White padding below image
+  }
+}
+
+// MEDIUM DEVICES
+@media screen and (min-width: 992px) {
+  .header-frame { width: 970px; }
+  .inner-frame { width: 930px; }
+  .over-frame-text { margin-bottom: 60px; }
+}
+
+// LARGE DEVICES
+@media screen and (min-width: 1200px) {
+  .header-frame { width: 1170px; }
+  .inner-frame { width: 1130px; }
+  .over-frame-text { margin-bottom: 80px; }
+}
+
+@media screen and (min-width: 1500px) {
+  .header-frame { height: 550px; }
+  .inner-frame { height: 590px; }
+
+  .over-frame-text {
+    height: 500px;
+    margin-top: -500px;
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -430,53 +534,6 @@ footer {
 
 
 
-
-
-// ---------------------------
-// ---------------------------
-// ---------------------------
-// -------- IMAGES -----------
-// ---------------------------
-// ---------------------------
-.frame {
-  height: 450px;
-  background: transparent no-repeat center;
-  background-size: cover;
-}
-
-.over-frame-text {
-  position: relative;
-  margin-top: -400px;
-  height: 400px;
-}
-
-.over-frame-text h1 {
-  font-size: 60px;
-  font-weight: 800;
-  text-align: center;
-  color: white;
-}
-
-.over-frame-bottom-row {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-}
-
-.over-frame-bottom-row h3 {
-  color: white;
-}
-
-@media screen and (min-width: 1500px) {
-  .frame {
-    height: 550px;
-  }
-
-  .over-frame-text {
-    height: 500px;
-    margin-top: -500px;
-  }
-}
 
 
 

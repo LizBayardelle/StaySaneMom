@@ -47,8 +47,8 @@
           <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
           <%= link_to "Birthday Tracker", people_path, class: "no-hover"  %>
           <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
-          <%#= link_to "Gift Planner", occasions_path, class: "no-hover"  %>
-          <!-- <span class="color-neutral" style="padding: 0 10px 0 10px">•</span> -->
+          <%= link_to "Gift Planner", occasions_path, class: "no-hover"  %>
+          <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
           <%= link_to "All Tools", static_path(:tools), class: "no-hover"  %>
         </p>
         <form class="form-inline account-buttons">
@@ -74,6 +74,8 @@
         <%= link_to "To Do", tasks_path %>
         <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
         <%= link_to "Birthday Tracker", people_path %>
+        <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
+        <%= link_to "Gift Planner", occasions_path %>
         <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
         <%= link_to "All Tools", static_path(:tools) %>
       </p>

@@ -25,26 +25,30 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- facebook share -->
 
-<div class="frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
+<div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
   <% case @blog.category %>
   <% when "House" %>
-    <div class="image-overlay-house"></div>
+    <div class="image-overlay-house"><div class="inner-frame border-house"></div></div>
   <% when "Spouse" %>
-    <div class="image-overlay-spouse"></div>
+    <div class="image-overlay-spouse"><div class="inner-frame border-spouse"></div></div>
   <% when "Kids" %>
-    <div class="image-overlay-kids"></div>
+    <div class="image-overlay-kids"><div class="inner-frame border-kids"></div></div>
   <% when "Self" %>
-    <div class="image-overlay-self"></div>
+    <div class="image-overlay-self"><div class="inner-frame border-self"></div></div>
   <% else %>
-    <div class="image-overlay-neutral"></div>
+    <div class="image-overlay-neutral"><div class="inner-frame border-neutral"></div></div>
   <% end %>
 </div>
 <div class="over-frame-text">
   <div class="container">
     <h1><%= @blog.title %></h1>
   </div> <!-- container -->
-  <div class="over-frame-bottom-row text-right" style="padding-right: 30px">
-    <h3>From <%= @blog.category %> Blogs</h3>
+  <div class="over-frame-bottom-row text-right">
+    <div class="container">
+      <% if @blog.category != "General" %>
+        <h4 class="color-white">From Blogs About <%= @blog.category %></h4>
+      <% end %>
+    </div>
   </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
@@ -55,8 +59,6 @@
         <%= link_to "Edit Blog", edit_blog_path(@blog) %>
       </div>
     <% end %>
-
-    <div class="buffer"></div>
 
     <h4 class="text-center"><%= @blog.teaser %></h4>
     <% if @blog.published != false %>
