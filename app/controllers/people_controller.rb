@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
     @people_birthday = Person.where(user_id: current_user.id).where.not(birthday: nil).sort_by{ |b| [b.birthday.month, b.birthday.day]}
     @people_no_birthday = Person.where(user_id: current_user.id, birthday: nil).order("last_name ASC")
     @relationships = Person.where(user_id: current_user.id).map(&:relationship).uniq
-    @groups = Person.where(user_id: current_user.id).where.not(group: nil).map(&:group).uniq
+    @groups = Person.where(user_id: current_user.id).where.not(group: nil).map(&:group).uniq.sort
     @people_no_group = Person.where(user_id: current_user.id, group: nil).order("last_name ASC")
     @person = Person.new
   end

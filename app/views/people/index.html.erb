@@ -25,15 +25,15 @@
   <h1 class="text-center" style="margin-bottom: 0">My Tribe</h1>
 
   <div class="text-center">
-    <div id="relationshipTarget" class="sortingTarget font-bold color-neutral">Sort by Relationship</div> |
-    <div id="groupTarget" class="sortingTarget color-neutral">Sort by Family Group</div> |
+    <div id="relationshipTarget" class="sortingTarget color-neutral">Sort by Relationship</div> |
+    <div id="groupTarget" class="sortingTarget font-bold color-neutral">Sort by Family Group</div> |
     <div id="lastNameTarget" class="sortingTarget color-neutral">Sort by Last Name</div> |
     <div id="birthdayTarget" class="sortingTarget color-neutral">Sort by Birthday</div>
   </div>
 
   <div class="half-buffer"></div>
 
-  <div id="relationship" class="sortingGroup">
+  <div id="relationship" class="sortingGroup d-none">
     <% @relationships.each do |relationship| %>
       <h4 class="color-neutral"><%= relationship.pluralize(2) %></h4>
       <% @people_last_name.each do |person| %>
@@ -50,7 +50,7 @@
     <% end %>
   </div>
 
-  <div id="group" class="sortingGroup d-none">
+  <div id="group" class="sortingGroup">
     <% @groups.each do |group| %>
       <h4 class="color-neutral"><%= group %></h4>
       <% @people_last_name.each do |person| %>
