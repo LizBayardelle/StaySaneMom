@@ -68,6 +68,11 @@ class BlogsController < ApplicationController
       @blog.image.attach(blog_params[:image])
     end
 
+    if @blog.pin_image.attached? && blog_params[:pin_image].present?
+      @blog.pin_image.purge
+      @blog.pin_image.attach(blog_params[:pin_image])
+    end
+
     if @blog.pdf.attached? && blog_params[:pdf].present?
       @blog.pdf.purge
       @blog.pdf.attach(blog_params[:pdf])
@@ -129,6 +134,8 @@ class BlogsController < ApplicationController
                   :convertkit_href,
                   :category,
                   :linked_module,
+                  :data_pin_description,
+                  :pin_image,
                   :published,
                   :published_on,
                   :user_id,

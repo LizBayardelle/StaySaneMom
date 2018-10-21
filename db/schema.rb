@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_161342) do
+ActiveRecord::Schema.define(version: 2018_10_21_133806) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,8 +52,11 @@ ActiveRecord::Schema.define(version: 2018_10_20_161342) do
     t.string "cta_video", default: "Watch the Video"
     t.string "convertkit_data_form_toggle"
     t.string "convertkit_href"
+    t.integer "pin_image_id"
+    t.string "data_pin_description"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
+    t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
