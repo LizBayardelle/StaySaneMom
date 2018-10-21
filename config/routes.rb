@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   post "comment/:id/comment_read" => "comments#comment_read", as: "comment_read"
   post "comment/:id/comment_unread" => "comments#comment_unread", as: "comment_unread"
 
-  resources :tasks
+  resources :tasks do
+    collection do
+      patch :sort
+    end
+  end
   post "tasks/:id/check_task" => "tasks#check_task", as: "check_task"
   post "tasks/:id/uncheck_task" => "tasks#uncheck_task", as: "uncheck_task"
 

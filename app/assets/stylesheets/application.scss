@@ -23,9 +23,9 @@
 @import "trix";
 @import 'bootstrap-datetimepicker';
 
-$font-sans: 'Work Sans', sans-serif;
+$font-sans: 'Roboto', sans-serif;
 $font-serif:  'EB Garamond', serif;
-$font-script: 'Sacramento', cursive;
+$font-script: 'Arizonia', cursive;
 
 .font-sans { font-family: $font-sans }
 .font-serif { font-family: $font-serif }
@@ -168,7 +168,7 @@ td p { margin-bottom: 0 }
 }
 
 .script-header {
-  font-size: 70px;
+  font-size: 50px;
   font-family: $font-script;
   margin: 50px 0 10px 0;
   color: $color-neutral;
@@ -420,7 +420,7 @@ td p { margin-bottom: 0 }
 .nav-button a {
   font-family: $font-script;
   display: inline-block;
-  font-size: 30px;
+  font-size: 35px;
   padding-top: 5px;
   margin: 5px 10px 20px 10px;
 }

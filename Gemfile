@@ -35,6 +35,7 @@ gem 'rack-tracker'
 gem 'high_voltage', '~> 3.1'
 gem 'convertkit-ruby', require: 'convertkit'
 gem 'dotenv-rails'
+gem 'acts_as_list'
 
 group :production do
   gem 'pg', '~> 0.20.0'

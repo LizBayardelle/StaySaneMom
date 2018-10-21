@@ -17,7 +17,9 @@
 //= require trix
 //= require magnific-popup
 //= require jquery-ui
-
+//= require jquery-ui/widget
+//= require jquery-ui/widgets/sortable
+//= require rails-ujs
 
 // ALERT FADE AWAY
 $(document).on("ready page:load", function() {

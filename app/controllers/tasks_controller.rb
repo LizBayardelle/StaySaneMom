@@ -6,20 +6,28 @@ class TasksController < ApplicationController
 
   def set_variables
     @user_tasks = Task.where(user_id: current_user.id)
-    @one_time = Task.where(frequency: "OneTime", completed: false, user_id: current_user.id)
-    @one_time_done = Task.where(frequency: "OneTime", completed: true, user_id: current_user.id)
-    @daily = Task.where(frequency: "Daily", completed: false, user_id: current_user.id)
-    @daily_done = Task.where(frequency: "Daily", completed: true, user_id: current_user.id)
-    @weekly = Task.where(frequency: "Weekly", completed: false, user_id: current_user.id)
-    @weekly_done = Task.where(frequency: "Weekly", completed: true, user_id: current_user.id)
-    @monthly = Task.where(frequency: "Monthly", completed: false, user_id: current_user.id)
-    @monthly_done = Task.where(frequency: "Monthly", completed: true, user_id: current_user.id)
+    @one_time = Task.where(frequency: "OneTime", completed: false, user_id: current_user.id).order(:position)
+    @one_time_done = Task.where(frequency: "OneTime", completed: true, user_id: current_user.id).order(:position)
+    @daily = Task.where(frequency: "Daily", completed: false, user_id: current_user.id).order(:position)
+    @daily_done = Task.where(frequency: "Daily", completed: true, user_id: current_user.id).order(:position)
+    @weekly = Task.where(frequency: "Weekly", completed: false, user_id: current_user.id).order(:position)
+    @weekly_done = Task.where(frequency: "Weekly", completed: true, user_id: current_user.id).order(:position)
+    @monthly = Task.where(frequency: "Monthly", completed: false, user_id: current_user.id).order(:position)
+    @monthly_done = Task.where(frequency: "Monthly", completed: true, user_id: current_user.id).order(:position)
   end
 
   # GET /tasks
   def index
     @create_task = Task.new
     @tasks = Task.all
+  end
+
+  def sort
+    params[:task].each_with_index do |id, index|
+      Task.where(id: id).update_all(position: index + 1)
+    end
+
+    head :ok
   end
 
   # GET /tasks/new

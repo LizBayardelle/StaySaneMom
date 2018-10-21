@@ -1,25 +1,37 @@
-<div class="to-do-list">
+<div class="to-do-list taskWrapper" data-url="<%= sort_tasks_path %>">
   <% task.each do |task| %>
-    <p>
-      <%= link_to check_task_path(task), method: :post, remote: true do %>
-        <%= fa_icon "square-o" %>
-      <% end %>
-      <span id="task-show-hide">
-        <span class="font-serif">
-          <%= task.name %>
+    <%= link_to task, id: dom_id(task) do %>
+      <p>
+        <%= fa_icon "bars", class: "color-neutral-light", style: "margin-right: 5px;" %>
+        <%= link_to check_task_path(task), method: :post, remote: true do %>
+          <%= fa_icon "square-o", style: "margin-right: 5px;" %>
+        <% end %>
+        <span id="task-show-hide">
+          <span class="font-serif">
+            <%= task.name %>
+          </span>
+          <span>
+            <%= link_to task_path(task), method: :delete, remote: true do %>
+              <%= fa_icon "remove", id: (task.id.to_s + "task"), style: "margin-left: 5px" %>
+            <% end %>
+          </span>
         </span>
-        <span>
-          <%= link_to task_path(task), method: :delete, remote: true do %>
-            <%= fa_icon "remove", id: (task.id.to_s + "task"), style: "margin-left: 5px" %>
-          <% end %>
-        </span>
-      </span>
-    </p>
-  <% end %>
+      </p>
+    <% end %> <!-- dom id wrapper -->
+  <% end %> <!-- task each -->
 </div>
 
 <script>
 	$(document).ready(function() {
 		$('.content-box').matchHeight();
+    $('.taskWrapper').sortable({
+      update: function(e, ui) {
+        Rails.ajax({
+          url: $(this).data("url"),
+          type: "PATCH",
+          data: $(this).sortable('serialize'),
+        });
+      }
+    });
 	});
 </script>
