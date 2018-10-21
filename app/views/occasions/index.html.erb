@@ -32,18 +32,18 @@
 
   <div id="futureEvents">
     <% @occasions.each do |occasion| %>
-      <%= link_to occasion_path(occasion) do %><h3 style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
+      <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
       <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
-      <h4 style="font-weight: 300; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
+      <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
       <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
     <% end %>
   </div> <!-- future -->
 
   <div id="pastEvents" class="d-none">
     <% @past_occasions.each do |occasion| %>
-      <%= link_to occasion_path(occasion) do %><h3 style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
+      <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
       <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
-      <h4 style="font-weight: 300; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
+      <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
       <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
     <% end %>
   </div> <!-- future -->

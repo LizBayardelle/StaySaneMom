@@ -46,7 +46,7 @@
               <%= link_to home_spouse_path do %>
               <div class="frame category-frame" style="background-image: url(<%= asset_path "keep_marriage_healthy.jpg" %>)"><div class="image-overlay-spouse"></div></div>
               <div class="text">
-                <h3 class="color-spouse text-center">Spouse</h3>
+                <h3 class="color-spouse text-center font-script">Spouse</h3>
                 <p>It's hard to pay attention to your marriage when jobs, chores, obligations, and all these tiny humans keep demanding things of us.</p>
                 <p>These tools should help you keep a healthy marriage in spite of everything else you have going on.</p>
               </div> <!-- text -->
@@ -79,26 +79,27 @@
             </div></div> <!-- category div / col div -->
         </div> <!-- row -->
     </div> <!-- category callouts -->
+</div> <!-- container -->
 
+<div class="about-me bg-neutral">
+  <div class="container" style="padding: 0px 0 20px 0">
+    <h2 class="text-center script-header" style="padding-top: 20px">About Me</h2>
+    <div class="row">
+      <div class="col-sm-3 text-center">
+        <%= image_tag "liz-bayardelle-stay-sane-mom.jpg", class: "rounded-image" %>
+      </div> <!-- col -->
+      <div class="col-sm-9">
+        <p>Hello there!  My name is Liz, but I also answer to "Hey Honey?", "Mom", or (more often) "Mom Mom Mom MAHM!".</p>
+        <p>I'm the wife to an amazing man and mom to a preteen stepdaughter (and Instagram aficionado), a sparkle-clad toddlernado, two large canine furkids, a bunny of unusual size, and (if I don't vacuum daily) a herd of dustbunnies. My alterego by night is a PhD candidate, freelance consultant, web developer, and graphic designer, workout nut, entrepreneur, writer, and avid bookworm.</p>
+      </div> <!-- col -->
+    </div> <!-- row -->
+    <div class="text-center">
+      <h3><%= link_to "More About the Stay Sane Mom...", static_path(:AboutMe), class: "font-script" %></h3>
+    </div>
+  </div> <!-- container -->
+</div> <!-- about me -->
 
-
-    <div class="about-me">
-      <h2 class="text-center script-header">About Me</h2>
-      <div class="row">
-        <div class="col-sm-3 text-center">
-          <%= image_tag "liz-bayardelle-stay-sane-mom.jpg", class: "rounded-image" %>
-        </div> <!-- col -->
-        <div class="col-sm-9">
-          <p>Hello there!  My name is Liz, but I also answer to "Hey Honey?", "Mom", or (more often) "Mom Mom Mom MAHM!".</p>
-          <p>I'm the wife to an amazing man and mom to a preteen stepdaughter (and Instagram aficionado), a sparkle-clad toddlernado, two large canine furkids, a bunny of unusual size, and (if I don't vacuum daily) a herd of dustbunnies. My alterego by night is a PhD candidate, freelance consultant, web developer, and graphic designer, workout nut, entrepreneur, writer, and avid bookworm.</p>
-        </div> <!-- col -->
-      </div> <!-- row -->
-      <div class="text-center">
-        <h3><%= link_to "More About the Stay Sane Mom...", static_path(:AboutMe), class: "font-script" %></h3>
-      </div>
-    </div> <!-- about me -->
-
-
+<div class="container">
     <div class="recent-blogs">
       <h2 class="text-center script-header">Recent Blog Posts</h2>
       <div class="row">
