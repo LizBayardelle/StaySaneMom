@@ -90,7 +90,7 @@
 
   <div class="half-buffer"></div>
 
-  <% if @blog.cta_pdf != "" %>
+  <% if @blog.convertkit_href != "" %>
     <div class="bg-neutral">
       <div class="container text-center">
 
@@ -124,7 +124,7 @@
       </div>
     <% end %>
 
-    <% if @blog.cta_pdf != "" %>
+    <% if @blog.convertkit_href != "" %>
       <div class="half-buffer"></div>
       <%= render "layouts/hr" %>
       <div class="half-buffer"></div>

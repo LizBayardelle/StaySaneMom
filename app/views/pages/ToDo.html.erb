@@ -1,0 +1,27 @@
+<!-- page-specific content -->
+  <% title "Thank You | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="Running a household is hard.  Here are some tools to help you stay organized, increase your productivity, and stay sane." />
+  <% end %>
+<!-- page-specific content -->
+
+<div class="header-frame frame" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)"><div class="image-overlay-neutral"><div class="inner-frame border-neutral"></div></div></div>
+<div class="over-frame-text">
+  <div class="container">
+    <h1 class="text-center">A To Do List</h1>
+  </div>
+</div>
+
+<div class="half-buffer"></div>
+<div class="container">
+  <h2>Header</h2>
+  <p>Explanation</p>
+
+</div> <!-- container -->
+
+
+<script>
+  $(function() {
+    $('.content-box').matchHeight();
+  });
+</script>
