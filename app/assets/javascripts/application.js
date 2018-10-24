@@ -40,7 +40,7 @@
 //= require plugins/url.min.js
 
 $('selector').froalaEditor({
-  key: <%= ENV['FROALA_ACTIVATION_KEY'] %>
+  key: 'FROALA_ACTIVATION_KEY'
 });
 
 // ALERT FADE AWAY
