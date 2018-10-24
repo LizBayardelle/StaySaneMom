@@ -657,6 +657,14 @@ footer {
   vertical-align: top;
 }
 
+.blog-itself p, .blog-itself div, .blog-itself em {
+  font-family: font-serif;
+}
+
+.blog-itself div img {
+  max-width: 100%;
+}
+
 .blog-text {
   width: 74%;
   display: inline-block;

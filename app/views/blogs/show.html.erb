@@ -114,7 +114,9 @@
   <div class="container">
     <div class="half-buffer"></div>
 
-    <%= raw(@blog.body) %>
+    <div class="blog-itself">
+      <%= raw(@blog.body) %>
+    </div>
 
     <% if current_user && current_user.admin %>
       <div class="text-center">
