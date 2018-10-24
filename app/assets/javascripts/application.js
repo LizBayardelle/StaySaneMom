@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require popper
-//= require trix
 //= require magnific-popup
 //= require jquery-ui
 //= require jquery-ui/widget
@@ -40,7 +39,9 @@
 //= require plugins/special_characters.min.js
 //= require plugins/url.min.js
 
-$('selector').froalaEditor();
+$('selector').froalaEditor({
+  key: <%= ENV['FROALA_ACTIVATION_KEY'] %>
+});
 
 // ALERT FADE AWAY
 $(document).on("ready page:load", function() {
