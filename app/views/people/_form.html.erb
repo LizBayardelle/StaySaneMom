@@ -58,7 +58,7 @@
       <div class="row">
         <div class="form-group container">
           <%= f.label :notes %>
-          <%= f.text_area :notes, class: "form-control" %>
+          <%= f.text_area :notes, id: "wysiwyg", class: "form-control" %>
         </div> <!-- col -->
       </div> <!-- row -->
 
@@ -69,3 +69,16 @@
     </div>
   <% end %>
 </div> <!-- container -->
+
+<!-- script for FROALA-WYSIWYG -->
+<script>
+  $('#wysiwyg').froalaEditor({
+    key: '<%= ENV['FROALA_ACTIVATION_KEY'] %>',
+    inlineMode: false,
+    heightMin: '200px',
+    toolbarButtons: [
+        'bold', 'italic', 'underline', 'paragraphFormat', 'formatOL',
+        'formatUL', 'insertHTML', 'undo', 'redo', 'html'
+      ]
+  })
+</script>
