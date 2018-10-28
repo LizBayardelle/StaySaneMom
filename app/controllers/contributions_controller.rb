@@ -31,6 +31,7 @@ class ContributionsController < ApplicationController
 
     respond_to do |format|
       if @contribution.save
+        NewGuestPostIdeaNotificationMailer.send_new_guest_post_idea_email(@contribution).deliver
         format.html { redirect_to root_path, notice: 'Your idea has been sent!  Be prepared to hear from us within 48 hours!' }
         format.json { render :show, status: :created, location: @contribution }
       else
@@ -90,6 +91,6 @@ class ContributionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contribution_params
-      params.require(:contribution).permit(:name, :email, :category, :idea, :prev_published, :terms, :comments, :responded, :archived)
+      params.require(:contribution).permit(:name, :email, :category, :idea, :blog, :prev_published, :terms, :comments, :responded, :archived)
     end
 end

@@ -1,5 +1,5 @@
 class NewUserNotificationMailer < ApplicationMailer
-  default :from => 'admin@theStaySaneMom.com'
+  default :from => 'liz@theStaySaneMom.com'
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_new_user_email(user)

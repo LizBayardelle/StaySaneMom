@@ -6,14 +6,16 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
-      <class="row">
-        <div class="form-group">
-          <%= f.input :name, required: true %>
-        </div> <!-- form group -->
-        <div class="form-group">
-          <%= f.input :email, required: true %>
-        </div> <!-- form group -->
-      </div> <!-- row -->
+      <div class="form-group">
+        <%= f.input :name, required: true %>
+      </div> <!-- form group -->
+      <div class="form-group">
+        <%= f.input :email, required: true %>
+      </div> <!-- form group -->
+      <div class="form-group">
+        <%= f.label "Your Blog URL", required: true %>
+        <%= f.text_field :blog, class: "form-control", required: true, placeholder: "https://www.yourbloghere.com" %>
+      </div> <!-- form group -->
       <div class="form-group">
         <%= f.label :category %>
         <%= f.select :category, [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>

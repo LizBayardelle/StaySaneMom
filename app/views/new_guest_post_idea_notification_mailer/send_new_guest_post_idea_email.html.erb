@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @contribution.name %> has an idea for a guest post!</h1>
+    <h4>Here's Who You're Dealing With</h4>
+    <p>
+      Name:  <%= @contribution.name %><br />
+      Email:  <%= mail_to @contribution.email %><br />
+      Blog:  <%= @contribution.blog %><br />
+    </p>
+    <h4>Here's the Idea (for the <%= @contribution.category %>)</h4>
+    <p><%= @contribution.blog %></p>
+
+    <% if @contribution.comments %>
+      <p><em>Comments:  <%= @contribution.blog %></em></p>
+    <% end %>
+  </body>
+</html>
