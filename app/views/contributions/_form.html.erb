@@ -1,0 +1,45 @@
+<h2 class="text-center font-script color-neutral">Guest Post Idea Submission</h2>
+
+<div class="container">
+  <%= simple_form_for(@contribution) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <class="row">
+        <div class="form-group">
+          <%= f.input :name, required: true %>
+        </div> <!-- form group -->
+        <div class="form-group">
+          <%= f.input :email, required: true %>
+        </div> <!-- form group -->
+      </div> <!-- row -->
+      <div class="form-group">
+        <%= f.label :category %>
+        <%= f.select :category, [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Your Guest Post Idea" %>
+        <%= f.text_area :idea, class: "form-control" %>
+      </div> <!-- form group -->
+      <div class="form-group">
+        <%= f.label "Other Comments" %>
+        <%= f.text_area :comments, class: "form-control" %>
+      </div> <!-- form group -->
+      <div class="checkbox-inline">
+        <%= f.check_box :prev_published, label: false, required: true %>
+        <%= f.label "This idea has not been published anywhere else" %>
+      </div>
+      <div class="checkbox-inline">
+        <%= f.check_box :terms, label: false, required: true %>
+        <%= f.label "I agree to the rules stated above" %>
+      </div> <!-- form group -->
+    </div>
+
+    <div class="half-buffer"></div>
+
+    <div class="text-center">
+      <%= f.button :submit, "Send Idea", class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+</div> <!-- container -->

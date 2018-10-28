@@ -1,0 +1,56 @@
+
+<!-- page-specific content -->
+  <% title "Guest Posts | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="Contribute a guest blog post to The Stay Sane Mom." />
+  <% end %>
+<!-- page-specific content -->
+
+<div class="header-frame frame" style="background-image: url(<%= asset_path "contribute-a-guest-post.jpg" %>)"><div class="image-overlay-neutral"><div class="inner-frame border-neutral"></div></div></div>
+<div class="over-frame-text">
+  <div class="container">
+    <h1 class="text-center">Want to write a guest post on The Stay Sane Mom?</h1>
+  </div>
+</div>
+
+<div class="half-buffer"></div>
+<div class="container">
+  <h2>Contribute to the Stay Sane Mom!</h2>
+  <p>Thank you so much for your interest in guest posting on <em>The Stay Sane Mom</em>!  I love hearing from different moms because everyone's crazy, ridiculous journey is so unique.</p>
+
+  <h2>A Few Quick Rules</h2>
+  <p>In order to make sure my readers get the quality and consistency they deserve, I have a few quick rules (guidelines, really) for guest posters.  We'll make this quick, I promise.</p>
+  <ul>
+    <li><p>I can't accept 100% of the submissions I get on this site, but I will read and respond to everything that gets submitted within 48 hours.</p></li>
+    <li><p>Once a submission is approved, I'll work with the individual author on a publishing timeline.  It could happen almost immediately or it could take a few weeks to get the kinks ironed out.  Ultimately, it won't go up until it's "ready".  If we're having trouble with your post I'll do everything I can to work with you to get it "ready", but I won't post anything that doesn't pass muster, so to speak.</p></li>
+    <li><p>As a self-admitted grammar nut, I reserve the right to edit grammar, spelling, punctuation, syntax, and use of keywords/SEO stuff, as well as approving any links included in the article.</p></li>
+    <li><p>As a guest poster, you should be ready and willing to promote your post on your blog/social media/email list/carrier pigeon tribe/etc.</p></li>
+    <li><p>Link sharing is a must!  A do-follow link to your site will be included as part of your short "author bio", and it's a best practice to include a do-follow list to your published guest post on your blog.  (Usually this happens on a "My Guest Appearances" or "As Seen On" page.)</p></li>
+    <li><p>Guest posts are different than sponsored posts.  If you want me to do a product or service review, please email me at <%= mail_to "liz@theStaySaneMom.com" %>.</p></li>
+  </ul>
+
+  <h2>Post Specifics</h2>
+  <p>Once you get the go ahead on your idea, here are the basic specifics for a guest post.</p>
+  <ul>
+    <li><p>Post should have one topic and stick with it.  (i.e. If you're writing about tricking kids into eating their vegetables, don't start wander off and start talking about house cleaning.)</p></li>
+    <li><p>Posts can't have been published anywhere before.  Similarly, you can always link to your published post, but the same content can't be reused anywhere else without my written consent.</p></li>
+    <li><p>Posts should include specific keyword(s).  Please include long- or short-tailed keywords with your post.</p></li>
+    <li><p>Posts shouldn't be shorter than 750(ish) words.  There's no strict length "limit", but do try to be concise.</p></li>
+    <li><p>Format your post using headers, bullets, etc.  Don't go crazy with the bold, italics, underlining, and capitalization.  A little is okay, too much is distracting.</p></li>
+    <li><p>No affiliate links in guest posts, please.  You can post links in your article where they're appropriate, but I reserve the final judgement call for links in general and specifically on no-follow versus do-follow links.  You always get the do-follow link to your site in your author bio.  You can also include any social media links you want in your author bio.</p></li>
+  </ul>
+
+  <p>Thank you again for your interest in guest posting!  Fill out the submission form below and I'll get back to you about your idea in 48(ish) hours.</p>
+
+  <div class="border-neutral" style="padding: 30px">
+    <%= render 'form', contribution: @contribution %>
+  </div>
+</div> <!-- container -->
+
+
+
+<script>
+  $(function() {
+    $('.content-box').matchHeight();
+  });
+</script>

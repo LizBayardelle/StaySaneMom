@@ -10,6 +10,8 @@ class UsersController < ApplicationController
       @new_members = []
     end
 
+
+    @contributions = Contribution.where(responded: false, archived: false)
     @client = Convertkit::Client.new
     @subscribers = @client.subscribers.body
   end

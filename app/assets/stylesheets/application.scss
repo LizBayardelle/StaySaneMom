@@ -90,7 +90,7 @@ $transparent-neutral: rgba(183, 173, 153, 0.4);
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
 
 * { font-family: $font-sans; color: $color-black; }
-p, p a, p strong { font-family: $font-serif; }
+p, p a, p strong, p em, li { font-family: $font-serif !important; font-size: 17px}
 a { color: $color-neutral; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 a.no-hover:hover { font-weight: 400; }
@@ -175,6 +175,7 @@ td p { margin-bottom: 0 }
 
 .card.padded {
   padding: 40px 25px 40px 25px;
+  margin-bottom: 20px;
 }
 
 .card.hover:hover {
@@ -198,7 +199,10 @@ td p { margin-bottom: 0 }
   margin: 20px auto;
 }
 
-
+table.lined-table td {
+  padding: 3px 5px 3px 5px;
+  border: solid thin $color-neutral;
+}
 
 
 

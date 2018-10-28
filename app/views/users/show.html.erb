@@ -31,12 +31,12 @@
     <div class="row">
       <div class="col-sm-6 col-lg-4">
         <%= link_to users_path do %>
-        <div id="subscribers" class="card padded">
-          <h3 class="text-center">Subscribers</h3>
-          <p>Total Subscribers: <%= @subscribers['total_subscribers'] %></p>
-        </div>
-      <% end %>
-    </div>
+          <div id="subscribers" class="card padded">
+            <h3 class="text-center">Subscribers</h3>
+            <p>Total Subscribers: <%= @subscribers['total_subscribers'] %></p>
+          </div>
+        <% end %>
+      </div>
 
   		<div class="col-sm-6 col-lg-4">
         <%= link_to users_path do %>
@@ -46,6 +46,15 @@
               <br />New Members (This Week): <%= @new_members.count %></p>
     			</div>
     		<% end %>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <%= link_to contributions_path do %>
+          <div id="members" class="card padded">
+            <h3 class="text-center">Guest Posts</h3>
+            <p>Unread Guest Post Ideas: <%= @contributions.count %></p>
+          </div>
+        <% end %>
       </div>
     </div> <!-- row -->
 

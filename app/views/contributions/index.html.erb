@@ -1,0 +1,46 @@
+<div class="container">
+  <h1 class="text-center">Guest Post Ideas</h1>
+
+  <% if @contributions.count != 0 %>
+    <table class="lined-table">
+      <thead>
+        <tr>
+          <th colspan="1"></th>
+          <th><h3 class="color-neutral font-script">Contributor</h3></th>
+          <th><h3 class="color-neutral font-script">Idea</h3></th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @contributions.each do |contribution| %>
+          <tr>
+            <td style="border-right: none"><% if contribution.responded %><%= fa_icon "check-square" %><% else %><%= mail_to contribution.email do %><%= fa_icon "reply" %><% end %><% end %></td>
+            <td style="border-left: none">
+              <strong><%= contribution.name %></strong><br />
+              <%= mail_to contribution.email %>
+            </td>
+            <td>
+              <strong><%= contribution.category %></strong><br />
+              <%= contribution.idea %><% if contribution.comments %><br />
+              <em>Comments: <%= contribution.comments %><% end %>
+            </td>
+            <td>
+              <% if contribution.archived %>Archived<% else %>Not Archived<% end %><br />
+              <% if contribution.responded %>
+                <%= link_to 'Mark Unreplied', unreplied_contribution_path(contribution), method: :post %><br />
+              <% else %>
+                <%= link_to 'Mark Replied', replied_contribution_path(contribution), method: :post %><br />
+              <% end %>
+              <%= link_to 'Edit', edit_contribution_path(contribution) %><br />
+              <%= link_to 'Destroy', contribution, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>You currently have no outstanding guest post ideas.</p>
+  <% end %>
+
+</div> <!-- container -->

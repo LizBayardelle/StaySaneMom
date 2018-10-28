@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_133806) do
+ActiveRecord::Schema.define(version: 2018_10_28_195828) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,20 @@ ActiveRecord::Schema.define(version: 2018_10_21_133806) do
     t.string "name"
     t.index ["blog_id"], name: "index_comments_on_blog_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contributions", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "category"
+    t.text "idea"
+    t.boolean "prev_published", default: false
+    t.boolean "terms", default: false
+    t.text "comments"
+    t.boolean "responded", default: false
+    t.boolean "archived", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

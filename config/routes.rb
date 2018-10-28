@@ -32,6 +32,11 @@ Rails.application.routes.draw do
   resources :people
   resources :gifts, only: [:edit, :update, :destroy, :show]
 
+  resources :contributions
+  post "contributions/:id/replied_contribution" => "contributions#replied_contribution", as: "replied_contribution"
+  post "contributions/:id/unreplied_contribution" => "contributions#unreplied_contribution", as: "unreplied_contribution"
+
+
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
 end

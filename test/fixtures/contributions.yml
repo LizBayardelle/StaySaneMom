@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  category: MyString
+  idea: MyText
+  prev_published: false
+  terms: false
+  comments: MyText
+  responded: false
+  archived: false
+
+two:
+  name: MyString
+  email: MyString
+  category: MyString
+  idea: MyText
+  prev_published: false
+  terms: false
+  comments: MyText
+  responded: false
+  archived: false
