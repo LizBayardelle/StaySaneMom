@@ -15,7 +15,7 @@ module SSM
       handler :google_analytics, { tracker: 'UA-126667465-1' }
     end
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join("app","assets","fonts")
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
