@@ -39,12 +39,12 @@
 
 @font-face {
   font-family: "PlaylistScript";
-  src: asset-url(PlaylistScript.otf) format("opentype");
+  src: asset-url(/assets/fonts/PlaylistScript.otf) format("opentype");
 }
 
 @font-face {
   font-family: "PlaylistCaps";
-  src: asset-url(PlaylistCaps.otf) format("opentype");
+  src: asset-url(/assets/fonts/PlaylistCaps.otf) format("opentype");
 }
 
 $font-sans: 'Roboto', sans-serif;
