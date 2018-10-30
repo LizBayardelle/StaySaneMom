@@ -39,7 +39,7 @@
 
 @font-face {
   font-family: "PlaylistScript";
-  src: url(https://s3-us-west-1.amazonaws.com/staysanemom/PlaylistScript.otf) format("opentype");
+  src: url(/assets/fonts/PlaylistScript.otf) format("opentype");
 }
 
 @font-face {
@@ -49,8 +49,8 @@
 
 $font-sans: 'Roboto', sans-serif;
 $font-serif:  'EB Garamond', serif;
-$font-script: 'PlaylistScript', cursive;
-$font-script-caps: 'PlaylistCaps', cursive;
+$font-script: 'PlaylistScript', 'Arizonia', cursive;
+$font-script-caps: 'PlaylistCaps', sans-serif;
 
 .font-sans { font-family: $font-sans }
 .font-serif { font-family: $font-serif }
