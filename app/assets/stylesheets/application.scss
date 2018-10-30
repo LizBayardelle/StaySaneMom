@@ -37,9 +37,20 @@
 @import 'plugins/special_characters.min.css';
 @import 'plugins/table.min.css';
 
+@font-face {
+  font-family: "PlaylistScript";
+  src: url(/assets/PlaylistScript.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "PlaylistCaps";
+  src: url(/assets/PlaylistCaps.otf) format("truetype");
+}
+
 $font-sans: 'Roboto', sans-serif;
 $font-serif:  'EB Garamond', serif;
-$font-script: 'Arizonia', cursive;
+$font-script: 'PlaylistScript', cursive;
+$font-script-caps: 'PlaylistCaps', cursive;
 
 .font-sans { font-family: $font-sans }
 .font-serif { font-family: $font-serif }
