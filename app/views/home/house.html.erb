@@ -101,7 +101,7 @@
     <% @other_blogs.each do |blog| %>
       <%= link_to blog, class: "weight-400 color-black color-neutral-hover font-serif" do %>
         <h3 class="color-house font-sans"><%= blog.title %></h3>
-        <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span><% end %></p>
+        <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral"><%= blog.cta_read_more + "..." %></span><% end %></p>
       <% end %>
     <% end %>
   <% end %>

@@ -15,7 +15,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,800,800i|Arizonia|Roboto:200,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,800,800i|Arizonia|Roboto:100,300,400,700,900" rel="stylesheet">
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="p:domain_verify" content="ef1c9dc3c7715b05ab4552ab0e404289"/>
@@ -108,7 +108,7 @@
         <% end %>
 
         <div class="container">
-          <p class="header-tagline color-neutral">Helping you wrangle the monkeys in your personal three-ring circus.</p>
+          <p class="header-tagline">Tools and support for the modern, multitasking mom.</p>
         </div> <!-- container -->
 
         <nav class="text-center">
@@ -155,20 +155,16 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-8">
-            <div class="container">
-              <h5 class="text-center font-serif">Stay Sane Mom is my contribution to the over-worked, under-slept, marker-stained, soul-hungry moms of the world, moms who just need a little support&nbsp;along&nbsp;the&nbsp;way.</h5>
-              <h5 class="text-center font-serif">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</h5>
-              <h5 class="text-center font-serif">I'm here for you.</h5>
-            </div> <!-- container -->
+            <p class="text-center font-serif">Stay Sane Mom is my contribution to the over-worked, under-slept, marker-stained, soul-hungry moms of the world, moms who just need a little support&nbsp;along&nbsp;the&nbsp;way.</p>
+            <p class="text-center font-serif">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
+            <p class="text-center font-serif">I'm here for you.</p>
           </div> <!-- left bit -->
           <div class="col-sm-4">
-            <div class="container">
-              <div class="half-buffer"></div>
-              <p class="text-right font-bold"><a href="https://pages.convertkit.com/4288387cd1/d606ae26d3" class="font-serif color-black" %>Contact Liz</a></p>
-              <p class="text-right font-bold"><%= link_to "About Me", static_path(:AboutMe), class: "font-serif color-black" %></p>
-              <p class="text-right font-bold"><%= link_to "Guest Posting", new_contribution_path, class: "font-serif color-black" %></p>
-              <p class="text-right font-bold">Speaking Engagements</p>
-            </div> <!-- container -->
+            <div class="half-buffer"></div>
+            <p class="text-right font-bold"><a href="https://pages.convertkit.com/4288387cd1/d606ae26d3" class="font-serif color-black" %>Contact Liz</a></p>
+            <p class="text-right font-bold"><%= link_to "About Me", static_path(:AboutMe), class: "font-serif color-black" %></p>
+            <p class="text-right font-bold"><%= link_to "Guest Posting", new_contribution_path, class: "font-serif color-black" %></p>
+            <p class="text-right font-bold"><%= link_to "Speaking Engagements", static_path(:Speaking), class: "font-serif color-black" %></p>
           </div> <!-- left bit -->
         </div> <!-- row -->
       </div> <!-- container -->
@@ -186,7 +182,7 @@
 
       <div class="row">
         <div class="container text-center">
-          <hr style="border-color: black">
+          <hr>
           <p>Copyright &copy; <%= Time.current.year %> <em class="font-serif">The Stay Sane Mom</em></p>
         </div> <!-- container -->
       </div> <!-- row -->

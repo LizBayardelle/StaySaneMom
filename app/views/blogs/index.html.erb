@@ -91,7 +91,7 @@
               </div>
               <div class="blog-text">
                 <h2><%= blog.title %></h2>
-                <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral font-serif" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
+                <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
                 <p class="published-on">
                   <strong>Categories:
                     <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>

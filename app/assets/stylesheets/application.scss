@@ -41,12 +41,12 @@
 
 @font-face {
   font-family: "PlaylistScript";
-  src: asset-path(PlaylistScript) format("opentype");
+  src: url(/assets/fonts/PlaylistScript.otf) format("opentype");
 }
 
 @font-face {
   font-family: "PlaylistCaps";
-  src: asset-path(PlaylistCaps) format("opentype");
+  src: url(/assets/fonts/PlaylistCaps.otf) format("opentype");
 }
 
 $font-sans: 'Roboto', sans-serif;
@@ -59,19 +59,19 @@ $font-script-caps: 'PlaylistCaps', sans-serif;
 .font-script { font-family: $font-script }
 .font-bold { font-weight: 700 }
 
-$color-house: #84C99A;
-$color-spouse: #526887;
-$color-kids: #EFB0A1;
-$color-self: #916999;
-$color-neutral: #B7AD99;
-$color-neutral-light: #e2ded7; // rgba(226,222,215,1);
+$color-house: #fe5454; // #84C99A;
+$color-spouse: #fd1270; // #526887;
+$color-kids: #c002a7; // #EFB0A1;
+$color-self: #6c0c9d; // #916999;
+$color-neutral: #5f585b; // #B7AD99;
+$color-neutral-light: #b5a3ab; // rgba(181,163,171,1);
 $color-black: #000000;
 
-$transparent-house: rgba(132, 201, 154, 0.5);
-$transparent-spouse: rgba(49, 62, 80, 0.5);
-$transparent-kids: rgba(239, 176, 161, 0.5);
-$transparent-self: rgba(145, 105, 153, 0.4);
-$transparent-neutral: rgba(183, 173, 153, 0.4);
+$transparent-house: rgba(254, 84, 84, 0.3);
+$transparent-spouse: rgba(253, 18, 112, 0.3);
+$transparent-kids: rgba(192, 2, 167, 0.3);
+$transparent-self: rgba(108, 12, 157, 0.3);
+$transparent-neutral: rgba(95, 88, 91, 0.3);
 
 .color-white, .color-white * { color: #FFFFFF; }
 .color-house { color: $color-house; }
@@ -422,7 +422,12 @@ table.lined-table td {
 }
 
 .navbar.bg-neutral p {
-  margin-top: 15px;
+  margin-top: 14px;
+}
+
+.navbar.bg-neutral p a {
+  font-family: $font-sans !important;
+  font-size: 14px;
 }
 
 .account-buttons {
@@ -431,7 +436,7 @@ table.lined-table td {
 }
 
 .navbar.bg-neutral .btn-outline-primary {
-  background-color: $color-neutral-light !important;
+  background-color: transparent !important;
 }
 
 .navbar.bg-neutral .btn-outline-primary:hover {
@@ -447,6 +452,8 @@ table.lined-table td {
 .header-tagline {
   margin-bottom: 0px;
   font-size: 18px;
+  font-family: $font-sans !important;
+  font-weight: 300;
 }
 
 .header-tagline:hover {
@@ -561,12 +568,25 @@ footer {
   background-color: $color-neutral;
   min-height: 200px;
   padding: 20px 0 10px 0;
-  color: $color-black;
+}
+
+footer p, footer p em {
+  font-weight: bold;
+  color: white !important;
+  font-family: $font-sans !important;
+}
+
+footer hr {
+  border-color: white;
 }
 
 .pre-footer {
   padding: 20px;
   margin-top: 50px;
+}
+
+.pre-footer p a, .pre-footer p {
+  font-family: $font-sans !important;
 }
 
 
@@ -689,8 +709,19 @@ footer {
   padding: 10px 20px 0 20px;
 }
 
-.blog-text p {
+.blog-text h2 {
+  font-weight: bold;
+}
+
+.blog-text p, .blog-text p a {
   font-weight: 400 !important;
+  font-family: $font-sans !important;
+  font-size: 15px;
+}
+
+.blog-text p strong {
+  font-family: $font-sans !important;
+  font-size: 15px;
 }
 
 .blog-card .published-on {
