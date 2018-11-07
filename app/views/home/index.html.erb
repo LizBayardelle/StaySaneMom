@@ -5,7 +5,7 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame image-overlay-white" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)" role="img" aria-label="Overwhelmed mom acting like she's tearing her hair out."><div class="inner-frame border-neutral"></div></div>
+<div class="header-frame frame" style="background-image: url(<%= asset_path "stay_sane_mom.jpg" %>)" role="img" aria-label="Overwhelmed mom acting like she's tearing her hair out."><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
 
 <div class="over-frame-text">
   <div class="container">
@@ -16,7 +16,7 @@
     <div class="container">
       <div class="text-center">
         <div class="half-buffer"></div>
-          <a class="btn btn-outline-secondary" style="font-weight: 700; border: solid medium" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/2d8e722187/31069c0b92">Your Support System Awaits</a>
+          <a class="btn btn-outline-secondary" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/2d8e722187/31069c0b92">Your Support System Awaits</a>
         <div class="buffer"></div>
       </div> <!-- text center -->
     </div> <!-- container -->
@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3"><div class="category-div border-house transparent-hover house">
               <%= link_to home_house_path do %>
-                <div class="frame category-frame" style="background-image: url(<%= asset_path "keep-house-clean.jpg" %>)"><div class="image-overlay-house"></div></div>
+                <div class="frame category-frame" style="background-image: url(<%= asset_path "keep-house-clean.jpg" %>)"><div class=""></div></div>
                 <div class="text">
                   <h3 class="color-house text-center">House</h3>
                   <p>Let's face it, we all wish we could keep a cleaner house.  No one likes coming home to laundry mountain and a dust bunny brigade.</p>
@@ -44,7 +44,7 @@
 
             <div class="col-sm-6 col-lg-3"><div class="category-div border-spouse transparent-hover spouse">
               <%= link_to home_spouse_path do %>
-              <div class="frame category-frame" style="background-image: url(<%= asset_path "keep_marriage_healthy.jpg" %>)"><div class="image-overlay-spouse"></div></div>
+              <div class="frame category-frame" style="background-image: url(<%= asset_path "keep_marriage_healthy.jpg" %>)"><div class=""></div></div>
               <div class="text">
                 <h3 class="color-spouse text-center font-script">Spouse</h3>
                 <p>It's hard to pay attention to your marriage when jobs, chores, obligations, and all these tiny humans keep demanding things of us.</p>
@@ -56,7 +56,7 @@
 
             <div class="col-sm-6 col-lg-3"><div class="category-div border-kids transparent-hover kids">
               <%= link_to home_kids_path do %>
-              <div class="frame category-frame" style="background-image: url(<%= asset_path "raise_balanced_happy_kids.jpg" %>)"><div class="image-overlay-kids"></div></div>
+              <div class="frame category-frame" style="background-image: url(<%= asset_path "raise_balanced_happy_kids.jpg" %>)"><div class=""></div></div>
               <div class="text">
                 <h3 class="color-kids text-center">Kids</h3>
                 <p>Kids. Progeny. Tiny bulldozers that terrorize your (previously-clean) house and leave nothing but mayhem in their wake.</p>
@@ -66,15 +66,15 @@
               <% end %>
             </div></div> <!-- category div / col div -->
 
-            <div class="col-sm-6 col-lg-3 "><div class="category-div border-neutral transparent-hover neutral">
+            <div class="col-sm-6 col-lg-3 "><div class="category-div border-self transparent-hover neutral">
               <%= link_to home_self_path do %>
-              <div class="frame category-frame" style="background-image: url(<%= asset_path "take-care-of-yourself.jpg" %>)"><div class="image-overlay-self"></div></div>
+              <div class="frame category-frame" style="background-image: url(<%= asset_path "take-care-of-yourself.jpg" %>)"><div class=""></div></div>
               <div class="text">
-                <h3 class="color-neutral text-center">Self</h3>
+                <h3 class="color-self text-center">Self</h3>
                 <p>You wear many different hats throughout the course of the day. (Mom, chauffeur, executive assistant, chef, the list goes on...)  However, you are (believe it or not) also allowed to take care of yourself as a person.</p>
                 <p>This section is for you if you're having trouble remembering who you were before you were "Mom".</p>
               </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Stay Sane", home_self_path, class: "color-neutral" %></h5>
+              <h5 class="text-center"><%= link_to "Stay Sane", home_self_path, class: "color-self" %></h5>
               <% end %>
             </div></div> <!-- category div / col div -->
         </div> <!-- row -->
@@ -91,11 +91,9 @@
       <div class="col-sm-9">
         <p>Hello there!  My name is Liz, but I also answer to "Hey Honey?", "Mom", or (more often) "Mom Mom Mom MAHM!".</p>
         <p>I'm the wife to an amazing man and mom to a preteen stepdaughter (and Instagram aficionado), a sparkle-clad toddlernado, two large canine furkids, a bunny of unusual size, and (if I don't vacuum daily) a herd of dustbunnies. My alterego by night is a PhD candidate, freelance consultant, web developer, and graphic designer, workout nut, entrepreneur, writer, and avid bookworm.</p>
+        <h5><%= link_to "More About the Stay Sane Mom...", static_path(:AboutMe) %></h5>
       </div> <!-- col -->
     </div> <!-- row -->
-    <div class="text-center">
-      <h3><%= link_to "More About the Stay Sane Mom...", static_path(:AboutMe), class: "font-script" %></h3>
-    </div>
   </div> <!-- container -->
 </div> <!-- about me -->
 

@@ -67,12 +67,13 @@ $color-neutral: #5f585b; // #B7AD99;
 $color-neutral-light: #b5a3ab; // rgba(181,163,171,1);
 $color-black: #000000;
 
-$transparent-house: rgba(254, 84, 84, 0.3);
-$transparent-spouse: rgba(253, 18, 112, 0.3);
-$transparent-kids: rgba(192, 2, 167, 0.3);
-$transparent-self: rgba(108, 12, 157, 0.3);
-$transparent-neutral: rgba(95, 88, 91, 0.3);
+$transparent-house: rgba(254, 84, 84, 0.4);
+$transparent-spouse: rgba(253, 18, 112, 0.4);
+$transparent-kids: rgba(192, 2, 167, 0.4);
+$transparent-self: rgba(108, 12, 157, 0.4);
+$transparent-neutral: rgba(95, 88, 91, 0.4);
 $transparent-white: rgba(255, 255, 255, 0.3);
+$transparent-whiteish: rgba(180, 180, 180, 0.4);
 
 .color-white, .color-white * { color: #FFFFFF; }
 .color-house { color: $color-house; }
@@ -114,9 +115,9 @@ a.color-spouse:hover { color: $color-spouse; }
 a.color-kids:hover { color: $color-kids; }
 a.color-self:hover { color: $color-self; }
 
-.full-width {
-  width: 100%;
-}
+
+.padded { padding: 15px; }
+.full-width { width: 100%; }
 
 #tag_cloud {
   width: 500px;
@@ -243,7 +244,7 @@ table.lined-table td {
 .image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
 .image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
 .image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
-.image-overlay-white { background-color: $transparent-white; width: 100%; height: 100%; }
+.image-overlay-white { background-color: $transparent-whiteish; width: 100%; height: 100%; }
 
 .over-frame-text {
   position: relative;
@@ -252,11 +253,19 @@ table.lined-table td {
   z-index: 100;
 }
 
+.over-frame-text .container {
+  padding: 5px;
+}
+
 .over-frame-text h1 {
   font-size: 50px;
   font-weight: 800;
   text-align: center;
-  color: white;
+  color: $color-black;
+}
+
+.over-frame-text h3 {
+  font-weight: 700 !important;
 }
 
 .over-frame-bottom-row {
@@ -266,12 +275,13 @@ table.lined-table td {
 }
 
 .over-frame-bottom-row h3 {
-  color: white;
+  color: $color-black;
 }
 
 .header-frame {
   height: 450px;
 }
+
 // XS DEVICES
 @media screen and (max-width: 768px) {
   .inner-frame {
@@ -365,6 +375,12 @@ table.lined-table td {
 
 .about-me p {
   text-align: justify;
+  font-size: 15px !important;
+  font-family: $font-sans !important;
+}
+
+.about-me h5 {
+  font-weight: 700;
 }
 
 .category-div {
@@ -374,7 +390,7 @@ table.lined-table td {
 
 .category-callouts .category-div {
   margin: 15px 0 15px 0;
-  border-width: thin;
+  border-width: medium;
 }
 
 .category-callouts .category-frame {
@@ -389,6 +405,8 @@ table.lined-table td {
 
 .category-callouts p {
   font-weight: 400 !important;
+  font-size: 15px !important;
+  font-family: $font-sans !important;
 }
 
 .category-callouts .text {
@@ -401,6 +419,7 @@ table.lined-table td {
   bottom: 0;
   text-align: center;
   width: 100%;
+  font-weight: 700;
 }
 
 
@@ -532,9 +551,9 @@ table.lined-table td {
 }
 
 .btn-outline-secondary {
-  color: white !important;
-  border: solid medium white;
-  background-color: transparent !important;
+  color: $color-black !important;
+  border: solid medium $color-black;
+  background-color: $transparent-white !important;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   font-size: 20px;
@@ -542,9 +561,9 @@ table.lined-table td {
 }
 
 .btn-outline-secondary:hover {
-  color: $color-neutral !important;
-  border-color: $color-neutral;
-  background-color: white !important;
+  color: white !important;
+  border-color: white;
+  background-color: $transparent-neutral !important;
 }
 
 
@@ -684,6 +703,7 @@ footer hr {
   box-sizing: border-box;
   margin: 15px 0 15px 0;
   height: 275px;
+  width: 100%;
 }
 
 .blog-frame {

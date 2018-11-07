@@ -5,14 +5,14 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "raise_balanced_happy_kids.jpg" %>)"><div class="image-overlay-kids"><div class="inner-frame border-kids"></div></div></div>
+<div class="header-frame frame" style="background-image: url(<%= asset_path "raise_balanced_happy_kids.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-kids"></div></div></div>
 <div class="over-frame-text convert-kit">
   <div class="container">
-    <h1>Messy, Adorable, Little Humans</h1>
+    <h1>Messy Little Humans</h1>
+    <h3 class="text-center">Create happy, healthy, balanced little monsters.</h3>
   </div> <!-- container -->
   <div class="over-frame-bottom-row">
     <div class="container">
-      <h3 class="color-white text-center">Want to learn how to<br />make your kids more motivated?</h3>
       <div class="text-center">
         <div class="half-buffer"></div>
         <a href="#convertkitPopup" class="open-popup-link btn btn-outline-secondary">Click Here for the Secret</a>
@@ -25,15 +25,6 @@
 <div class="container">
 
   <div class="recent-blogs">
-    <h2 class="text-center script-header">Related Blogs</h2>
-
-    <div class="text-center full-width"><div id="tag_cloud">
-      <h2>Looking for a specific topic?</h2>
-      <% tag_cloud @all_kids_blogs.tag_counts, %w{s m l} do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-      <% end %>
-      <div class="half-buffer"></div>
-    </div></div>
 
     <div class="row">
       <% @recent_blogs.each do |blog| %>

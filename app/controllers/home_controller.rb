@@ -12,10 +12,10 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "House", published: true).order("published_on DESC").limit(3)
     if params[:tag]
       @recent_blogs = Blog.where(category: "House", published: true).order("published_on DESC").tagged_with(params[:tag])
-      @other_blogs = Blog.where(category: "House", published: true).order("published_on DESC").tagged_with(params[:tag]).all[1..-3]
+      @other_blogs = Blog.where(category: "House", published: true).order("published_on DESC").tagged_with(params[:tag]).all[3..-3]
     else
       @recent_blogs = Blog.where(category: "House", published: true).order("published_on DESC").limit(3)
-      @other_blogs = Blog.where(category: "House", published: true).order("published_on DESC").all[1..-3]
+      @other_blogs = Blog.where(category: "House", published: true).order("published_on DESC").all[3..-3]
     end
     @tags = Blog.tag_counts_on(:tags)
   end
@@ -25,10 +25,10 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").limit(3)
     if params[:tag]
       @recent_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").tagged_with(params[:tag])
-      @other_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").tagged_with(params[:tag]).all[1..-3]
+      @other_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").tagged_with(params[:tag]).all[3..-3]
     else
       @recent_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").limit(3)
-      @other_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").all[1..-3]
+      @other_blogs = Blog.where(category: "Spouse", published: true).order("published_on DESC").all[3..-3]
     end
     @tags = Blog.tag_counts_on(:tags)
   end
@@ -38,10 +38,10 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").limit(3)
     if params[:tag]
       @recent_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").tagged_with(params[:tag])
-      @other_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").tagged_with(params[:tag]).all[1..-3]
+      @other_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").tagged_with(params[:tag]).all[3..-3]
     else
       @recent_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").limit(3)
-      @other_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").all[1..-3]
+      @other_blogs = Blog.where(category: "Kids", published: true).order("published_on DESC").all[3..-3]
     end
     @tags = Blog.tag_counts_on(:tags)
   end
@@ -51,10 +51,10 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").limit(3)
     if params[:tag]
       @recent_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").tagged_with(params[:tag])
-      @other_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").tagged_with(params[:tag]).all[1..-3]
+      @other_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").tagged_with(params[:tag]).all[3..-3]
     else
       @recent_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").limit(3)
-      @other_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").all[1..-3]
+      @other_blogs = Blog.where(category: "Self", published: true).order("published_on DESC").all[3..-3]
     end
     @tags = Blog.tag_counts_on(:tags)
   end

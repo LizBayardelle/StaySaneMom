@@ -34,15 +34,15 @@
 <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
   <% case @blog.category %>
   <% when "House" %>
-    <div class="image-overlay-house"><div class="inner-frame border-house"></div></div>
+    <div class="image-overlay-white"><div class="inner-frame border-house"></div></div>
   <% when "Spouse" %>
-    <div class="image-overlay-spouse"><div class="inner-frame border-spouse"></div></div>
+    <div class="image-overlay-white"><div class="inner-frame border-spouse"></div></div>
   <% when "Kids" %>
-    <div class="image-overlay-kids"><div class="inner-frame border-kids"></div></div>
+    <div class="image-overlay-white"><div class="inner-frame border-kids"></div></div>
   <% when "Self" %>
-    <div class="image-overlay-self"><div class="inner-frame border-self"></div></div>
+    <div class="image-overlay-white"><div class="inner-frame border-self"></div></div>
   <% else %>
-    <div class="image-overlay-neutral"><div class="inner-frame border-neutral"></div></div>
+    <div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div>
   <% end %>
 </div>
 <div class="over-frame-text">
@@ -52,7 +52,7 @@
   <div class="over-frame-bottom-row text-right">
     <div class="container">
       <% if @blog.category != "General" %>
-        <h4 class="color-white">From Blogs About <%= @blog.category %></h4>
+        <h4>From Blogs About <%= @blog.category %></h4>
       <% end %>
     </div>
   </div> <!-- over-frame-text -->
