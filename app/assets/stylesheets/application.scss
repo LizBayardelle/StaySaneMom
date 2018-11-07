@@ -41,12 +41,12 @@
 
 @font-face {
   font-family: "PlaylistScript";
-  src: url(/assets/fonts/PlaylistScript.otf) format("opentype");
+  src: asset-url(/assets/fonts/PlaylistScript) format("opentype");
 }
 
 @font-face {
   font-family: "PlaylistCaps";
-  src: url(/assets/fonts/PlaylistCaps.otf) format("opentype");
+  src: asset-url(/assets/fonts/PlaylistCaps) format("opentype");
 }
 
 $font-sans: 'Roboto', sans-serif;
@@ -72,6 +72,7 @@ $transparent-spouse: rgba(253, 18, 112, 0.3);
 $transparent-kids: rgba(192, 2, 167, 0.3);
 $transparent-self: rgba(108, 12, 157, 0.3);
 $transparent-neutral: rgba(95, 88, 91, 0.3);
+$transparent-white: rgba(255, 255, 255, 0.3);
 
 .color-white, .color-white * { color: #FFFFFF; }
 .color-house { color: $color-house; }
@@ -81,7 +82,7 @@ $transparent-neutral: rgba(95, 88, 91, 0.3);
 .color-neutral { color: $color-neutral; }
 .color-neutral-light { color: $color-neutral-light; }
 .color-neutral-hover:hover { color: $color-black; }
-.color-black { color: $color-black; }
+.color-black { color: $color-black !important; }
 
 .border-house { border: solid $color-house; }
 .border-spouse { border: solid $color-spouse; }
@@ -242,7 +243,7 @@ table.lined-table td {
 .image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
 .image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
 .image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
-
+.image-overlay-white { background-color: $transparent-white; width: 100%; height: 100%; }
 
 .over-frame-text {
   position: relative;
