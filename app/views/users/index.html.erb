@@ -3,12 +3,6 @@
 <!-- page-specific content -->
 
 <div class="container">
-  <%= render 'layouts/hr' %>
-
-  <h1 class="text-center script-header">Members and Subscribers</h1>
-
-  <div class="half-buffer"></div>
-
   <h2 class="text-center">Subscribers</h2>
   <h5 class="text-center"><%= pluralize(@subscribers['total_subscribers'], 'subscriber') %></h5>
   <div class="row">
@@ -50,6 +44,8 @@
       <% end %>
     </table>
   </div> <!-- row -->
+
+  <div class="buffer"></div>
 
   <h2 class="text-center">ConvertKit Info</h2>
   <div class="row">

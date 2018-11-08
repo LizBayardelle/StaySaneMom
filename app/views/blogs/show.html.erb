@@ -58,7 +58,19 @@
   </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
-<div class="blog-show">
+
+<% case @blog.category %>
+<% when "House" %>
+  <div class="blog-show house">
+<% when "Spouse" %>
+  <div class="blog-show spouse">
+<% when "Kids" %>
+  <div class="blog-show kids">
+<% when "Self" %>
+  <div class="blog-show self">
+<% else %>
+  <div class="blog-show neutral">
+<% end %>
   <div class="container">
     <% if current_user && current_user.admin %>
       <div class="text-right">

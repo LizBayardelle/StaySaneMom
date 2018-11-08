@@ -661,6 +661,8 @@ footer hr {
 .biobox p {
   color: $color-neutral;
   text-align: justify;
+  font-family: $font-sans !important;
+  font-size: 15px !important;
 }
 
 
@@ -675,6 +677,14 @@ footer hr {
 // --------- BLOGS -----------
 // ---------------------------
 // ---------------------------
+
+.blog-show.house .blog-itself h2 { color: $color-house !important; font-weight: 700; }
+.blog-show.spouse .blog-itself h2 { color: $color-spouse !important; font-weight: 700; }
+.blog-show.kids .blog-itself h2 { color: $color-kids !important; font-weight: 700; }
+.blog-show.self .blog-itself h2 { color: $color-self !important; font-weight: 700; }
+.blog-show.neutral .blog-itself h2 { color: $color-neutral !important; font-weight: 700; }
+
+
 
 .blog-show img {
   max-width: 100%;
