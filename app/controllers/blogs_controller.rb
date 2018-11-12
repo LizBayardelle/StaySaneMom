@@ -6,11 +6,11 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.where(published: true).order('published_on DESC')
+    @blogs = Blog.where(published: true).order('published_on DESC').paginate(:page => params[:page], :per_page => 6)
     if params[:tag]
-      @blogs = Blog.where(published: true).order('published_on DESC').tagged_with(params[:tag])
+      @blogs = Blog.where(published: true).order('published_on DESC').tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 6)
     else
-      @blogs = Blog.where(published: true).order('published_on DESC')
+      @blogs = Blog.where(published: true).order('published_on DESC').paginate(:page => params[:page], :per_page => 6)
     end
     @unpublished = Blog.where(published: false)
     @tags = Blog.tag_counts_on(:tags)

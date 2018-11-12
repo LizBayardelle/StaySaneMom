@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   post "contributions/:id/replied_contribution" => "contributions#replied_contribution", as: "replied_contribution"
   post "contributions/:id/unreplied_contribution" => "contributions#unreplied_contribution", as: "unreplied_contribution"
 
+  resources :charges
 
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 

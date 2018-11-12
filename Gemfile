@@ -36,8 +36,9 @@ gem 'high_voltage', '~> 3.1'
 gem 'convertkit-ruby', require: 'convertkit'
 gem 'dotenv-rails'
 gem 'acts_as_list'
-gem "wysiwyg-rails"
-gem "font-awesome-sass"
+gem 'wysiwyg-rails'
+gem 'font-awesome-sass'
+gem 'will_paginate'
 
 group :production do
   gem 'pg', '~> 0.20.0'

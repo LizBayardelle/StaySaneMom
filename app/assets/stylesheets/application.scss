@@ -776,6 +776,16 @@ footer hr {
 .blog-card .self h2 { color: $color-self; }
 .blog-card .other h2 { color: $color-neutral; }
 
+.pagination {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pagination em, .pagination a {
+  margin-right: 8px;
+}
+
 @media screen and (max-width: 768px) {
   .blog-card {
     position: relative;
