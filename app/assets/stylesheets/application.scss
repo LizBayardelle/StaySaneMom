@@ -107,6 +107,7 @@ $transparent-whiteish: rgba(180, 180, 180, 0.4);
 * { font-family: $font-sans; color: $color-black; }
 p, p a, p strong, p em, li { font-family: $font-serif !important; font-size: 17px}
 a { color: $color-neutral; }
+p a { color: $color-spouse; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 a.no-hover:hover { font-weight: 400; }
 
@@ -144,6 +145,8 @@ p.large-p, .large-p p {
 .datepicker {z-index:1151 !important;}
 
 .weight-400 { font-weight: 400 !important; }
+
+.font-sans p, .font-sans p a { font-family: $font-sans !important; }
 
 textarea:focus,
 input[type="text"]:focus,
@@ -566,7 +569,21 @@ table.lined-table td {
   background-color: $transparent-neutral !important;
 }
 
+.btn-outline-tertiary {
+  color: white !important;
+  border: solid medium white;
+  background-color: $transparent-neutral !important;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
 
+.btn-outline-tertiary:hover {
+  color: $color-spouse !important;
+  border-color: $color-spouse;
+  background-color: white !important;
+}
 
 
 
