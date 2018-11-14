@@ -51,8 +51,8 @@
   </div> <!-- container -->
   <div class="over-frame-bottom-row text-right">
     <div class="container">
-      <% if @blog.category != "General" %>
-        <h4>From Blogs About <%= @blog.category %></h4>
+      <% if @blog.category != "General" && @blog.category != "Other" %>
+        <h4>From Blogs About Your <%= @blog.category %></h4>
       <% end %>
     </div>
   </div> <!-- over-frame-text -->

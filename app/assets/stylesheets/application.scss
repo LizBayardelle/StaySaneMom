@@ -73,7 +73,7 @@ $transparent-kids: rgba(192, 2, 167, 0.3);
 $transparent-self: rgba(108, 12, 157, 0.3);
 $transparent-neutral: rgba(95, 88, 91, 0.3);
 $transparent-white: rgba(255, 255, 255, 0.3);
-$transparent-whiteish: rgba(210, 210, 210, 0.5);
+$transparent-whiteish: rgba(210, 210, 210, 0.4);
 
 .color-white, .color-white * { color: #FFFFFF; }
 .color-house { color: $color-house; }
@@ -264,6 +264,12 @@ table.lined-table td {
   font-weight: 800;
   text-align: center;
   color: $color-black;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.over-frame-text h4 {
+  padding-right: 30px;
 }
 
 .over-frame-text h3 {
