@@ -1,4 +1,4 @@
-<div class="to-do-list taskWrapper" data-url="<%= sort_tasks_path %>">
+<div class="to-do-list taskWrapper <%= wrapper_class %>" data-url="<%= sort_tasks_path %>">
   <% task.each do |task| %>
     <%= link_to task, id: dom_id(task) do %>
       <p>
@@ -22,15 +22,20 @@
 </div>
 
 <script>
-	$(document).ready(function() {
+	$(document).on('ready page:load', function() {
 		$('.content-box').matchHeight();
-    $('.taskWrapper').sortable({
+    $(".<%= wrapper_class %>").sortable({
+
       update: function(e, ui) {
+        var $that = $(e.target);
+
         Rails.ajax({
           url: $(this).data("url"),
           type: "PATCH",
-          data: $(this).sortable('serialize'),
+          data: $that.sortable('serialize'),
         });
+
+        console.log(ui.item.index())
       }
     });
 	});
