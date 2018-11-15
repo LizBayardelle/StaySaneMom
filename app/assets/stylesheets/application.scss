@@ -67,12 +67,12 @@ $color-neutral: #5f585b; // #B7AD99;
 $color-neutral-light: #b5a3ab; // rgba(181,163,171,1);
 $color-black: #000000;
 
-$transparent-house: rgba(254, 84, 84, 0.3);
-$transparent-spouse: rgba(253, 18, 112, 0.3);
-$transparent-kids: rgba(192, 2, 167, 0.3);
-$transparent-self: rgba(108, 12, 157, 0.3);
-$transparent-neutral: rgba(95, 88, 91, 0.3);
-$transparent-white: rgba(255, 255, 255, 0.3);
+$transparent-house: rgba(254, 84, 84, 0.25);
+$transparent-spouse: rgba(253, 18, 112, 0.25);
+$transparent-kids: rgba(192, 2, 167, 0.25);
+$transparent-self: rgba(108, 12, 157, 0.25);
+$transparent-neutral: rgba(95, 88, 91, 0.25);
+$transparent-white: rgba(255, 255, 255, 0.25);
 $transparent-whiteish: rgba(210, 210, 210, 0.4);
 
 .color-white, .color-white * { color: #FFFFFF; }
@@ -376,7 +376,7 @@ table.lined-table td {
 
 .rounded-image {
   height: 160px;
-  border: solid thin $color-neutral;
+  border: solid medium $color-neutral;
   margin-bottom: 15px;
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
 }
@@ -651,7 +651,7 @@ footer hr {
 // ---------------------------
 
 .biobox {
-  border: solid thin $color-neutral;
+  border: solid medium $color-neutral;
   background-color: $transparent-neutral;
   border-radius: 15px;
   padding: 25px 15px 25px 15px;
@@ -704,12 +704,17 @@ footer hr {
 // ---------------------------
 // ---------------------------
 
-.blog-show.house .blog-itself h2, .blog-show.house .blog-itself em h2 { color: $color-house !important; font-weight: 700; }
-.blog-show.spouse .blog-itself h2, .blog-show.spouse .blog-itself em h2 { color: $color-spouse !important; font-weight: 700; }
-.blog-show.kids .blog-itself h2, .blog-show.kids .blog-itself em h2 { color: $color-kids !important; font-weight: 700; }
-.blog-show.self .blog-itself h2, .blog-show.self .blog-itself em h2 { color: $color-self !important; font-weight: 700; }
-.blog-show.neutral .blog-itself h2, .blog-show.neutral .blog-itself em h2 { color: $color-neutral !important; font-weight: 700; }
+.blog-show.house .blog-itself h2, .blog-show.house .blog-itself em h2 { color: $color-house !important; font-weight: 900 !important; }
+.blog-show.spouse .blog-itself h2, .blog-show.spouse .blog-itself em h2 { color: $color-spouse !important; font-weight: 900 !important; }
+.blog-show.kids .blog-itself h2, .blog-show.kids .blog-itself em h2 { color: $color-kids !important; font-weight: 900 !important; }
+.blog-show.self .blog-itself h2, .blog-show.self .blog-itself em h2 { color: $color-self !important; font-weight: 900 !important; }
+.blog-show.neutral .blog-itself h2, .blog-show.neutral .blog-itself em h2 { color: $color-neutral !important; font-weight: 900 !important; }
 
+.blog-show-header.House h1, .blog-show.House em h1 { color: $color-house !important; font-weight: 900 !important; }
+.blog-show-header.Spouse h1, .blog-show.Spouse em h1 { color: $color-spouse !important; font-weight: 900 !important; }
+.blog-show-header.Kids h1, .blog-show.Kids em h1 { color: $color-kids !important; font-weight: 900 !important; }
+.blog-show-header.Self h1, .blog-show.Self em h1 { color: $color-self !important; font-weight: 900 !important; }
+.blog-show-header.Neutral h1, .blog-show.Neutral em h1 { color: $color-neutral !important; font-weight: 900 !important; }
 
 
 .blog-show img {
@@ -790,11 +795,11 @@ footer hr {
   font-weight: 400 !important;
 }
 
-.blog-card .house { border: thin solid $color-house; }
-.blog-card .spouse { border: thin solid $color-spouse; }
-.blog-card .kids { border: thin solid $color-kids; }
-.blog-card .self { border: thin solid $color-self; }
-.blog-card .other { border: thin solid $color-neutral; }
+.blog-card .house { border: medium solid $color-house; }
+.blog-card .spouse { border: medium solid $color-spouse; }
+.blog-card .kids { border: medium solid $color-kids; }
+.blog-card .self { border: medium solid $color-self; }
+.blog-card .other { border: medium solid $color-neutral; }
 
 .blog-card .house h2 { color: $color-house; }
 .blog-card .spouse h2 { color: $color-spouse; }
@@ -882,7 +887,7 @@ footer hr {
 // ---------------------------
 
 .content-box {
-  border: solid thin $color-neutral;
+  border: solid medium $color-neutral;
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
   margin: 15px;
   padding: 15px 25px 15px 25px;
