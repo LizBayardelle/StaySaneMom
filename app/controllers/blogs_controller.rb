@@ -44,6 +44,9 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+        if pin_images
+          @blog.pin_images.attach(pin_images)
+        end
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
@@ -56,14 +59,21 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
-  if @blog.image.attached? && blog_params[:image].present?
+    image = blog_params[:image]
+    pin_images = params[:blog][:pin_image]
+
+    if pin_images
+      @blog.pin_image.attach(pin_images)
+    end
+
+    if @blog.image.attached? && blog_params[:image].present?
       @blog.image.purge
       @blog.image.attach(blog_params[:image])
     end
 
     if @blog.pin_image.attached? && blog_params[:pin_image].present?
       @blog.pin_image.purge
-      @blog.pin_image.attach(blog_params[:pin_image])
+      @blog.pin_images.attach(pin_images)
     end
 
     if @blog.pdf.attached? && blog_params[:pdf].present?

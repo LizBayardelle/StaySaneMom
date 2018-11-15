@@ -28,7 +28,11 @@
 <!-- facebook share -->
 
 <div class="pinterest-image d-none">
-  <%= image_tag @blog.pin_image if @blog.pin_image.attached? %>
+  <% if @blog.pin_image.attached? %>
+    <% @blog.pin_image.each do |image| %>
+      <%= image_tag url_for(image) %>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
