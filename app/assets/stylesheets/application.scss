@@ -41,12 +41,12 @@
 
 @font-face {
   font-family: "PlaylistScript";
-  src: asset-url(/assets/fonts/PlaylistScript) format("opentype");
+  src: url(/assets/fonts/PlaylistScript.otf) format("opentype");
 }
 
 @font-face {
   font-family: "PlaylistCaps";
-  src: asset-url(/assets/fonts/PlaylistCaps) format("opentype");
+  src: url(/assets/fonts/PlaylistCaps.otf) format("opentype");
 }
 
 $font-sans: 'Roboto', sans-sans;
@@ -704,11 +704,11 @@ footer hr {
 // ---------------------------
 // ---------------------------
 
-.blog-show.house .blog-itself h2 { color: $color-house !important; font-weight: 700; }
-.blog-show.spouse .blog-itself h2 { color: $color-spouse !important; font-weight: 700; }
-.blog-show.kids .blog-itself h2 { color: $color-kids !important; font-weight: 700; }
-.blog-show.self .blog-itself h2 { color: $color-self !important; font-weight: 700; }
-.blog-show.neutral .blog-itself h2 { color: $color-neutral !important; font-weight: 700; }
+.blog-show.house .blog-itself h2, .blog-show.house .blog-itself em h2 { color: $color-house !important; font-weight: 700; }
+.blog-show.spouse .blog-itself h2, .blog-show.spouse .blog-itself em h2 { color: $color-spouse !important; font-weight: 700; }
+.blog-show.kids .blog-itself h2, .blog-show.kids .blog-itself em h2 { color: $color-kids !important; font-weight: 700; }
+.blog-show.self .blog-itself h2, .blog-show.self .blog-itself em h2 { color: $color-self !important; font-weight: 700; }
+.blog-show.neutral .blog-itself h2, .blog-show.neutral .blog-itself em h2 { color: $color-neutral !important; font-weight: 700; }
 
 
 

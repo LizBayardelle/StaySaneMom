@@ -63,6 +63,7 @@ class BlogsController < ApplicationController
     pin_images = params[:blog][:pin_image]
 
     if pin_images
+      @blog.pin_image.purge
       @blog.pin_image.attach(pin_images)
     end
 
