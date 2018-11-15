@@ -11,6 +11,8 @@ class Blog < ApplicationRecord
   has_one_attached :pdf
 
   def set_published_on
-    self.published_on = DateTime.now if self.published
+    if self.published
+      self.published_on = DateTime.now
+    end
   end
 end
