@@ -42,7 +42,7 @@
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">One-Time Tasks</h2>
             <p class="text-center">These tasks are here to stay, until you complete them.</p>
-						<div id="onetime-todo"><%= render partial: 'items', locals: { task: @one_time, wrapper_class: "todos_1" } %></div>
+						<div id="onetime-todo"><%= render partial: 'items', locals: { task: @one_time } %></div>
 						<div id="onetime-done"><%= render partial: 'done', locals: { task: @one_time_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
@@ -51,7 +51,7 @@
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">Daily</h2>
 						<p class="text-center">These automatically uncheck at night so you have a fresh list&nbsp;in&nbsp;the&nbsp;morning.</p>
-			      <div id="daily-todo"><%= render partial: 'items', locals: { task: @daily, wrapper_class: "todos_2" } %></div>
+			      <div id="daily-todo"><%= render partial: 'items', locals: { task: @daily } %></div>
 						<div id="daily-done"><%= render partial: 'done', locals: { task: @daily_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
@@ -60,7 +60,7 @@
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">Weekly</h2>
 						<p class="text-center">These automatically uncheck Sunday night so you get a new list&nbsp;each&nbsp;Monday&nbsp;morning.</p>
-			      <div id="weekly-todo"><%= render partial: 'items', locals: { task: @weekly, wrapper_class: "todos_3" } %></div>
+			      <div id="weekly-todo"><%= render partial: 'items', locals: { task: @weekly } %></div>
 						<div id="weekly-done"><%= render partial: 'done', locals: { task: @weekly_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
@@ -69,7 +69,7 @@
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">Monthly</h2>
 						<p class="text-center">These automatically uncheck on the last day of the month so you start with a clean&nbsp;list&nbsp;each&nbsp;1st.</p>
-			      <div id="monthly-todo"><%= render partial: 'items', locals: { task: @monthly, wrapper_class: "todos_4" } %></div>
+			      <div id="monthly-todo"><%= render partial: 'items', locals: { task: @monthly } %></div>
 						<div id="monthly-done"><%= render partial: 'done', locals: { task: @monthly_done } %></div>
 			    </div> <!-- content box -->
 				</div> <!-- col -->
