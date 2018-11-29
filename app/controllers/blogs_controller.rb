@@ -6,13 +6,13 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.where(published: true).order('published_on DESC').paginate(:page => params[:page], :per_page => 9)
+    @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC').paginate(:page => params[:page], :per_page => 9)
     if params[:tag]
-      @blogs = Blog.where(published: true).order('published_on DESC').tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 9)
+      @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 9)
     else
-      @blogs = Blog.where(published: true).order('published_on DESC').paginate(:page => params[:page], :per_page => 9)
+      @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC').paginate(:page => params[:page], :per_page => 9)
     end
-    @unpublished = Blog.where(published: false)
+    @unpublished = Blog.where.not("published_on <= ?", Date.today)
     @tags = Blog.tag_counts_on(:tags)
   end
 
@@ -42,13 +42,13 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
 
-    image = blog_params[:blog][:image]
+    image = blog_params[:image]
     pin_images = params[:blog][:pin_image]
 
     respond_to do |format|
       if @blog.save
         if pin_images
-          @blog.pin_images.attach(pin_images)
+          @blog.pin_image.attach(pin_images)
         end
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
@@ -109,9 +109,9 @@ class BlogsController < ApplicationController
 
   def tagged
     if params[:tag].present?
-      @blogs = Blog.where(published: true).tagged_with(params[:tag]).order('published_on DESC')
+      @blogs = Blog.where("published_on <= ?", Date.today).tagged_with(params[:tag]).order('published_on DESC')
     else
-      @blogs = Blog.where(published: true).order('published_on DESC')
+      @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC')
     end
   end
 
