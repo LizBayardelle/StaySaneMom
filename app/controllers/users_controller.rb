@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     end
 
 
+    @comments = Comment.all
+    @new_comments = Comment.where("created_at >= ?", Time.zone.now.beginning_of_week)
     @contributions = Contribution.where(responded: false, archived: false)
     @client = Convertkit::Client.new
     @subscribers = @client.subscribers.body

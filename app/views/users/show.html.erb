@@ -56,6 +56,16 @@
           </div>
         <% end %>
       </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <%= link_to comments_path do %>
+          <div id="members" class="card padded">
+            <h3 class="text-center">Comments</h3>
+            <p>Total Comments: <%= @comments.count %>
+              <br />New Comments (This Week): <%= @new_comments.count %></p>
+          </div>
+        <% end %>
+      </div>
     </div> <!-- row -->
 
 	<% end %>

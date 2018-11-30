@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
-  before_action :commenter_or_admin, except: [:create]
+  before_action :commenter_or_admin, except: [:create, :index]
+
+  def index
+    @comments = Comment.order('created_at DESC')
+  end
 
   def create
     @blog = Blog.friendly.find(params[:blog_id])

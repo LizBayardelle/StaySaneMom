@@ -756,6 +756,15 @@ footer hr {
 .self .flag { background-color: $color-self; }
 .neutral .flag { background-color: $color-neutral; }
 
+.comment {
+
+}
+
+.comment-byline {
+  color: $color-neutral;
+  font-style: italic;
+}
+
 .blog-card {
   position: relative;
   box-sizing: border-box;
