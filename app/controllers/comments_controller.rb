@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :commenter_or_admin, except: [:create, :index]
 
   def index
-    @comments = Comment.order('created_at DESC')
+    @comments = Comment.where("blog_id <> ''").order('created_at DESC')
   end
 
   def create
