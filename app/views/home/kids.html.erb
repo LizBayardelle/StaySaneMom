@@ -27,9 +27,12 @@
     <h2 class="text-center font-script">Free Parenting Resources</h2>
     <% if current_user %>
 
-      <h3>Marriage Exercises</h3>
-      <%= link_to "168 Questions to Ask Your Partner", asset_path("168-Questions-to-Ask-Your-Partner.pdf", skip_pipeline: true), target: "_blank" %><br />
-      <%= link_to "31 Days to Keep the Romance Alive (Printable Card Deck)", asset_path("31-Days-to-Keep-the-Romance-Alive.pdf", skip_pipeline: true), target: "_blank" %>
+      <h3>Research Cheatsheats</h3>
+      <%= link_to "Parenting Styles Guide & Worksheet", asset_path("Parenting-Styles-Cheatsheet.pdf", skip_pipeline: true), target: "_blank" %><br />
+
+      <h3>Other</h3>
+      <%= link_to "Best Mom Blogs by Category (Downloadable Directory)", asset_path("Best-Mom-Blogs-Directory.pdf", skip_pipeline: true), target: "_blank" %><br />
+
 
     <% else %>
       <h5 class="text-center">Create a free account for access to the free resource library.</h5>

@@ -23,10 +23,38 @@
   </div> <!-- over-frame-bottom-row -->
 </div> <!-- over-frame-text -->
 
+<div class="bg-self padded">
+  <div class="container padded resource-stripe">
+    <h2 class="text-center font-script">Free Personal Development Resources</h2>
+    <% if current_user %>
+
+      <h3>Productivity & To Do Lists</h3>
+      <%= link_to "Morning Battle Plan (Daily Task Organizer)", asset_path("Morning-Battle-Plan.pdf", skip_pipeline: true), target: "_blank" %><br />
+
+      <h3>Reflection and Self-Improvement</h3>
+      <%= link_to "SWOT Analysis Worksheet", asset_path("SWOT-Analysis.pdf", skip_pipeline: true), target: "_blank" %><br />
+      <%= link_to "Task Prioritizing Tool (Worksheet)", asset_path("Task-Priority-Sorting-Tool.pdf", skip_pipeline: true), target: "_blank" %><br />
+
+
+      <h3>Other</h3>
+      <%= link_to "Best Mom Blogs by Category (Downloadable Directory)", asset_path("Best-Mom-Blogs.pdf", skip_pipeline: true), target: "_blank" %><br />
+
+
+    <% else %>
+      <h5 class="text-center">Create a free account for access to the free resource library.</h5>
+      <div class="text-center padded">
+        <%= link_to new_user_registration_path do %><button class="btn btn-outline-secondary">Create an Account</button><% end %>
+         or
+         <%= link_to new_user_session_path do %><button class="btn btn-outline-secondary">Log In</button><% end %>
+      </div>
+    <% end %>
+  </div> <!-- container -->
+</div> <!-- bg house -->
+
+<div class="buffer"></div>
+
 <div class="container">
-
   <div class="recent-blogs">
-
     <div class="row">
       <% @recent_blogs.each do |blog| %>
         <%= link_to blog do %>

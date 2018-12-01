@@ -28,10 +28,13 @@
     <% if current_user %>
 
       <h3>Housecleaning & Maintenance</h3>
-      <%= link_to "5 Secret Rules to Get (and Keep) Your House Clean", asset_path("5_House_Secrets.pdf", skip_pipeline: true), target: "_blank" %>
+      <%= link_to "5 Secret Rules to Get (and Keep) Your House Clean (and Workbook)", asset_path("5_House_Secrets.pdf", skip_pipeline: true), target: "_blank" %>
 
       <h3>Finances & Budgeting</h3>
       <a href="https://docs.google.com/spreadsheets/d/1HRdOTR-5pEvlUUybTXYbmrZYF5054iEIiXQoV4h7w-4/copy" target="_blank">Yearly Expenses Planner (Google Sheets)</a>
+
+      <h3>Holidays</h3>
+      <%= link_to "Thanksgiving Battle Plan (Meal Timing Organizer)", asset_path("Thanksgiving-Battle-Plan.pdf", skip_pipeline: true), target: "_blank" %>
 
     <% else %>
       <h5 class="text-center">Create a free account for access to the free resource library.</h5>
