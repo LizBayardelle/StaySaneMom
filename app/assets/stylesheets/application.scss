@@ -59,6 +59,8 @@ $font-script-caps: 'PlaylistCaps', sans-serif;
 .font-script { font-family: $font-script }
 .font-bold { font-weight: 700 }
 
+h2.font-script { font-size: 50px }
+
 $color-house: #fe5454; // #84C99A;
 $color-spouse: #fd1270; // #526887;
 $color-kids: #c002a7; // #EFB0A1;
@@ -475,6 +477,7 @@ table.lined-table td {
 .header-logo {
   margin: 25px 0 5px 0;
   height: 40px;
+  max-width: 100%;
 }
 
 .header-tagline {
@@ -897,6 +900,30 @@ footer hr {
   }
 }
 
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ------- Category ----------
+// ----------Pages------------
+// ---------------------------
+
+.resource-stripe h3 {
+  font-weight: 900;
+  margin: 8px 0 0 0;
+}
+
+.bg-house .resource-stripe h3 { color: $color-house }
+.bg-spouse .resource-stripe h3 { color: $color-spouse }
+.bg-kids .resource-stripe h3 { color: $color-kids }
+.bg-self .resource-stripe h3 { color: $color-self }
+.bg-neutral .resource-stripe h3 { color: $color-neutral }
 
 
 
