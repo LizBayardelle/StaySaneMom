@@ -22,10 +22,30 @@
   </div> <!-- over-frame-bottom-row -->
 </div> <!-- over-frame-text -->
 
+<div class="bg-kids padded">
+  <div class="container padded resource-stripe">
+    <h2 class="text-center font-script">Free Parenting Resources</h2>
+    <% if current_user %>
+
+      <h3>Marriage Exercises</h3>
+      <%= link_to "168 Questions to Ask Your Partner", asset_path("168-Questions-to-Ask-Your-Partner.pdf", skip_pipeline: true), target: "_blank" %><br />
+      <%= link_to "31 Days to Keep the Romance Alive (Printable Card Deck)", asset_path("31-Days-to-Keep-the-Romance-Alive.pdf", skip_pipeline: true), target: "_blank" %>
+
+    <% else %>
+      <h5 class="text-center">Create a free account for access to the free resource library.</h5>
+      <div class="text-center padded">
+        <%= link_to new_user_registration_path do %><button class="btn btn-outline-secondary">Create an Account</button><% end %>
+         or
+         <%= link_to new_user_session_path do %><button class="btn btn-outline-secondary">Log In</button><% end %>
+      </div>
+    <% end %>
+  </div> <!-- container -->
+</div> <!-- bg house -->
+
+<div class="buffer"></div>
+
 <div class="container">
-
   <div class="recent-blogs">
-
     <div class="row">
       <% @recent_blogs.each do |blog| %>
         <%= link_to blog do %>
