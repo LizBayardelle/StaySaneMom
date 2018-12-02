@@ -37,18 +37,30 @@
         <%= f.text_field :cta_video, class: "form-control" %>
       </div>
       <div class="form-group col-sm-4">
-        <%= f.label "Data Form Toggle" %>
-        <%= f.text_field :convertkit_data_form_toggle, class: "form-control" %>
+        <%= f.label "Linked Module" %>
+        <%= f.text_field :linked_module, class: "form-control" %>
       </div>
       <div class="form-group col-sm-4">
         <%= f.label "Convertkit Href" %>
         <%= f.text_field :convertkit_href, class: "form-control" %>
       </div>
       <div class="form-group col-sm-4">
-        <%= f.label :linked_module %>
-        <%= f.text_field :linked_module, class: "form-control" %>
+        <%= f.label "Video Link" %>
+        <%= f.text_field :video_link, class: "form-control" %>
       </div>
     </div> <!-- row -->
+    <div class="form-group">
+      <%= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
+      <%= f.text_field :freebie_filename, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Freebie Title (Plaintext)" %>
+      <%= f.text_field :freebie_description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Freebie Type" %>
+      <%= f.select :freebie_type, [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
+    </div>
     <div class="form-group">
       <%= f.label "Blog Image" %><br />
       <%= f.file_field :image %>

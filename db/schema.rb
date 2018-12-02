@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_210025) do
+ActiveRecord::Schema.define(version: 2018_12_02_165524) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,6 +54,10 @@ ActiveRecord::Schema.define(version: 2018_10_28_210025) do
     t.string "convertkit_href"
     t.integer "pin_image_id"
     t.string "data_pin_description"
+    t.string "freebie_filename"
+    t.string "video_link"
+    t.string "freebie_type", default: "File"
+    t.string "freebie_description"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"

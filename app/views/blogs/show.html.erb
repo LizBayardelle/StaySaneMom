@@ -106,7 +106,7 @@
 
   <div class="half-buffer"></div>
 
-  <% if @blog.convertkit_href != "" %>
+  <% if @blog.freebie_type != "None" %>
     <div class="bg-neutral">
       <div class="container text-center">
 
@@ -114,10 +114,15 @@
 
         <h4 class="text-center">Want to cut to the chase?</h4>
         <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
-        <% if @blog.convertkit_data_form_toggle %>
-          <a data-formkit-toggle="<%= @blog.convertkit_data_form_toggle %>" href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+        <% if current_user %>
+          <% if @blog.freebie_type == "File" %>
+            <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-primary font-bold" do %><%= @blog.freebie_description %><% end %>
+          <% else %>
+            <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
+          <% end %>
         <% else %>
           <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+          <p>Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
         <div class="half-buffer"></div>
