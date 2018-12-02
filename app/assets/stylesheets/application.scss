@@ -108,7 +108,7 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 
 * { font-family: $font-sans; color: $color-black; }
 a { color: $color-neutral; }
-p a { color: $color-spouse; }
+p a, h4 a { color: $color-spouse; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 a.no-hover:hover { font-weight: 400; }
 
