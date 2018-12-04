@@ -763,9 +763,10 @@ footer hr {
 
 }
 
-.comment-byline {
-  color: $color-neutral;
+.comment-byline, .comment-byline span {
+  color: $color-spouse;
   font-style: italic;
+  font-weight: 700;
 }
 
 .blog-card {
