@@ -6,13 +6,10 @@
 <div class="container">
   <h1 class="text-center">Comments</h1>
   <h5 class="text-center"><%= pluralize(@comments.count, "Total Comment") %></h5>
-  <div class="row">
       <% @comments.each do |comment| %>
         <p><%= comment.body %>
           <br /><em><%= comment.name %></em>
           <br /><strong><% if comment.blog_id %><%= Blog.where(id: comment.blog_id).first.title %> (<%= Blog.where(id: comment.blog_id).first.comments.count %>)<% end %></strong>
         </p>
       <% end %>
-  </div> <!-- row -->
-
 </div> <!-- page container -->

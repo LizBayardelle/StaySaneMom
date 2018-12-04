@@ -122,7 +122,7 @@
           <% end %>
         <% else %>
           <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
-          <p>Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
+          <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
         <div class="half-buffer"></div>
@@ -164,7 +164,7 @@
             <% end %>
           <% else %>
             <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
-            <p>Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
+            <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
           <% end %>
 
           <div class="half-buffer"></div>
@@ -230,7 +230,7 @@
             <%= fa_icon "remove", class: "color-neutral color-neutral-hover" %>
           <% end %><br />
         <% end %>
-        <span class="comment-byline">by <%= comment.name %> on <%= comment.created_at.to_formatted_s(:long) %></span></p>
+        <span class="comment-byline">by <span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span></p>
     <% end %>
 
     <div class="half-buffer"></div>

@@ -97,7 +97,7 @@
                     <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
                   </strong><br />
                   <small>
-                  Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
+                  <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
                   <% if current_user && current_user.admin %>
                        | <%= link_to 'Edit', edit_blog_path(blog) %> |
                       <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
