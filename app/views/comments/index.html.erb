@@ -8,7 +8,7 @@
   <h5 class="text-center"><%= pluralize(@comments.count, "Total Comment") %></h5>
       <% @comments.each do |comment| %>
         <p><%= comment.body %>
-          <br /><em><%= comment.name %></em>
+          <br /><em><%= comment.name %> (<%= mail_to comment.email %>)</em>
           <br /><strong><% if comment.blog_id %><%= Blog.where(id: comment.blog_id).first.title %> (<%= Blog.where(id: comment.blog_id).first.comments.count %>)<% end %></strong>
         </p>
       <% end %>
