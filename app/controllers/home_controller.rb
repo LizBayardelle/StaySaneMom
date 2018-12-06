@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @blogs = Blog.where(published: true).order("published_on DESC").limit(3)
-    @all_blogs = Blog.where(published: true)
+    @blogs = Blog.where("published_on <= ?", Date.today).order("published_on DESC").limit(3)
+    @all_blogs = Blog.where("published_on <= ?", Date.today).order("published_on DESC")
   end
 
   def tools
