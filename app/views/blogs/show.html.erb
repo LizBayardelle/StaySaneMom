@@ -106,6 +106,13 @@
 
   <div class="half-buffer"></div>
 
+  <% if @blog.video_link %>
+    <div class="text-center">
+      <iframe width="560" height="315" rel=0 src="<%= @blog.video_link %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="half-buffer"></div>
+    </div> <!-- centered -->
+  <% end %>
+
   <% if @blog.freebie_type != "None" %>
     <div class="bg-neutral">
       <div class="container text-center">
