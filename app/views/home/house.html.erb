@@ -92,21 +92,25 @@
                 <% end %>
               </div>
               <div class="blog-text">
-                <h2><%= blog.title %></h2>
-                <p><%= blog.teaser %><span class="color-neutral font-serif" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-                <p class="published-on">
-                  <strong>Categories:
-                    <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-                  </strong><br />
-                  <small>
-                  Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
-                  <% if current_user && current_user.admin %>
-                       | <%= link_to 'Edit', edit_blog_path(blog) %> |
-                      <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <% else %>
-                       | <%= link_to "Home", root_path %>
-                  <% end %>
-                </small></p>
+                <div class="blog-description">
+                  <h2><%= blog.title %></h2>
+                  <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
+                </div> <!-- blog description -->
+                <div class="blog-info">
+                  <p class="published-on">
+                    <strong>Categories:
+                      <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+                    </strong><br />
+                    <small>
+                    <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
+                    <% if current_user && current_user.admin %>
+                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                        <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
+                    <% else %>
+                         | <%= link_to "Home", root_path %>
+                    <% end %>
+                  </small></p>
+                </div> <!-- blog info -->
               </div> <!-- blog-text -->
             </div> <!-- end case div -->
           </div></div> <!-- blog card/col -->

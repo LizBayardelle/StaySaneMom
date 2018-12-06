@@ -5,9 +5,9 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "best-parenting-blog.jpg" %>)"><div class="image-overlay image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
+<div class="header-frame frame text-center" style="background-image: url(<%= asset_path "best-parenting-blog.jpg" %>)"><div class="image-overlay image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
 <div class="over-frame-text">
-  <div class="container text-center">
+  <div class="container">
     <div class="buffer"></div>
     <div class="half-buffer"></div>
     <h1>The Stay Sane Blog</h1>
@@ -16,7 +16,7 @@
     <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
   </div> <!-- container -->
   <div class="over-frame-bottom-row">
-    <div class="container text-center">
+    <div class="container">
       <% if current_user && current_user.admin %>
         <div class="half-buffer"></div>
         <%= link_to 'New Blog', new_blog_path, class: "btn btn-outline-secondary" %>
@@ -90,21 +90,25 @@
                 <% end %>
               </div>
               <div class="blog-text">
-                <h2><%= blog.title %></h2>
-                <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-                <p class="published-on">
-                  <strong>Categories:
-                    <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-                  </strong><br />
-                  <small>
-                  <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %> in <%= blog.category %>
-                  <% if current_user && current_user.admin %>
-                       | <%= link_to 'Edit', edit_blog_path(blog) %> |
-                      <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <% else %>
-                       | <%= link_to "Home", root_path %>
-                  <% end %>
-                </small></p>
+                <div class="blog-description">
+                  <h2><%= blog.title %></h2>
+                  <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
+                </div> <!-- blog description -->
+                <div class="blog-info">
+                  <p class="published-on">
+                    <strong>Categories:
+                      <%= raw blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+                    </strong><br />
+                    <small>
+                    <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
+                    <% if current_user && current_user.admin %>
+                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                        <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
+                    <% else %>
+                         | <%= link_to "Home", root_path %>
+                    <% end %>
+                  </small></p>
+                </div> <!-- blog info -->
               </div> <!-- blog-text -->
             </div> <!-- end case div -->
         </div></div> <!-- blog card/col -->
@@ -123,5 +127,7 @@
   $(function() {
     $('.blog-text').matchHeight();
     $('.blog-teaser').matchHeight();
+    $('.blog-description').matchHeight();
+    $('.blog-info').matchHeight();
   });
 </script>

@@ -816,9 +816,8 @@ footer hr {
   font-size: 15px;
 }
 
-.blog-card .published-on {
-  position: absolute;
-  bottom: 0;
+.blog-info {
+  margin: 20px 0 20px 0;
 }
 
 .blog-card:hover p {
@@ -864,10 +863,6 @@ footer hr {
     vertical-align: top;
   }
 
-  .blog-text {
-    margin-bottom: 50px;
-  }
-
   .blog-card:hover .blog-frame {
     width: 100%;
   }
@@ -892,7 +887,6 @@ footer hr {
   }
 
   .blog-text {
-    margin-bottom: 50px;
     width: 100%;
   }
 
