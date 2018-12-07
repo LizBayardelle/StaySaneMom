@@ -90,23 +90,39 @@
         </strong><br />
         Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
     <% end %>
-
-    <!-- Social Buttons -->
-    <div class="text-center">
-      <div class="fb-share-button"
-        data-href="<%= polymorphic_url(@blog) %>"
-        data-layout="button_count">
-      </div>
-      <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
-    </div>
-    <!-- Social Buttons -->
-
   </div> <!-- container -->
+
+
+<!-- Social Buttons -->
+  <% case @blog.category %>
+  <% when "House" %>
+    <div class="bg-house">
+  <% when "Spouse" %>
+    <div class="bg-spouse">
+  <% when "Kids" %>
+    <div class="bg-kids">
+  <% when "Self" %>
+    <div class="bg-self">
+  <% else %>
+    <div class="bg-neutral">
+  <% end %>
+      <div class="container padded text-center">
+        <h2 class="font-script">Care to Share?</h2>
+        <div class="fb-share-button"
+          data-href="<%= polymorphic_url(@blog) %>"
+          data-layout="button_count">
+        </div>
+        <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+      </div> <!-- text center container -->
+    </div> <!-- color stripe -->
+
+<!-- end Social Buttons -->
+
 
 
   <div class="half-buffer"></div>
 
-  <% if @blog.video_link %>
+  <% if @blog.video_link != "" %>
     <div class="text-center">
       <iframe width="560" height="315" rel=0 src="<%= @blog.video_link %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div class="half-buffer"></div>
@@ -146,52 +162,85 @@
       <%= raw(@blog.body) %>
     </div>
 
-    <% if current_user && current_user.admin %>
-      <div class="text-center">
-        <div class="half-buffer"></div>
-        <%= link_to 'Edit', edit_blog_path(@blog) %> |
-        <%= link_to 'Back', blogs_path %>
-      </div>
-    <% end %>
   </div> <!-- container -->
 
+<!-- admin links -->
+  <% if current_user && current_user.admin %>
+  <div class="text-center">
+    <div class="half-buffer"></div>
+    <%= link_to 'Edit', edit_blog_path(@blog) %> |
+    <%= link_to 'Back', blogs_path %>
+  </div>
+  <% end %>
+<!-- end admin links -->
+
+<div class="half-buffer"></div>
+
+<!-- freebie -->
     <% if @blog.freebie_type != "None" %>
-      <div class="bg-neutral">
-        <div class="container text-center">
+    <div class="bg-neutral">
+      <div class="container text-center">
 
-          <div class="half-buffer"></div>
+        <div class="half-buffer"></div>
 
-          <h4 class="text-center">Want to cut to the chase?</h4>
-          <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
-          <% if current_user %>
-            <% if @blog.freebie_type == "File" %>
-              <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-primary font-bold" do %><%= @blog.freebie_description %><% end %>
-            <% else %>
-              <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
-            <% end %>
-          <% else %>
-            <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
-            <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
-          <% end %>
+        <h4 class="text-center">Start Your Next Step</h4>
+        <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
+        <% if current_user %>
+        <% if @blog.freebie_type == "File" %>
+        <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-primary font-bold" do %><%= @blog.freebie_description %><% end %>
+        <% else %>
+        <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
+        <% end %>
+        <% else %>
+        <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+        <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
+        <% end %>
 
-          <div class="half-buffer"></div>
+        <div class="half-buffer"></div>
 
-        </div> <!-- container -->
-      </div> <!-- bg row -->
+      </div> <!-- container -->
+    </div> <!-- bg row -->
     <% end %>
+<!-- end freebie -->
+
+  <div class="half-buffer"></div>
+
+<!-- sharing links -->
+  <div class="container padded text-center">
+    <h2 class="font-script">Care to Share?</h2>
+    <div class="fb-share-button"
+      data-href="<%= polymorphic_url(@blog) %>"
+      data-layout="button_count">
+    </div>
+    <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+  </div> <!-- text center container -->
+<!-- end sharing links -->
+
+
 
     <div class="half-buffer"></div>
 
-    <div class="bg-spouse">
-      <div class="container">
-        <div class="half-buffer"></div>
-        <div class="text-center">
-          <h2>Get Sanity, Delivered to Your Inbox.</h2>
-          <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
-        </div>
-        <div class="half-buffer"></div>
-      </div> <!-- container -->
-    </div> <!-- bg row -->
+    <% case @blog.category %>
+    <% when "House" %>
+      <div class="bg-house">
+    <% when "Spouse" %>
+      <div class="bg-spouse">
+    <% when "Kids" %>
+      <div class="bg-kids">
+    <% when "Self" %>
+      <div class="bg-self">
+    <% else %>
+      <div class="bg-neutral">
+    <% end %>
+        <div class="container">
+          <div class="half-buffer"></div>
+          <div class="text-center">
+            <h2>Get Sanity, Delivered to Your Inbox.</h2>
+            <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
+          </div>
+          <div class="half-buffer"></div>
+        </div> <!-- container -->
+      </div> <!-- bg row -->
 
 
   <div class="container"> <!-- comments container -->
@@ -200,7 +249,7 @@
         <%= f.error_notification %>
 
         <div class="half-buffer"></div>
-        <h2 class="text-center">Share Your Two Cents!</h2>
+        <h2 class="text-center font-script">Give Your Two Cents!</h2>
 
         <div class="form-inputs col-xs-12" style="margin-bottom: 10px">
           <%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
@@ -240,13 +289,10 @@
         <span class="comment-byline">by <span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span></p>
     <% end %>
 
-    <div class="half-buffer"></div>
-    <%= render "layouts/hr" %>
-    <div class="half-buffer"></div>
+    <div class="buffer"></div>
 
     <div class="container">
-      <h2 class="text-center">About the Author</h2>
-      <div class="half-buffer"></div>
+      <h2 class="text-center font-script">About the Author</h2>
       <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
     </div> <!-- container -->
 

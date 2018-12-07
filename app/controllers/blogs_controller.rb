@@ -7,6 +7,7 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC').paginate(:page => params[:page], :per_page => 9)
+    @commented_blogs = Blog.where("published_on <= ?", Date.today).order('comments_count DESC').limit(3)
     if params[:tag]
       @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 9)
     else
