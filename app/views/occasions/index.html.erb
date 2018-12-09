@@ -9,6 +9,7 @@
 <div class="over-frame-text">
   <div class="container">
     <h1>Gift Planner</h1>
+    <h4 class="text-center" style="font-weight: 900">An "occasion" is when you have to buy people gifts.<br />(Think "Christmas" or&nbsp;"Father's&nbsp;Day".)</h4>
   </div> <!-- container -->
   <div class="over-frame-bottom-row">
     <div class="container text-center">
@@ -21,7 +22,6 @@
 <div class="half-buffer"></div>
 
 <div class="container">
-  <p class="text-center">An "occasion" is something for which you have to buy people gifts. (Think "Christmas" or "Father's Day".)<br />Hit "Create a New Occasion" for each separate such event.</p>
 
   <div class="text-center">
     <div class="btn btn-outline-primary" id="seePastButton">See Past Events</div>
@@ -31,11 +31,13 @@
   <div class="half-buffer"></div>
 
   <div id="futureEvents">
-    <% @occasions.each do |occasion| %>
-      <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
-      <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
-      <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
-      <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
+    <% if @occasions %>
+      <% @occasions.each do |occasion| %>
+        <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
+        <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
+        <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
+        <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
+      <% end %>
     <% end %>
   </div> <!-- future -->
 
