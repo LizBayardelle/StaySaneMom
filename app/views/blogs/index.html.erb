@@ -59,28 +59,28 @@
 <div class="container">
   <h2 class="font-script text-center">Most Popular Blogs</h2>
 
-  <div class="row">
+  <div class="row small-boxes">
   <% @commented_blogs.each do |blog| %>
     <%= link_to blog do %>
-      <div class="col-lg-4"><div class="blog-card">
+      <div class="blog-card col-lg-4">
         <% case blog.category %>
         <% when "House" %>
-          <div class="house transparent-hover">
+          <div class="house transparent-hover contents">
             <div class="flag">House</div>
         <% when "Spouse" %>
-          <div class="spouse transparent-hover">
+          <div class="spouse transparent-hover contents">
             <div class="flag">Spouse</div>
         <% when "Kids" %>
-          <div class="kids transparent-hover">
+          <div class="kids transparent-hover contents">
             <div class="flag">Kids</div>
         <% when "Self" %>
-          <div class="self transparent-hover">
+          <div class="self transparent-hover contents">
             <div class="flag">Self</div>
         <% else %>
-          <div class="other transparent-hover neutral">
+          <div class="other transparent-hover contents neutral">
             <div class="flag">General</div>
         <% end %>
-            <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+            <div class="small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
               <% case blog.category %>
               <% when "House" %>
                 <div class="image-overlay-house"></div>
@@ -95,14 +95,10 @@
               <% end %>
             </div>
             <div class="blog-text">
-              <div class="blog-description">
-                <h2><%= blog.title %></h2>
-                <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-              </div> <!-- blog description -->
-              <div class="blog-info">
+                <h5><%= blog.title %></h5>
                 <p class="published-on">
                   <small>
-                  <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
+                  <%= pluralize(blog.comments.count, "Comment") %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
                   <% if current_user && current_user.admin %>
                       <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
                       <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
@@ -110,10 +106,9 @@
                        | <%= link_to "Home", root_path %>
                   <% end %>
                 </small></p>
-              </div> <!-- blog info -->
             </div> <!-- blog-text -->
           </div> <!-- end case div -->
-      </div></div> <!-- blog card/col -->
+      </div> <!-- blog card/col -->
     <% end %>
   <% end %>
 </div> <!-- row -->
