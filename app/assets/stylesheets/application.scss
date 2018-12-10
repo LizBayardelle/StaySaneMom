@@ -69,12 +69,12 @@ $color-neutral: #5f585b; // #B7AD99;
 $color-neutral-light: #c0c0c0;
 $color-black: #000000;
 
-$transparent-house: rgba(254, 84, 84, 0.25);
-$transparent-spouse: rgba(253, 18, 112, 0.25);
-$transparent-kids: rgba(192, 2, 167, 0.25);
-$transparent-self: rgba(108, 12, 157, 0.25);
-$transparent-neutral: rgba(96, 96, 96, 0.25);
-$transparent-white: rgba(255, 255, 255, 0.25);
+$transparent-house: rgba(254, 84, 84, 0.3);
+$transparent-spouse: rgba(253, 18, 112, 0.3);
+$transparent-kids: rgba(192, 2, 167, 0.3);
+$transparent-self: rgba(108, 12, 157, 0.3);
+$transparent-neutral: rgba(96, 96, 96, 0.3);
+$transparent-white: rgba(255, 255, 255, 0.3);
 $transparent-whiteish: rgba(210, 210, 210, 0.4);
 
 .color-white, .color-white * { color: #FFFFFF; }
@@ -349,6 +349,14 @@ table.lined-table td {
     margin-top: -500px;
   }
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -977,7 +985,7 @@ footer hr {
 // ---------------------------
 // ---------------------------
 // ---------------------------
-// ------ PEOPLE PAGES _------
+// ------ PEOPLE PAGES -------
 // ---------------------------
 // ---------------------------
 
@@ -994,6 +1002,82 @@ footer hr {
 .collection-checkboxes input {
   margin-right: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ---- SMALL LIST BOXES -----
+// ---------------------------
+// ---------------------------
+
+.small-boxes .blog-card {
+  height: auto;
+  margin: 5px 0 5px 0;
+  width: 100%;
+}
+
+.small-boxes h3 {
+  font-weight: 900;
+}
+
+.small-boxes h5 {
+  margin: 0 0 5px 0;
+  font-weight: 900;
+}
+
+.small-boxes h5.font-script {
+  margin-bottom: 25px;
+}
+
+.small-boxes p {
+  font-size: 14px;
+}
+
+.small-boxes .small-blog-frame {
+  display: inline-block;
+  height: 150px;
+  width: 25%;
+  background: transparent no-repeat center;
+  background-size: cover;
+  vertical-align: top;
+}
+
+.small-boxes .blog-text {
+  width: 72%;
+  display: inline-block;
+}
+
+.small-boxes .blog-info {
+  margin: 0;
+}
+
+.small-boxes .content-box {
+  width: 100%;
+  height: 150px;
+}
+
+@media screen and (max-width: 768px) {
+  .small-boxes .small-blog-frame {
+    height: 125px;
+  }
+
+  .small-boxes h3 {
+    margin-top: 25px;
+  }
+}
+
+
+
 
 
 

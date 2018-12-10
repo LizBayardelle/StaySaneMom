@@ -99,14 +99,121 @@
 
 <div class="buffer"></div>
 
-<div class="container">
-    <div class="recent-blogs">
-      <h2 class="font-script text-center">Most Popular Blog Posts</h2>
+<div class="container small-boxes">
+  <h2 class="font-script text-center color-neutral">What's New?</h2>
 
-      <div class="row">
+  <div class="row">
+    <div class="col-lg-4">
+      <h3 class="text-center">Popular Tools</h3>
+
+        <%= link_to occasions_path do %>
+          <div class="blog-card">
+              <div class="other transparent-hover neutral">
+                <div class="flag">Tool</div>
+                <div class="small-blog-frame" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)">
+                    <div class="image-overlay-neutral"></div>
+                </div>
+                <div class="blog-text">
+                  <h5>To Do List</h5>
+                  <p>Get more done with this live, auto-refreshing to do list separated into one-time, daily, weekly, and monthly tasks.</p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div> <!-- blog card/col -->
+          <% end %>
+
+        <%= link_to occasions_path do %>
+          <div class="blog-card">
+              <div class="other transparent-hover neutral">
+                <div class="flag">Tool</div>
+                <div class="small-blog-frame" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)">
+                    <div class="image-overlay-neutral"></div>
+                </div>
+                <div class="blog-text">
+                  <h5>Birthday Tracker</h5>
+                  <p>Input birthdays, anniversaries, and more.  Never forget an important date again.</p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div> <!-- blog card/col -->
+          <% end %>
+
+        <%= link_to occasions_path do %>
+          <div class="blog-card">
+              <div class="other transparent-hover neutral">
+                <div class="flag">Tool</div>
+                <div class="small-blog-frame" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)">
+                    <div class="image-overlay-neutral"></div>
+                </div>
+                <div class="blog-text">
+                  <h5>Gift Planner</h5>
+                  <p>Plan all your major holidays with our automated gift planner.</p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div> <!-- blog card/col -->
+          <% end %>
+      <h5 class="text-center font-script"><%= link_to "See More Tools...", static_path(:tools), class: "font-script" %></h5>
+    </div> <!-- third -->
+
+    <div class="col-lg-4">
+      <h3 class="text-center">Most Popular Blogs</h3>
       <% @commented_blogs.each do |blog| %>
         <%= link_to blog do %>
-          <div class="col-lg-4"><div class="blog-card">
+          <div class="blog-card">
+            <% case blog.category %>
+            <% when "House" %>
+              <div class="house transparent-hover contents">
+                <div class="flag">House</div>
+            <% when "Spouse" %>
+              <div class="spouse transparent-hover contents">
+                <div class="flag">Spouse</div>
+            <% when "Kids" %>
+              <div class="kids transparent-hover contents">
+                <div class="flag">Kids</div>
+            <% when "Self" %>
+              <div class="self transparent-hover contents">
+                <div class="flag">Self</div>
+            <% else %>
+              <div class="other transparent-hover contents neutral">
+                <div class="flag">General</div>
+            <% end %>
+                <div class="small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+                  <% case blog.category %>
+                  <% when "House" %>
+                    <div class="image-overlay-house"></div>
+                  <% when "Spouse" %>
+                    <div class="image-overlay-spouse"></div>
+                  <% when "Kids" %>
+                    <div class="image-overlay-kids"></div>
+                  <% when "Self" %>
+                    <div class="image-overlay-self"></div>
+                  <% else %>
+                    <div class="image-overlay-neutral"></div>
+                  <% end %>
+                </div>
+                <div class="blog-text">
+                    <h5><%= blog.title %></h5>
+                    <p class="published-on">
+                      <small>
+                      <%= pluralize(blog.comments.count, "Comment") %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
+                      <% if current_user && current_user.admin %>
+                          <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                          <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
+                      <% else %>
+                           | <%= link_to "Home", root_path %>
+                      <% end %>
+                    </small></p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+          </div> <!-- blog card/col -->
+        <% end %>
+      <% end %>
+      <h5 class="text-center font-script"><%= link_to "See " + (@all_blogs.count - 3).to_s + " More Posts...", blogs_path, class: "font-script" %></h5>
+    </div> <!-- popular blogs third -->
+
+    <div class="col-lg-4">
+      <h3 class="text-center">Newest Blogs</h3>
+      <% @recent_blogs.each do |blog| %>
+        <%= link_to blog do %>
+          <div class="blog-card">
             <% case blog.category %>
             <% when "House" %>
               <div class="house transparent-hover">
@@ -124,7 +231,7 @@
               <div class="other transparent-hover neutral">
                 <div class="flag">General</div>
             <% end %>
-                <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+                <div class="small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
                   <% case blog.category %>
                   <% when "House" %>
                     <div class="image-overlay-house"></div>
@@ -139,136 +246,28 @@
                   <% end %>
                 </div>
                 <div class="blog-text">
-                  <div class="blog-description">
-                    <h2><%= blog.title %></h2>
-                    <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-                  </div> <!-- blog description -->
-                  <div class="blog-info">
-                    <p class="published-on">
-                      <small>
-                      <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
-                      <% if current_user && current_user.admin %>
-                          <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
-                          <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
-                      <% else %>
-                           | <%= link_to "Home", root_path %>
-                      <% end %>
-                    </small></p>
-                  </div> <!-- blog info -->
+                  <h5><%= blog.title %></h5>
+                  <p class="published-on">
+                    <small>
+                    <%= pluralize(blog.comments.count, "Comment") %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
+                    <% if current_user && current_user.admin %>
+                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                        <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
+                    <% else %>
+                         | <%= link_to "Home", root_path %>
+                    <% end %>
+                  </small></p>
                 </div> <!-- blog-text -->
               </div> <!-- end case div -->
-          </div></div> <!-- blog card/col -->
+          </div> <!-- blog card/col -->
         <% end %>
       <% end %>
-    </div> <!-- row -->
+      <h5 class="text-center font-script"><%= link_to "See Older Posts...", blogs_path, class: "font-script" %></h5>
+    </div> <!-- third -->
+  </div> <!-- row -->
+</div> <!-- what's new container -->
 
-    <div class="buffer"></div>
-
-    <h2 class="font-script text-center">Most Popular Online Tools</h2>
-    <div class="row">
-
-      <div class="col-lg-4"><div class="content-box border-neutral transparent-hover neutral">
-        <%= link_to tasks_path do %>
-          <div class="content-box-img" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)"><div class="image-overlay-neutral"></div></div>
-          <div class="text tool-box-text">
-            <h2 class="color-neutral font-script text-center">To Do List</h2>
-            <p class="weight-400">Let's face it, we all wish we could keep a cleaner house.  No one likes coming home to laundry mountain and a dust bunny brigade.</p>
-            <p class="weight-400">Here you can learn how to keep the chaos at bay.</p>
-          </div> <!-- text -->
-        <% end %>
-      </div></div> <!-- category div / col div -->
-
-
-      <div class="col-lg-4"><div class="content-box border-neutral transparent-hover neutral">
-        <%= link_to people_path do %>
-          <div class="content-box-img" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)"><div class="image-overlay-neutral"></div></div>
-          <div class="text tool-box-text">
-            <h2 class="color-neutral font-script text-center">Birthday Tracker</h2>
-            <p class="weight-400">Birthdays, anniversaries, family photos, special events, gifts for the holidays...</p>
-            <p class="weight-400">It's hard to keep track of the special events, dates to come, and all the other important information about one's "tribe".</p>
-          </div> <!-- text -->
-        <% end %>
-      </div></div> <!-- category div / col div -->
-
-      <div class="col-lg-4"><div class="content-box border-neutral transparent-hover neutral">
-        <%= link_to occasions_path do %>
-          <div class="content-box-img" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)"><div class="image-overlay-neutral"></div></div>
-          <div class="text tool-box-text">
-            <h2 class="color-neutral font-script text-center">Gift Planner</h2>
-            <p class="weight-400">Let's face it.  Being the head of a household requires buying a lot of junk for a lot of people.</p>
-            <p class="weight-400">Use this easy tracker to figure out what you need to buy, for whom, and by when.  Without losing your marbles.</p>
-          </div> <!-- text -->
-        <% end %>
-      </div></div> <!-- category div / col div -->
-
-    </div> <!-- row -->
-
-    <div class="buffer"></div>
-
-    <h2 class="font-script text-center">Most Recent Blog Posts</h2>
-      <div class="row">
-        <% @recent_blogs.each do |blog| %>
-          <%= link_to blog do %>
-            <div class="col-lg-4"><div class="blog-card">
-              <% case blog.category %>
-              <% when "House" %>
-                <div class="house transparent-hover">
-                  <div class="flag">House</div>
-              <% when "Spouse" %>
-                <div class="spouse transparent-hover">
-                  <div class="flag">Spouse</div>
-              <% when "Kids" %>
-                <div class="kids transparent-hover">
-                  <div class="flag">Kids</div>
-              <% when "Self" %>
-                <div class="self transparent-hover">
-                  <div class="flag">Self</div>
-              <% else %>
-                <div class="other transparent-hover neutral">
-                  <div class="flag">Other</div>
-              <% end %>
-                <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
-                  <% case blog.category %>
-                  <% when "House" %>
-                    <div class="image-overlay-house"></div>
-                  <% when "Spouse" %>
-                    <div class="image-overlay-spouse"></div>
-                  <% when "Kids" %>
-                    <div class="image-overlay-kids"></div>
-                  <% when "Self" %>
-                    <div class="image-overlay-self"></div>
-                  <% else %>
-                    <div class="image-overlay-neutral"></div>
-                  <% end %>
-                </div>
-                <div class="blog-text">
-                  <div class="blog-description">
-                    <h2><%= blog.title %></h2>
-                    <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-                  </div> <!-- blog description -->
-                  <div class="blog-info">
-                    <p class="published-on">
-                      <small>
-                      <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
-                      <% if current_user && current_user.admin %>
-                          <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
-                          <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
-                      <% else %>
-                           | <%= link_to "Home", root_path %>
-                      <% end %>
-                    </small></p>
-                  </div> <!-- blog info -->
-                </div> <!-- blog-text -->
-              </div> <!-- end case div -->
-            </div></div> <!-- blog card/col -->
-          <% end %>
-        <% end %>
-      </div> <!-- row -->
-
-      <h3 class="text-center font-script"><%= link_to "See " + (@all_blogs.count - 3).to_s + " More Posts...", blogs_path, class: "font-script" %></h3>
-    </div> <!-- recent blogs -->
-
-  </div> <!-- page container -->
+<div class="buffer"></div>
 
 
 
