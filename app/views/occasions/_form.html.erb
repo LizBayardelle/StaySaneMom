@@ -5,7 +5,8 @@
 
   <div class="form-inputs">
     <div class="form-group col-xs-12">
-      <%= f.input :name, required: true, placeholder: "e.g. Christmas, Valentine's Day, etc." %>
+      <%= f.label "Occasion Name" %>
+      <%= f.text_field :name, required: true, placeholder: "e.g. Christmas, Valentine's Day, etc." %>
     </div> <!-- col -->
     <div class="form-group col-xs-12">
       <%= f.label :date %>
