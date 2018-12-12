@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :blogs do
     resources :comments
   end
-  resources :comments, only: [:index]
+  resources :comments
   post "comment/:id/approve" => "comments#approve_comment", as: "approve_comment"
   post "comment/:id/unapprove" => "comments#unapprove_comment", as: "unapprove_comment"
   post "comment/:id/comment_read" => "comments#comment_read", as: "comment_read"

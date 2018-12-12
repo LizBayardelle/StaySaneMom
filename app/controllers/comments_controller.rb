@@ -19,18 +19,17 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to blog_path(@blog), notice: 'Your comment has been successfully updated.'
+      redirect_to comments_path, notice: 'Your comment has been successfully updated.'
     else
-      redirect_to blog_path(@blog), notice: 'Oops!  Your comment could not be saved at this time.'
+      redirect_to comments_path, notice: 'Oops!  Your comment could not be saved at this time.'
     end
   end
 
   def destroy
-    @blog = Blog.friendly.find(params[:blog_id])
-    @comment = @blog.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     if current_user.admin
-      redirect_back fallback_location: root_path, notice: 'Comment has been deleted.'
+      redirect_to comments_path, notice: 'Comment has been deleted.'
     else
       redirect_back fallback_location: root_path, notice: 'Comment has been deleted.'
     end
