@@ -27,14 +27,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- facebook share -->
 
-<div class="pinterest-image d-none">
-  <% if @blog.pin_image.attached? %>
-    <% @blog.pin_image.each do |image| %>
-      <%= image_tag url_for(image) %>
-    <% end %>
-  <% end %>
-</div>
-
 <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
   <% case @blog.category %>
   <% when "House" %>
@@ -213,6 +205,16 @@
       data-layout="button_count">
     </div>
     <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+
+    <% if @blog.pin_image.attached? %>
+      <div class="pinterest-image row padded pin-image-stripe">
+        <div class="container">
+          <% @blog.pin_image.each do |image| %>
+            <%= image_tag url_for(image)%>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div> <!-- text center container -->
 <!-- end sharing links -->
 
