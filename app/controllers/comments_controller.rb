@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
   before_action :commenter_or_admin, except: [:create, :index]
+  before_action :admin_only, only: [:index]
 
   def index
     @comments = Comment.where.not(blog_id: nil).order('created_at DESC')
@@ -83,6 +84,12 @@ class CommentsController < ApplicationController
       unless current_user == @comment.user || current_user.admin
         flash[:alert] = "Sorry, you can't edit or delete someone else's comment."
         redirect_to [comment.post]
+      end
+    end
+
+    def admin_only
+      unless current_user && current_user.admin
+        redirect_to root_path, notice: 'Sorry, you have to be an admin to do that!'
       end
     end
 end
