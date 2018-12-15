@@ -48,6 +48,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+        @blog.comments_count = 0
         if pin_images
           @blog.pin_image.attach(pin_images)
         end
@@ -153,6 +154,7 @@ class BlogsController < ApplicationController
                   :image,
                   :pdf,
                   :slug,
+                  :comments_count,
                   :tag_list)
   end
 end
