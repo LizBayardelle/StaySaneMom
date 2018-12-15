@@ -134,6 +134,9 @@ a.color-self:hover { color: $color-self; }
 
 hr { width: 50%; border-color: $color-neutral; }
 
+p, p em { font-weight: 300 }
+p a { font-weight: 700 }
+
 p.large-p, .large-p p {
   font-size: 20px;
 }
