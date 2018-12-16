@@ -23,7 +23,7 @@
 					</div>
 					<div class="container text-center">
 						<div class="half-buffer"></div>
-						<%= f.button :submit, class: "btn btn-outline-secondary" %>
+						<%= f.button :submit, class: "btn btn-outline-secondary new-task" %>
 						<div class="half-buffer"></div>
 					</div>
 				</div> <!-- row -->
@@ -80,6 +80,8 @@
 <script>
 	$(document).ready(function() {
 		$('.content-box').matchHeight();
-
+    $('.new-task').click(function() {
+        ga('send', 'event', 'Participation', 'To Do List', 'Create New Task');
+    });
 	});
 </script>

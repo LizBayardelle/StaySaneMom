@@ -92,7 +92,10 @@
 
 
 <script>
-  $(function() {
+  $(document).ready(function() {
     $('.content-box').matchHeight();
+    $('.formkit-submit').click(function() {
+        ga('send', 'event', 'Subscription', 'In-Page Subscription', 'About Me Subscription Box');
+    });
   });
 </script>

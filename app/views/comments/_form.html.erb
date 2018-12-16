@@ -13,5 +13,13 @@ collection.build(attributes = {}, …) Returns one or more new objects of the co
     <%= f.input :comment, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' }  %>
   </div>
 </div>
-<%= f.button :submit, 'Leave a reply', class: "button is-primary" %>
+<%= f.button :submit, 'Leave a reply', class: "button is-primary submit-comment" onClick: "ga('send', 'event', { eventCategory: 'Subscription', eventAction: 'Freebie CTA End', eventLabel: '<%= @blog.title %> Freebie CTA Bottom'});" %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $('.submit-comment').click(function() {
+        ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
+    });
+  });
+</script>

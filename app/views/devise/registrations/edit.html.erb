@@ -61,7 +61,7 @@
     </div> <!-- form inputs -->
 
     <div class="form-actions text-center">
-      <%= f.button :submit, "Update", class: "btn-outline-primary" %>
+      <%= f.button :submit, "Update", class: "btn-outline-primary submit-form" %>
     </div>
   <% end %>
 
@@ -85,6 +85,9 @@
           $(".passwordChangeNope").addClass("d-none");
           $('#newPW').val('');
           $('#newPWconf').val('');
+      });
+      $('.submit-form').click(function() {
+          ga('send', 'event', 'Accounts', 'Edit Account', 'Submit Edit Account');
       });
   });
 </script>

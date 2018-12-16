@@ -23,5 +23,9 @@
 <script>
   $(function() {
     $('.content-box').matchHeight();
+    $('.formkit-submit').click(function() {
+        ga('send', 'event', 'Accounts', 'Tool Landing Page', 'To Do Landing Create Account');
+    });
+
   });
 </script>

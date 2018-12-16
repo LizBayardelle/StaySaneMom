@@ -13,7 +13,7 @@
   </div> <!-- container -->
 	<div class="over-frame-bottom-row">
 		<div class="container text-center">
-        <a class="btn btn-outline-secondary" style="font-weight: 700; border: solid medium; margin-bottom: 20px" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/6e409b399f/68d10a4da2">Don't Miss a Thing</a>
+        <a class="btn btn-outline-secondary tool-subscribe" style="font-weight: 700; border: solid medium; margin-bottom: 20px" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/6e409b399f/68d10a4da2">Don't Miss a Thing</a>
 		</div>
 	</div> <!-- over-frame-text -->
 </div>
@@ -68,5 +68,8 @@
 <script>
   $(function() {
     $('.content-box').matchHeight();
+    $('.tool-subscribe').click(function() {
+        ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Tool Page Hero Button Subscription');
+    });
   });
 </script>

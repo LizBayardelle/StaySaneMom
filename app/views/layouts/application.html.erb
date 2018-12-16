@@ -81,14 +81,14 @@
         <form class="form-inline account-buttons">
           <% if current_user %>
           <div style="padding-left: 10px; padding-right: 10px;">
-            <%= link_to "My Account", user_path(current_user), class: "btn btn-outline-primary" %>
+            <%= link_to "My Account", user_path(current_user), class: "btn btn-outline-primary my-account" %>
           </div>
           <% else %>
           <div style="padding-left: 10px;">
-            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-primary" %>
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-primary login" %>
           </div>
           <div style="padding-left: 10px; padding-right: 10px;">
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-primary" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-primary sign-up" %>
           </div>
           <% end %>
           <div style="padding-right: 10px;">
@@ -202,6 +202,18 @@
 
         ga('create', 'UA-126667465-1', 'theStaySaneMom.com');
         ga('send', 'pageview');
+
+        $(document).ready(function() {
+          $('.my-account').click(function() {
+              ga('send', 'event', 'Accounts', 'Application Subscription Header', 'My Account Application Header');
+          });
+          $('.log-in').click(function() {
+              ga('send', 'event', 'Accounts', 'Application Subscription Header', 'Log In Application Header');
+          });
+          $('.sign-up').click(function() {
+              ga('send', 'event', 'Accounts', 'Application Subscription Header', 'Sign Up Application Header');
+          });
+        });
     </script>
 
   </body>

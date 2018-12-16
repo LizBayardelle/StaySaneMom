@@ -136,7 +136,7 @@
             <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
           <% end %>
         <% else %>
-          <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', { eventCategory: 'convertkitClick', eventAction: '<%= @blog.title %> Freebie CTA', eventLabel: '<%= @blog.title %> Freebie'});" class="btn btn-outline-primary font-bold">Download Now</a>
+          <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', { eventCategory: 'Subscription', eventAction: 'Blog Freebie CTA Beginning', eventLabel: '<%= @blog.title %> Freebie CTA Beginning'});" class="btn btn-outline-primary font-bold">Download Now</a>
           <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -184,7 +184,7 @@
         <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
         <% end %>
         <% else %>
-        <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', { eventCategory: 'convertkitClick', eventAction: '<%= @blog.title %> Freebie CTA', eventLabel: '<%= @blog.title %> Freebie'});" class="btn btn-outline-primary font-bold">Download Now</a>
+        <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', { eventCategory: 'Subscription', eventAction: 'Blog Freebie CTA End', eventLabel: '<%= @blog.title %> Freebie CTA End'});" class="btn btn-outline-primary font-bold">Download Now</a>
         <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -304,7 +304,7 @@
 <script>
   $(document).ready(function() {
     $('.formkit-submit').click(function() {
-        ga('send', 'event', 'convertkitClick', '<%= @blog.title %> Subscription Box', 'Clicked');
+        ga('send', 'event', 'Subscription', 'In-Page Subscription', '<%= @blog.title %> Subscription Box');
     });
   });
 </script>

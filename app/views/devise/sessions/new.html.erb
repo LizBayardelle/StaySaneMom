@@ -18,9 +18,17 @@
 		  </div>
 
 		  <div class="form-actions text-center">
-		    <%= f.button :submit, "Log in", class: "btn-outline-primary" %><br>
+		    <%= f.button :submit, "Log in", class: "btn-outline-primary submit-form" %><br>
 		    <%= render "devise/shared/links" %>
 		  </div>
 		<% end %>
 	</div> <!-- card padded -->
 </div> <!-- page container -->
+
+<script>
+  $(document).ready(function() {
+    $('.submit-form').click(function() {
+        ga('send', 'event', 'Accounts', 'Log In', 'Submit New Session Login Form');
+    });
+  });
+</script>

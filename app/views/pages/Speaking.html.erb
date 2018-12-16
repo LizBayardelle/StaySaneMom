@@ -49,8 +49,12 @@
 </div> <!-- container -->
 
 
+
 <script>
-  $(function() {
+  $(document).ready(function() {
     $('.content-box').matchHeight();
+    $('.formkit-submit').click(function() {
+        ga('send', 'event', 'Subscription', 'Specialty Inquiry', 'Speaking Engagements');
+    });
   });
 </script>

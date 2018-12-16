@@ -21,7 +21,7 @@
       <div class="container">
         <div class="text-center">
           <div class="half-buffer"></div>
-            <%= link_to new_user_registration_path do %><div class="btn btn-outline-secondary">Create a Free Account Now</div><% end %>
+            <%= link_to new_user_registration_path do %><div class="btn btn-outline-secondary new-account">Create a Free Account Now</div><% end %>
           <div class="buffer"></div>
         </div> <!-- text center -->
       </div> <!-- container -->
@@ -116,3 +116,12 @@
   </div>
 
 <% end %>
+
+
+<script>
+  $(document).ready(function() {
+    $('.new-account').click(function() {
+        ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Resource Library Create Account Hero Button');
+    });
+  });
+</script>

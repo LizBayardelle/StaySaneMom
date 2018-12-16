@@ -27,3 +27,11 @@
     <%= f.button :submit, class: "btn btn-outline-primary", style: "margin-bottom: 10px" %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $('.submit-form').click(function() {
+        ga('send', 'event', 'Participation', 'Occasions', 'Submit Occasion Form');
+    });
+  });
+</script>
