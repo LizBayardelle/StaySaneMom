@@ -136,7 +136,7 @@
             <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
           <% end %>
         <% else %>
-          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold">Download Now</a>
+          <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', { eventCategory: 'convertkitClick', eventAction: 'BlogShowCTA', eventLabel: '<%= @blog.name %> Freebie'});" class="btn btn-outline-primary font-bold">Download Now</a>
           <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
