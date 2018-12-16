@@ -12,17 +12,17 @@ $("#monthly-done").html("<%= escape_javascript(render partial: 'done', locals: {
 
 $('#textField').val("");
 
-    $(".taskWrapper").sortable({
+$(".taskWrapper").sortable({
 
-      update: function(e, ui) {
-        var $that = $(e.target);
+  update: function(e, ui) {
+    var $that = $(e.target);
 
-        Rails.ajax({
-          url: $(this).data("url"),
-          type: "PATCH",
-          data: $that.sortable('serialize'),
-        });
-
-        console.log(ui.item.index())
-      }
+    Rails.ajax({
+      url: $(this).data("url"),
+      type: "PATCH",
+      data: $that.sortable('serialize'),
     });
+
+    console.log(ui.item.index())
+  }
+});
