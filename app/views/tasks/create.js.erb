@@ -11,3 +11,18 @@ $("#monthly-todo").html("<%= escape_javascript(render partial: 'items', locals: 
 $("#monthly-done").html("<%= escape_javascript(render partial: 'done', locals: { task: @monthly_done }) %>")
 
 $('#textField').val("");
+
+    $(".taskWrapper").sortable({
+
+      update: function(e, ui) {
+        var $that = $(e.target);
+
+        Rails.ajax({
+          url: $(this).data("url"),
+          type: "PATCH",
+          data: $that.sortable('serialize'),
+        });
+
+        console.log(ui.item.index())
+      }
+    });
