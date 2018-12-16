@@ -192,7 +192,7 @@
     $('.blog-description').matchHeight();
     $('.blog-info').matchHeight();
     $('.formkit-submit').click(function() {
-      ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Blog Index Hero CTA Subscription');
+      ga('send', { hitType: 'event', eventCategory: 'Subscription', eventAction: 'Hero CTA Subscription', eventLabel: 'Blog Index Hero CTA Subscription'});
     });
   });
 </script>
