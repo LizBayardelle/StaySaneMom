@@ -136,7 +136,7 @@
             <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
           <% end %>
         <% else %>
-          <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', 'Subscription', 'Blog Freebie CTA Beginning', '<%= @blog.title %> Freebie CTA Beginning')" class="btn btn-outline-primary font-bold">Download Now</a>
+          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold cta-top">Download Now</a>
           <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -184,7 +184,7 @@
         <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
         <% end %>
         <% else %>
-        <a href="<%= @blog.convertkit_href %>" onClick="ga('send', 'event', 'Subscription', 'Blog Freebie CTA End', '<%= @blog.title %> Freebie CTA End');" class="btn btn-outline-primary font-bold">Download Now</a>
+        <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold cta-bottom">Download Now</a>
         <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -303,8 +303,14 @@
 
 <script>
   $(document).ready(function() {
+    $('.cta-top').click(function() {
+      ga('send', 'event', 'Subscription', 'Blog Freebie CTA Beginning', '<%= @blog.title %> Freebie CTA Beginning');
+    });
     $('.formkit-submit').click(function() {
         ga('send', 'event', 'Subscription', 'In-Page Subscription', '<%= @blog.title %> Subscription Box');
+    });
+    $('.cta-bottom').click(function() {
+      ga('send', 'event', 'Subscription', 'Blog Freebie CTA End', '<%= @blog.title %> Freebie CTA End');
     });
     $('.submit-comment').click(function() {
         ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
