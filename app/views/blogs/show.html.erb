@@ -238,7 +238,7 @@
           <div class="half-buffer"></div>
           <div class="text-center">
             <h2>Get Sanity, Delivered to Your Inbox.</h2>
-            <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
+            <div class="click-simulator"><script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script></div>
           </div>
           <div class="half-buffer"></div>
         </div> <!-- container -->
@@ -306,7 +306,7 @@
     $('.cta-top').click(function() {
       ga('send', 'event', 'Subscription', 'Blog Freebie CTA Beginning', '<%= @blog.title %> Freebie CTA Beginning');
     });
-    $('.formkit-submit').click(function() {
+    $('.click-simulator').click(function() {
         ga('send', 'event', 'Subscription', 'In-Page Subscription', '<%= @blog.title %> Subscription Box');
     });
     $('.cta-bottom').click(function() {
