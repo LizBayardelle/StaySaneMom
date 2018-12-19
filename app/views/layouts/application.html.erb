@@ -107,6 +107,12 @@
         <%= link_to "All Tools", static_path(:tools) %>
       </p>
 
+      <div class="text-right search-bar">
+        <%= form_tag home_results_path, method: :get do %>
+          <%= text_field_tag :q, nil, placeholder: "Search for wisdom..." %>
+        <% end %>
+      </div> <!-- search bar -->
+
       <div class="text-center">
         <%= link_to root_path do %>
             <%= image_tag "logo.jpg", class: "header-logo", alt: "Logo" %>
@@ -213,7 +219,13 @@
           $('.sign-up').click(function() {
               ga('send', 'event', 'Accounts', 'Application Subscription Header', 'Sign Up Application Header');
           });
+
+          $("#q").autocomplete({
+            source: "/blogs/autocomplete"
+          });
         });
+
+
     </script>
 
   </body>

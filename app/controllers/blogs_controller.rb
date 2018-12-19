@@ -17,6 +17,11 @@ class BlogsController < ApplicationController
     @tags = Blog.tag_counts_on(:tags)
   end
 
+
+  def autocomplete
+    render json: Blog.search(params[:term], fields: [{title: :text_start}], limit: 10).map(&:title)
+  end
+
   # GET /blogs/1
   # GET /blogs/1.json
   def show

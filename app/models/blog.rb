@@ -9,4 +9,14 @@ class Blog < ApplicationRecord
   has_many_attached :pin_image
   has_one_attached :pdf
 
+  searchkick text_start: [:title], suggest: [:title]
+
+  def search_data
+    {
+      title: title,
+      teaser: teaser,
+      body: body,
+      tag_list: tag_list
+    }
+  end
 end

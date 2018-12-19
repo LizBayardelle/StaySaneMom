@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   get 'home/kids'
   get 'home/self'
   get 'home/tools'
+  get 'home/results'
 
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
     resources :comments
+    collection do
+      get :autocomplete
+    end
   end
   resources :comments
   post "comment/:id/approve" => "comments#approve_comment", as: "approve_comment"

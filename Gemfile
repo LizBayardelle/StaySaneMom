@@ -39,6 +39,7 @@ gem 'acts_as_list'
 gem 'wysiwyg-rails'
 gem 'font-awesome-sass'
 gem 'will_paginate'
+gem 'searchkick'
 
 group :production do
   gem 'pg', '~> 0.20.0'

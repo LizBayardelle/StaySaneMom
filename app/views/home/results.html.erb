@@ -1,0 +1,91 @@
+<!-- page-specific content -->
+  <% title "Search Results for " +  params[:q] + "| SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="We moms need all the help we can get. Find information about how to keep a clean house, a healthy marriage, balanced kids, and some sanity for mom." />
+  <% end %>
+<!-- page-specific content -->
+
+<div class="container">
+
+  <h2 class="font-script text-center">Blogs About "<%= params[:q] %>"</h2>
+  <div class="text-center">
+    <% if @blogs.suggestions.any? %>
+      <p>Did you mean "<%= @blogs.suggestions.first %>"?</p>
+    <% end %>
+  </div>
+
+  <div class="row">
+
+    <% @blogs.each do |blog| %>
+      <%= link_to blog do %>
+        <div class="col-lg-6 col-xl-4"><div class="blog-card">
+          <% case blog.category %>
+          <% when "House" %>
+            <div class="house transparent-hover">
+              <div class="flag">House</div>
+          <% when "Spouse" %>
+            <div class="spouse transparent-hover">
+              <div class="flag">Spouse</div>
+          <% when "Kids" %>
+            <div class="kids transparent-hover">
+              <div class="flag">Kids</div>
+          <% when "Self" %>
+            <div class="self transparent-hover">
+              <div class="flag">Self</div>
+          <% else %>
+            <div class="other transparent-hover neutral">
+              <div class="flag">General</div>
+          <% end %>
+              <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+                <% case blog.category %>
+                <% when "House" %>
+                  <div class="image-overlay-house"></div>
+                <% when "Spouse" %>
+                  <div class="image-overlay-spouse"></div>
+                <% when "Kids" %>
+                  <div class="image-overlay-kids"></div>
+                <% when "Self" %>
+                  <div class="image-overlay-self"></div>
+                <% else %>
+                  <div class="image-overlay-neutral"></div>
+                <% end %>
+              </div>
+              <div class="blog-text">
+                <div class="blog-description">
+                  <h2><%= blog.title %></h2>
+                  <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
+                </div> <!-- blog description -->
+                <div class="blog-info">
+                  <p class="published-on">
+                    <small>
+                    <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
+                    <% if current_user && current_user.admin %>
+                        <%= link_to edit_blog_path(blog) do %> <%= fa_icon "pencil" %><% end %>
+                        <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %> <%= fa_icon "remove" %><% end %>
+                    <% else %>
+                         | <%= link_to "Home", root_path %>
+                    <% end %>
+                  </small></p>
+                </div> <!-- blog info -->
+              </div> <!-- blog-text -->
+            </div> <!-- end case div -->
+        </div></div> <!-- blog card/col -->
+      <% end %>
+    <% end %>
+  </div> <!-- row -->
+
+</div> <!-- page container -->
+
+<script>
+  $(document).ready(function() {
+    $('.height').matchHeight();
+    $('.blog-text').matchHeight();
+    $('.blog-teaser').matchHeight();
+    $('.blog-description').matchHeight();
+    $('.blog-info').matchHeight();
+    $('.formkit-submit').click(function() {
+      ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Blog Index Hero CTA Subscription');
+    });
+
+  });
+</script>
