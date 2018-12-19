@@ -113,9 +113,9 @@
                 <div class="small-blog-frame" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)">
                     <div class="image-overlay-neutral"></div>
                 </div>
-                <div class="blog-text">
+                <div class="height blog-text">
                   <h5>To Do List</h5>
-                  <p>Get more done with this live, auto-refreshing to do list separated into one-time, daily, weekly, and monthly tasks.</p>
+                  <p>Get more done with this live, to do list in one-time, daily, weekly, and monthly tasks.</p>
                 </div> <!-- blog-text -->
               </div> <!-- end case div -->
             </div> <!-- blog card/col -->
@@ -175,7 +175,7 @@
               <div class="other transparent-hover contents neutral">
                 <div class="flag">General</div>
             <% end %>
-                <div class="small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+                <div class="height small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
                   <% case blog.category %>
                   <% when "House" %>
                     <div class="image-overlay-house"></div>
@@ -189,7 +189,7 @@
                     <div class="image-overlay-neutral"></div>
                   <% end %>
                 </div>
-                <div class="blog-text">
+                <div class="height blog-text">
                     <h5><%= blog.title %></h5>
                     <p class="published-on">
                       <small>
@@ -213,7 +213,7 @@
       <h3 class="text-center">Newest Blogs</h3>
       <% @recent_blogs.each do |blog| %>
         <%= link_to blog do %>
-          <div class="blog-card">
+          <div class="height blog-card">
             <% case blog.category %>
             <% when "House" %>
               <div class="house transparent-hover">
@@ -231,7 +231,7 @@
               <div class="other transparent-hover neutral">
                 <div class="flag">General</div>
             <% end %>
-                <div class="small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
+                <div class="height small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
                   <% case blog.category %>
                   <% when "House" %>
                     <div class="image-overlay-house"></div>
@@ -245,7 +245,7 @@
                     <div class="image-overlay-neutral"></div>
                   <% end %>
                 </div>
-                <div class="blog-text">
+                <div class="height blog-text">
                   <h5><%= blog.title %></h5>
                   <p class="published-on">
                     <small>
@@ -284,6 +284,7 @@
 
   <script>
   $(document).ready(function() {
+    $('.height').matchHeight();
     $('.category-div').matchHeight();
     $('.blog-text').matchHeight();
     $('.blog-teaser').matchHeight();
