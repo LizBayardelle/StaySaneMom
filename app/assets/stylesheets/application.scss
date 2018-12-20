@@ -513,16 +513,24 @@ table.lined-table td {
 
 
 .header-logo {
-  margin: 25px 0 5px 0;
+  margin: 0px 0 5px 0;
   height: 40px;
   max-width: 100%;
 }
 
-.header-tagline {
+.header-tagline, .header-tagline strong {
   margin-bottom: 0px;
   font-size: 18px;
   font-family: $font-serif !important;
+  line-height: 1.1;
+}
+
+.header-tagline {
   font-weight: 300;
+}
+
+.header-tagline strong {
+  font-weight: 900;
 }
 
 .header-tagline:hover {
@@ -546,7 +554,11 @@ table.lined-table td {
 .nav-button a.color-kids:hover { color: $color-kids; border-color: $color-kids; }
 .nav-button a.color-self:hover { color: $color-self; border-color: $color-self; }
 
-@media screen and (max-width: 800px) {
+.small-tools {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
   .nav-button a {
     margin: 10px 0px 30px 0px;
     padding-left: 0px;
@@ -557,6 +569,11 @@ table.lined-table td {
   .nav-button {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .search-bar {
+    text-align: center !important;
+    margin: 10px 0 10px 0;
   }
 }
 

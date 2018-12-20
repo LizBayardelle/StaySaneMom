@@ -92,12 +92,15 @@
           </div>
           <% end %>
           <div style="padding-right: 10px;">
-            <%= link_to "Resource Library", static_path(:resources), class: "btn btn-outline-primary resource-library" %>
+            <%= link_to "Tools", static_path(:tools), class: "btn btn-outline-primary resource-library" %>
+          </div>
+          <div style="padding-right: 10px;">
+            <%= link_to "Resources", static_path(:resources), class: "btn btn-outline-primary resource-library" %>
           </div>
         </form>
       </nav>
 
-      <p class="text-center d-block d-sm-none" style="margin: 10px 0 -10px 0">
+      <p class="text-center small-tools d-block d-sm-none" style="margin: 10px 0 -10px 0">
         <%= link_to "To Do", tasks_path %>
         <span class="color-neutral" style="padding: 0 10px 0 10px">•</span>
         <%= link_to "Birthday Tracker", people_path %>
