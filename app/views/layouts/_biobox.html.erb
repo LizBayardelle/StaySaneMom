@@ -1,16 +1,17 @@
-  <div class="biobox row">
-    <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
-      <% if @user.avatar.attached? %>
-        <%= image_tag rails_blob_url(@user.avatar) if @user.avatar.attached? %>
-      <% else %>
-        <%= image_tag "missing_avatar.jpg" %>
-        <h3><%= @user.first_name %><h3>
-      <% end %>
-    </div> <!-- biobox-image -->
-    <div class="biobox-bio col-sm-9">
-      <p style="color: black"><%= @user.bio %></p>
-    </div> <!-- biobox-image -->
-    <div class="container text-center">
-      <h4 class="text-center font-script" style="color: black">My Motto: <%= @user.tagline %></h4>
-    </div>
+  <div class="biobox card">
+    <div class="row">
+      <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
+        <% if @user.avatar.attached? %>
+          <%= image_tag rails_blob_url(@user.avatar) if @user.avatar.attached? %>
+        <% else %>
+          <%= image_tag "missing_avatar.jpg" %>
+          <h3><%= @user.first_name %><h3>
+        <% end %>
+      </div> <!-- biobox-image -->
+      <div class="biobox-bio col-sm-9">
+        <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+        <p style="color: black"><%= @user.bio %></p>
+        <h4 class="text-center font-script" style="color: black">My Motto: <%= @user.tagline %></h4>
+      </div> <!-- biobox-image -->
+    </div> <!-- row -->
   </div> <!-- biobox -->

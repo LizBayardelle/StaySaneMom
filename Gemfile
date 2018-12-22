@@ -40,6 +40,7 @@ gem 'wysiwyg-rails'
 gem 'font-awesome-sass'
 gem 'will_paginate'
 gem 'searchkick'
+gem 'npm-pipeline-rails'
 
 group :production do
   gem 'pg', '~> 0.20.0'

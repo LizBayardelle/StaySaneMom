@@ -61,13 +61,13 @@ $font-script-caps: 'PlaylistCaps', sans-serif;
 
 h2.font-script { font-size: 50px }
 
-$color-house: #fe5454; // #84C99A;
-$color-spouse: #fd1270; // #526887;
-$color-kids: #c002a7; // #EFB0A1;
-$color-self: #6c0c9d; // #916999;
-$color-neutral: #5f585b; // #B7AD99;
-$color-neutral-light: #c0c0c0;
-$color-black: #000000;
+$color-house: #fe5454 !important; // #84C99A;
+$color-spouse: #fd1270 !important; // #526887;
+$color-kids: #c002a7 !important; // #EFB0A1;
+$color-self: #6c0c9d !important; // #916999;
+$color-neutral: #5f585b !important; // #B7AD99;
+$color-neutral-light: #c0c0c0 !important;
+$color-black: #000000 !important;
 
 $transparent-house: rgba(254, 84, 84, 0.3);
 $transparent-spouse: rgba(253, 18, 112, 0.3);
@@ -85,7 +85,7 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 .color-neutral { color: $color-neutral; }
 .color-neutral-light { color: $color-neutral-light; }
 .color-neutral-hover:hover { color: $color-black; }
-.color-black { color: $color-black !important; }
+.color-black { color: $color-black; }
 
 .border-house { border: solid $color-house; }
 .border-spouse { border: solid $color-spouse; }
@@ -108,7 +108,7 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 
 * { font-family: $font-sans; color: $color-black; }
 a { color: $color-neutral; }
-p a, h4 a { color: $color-spouse; }
+p a, h3 a, h4 a { color: $color-spouse; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 a.no-hover:hover { font-weight: 400; }
 
@@ -231,10 +231,23 @@ table.lined-table td {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ---------------------------
 // ---------------------------
 // ---------------------------
-// ------ IMAGES ---------
+// ---------- IMAGES ---------
 // ---------------------------
 // ---------------------------
 
@@ -246,11 +259,13 @@ table.lined-table td {
 }
 
 .image-overlay { position: relative; width: 100%; height: 100% }
-.image-overlay-house { background-color: $transparent-house; width: 100%; height: 100%; }
-.image-overlay-spouse { background-color: $transparent-spouse; width: 100%; height: 100%; }
-.image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
-.image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
-.image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
+.blog-card:hover .image-overlay-house { background-color: $transparent-house; width: 100%; height: 100%; }
+.blog-card:hover .image-overlay-spouse { background-color: $transparent-spouse; width: 100%; height: 100%; }
+.blog-card:hover .image-overlay-kids { background-color: $transparent-kids; width: 100%; height: 100%; }
+.blog-card:hover .image-overlay-self { background-color: $transparent-self; width: 100%; height: 100%; }
+.blog-card:hover .image-overlay-neutral { background-color: $transparent-neutral; width: 100%; height: 100%; }
+.blog-card:hover .image-overlay-white { background-color: $transparent-whiteish; width: 100%; height: 100%; }
+
 .image-overlay-white { background-color: $transparent-whiteish; width: 100%; height: 100%; }
 
 .over-frame-text {
@@ -461,7 +476,7 @@ table.lined-table td {
 // ---------------------------
 
 .search-bar input {
-  margin: 10px 10px 0 0;
+  margin: 0px 10px 0 0;
   font-size: 0.8em;
   padding: 5px;
   border-radius: 5px;
@@ -482,35 +497,56 @@ table.lined-table td {
 // ---------------------------
 // ---------------------------
 
-.navbar.bg-neutral {
-  // position: fixed;
+.navbar .navbar-nav .btn.btn-outline-primary {
+  color: $color-neutral !important;
+  border-color: $color-neutral !important;
+  background-color: transparent !important;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.nav-link.font-script {
+  font-size: 25px;
+  padding: 0 10px 0 10px;
+  text-align: center;
+}
+
+.OGnavbar.bg-neutral {
   position: relative;
   width: 100%;
   justify-content: left;
 }
 
-.navbar.bg-neutral p {
+.OGnavbar.bg-neutral p {
   margin-top: 14px;
 }
 
-.navbar.bg-neutral p a {
+.OGnavbar.bg-neutral p a {
   font-family: $font-sans !important;
+  color: $color-neutral;
+  font-weight: 800;
   font-size: 14px;
 }
+
+.OGnavbar.bg-neutral p a:hover {
+  color: black;
+}
+
 
 .account-buttons {
   position: absolute;
   right: 0;
 }
 
-.navbar.bg-neutral .btn-outline-primary {
+.OGnavbar.bg-neutral .btn-outline-primary {
   background-color: transparent !important;
 }
 
-.navbar.bg-neutral .btn-outline-primary:hover {
+.OGnavbar.bg-neutral .btn-outline-primary:hover {
   background-color: $color-neutral !important;
 }
-
 
 .header-logo {
   margin: 0px 0 5px 0;
@@ -518,26 +554,23 @@ table.lined-table td {
   max-width: 100%;
 }
 
-.header-tagline, .header-tagline strong {
-  margin-bottom: 0px;
-  font-size: 18px;
-  font-family: $font-serif !important;
-  line-height: 1.1;
-}
-
 .header-tagline {
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-family: $font-sans !important;
+  line-height: 1.1;
   font-weight: 300;
-}
-
-.header-tagline strong {
-  font-weight: 900;
 }
 
 .header-tagline:hover {
   text-decoration: none !important;
 }
 
-.nav-button a {
+.OGnav-button {
+  display: inline-block;
+}
+
+.OGnav-button a {
   font-family: $font-script;
   display: inline-block;
   font-size: 35px;
@@ -545,28 +578,28 @@ table.lined-table td {
   margin: 5px 10px 20px 10px;
 }
 
-.nav-button a:hover {
+.OGnav-button a:hover {
   font-weight: 700;
 }
 
-.nav-button a.color-house:hover { color: $color-house; border-color: $color-house; }
-.nav-button a.color-spouse:hover { color: $color-spouse; border-color: $color-spouse; }
-.nav-button a.color-kids:hover { color: $color-kids; border-color: $color-kids; }
-.nav-button a.color-self:hover { color: $color-self; border-color: $color-self; }
+.OGnav-button a.color-house:hover { color: $color-house; border-color: $color-house; }
+.OGnav-button a.color-spouse:hover { color: $color-spouse; border-color: $color-spouse; }
+.OGnav-button a.color-kids:hover { color: $color-kids; border-color: $color-kids; }
+.OGnav-button a.color-self:hover { color: $color-self; border-color: $color-self; }
 
 .small-tools {
   font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {
-  .nav-button a {
+  .OGnav-button a {
     margin: 10px 0px 30px 0px;
     padding-left: 0px;
     padding-right: 0px;
     font-size: 25px;
   }
 
-  .nav-button {
+  .OGnav-button {
     padding-left: 3px;
     padding-right: 3px;
   }
@@ -577,25 +610,25 @@ table.lined-table td {
   }
 }
 
-.nav-button:hover a {
+.OGnav-button:hover a {
   border-top: solid thin;
   border-bottom: solid thin;
   font-weight: 400;
 }
 
-.navbar {
+.OGnavbar {
   height: 45px;
 }
 
-.navbar .btn-outline-primary {
+.OGnavbar .btn-outline-primary {
   height: 30px;
   font-size: 14px;
   padding: 4px 10px 4px 10px;
 }
 
 .btn-outline-primary {
-  color: $color-neutral;
-  border-color: $color-neutral;
+  color: $color-neutral !important;
+  border-color: $color-neutral !important;
   background-color: transparent !important;
 }
 
@@ -616,7 +649,23 @@ table.lined-table td {
   font-size: 25px !important;
 }
 
-.btn-outline-secondary {
+.btn-outline-house {
+  color: $color-house !important;
+  border: solid medium $color-house;
+  background-color: $transparent-white !important;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.my-btn-outline-house:hover {
+  color: $color-house !important;
+  border-color: white;
+  background-color: $transparent-neutral !important;
+}
+
+.my-btn-outline-secondary {
   color: $color-black !important;
   border: solid medium $color-black;
   background-color: $transparent-white !important;
@@ -626,8 +675,8 @@ table.lined-table td {
   font-weight: 700;
 }
 
-.btn-outline-secondary:hover {
-  color: white !important;
+.my-btn-outline-secondary:hover {
+  color: black !important;
   border-color: white;
   background-color: $transparent-neutral !important;
 }
@@ -665,32 +714,58 @@ table.lined-table td {
 }
 
 footer {
-  background-color: $color-neutral;
-  min-height: 200px;
+  background-color: white;
   padding: 20px 0 10px 0;
+  margin-top: 50px;
+  line-height: 1.2;
+  font-size: 14px;
 }
 
 footer p, footer p em {
-  font-weight: bold;
-  color: white !important;
+  font-weight: 300;
+  color: black !important;
   font-family: $font-sans !important;
 }
 
-footer hr {
-  border-color: white;
-}
-
-.pre-footer {
+.post-footer {
   padding: 20px;
-  margin-top: 50px;
 }
 
-.pre-footer p a, .pre-footer p {
+.post-footer p a, .post-footer p {
   font-family: $font-sans !important;
 }
 
-.pre-footer .side-links p {
+.post-footer .side-links p {
   margin-bottom: 5px;
+  text-align: right;
+}
+
+.post-footer .side-links a:hover {
+  color: $color-spouse;
+}
+
+.copyright {
+  margin-bottom: 0 !important;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.post-footer .social-icon {
+  color: $color-spouse;
+}
+
+.post-footer .social-icon:hover {
+  color: black !important;
+}
+
+@media screen and (max-width: 768px) {
+  .post-footer .side-links {
+    margin-top: 10px;
+  }
+
+  .post-footer .side-links p {
+    text-align: center !important;
+  }
 }
 
 
@@ -705,11 +780,11 @@ footer hr {
 // ---------------------------
 // ---------------------------
 // -------- BIOBOX -----------
-// ---------------------------
+// --------USER PAGE----------
 // ---------------------------
 
 .biobox {
-  border: solid medium $color-neutral;
+  border: solid 1px $color-neutral;
   background-color: $transparent-neutral;
   border-radius: 15px;
   padding: 25px 15px 25px 15px;
@@ -749,7 +824,9 @@ footer hr {
   font-size: 15px !important;
 }
 
-
+.tool-box h5 {
+  margin-top: 10px;
+}
 
 
 

@@ -1,30 +1,99 @@
 <div class="header-frame frame" style="background-image: url(<%= asset_path "tools-for-homepage.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
 <div class="over-frame-text">
-  <div class="container">
-    <h1>My Homepage</h1>
+  <div class="container text-center">
+    <% if @user.first_name %>
+      <h1><%= @user.first_name %>'s Homepage</h1>
+    <% else %>
+      <h1>My Homepage</h1>
+    <% end %>
+    <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
+    <div class="buffer"></div>
+    <div class="buffer"></div>
+
+    <h3><%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
   </div> <!-- container -->
-  <div class="over-frame-bottom-row">
-    <div class="container">
-    </div>
-  </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
 
+
 <div class="container">
-	<div class="text-center">
-		<%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-	</div> <!-- nav -->
+  <% if @user == current_user %>
+  <h2 class="text-center font-script">My Tools</h2>
+
+  <div class="row">
+
+    <div class="col-lg-4"><div class="tool-box content-box border-neutral transparent-hover neutral">
+      <%= link_to tasks_path do %>
+        <div class="content-box-img" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)"><div class="image-overlay-neutral"></div></div>
+        <div class="text">
+          <h2 class="text-center">My To Do<br />List</h2>
+          <p>
+            <strong>One Time Tasks:</strong> <%= if @done_onetime_tasks != nil then @done_onetime_tasks.count else 0 end %> of <%= if @onetime_tasks != nil then @onetime_tasks.count else 0 end %> Done<br />
+            <strong>Daily Tasks:</strong> <%= if @done_daily_tasks != nil then @done_daily_tasks.count else 0 end %> of <%= if @daily_tasks != nil then @daily_tasks.count else 0 end %> Done<br />
+            <strong>Weekly Tasks:</strong> <%= if @done_weekly_tasks != nil then @done_weekly_tasks.count else 0 end %> of <%= if @weekly_tasks != nil then @weekly_tasks.count else 0 end %> Done<br />
+            <strong>Monthly Tasks:</strong> <%= if @done_monthly_tasks != nil then @done_monthly_tasks.count else 0 end %> of <%= if @monthly_tasks != nil then @monthly_tasks.count else 0 end %> Done<br />
+          </p>
+        </div> <!-- text -->
+        <h5 class="text-center"><%= link_to "Go to My List", tasks_path, class: "color-spouse" %></h5>
+      <% end %>
+    </div></div> <!-- category div / col div -->
 
 
+		<div class="col-lg-4"><div class="tool-box content-box border-neutral transparent-hover neutral">
+			<%= link_to people_path do %>
+				<div class="content-box-img" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)"><div class="image-overlay-neutral"></div></div>
+				<div class="text">
+					<h2 class="text-center">Upcoming Birthdays</h2>
+          <% if !@people_birthday.empty? %>
+  					<p>
+              <% @people_birthday.each do |p| %>
+                <%= p.birthday.strftime("%b %e") %>: <%= p.first_name %> <%= p.last_name %><br />
+              <% end %>
+            </p>
+          <% else %>
+            <p class="text-center">Tracking birthdays in one place will help make sure you never accidentally forget someone's special day.</p>
+          <% end %>
+				</div> <!-- text -->
+        <% if !@people_birthday.empty? %>
+          <h5 class="text-center"><%= link_to "See All Birthdays", tasks_path, class: "color-spouse" %></h5>
+        <% else %>
+          <h5 class="text-center"><%= link_to "Start Tracking Now", tasks_path, class: "color-spouse" %></h5>
+        <% end %>
+			<% end %>
+		</div></div> <!-- category div / col div -->
 
+		<div class="col-lg-4"><div class="tool-box content-box border-neutral transparent-hover neutral">
+			<%= link_to occasions_path do %>
+				<div class="content-box-img" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)"><div class="image-overlay-neutral"></div></div>
+				<div class="text">
+					<h2 class="text-center">Gift<br />Planner</h2>
+					<p>
+            <strong><%= if @occasions then @occasions.count else 0 end %></strong> <%= "Upcoming Occasion".pluralize(@occasions.count) %><br />
+            <strong><%= if @gifts then @gifts.count else 0 end %></strong> <%= "Gift".pluralize(@gifts.count) %> to Buy
+          </p>
+				</div> <!-- text -->
+        <% if @occasions.empty? && @gifts.empty? %>
+          <h5 class="text-center"><%= link_to "Start Planning Now", tasks_path, class: "color-spouse" %></h5>
+        <% else %>
+          <h5 class="text-center"><%= link_to "All My Gifts", tasks_path, class: "color-spouse" %></h5>
+        <% end %>
+			<% end %>
+		</div></div> <!-- category div / col div -->
+
+  <% end %>
+	</div> <!-- row -->
 
 	<div class="half-buffer"></div>
 
-	<%= render partial: "layouts/biobox", locals: { user: current_user } %>
+  <% if current_user.bio %>
+	 <%= render partial: "layouts/biobox", locals: { user: current_user } %>
+   <div class="buffer"></div>
+  <% elsif current_user == @user %>
+    <div class="half-buffer"></div>
+    <h2 class="text-center color-spouse">- - <%= link_to 'Complete My Profile', edit_user_registration_path, class: "color-spouse" %> - -</h2>
+  <% end %>
 
-	<div class="buffer"></div>
-
-	<% if current_user.admin %>
+	<% if current_user.admin && current_user == @user %>
 		<h2 class="text-center">Admin Stuff</h2>
 		<div class="half-buffer"></div>
 
@@ -73,6 +142,8 @@
 
 <script>
   $(function() {
+    $('.content-box').matchHeight();
+    $('.text').matchHeight();
   	$('.card').matchHeight();
   });
 </script>

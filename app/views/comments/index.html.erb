@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="half-buffer"></div>
-          <div class="text-center"><%= f.button :submit, 'Update Comment', class: "btn btn-outline-primary" %></div>
+          <div class="text-center"><%= f.button :submit, 'Update Comment', class: "btn btn-outline-danger" %></div>
           <% end %>
 
         </div>
@@ -54,7 +54,7 @@
       <%= f.input :body, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' }  %>
     </div>
   </div>
-  <%= f.button :submit, 'Update Comment', class: "button is-primary" %>
+  <%= f.button :submit, 'Update Comment', class: "btn btn-outline-danger" %>
   <% end %>
 
 </div>

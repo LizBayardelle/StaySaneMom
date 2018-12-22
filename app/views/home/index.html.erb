@@ -16,7 +16,7 @@
     <div class="container">
       <div class="text-center">
         <div class="half-buffer"></div>
-          <a class="btn btn-outline-secondary hero-button" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/2d8e722187/31069c0b92">Your Support System Awaits</a>
+          <a class="btn my-btn-outline-secondary hero-button" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/2d8e722187/31069c0b92">Your Support System Awaits</a>
         <div class="buffer"></div>
       </div> <!-- text center -->
     </div> <!-- container -->
@@ -30,7 +30,7 @@
         <h2 class="text-center script-header">Get Help with Your...</h2>
 
         <div class="row">
-            <div class="col-sm-6 col-lg-3"><div class="category-div border-house transparent-hover house">
+            <div class="col-sm-6 col-lg-3"><div class="category-div border-house transparent-hover house card">
               <%= link_to home_house_path do %>
                 <div class="frame category-frame" style="background-image: url(<%= asset_path "keep-house-clean.jpg" %>)"><div class=""></div></div>
                 <div class="text">
@@ -85,10 +85,10 @@
   <div class="container" style="padding: 0px 0 20px 0">
     <h2 class="text-center script-header" style="padding-top: 20px">About Me</h2>
     <div class="row">
-      <div class="col-sm-3 text-center">
+      <div class="col-sm-4 text-center">
         <%= image_tag "liz-bayardelle-stay-sane-mom.jpg", class: "rounded-image" %>
       </div> <!-- col -->
-      <div class="col-sm-9" style="padding: 0 30px 0 30px">
+      <div class="col-sm-8" style="padding: 0 30px 0 30px">
         <p>Hello there!  My name is Liz, but I also answer to "Hey Honey?", "Mom", or (more often) "Mom Mom Mom MAHM!".</p>
         <p>I'm the wife to an amazing man and mom to a preteen stepdaughter (and Instagram aficionado), a sparkle-clad toddlernado, two large canine furkids, a bunny of unusual size, and (if I don't vacuum daily) a herd of dustbunnies. My alterego by night is a PhD candidate, freelance consultant, web developer, and graphic designer, workout nut, entrepreneur, writer, and avid bookworm.</p>
         <h5><%= link_to "More About the Stay Sane Mom...", static_path(:AboutMe) %></h5>

@@ -771,6 +771,9 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    npm-pipeline-rails (1.8.1)
+      railties (>= 4.0.0, < 6.0.0)
+      sprockets (~> 3.5)
     orm_adapter (0.5.0)
     pg (0.20.0)
     popper_js (1.14.3)
@@ -927,6 +930,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   magnific-popup-rails (~> 1.1.0)
   mini_magick
+  npm-pipeline-rails
   pg (~> 0.20.0)
   puma (~> 3.11)
   puma_worker_killer

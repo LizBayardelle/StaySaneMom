@@ -45,13 +45,6 @@
   <div class="container">
     <h1><%= @blog.title %></h1>
   </div> <!-- container -->
-  <div class="over-frame-bottom-row text-right">
-    <div class="container">
-      <% if @blog.category != "General" && @blog.category != "Other" %>
-        <h4>From Blogs About Your <%= @blog.category %></h4>
-      <% end %>
-    </div>
-  </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
 
@@ -131,12 +124,12 @@
         <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
         <% if current_user %>
           <% if @blog.freebie_type == "File" %>
-            <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-primary font-bold" do %><%= @blog.freebie_description %><% end %>
+            <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-danger font-bold" do %><%= @blog.freebie_description %><% end %>
           <% else %>
-            <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
+            <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-danger font-bold"><%= @blog.freebie_description %></a>
           <% end %>
         <% else %>
-          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold cta-top">Download Now</a>
+          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-danger font-bold cta-top">Download Now</a>
           <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -179,12 +172,12 @@
         <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
         <% if current_user %>
         <% if @blog.freebie_type == "File" %>
-        <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-primary font-bold" do %><%= @blog.freebie_description %><% end %>
+        <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-danger font-bold" do %><%= @blog.freebie_description %><% end %>
         <% else %>
-        <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-primary font-bold"><%= @blog.freebie_description %></a>
+        <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-danger font-bold"><%= @blog.freebie_description %></a>
         <% end %>
         <% else %>
-        <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-primary font-bold cta-bottom">Download Now</a>
+        <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-danger font-bold cta-bottom">Download Now</a>
         <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -275,20 +268,22 @@
 
         <div class="form-actions text-right">
           <div class="half-buffer"></div>
-          <%= f.button :submit, "Submit Comment", class: "btn btn-outline-primary submit-comment" %>
+          <%= f.button :submit, "Submit Comment", class: "btn btn-outline-danger submit-comment" %>
         </div>
       <% end %>
     </div>
 
     <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
     <% @comments.each do |comment| %>
-      <p style="margin-top: 10px"><span><%= comment.body %></span>
+      <p style="margin-top: 10px">
+        <span class="comment-byline"><span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span><br />
+        <span><%= comment.body %></span>
         <% if current_user && current_user.admin %>
           <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
             <%= fa_icon "remove", class: "color-neutral color-neutral-hover" %>
           <% end %><br />
         <% end %>
-        <span class="comment-byline">by <span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span></p>
+      </p>
     <% end %>
 
     <div class="buffer"></div>
