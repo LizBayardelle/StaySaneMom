@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@subcategory) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="form-group">
+      <%= f.label :category %><br />
+      <%= f.select :category, [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
+    </div>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :active %>
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, class: "btn btn-outline-danger" %>
+  </div>
+<% end %>

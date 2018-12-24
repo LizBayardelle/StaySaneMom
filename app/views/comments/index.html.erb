@@ -11,7 +11,7 @@
         <p><%= comment.body %>
           <br /><em><%= comment.name %> (<%= mail_to comment.email %>)</em>
           <br /><strong><% if comment.blog_id %><%= Blog.where(id: comment.blog_id).first.title %> (<%= Blog.where(id: comment.blog_id).first.comments.count %>)<% end %></strong>
-          <a href="#editPopup<%= @comment.id %>" class="open-popup-link"><%= fa_icon "pencil" %></a>
+          <a href="#editPopup<%= @comment.id %>" class="open-popup-link"><%= fa_icon "pencil-alt" %></a>
           <%= link_to comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
         </p>
 

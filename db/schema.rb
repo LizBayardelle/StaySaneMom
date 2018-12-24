@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_175158) do
+ActiveRecord::Schema.define(version: 2018_12_23_074811) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,10 +59,12 @@ ActiveRecord::Schema.define(version: 2018_12_09_175158) do
     t.string "freebie_type", default: "File"
     t.string "freebie_description"
     t.integer "comments_count"
+    t.integer "subcategory_id"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -148,6 +150,15 @@ ActiveRecord::Schema.define(version: 2018_12_09_175158) do
     t.datetime "updated_at", null: false
     t.string "group"
     t.index ["user_id"], name: "index_people_on_user_id"
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
   end
 
   create_table "taggings", force: :cascade do |t|

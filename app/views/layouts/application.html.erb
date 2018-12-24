@@ -31,6 +31,9 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.6.0/js/mdb.min.js"></script>
     <!-- End MDBootstrap -->
 
+    <!-- font awesome CDN -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
       <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126667465-1"></script> -->
       <script>
@@ -90,6 +93,23 @@
   <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo-square.png", alt: "Logo" %>
   <% end %>
+  <div class="navbar-brand">
+    <%= link_to home_house_path do %>
+      <%= fa_icon "home", id: "house-icon", class: "header-icon color-house" %>
+    <% end %>
+    <%= link_to home_spouse_path do %>
+      <%= fa_icon "ring", id: "spouse-icon", class: "header-icon color-spouse" %>
+    <% end %>
+    <%= link_to home_kids_path do %>
+      <%= fa_icon "baby", id: "kids-icon", class: "header-icon color-kids" %>
+    <% end %>
+    <%= link_to home_self_path do %>
+      <%= fa_icon "spa", id: "self-icon", class: "header-icon color-self" %>
+    <% end %>
+    <%= link_to blogs_path do %>
+      <%= fa_icon "pen-fancy", id: "blog-icon", class: "header-icon color-neutral" %>
+    <% end %>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -106,7 +126,7 @@
       <% if current_user %>
         <%= link_to "My Account", user_path(current_user), class: "btn btn-outline-danger waves-effect my-account btn-sm" %>
       <% else %>
-        <%= link_to "Login", new_user_session_path, class: "btn btn-outline-danger waves-effect log-in btn-sm" %>
+        <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-danger waves-effect log-in btn-sm" %>
         <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-danger waves-effect sign-up btn-sm" %>
       <% end %>
       <%= link_to "Resource Library", static_path(:resources), class: "btn btn-outline-danger waves-effect resource-library btn-sm" %>
@@ -189,8 +209,8 @@
             <p class="text-center font-serif">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
             <p class="text-center font-serif">I'm here for you.</p>
             <div class="text-center">
-              <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><%= fa_icon "facebook-f", class: "social-icon" %></a>
-              <a href="https://www.pinterest.com/theStaySaneMom/" target="_blank"><%= fa_icon "pinterest-p", class: "social-icon" %></a>
+              <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><%= fa_icon "facebook-square", class: "social-icon" %></a>
+              <a href="https://www.pinterest.com/theStaySaneMom/" target="_blank"><%= fa_icon "pinterest-square", class: "social-icon" %></a>
               <a href="https://www.instagram.com/theStaySaneMom/" target="_blank"><%= fa_icon "instagram", class: "social-icon" %></a>
               <a href="https://www.youtube.com/channel/UC_g4NFVoQi4t2PbA23q0_VQ" target="_blank"><%= fa_icon "youtube", class: "social-icon" %></a>
               <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><%= fa_icon "amazon", class: "social-icon" %></a>

@@ -30,6 +30,8 @@ gem 'aws-sdk-s3', require: false
 gem 'simple_form_extension'
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'font-awesome-rails'
+gem 'font-awesome-sass'
+gem 'font_awesome5_rails'
 gem 'trix-rails', require: 'trix'
 gem 'rack-tracker'
 gem 'high_voltage', '~> 3.1'
@@ -37,7 +39,6 @@ gem 'convertkit-ruby', require: 'convertkit'
 gem 'dotenv-rails'
 gem 'acts_as_list'
 gem 'wysiwyg-rails'
-gem 'font-awesome-sass'
 gem 'will_paginate'
 gem 'searchkick'
 

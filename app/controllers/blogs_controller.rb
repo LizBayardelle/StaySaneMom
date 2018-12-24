@@ -37,16 +37,20 @@ class BlogsController < ApplicationController
   # GET /blogs/new
   def new
     @blog = Blog.new
+    @subcategories = Subcategory.all
   end
 
   # GET /blogs/1/edit
-  def edit; end
+  def edit
+    @subcategories = Subcategory.all
+  end
 
   # POST /blogs
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+    @subcategories = Subcategory.all
 
     image = blog_params[:image]
     pin_images = params[:blog][:pin_image]
@@ -71,6 +75,8 @@ class BlogsController < ApplicationController
   def update
     image = blog_params[:image]
     pin_images = params[:blog][:pin_image]
+    @subcategories = Subcategory.all
+
 
     if pin_images
       @blog.pin_image.purge
@@ -156,6 +162,7 @@ class BlogsController < ApplicationController
                   :published,
                   :published_on,
                   :user_id,
+                  :subcategory_id,
                   :image,
                   :pdf,
                   :slug,

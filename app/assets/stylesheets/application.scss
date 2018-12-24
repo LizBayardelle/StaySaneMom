@@ -20,6 +20,8 @@
 
 @import "bootstrap";
 @import "font-awesome";
+@import 'font_awesome5_webfont';
+@import 'font_awesome5.css';
 @import "trix";
 @import 'bootstrap-datetimepicker';
 @import "froala_editor.min";
@@ -106,7 +108,7 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 .transparent-hover.self:hover { background-color: $transparent-self; }
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
 
-* { font-family: $font-sans; color: $color-black; }
+* { font-family: $font-sans; }
 a { color: $color-neutral; }
 p a, h3 a, h4 a { color: $color-spouse; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
@@ -409,7 +411,7 @@ table.lined-table td {
 
 .rounded-image {
   height: 160px;
-  border: solid medium $color-neutral;
+  border: solid 1px $color-neutral;
   margin-bottom: 15px;
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
 }
@@ -431,7 +433,7 @@ table.lined-table td {
 
 .category-callouts .category-div {
   margin: 15px 0 15px 0;
-  border-width: medium;
+  border-width: 1px;
 }
 
 .category-callouts .category-frame {
@@ -496,6 +498,15 @@ table.lined-table td {
 // -------- NAVBAR -----------
 // ---------------------------
 // ---------------------------
+
+.header-icon {
+  margin: 0 5px 0 5px;
+  height: 40px;
+}
+
+#house-icon i, #house-icon svg {
+  color: $color-house !important;
+}
 
 .navbar .navbar-nav .btn.btn-outline-primary {
   color: $color-neutral !important;
@@ -904,7 +915,7 @@ footer p, footer p em {
 .blog-card {
   position: relative;
   box-sizing: border-box;
-  margin: 15px 0 15px 0;
+  margin: 10px 0 10px 0 !important;
   height: 275px;
   width: 100%;
 }
@@ -956,11 +967,11 @@ footer p, footer p em {
   font-weight: 400 !important;
 }
 
-.blog-card .house { border: medium solid $color-house; }
-.blog-card .spouse { border: medium solid $color-spouse; }
-.blog-card .kids { border: medium solid $color-kids; }
-.blog-card .self { border: medium solid $color-self; }
-.blog-card .other { border: medium solid $color-neutral; }
+.blog-card .house { border: 1px solid $color-house; box-shadow: 0 10px 20px rgba(254, 84, 84,0.19), 0 6px 6px rgba(254, 84, 84,0.23); }
+.blog-card .spouse { border: 1px solid $color-spouse; box-shadow: 0 10px 20px rgba(253, 18, 112,0.19), 0 6px 6px rgba(253, 18, 112,0.23); }
+.blog-card .kids { border: 1px solid $color-kids; box-shadow: 0 10px 20px rgba(192, 2, 167,0.19), 0 6px 6px rgba(192, 2, 167,0.23); }
+.blog-card .self { border: 1px solid $color-self; box-shadow: 0 10px 20px rgba(108, 12, 157,0.19), 0 6px 6px rgba(108, 12, 157,0.23); }
+.blog-card .other { border: 1px solid $color-neutral; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); }
 
 .blog-card .house h2 { color: $color-house; }
 .blog-card .spouse h2 { color: $color-spouse; }

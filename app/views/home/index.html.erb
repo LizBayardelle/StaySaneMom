@@ -193,9 +193,12 @@
                     <h5><%= blog.title %></h5>
                     <p class="published-on">
                       <small>
+                      <%= blog.subcategory %>
+                        In <%#= Subcategory.where(id: blog.subcategory_id).first.name %>
+                      <%# end %>
                       <%= pluralize(blog.comments.count, "Comment") %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
                       <% if current_user && current_user.admin %>
-                          <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                          <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
                           <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
                       <% else %>
                            | <%= link_to "Home", root_path %>
@@ -251,7 +254,7 @@
                     <small>
                     <%= pluralize(blog.comments.count, "Comment") %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
                     <% if current_user && current_user.admin %>
-                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
                         <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
                     <% else %>
                          | <%= link_to "Home", root_path %>
@@ -268,6 +271,16 @@
 </div> <!-- what's new container -->
 
 <div class="buffer"></div>
+
+<div class="container">
+  <h2 class="text-center font-script">Get Your Read On</h2>
+  <div class="d-none d-md-block">
+    <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=48&l=ur1&category=books&banner=07RRYSQ40HQ4A48M4BR2&f=ifr&linkID=54a5e1e53132be76576484863ed816f0&t=thestaysane07-20&tracking_id=thestaysane07-20" width="100%" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+  </div>
+  <div class="d-block d-md-none">
+    <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=books&banner=1G4V2D6VP95C1VAYGAG2&f=ifr&linkID=4fc91475678e1f035b0007e86f8d6fe8&t=thestaysane07-20&tracking_id=thestaysane07-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+  </div>
+</div> <!-- container -->
 
 
 

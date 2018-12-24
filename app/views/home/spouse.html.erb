@@ -98,7 +98,7 @@
                     <small>
                     <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
                     <% if current_user && current_user.admin %>
-                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
                         <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
                     <% else %>
                          | <%= link_to "Home", root_path %>
@@ -138,7 +138,7 @@
                     <small>
                     <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
                     <% if current_user && current_user.admin %>
-                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil" %><% end %>
+                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
                         <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
                     <% else %>
                          | <%= link_to "Home", root_path %>

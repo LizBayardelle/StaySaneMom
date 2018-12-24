@@ -70,10 +70,10 @@
     <h4 class="text-center"><%= @blog.teaser %></h4>
     <% if @blog.published != false %>
       <p class="text-center">
-        <strong>Categories:
+        <strong>Topics:
           <%= raw @blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
         </strong><br />
-        Published on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
+        Published in <%#= @blog.subcategory.name %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
     <% end %>
   </div> <!-- container -->
 
