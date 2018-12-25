@@ -51,122 +51,39 @@
 <div class="container">
 
   <div class="recent-blogs">
-    <h2 class="font-script text-center">Most Popular Marriage Blogs</h2>
-
-    <div class="row">
-    <% @commented_blogs.each do |blog| %>
-      <%= link_to blog do %>
-        <div class="col-lg-4"><div class="blog-card">
-          <% case blog.category %>
-          <% when "House" %>
-            <div class="house transparent-hover">
-              <div class="flag">House</div>
-          <% when "Spouse" %>
-            <div class="spouse transparent-hover">
-              <div class="flag">Spouse</div>
-          <% when "Kids" %>
-            <div class="kids transparent-hover">
-              <div class="flag">Kids</div>
-          <% when "Self" %>
-            <div class="self transparent-hover">
-              <div class="flag">Self</div>
-          <% else %>
-            <div class="other transparent-hover neutral">
-              <div class="flag">General</div>
-          <% end %>
-              <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
-                <% case blog.category %>
-                <% when "House" %>
-                  <div class="image-overlay-house"></div>
-                <% when "Spouse" %>
-                  <div class="image-overlay-spouse"></div>
-                <% when "Kids" %>
-                  <div class="image-overlay-kids"></div>
-                <% when "Self" %>
-                  <div class="image-overlay-self"></div>
-                <% else %>
-                  <div class="image-overlay-neutral"></div>
-                <% end %>
-              </div>
-              <div class="blog-text">
-                <div class="blog-description">
-                  <h2><%= blog.title %></h2>
-                  <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-                </div> <!-- blog description -->
-                <div class="blog-info">
-                  <p class="published-on">
-                    <small>
-                    <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
-                    <% if current_user && current_user.admin %>
-                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
-                        <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
-                    <% else %>
-                         | <%= link_to "Home", root_path %>
-                    <% end %>
-                  </small></p>
-                </div> <!-- blog info -->
-              </div> <!-- blog-text -->
-            </div> <!-- end case div -->
-        </div></div> <!-- blog card/col -->
-      <% end %>
-    <% end %>
-  </div> <!-- row -->
-
-
-
-
-  <div class="buffer"></div>
-
-
-  <h2 class="font-script text-center">Newest Marriage Blogs</h2>
-    <div class="row">
-      <% @recent_blogs.each do |blog| %>
-        <%= link_to blog do %>
-          <div class="col-lg-4"><div class="blog-card">
-              <div class="spouse transparent-hover">
-                <div class="flag">Spouse</div>
-              <div class="blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
-                  <div class="image-overlay-spouse"></div>
-              </div>
-              <div class="blog-text">
-                <div class="blog-description">
-                  <h2><%= blog.title %></h2>
-                  <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
-                </div> <!-- blog description -->
-                <div class="blog-info">
-                  <p class="published-on">
-                    <small>
-                    <%= pluralize(blog.comments.count, "Comment") %>, Published on <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %>
-                    <% if current_user && current_user.admin %>
-                        <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
-                        <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "remove" %><% end %>
-                    <% else %>
-                         | <%= link_to "Home", root_path %>
-                    <% end %>
-                  </small></p>
-                </div> <!-- blog info -->
-              </div> <!-- blog-text -->
-            </div> <!-- end case div -->
-          </div></div> <!-- blog card/col -->
+    <div class="">
+      <h2 class="text-center">Most Popular Marriage Blogs</h2>
+      <div class="row">
+        <% @commented_blogs.each do |blog| %>
+          <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
         <% end %>
-      <% end %>
-    </div> <!-- row -->
-  </div> <!-- recent blogs -->
+      </div>
+    </div> <!-- popular blogs third -->
 
+    <div class="buffer"></div>
+
+    <div class="">
+      <h2 class="text-center">Newest Marriage Blogs</h2>
+      <div class="row">
+        <% @recent_blogs.each do |blog| %>
+          <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
+        <% end %>
+      </div>
+    </div> <!-- popular blogs third -->
 
   <div class="buffer"></div>
+
   <% if @other_blogs && @other_blogs.count > 0 %>
-    <h2 class="text-center font-script">Earlier Blogs on Marriage and Spouses</h2>
+    <h2 class="text-center">Other Blogs on Marriage</h2>
     <% @other_blogs.each do |blog| %>
-      <%= link_to blog, class: "weight-400 color-black color-neutral-hover font-serif" do %>
-        <h3 class="color-spouse font-sans"><%= blog.title %></h3>
-        <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral font-serif"><%= blog.cta_read_more + "..." %></span><% end %></p>
+      <%= link_to blog, class: "weight-400 color-black color-neutral-hover" do %>
+        <h3 class="color-spouse font-bold"><%= blog.title %></h3>
+        <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral"><%= blog.cta_read_more + "..." %></span><% end %></p>
       <% end %>
     <% end %>
   <% end %>
 
 </div> <!-- page container -->
-
 
 <!-- form itself -->
 <div id="convertkitPopup" class="white-popup mfp-hide">

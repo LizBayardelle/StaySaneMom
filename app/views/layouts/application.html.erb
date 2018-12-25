@@ -115,8 +115,8 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <div class="text-right search-bar">
+    <ul class="navbar-nav mr-auto" style="display: block; margin-right: auto; margin-left: auto">
+      <div class="text-center search-bar">
         <%= form_tag home_results_path, method: :get do %>
         <%= text_field_tag :q, nil, placeholder: "Search for wisdom..." %>
         <% end %>
@@ -206,14 +206,14 @@
         <div class="row">
           <div class="col-sm-8">
             <p class="text-center font-serif">Stay Sane Mom gives support to the over-worked, under-slept, marker-stained, soul-hungry moms of the world, so they can be more&nbspthan&nbspjust&nbsp"mom".</p>
-            <p class="text-center font-serif">We just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
+            <p class="text-center font-serif">You just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
             <p class="text-center font-serif">I'm here for you.</p>
             <div class="text-center">
-              <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><%= fa_icon "facebook-square", class: "social-icon" %></a>
-              <a href="https://www.pinterest.com/theStaySaneMom/" target="_blank"><%= fa_icon "pinterest-square", class: "social-icon" %></a>
-              <a href="https://www.instagram.com/theStaySaneMom/" target="_blank"><%= fa_icon "instagram", class: "social-icon" %></a>
-              <a href="https://www.youtube.com/channel/UC_g4NFVoQi4t2PbA23q0_VQ" target="_blank"><%= fa_icon "youtube", class: "social-icon" %></a>
-              <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><%= fa_icon "amazon", class: "social-icon" %></a>
+              <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><i class="fab fa-facebook social-icon"></i></a>
+              <a href="https://www.pinterest.com/theStaySaneMom/" target="_blank"><i class="fab fa-pinterest-square social-icon"></i></a>
+              <a href="https://www.instagram.com/theStaySaneMom/" target="_blank"><i class="fab fa-instagram social-icon"></i></a>
+              <a href="https://www.youtube.com/channel/UC_g4NFVoQi4t2PbA23q0_VQ" target="_blank"><i class="fab fa-youtube social-icon"></i></a>
+              <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><i class="fab fa-amazon social-icon"></i></a>
               <%= mail_to("liz@theStaySaneMom.com") do %><%= fa_icon "envelope", class: "social-icon color-black" %><% end %>
             </div> <!-- centered sm -->
           </div> <!-- left bit -->
