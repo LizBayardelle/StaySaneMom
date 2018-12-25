@@ -144,6 +144,9 @@
     <div class="half-buffer"></div>
 
     <div class="blog-itself col-xs-12">
+      <% if @blog.affiliate_links %>
+        <p class="text-center"><em>Some of the links below are affiliate links, which means I earn a small fee from any qualifying purchases you make.  I only recommend products I wholeheartedly love and support.</em></p>
+      <% end %>
       <%= raw(@blog.body) %>
     </div>
 

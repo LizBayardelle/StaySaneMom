@@ -163,6 +163,7 @@ class BlogsController < ApplicationController
                   :published_on,
                   :user_id,
                   :subcategory_id,
+                  :affiliate_links,
                   :image,
                   :pdf,
                   :slug,
