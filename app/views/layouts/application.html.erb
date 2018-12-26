@@ -79,6 +79,17 @@
   </head>
 
   <body class="hidden-sn mdb-skin">
+
+    <!-- facebook comments -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=2201806480032006&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <!-- Include external JS libs. -->
     <div class="d-none"><%= image_tag "default-image.png"%></div>
     <div class="non-footer">
