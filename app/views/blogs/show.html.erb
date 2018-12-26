@@ -279,15 +279,26 @@
 
     <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
     <% @comments.each do |comment| %>
-      <p style="margin-top: 10px">
-        <span class="comment-byline"><span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span><br />
-        <span><%= comment.body %></span>
-        <% if current_user && current_user.admin %>
-          <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
-            <%= fa_icon "remove", class: "color-neutral color-neutral-hover" %>
-          <% end %><br />
-        <% end %>
-      </p>
+        <div class="row">
+          <div class="col-xs-1">
+            <% if @user.avatar.attached? %>
+              <%= image_tag rails_blob_url(@user.avatar) if @user.avatar.attached?, class="" %>
+            <% else %>
+              <%= image_tag "missing_avatar.jpg", class="" %>
+            <% end %>
+          </div> <!-- img col -->
+          <div class="col-xs-11">
+            <p style="margin-top: 10px">
+              <span class="comment-byline"><span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span><br />
+              <span><%= comment.body %></span>
+              <% if current_user && current_user.admin %>
+              <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
+              <%= fa_icon "trash", class: "color-neutral color-neutral-hover" %>
+              <% end %><br />
+              <% end %>
+            </p>
+          </div> <!-- img col -->
+        </div> <!-- row -->
     <% end %>
 
     <div class="buffer"></div>
