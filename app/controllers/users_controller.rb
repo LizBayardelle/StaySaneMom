@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "application-alt", only: [:index]
   before_action :authenticate_user!, except: %i[show]
 
   def show
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
     @client = Convertkit::Client.new
     @subscribers = @client.subscribers.body
     @sequences = @client.sequences.body['courses']

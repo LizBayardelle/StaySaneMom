@@ -2,10 +2,14 @@
   <% title "Member List | SSM" %>
 <!-- page-specific content -->
 
+<h1 class="text-center font-script">Users Command Center</h1>
+
+<div class="half-buffer"></div>
+
 <div class="container">
   <h2 class="text-center">Subscribers</h2>
-  <h5 class="text-center"><%= pluralize(@subscribers['total_subscribers'], 'subscriber') %></h5>
-  <div class="row">
+  <h5 class="text-center subscriberTitle linkish"><%= pluralize(@subscribers['total_subscribers'], 'subscriber') %> (Click to Show/Hide)</h5>
+  <div class="row subscriberTable d-none">
     <table>
       <th>
         <td class="font-bold">Name</td>
@@ -22,31 +26,53 @@
       <% end %>
     </table>
   </div> <!-- row -->
+</div> <!-- container -->
 
-  <div class="buffer"></div>
 
+<div class="half-buffer"></div>
+<%= render "layouts/quadborder" %>
+<div class="half-buffer"></div>
+
+
+<div class="container">
   <h2 class="text-center">Site Members</h2>
-  <h5 class="text-center"><%= pluralize(@users.count, 'member') %></h5>
-  <div class="row">
+  <h5 class="text-center linkish memberTitle"><%= pluralize(@users.count, 'member') %> (Click to Show/Hide)</h5>
+  <div class="row memberTable d-none">
     <table>
       <th>
-        <td class="font-bold">Name</td>
-        <td class="font-bold">Activity</td>
-        <td class="font-bold">Email</td>
+        <td class="font-bold">Member</td>
+        <td class="font-bold">Participation</td>
+        <td class="font-bold">Contributions</td>
       </th>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.first_name %> <%= user.last_name %></td>
-          <td><%= pluralize(user.comments.count, "Comment") %></td>
-          <td><%= mail_to user.email %></td>
+          <td>
+            <%= user.id %>
+          </td>
+          <td>
+            <%= user.first_name %> <%= user.last_name %><br />
+            <%= mail_to user.email %>
+          </td>
+          <td>
+            <%= pluralize(user.comments.count, "Comment") %>
+          </td>
+          <td>
+            <%= pluralize(user.blogs.where(published: true).count, "Published Blogs") %><br />
+            <%= pluralize(user.blogs.where(published: false).count, "Unublished Blogs") %>
+          </td>
         </tr>
       <% end %>
     </table>
   </div> <!-- row -->
+</div> <!-- container -->
 
-  <div class="buffer"></div>
 
+<div class="half-buffer"></div>
+<%= render "layouts/quadborder" %>
+<div class="half-buffer"></div>
+
+
+<div class="container">
   <h2 class="text-center">ConvertKit Info</h2>
   <div class="row">
     <div class="col-sm-6">
@@ -67,13 +93,18 @@
       </ul>
     </div>
   </div> <!-- convertkit row -->
-
-</div> <!-- page container -->
+</div> <!-- container -->
 
 
 
 <script>
   $(function() {
     $('.blog-text').matchHeight();
+    $('.subscriberTitle').click(function() {
+      $('.subscriberTable').toggleClass('d-none');
+    });
+    $('.memberTitle').click(function() {
+      $('.memberTable').toggleClass('d-none');
+    });
   });
 </script>

@@ -61,6 +61,7 @@ $font-script-caps: 'PlaylistCaps', sans-serif;
 .font-script { font-family: $font-script }
 .font-bold { font-weight: 700 }
 
+h1.font-script { font-size: 70px }
 h2.font-script { font-size: 50px }
 
 $color-house: #fe5454 !important; // #84C99A;
@@ -132,6 +133,11 @@ a.color-self:hover { color: $color-self; }
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
+}
+
+.linkish {
+  cursor: pointer;
+  color: $color-spouse;
 }
 
 hr { width: 50%; border-color: $color-neutral; }
@@ -795,11 +801,24 @@ footer p, footer p em {
 // ---------------------------
 
 .biobox {
-  border: solid 1px $color-neutral;
-  background-color: $transparent-neutral;
-  border-radius: 15px;
   padding: 25px 15px 25px 15px;
 }
+
+.border-row .block {
+  box-sizing: content-box;
+  width: calc(25% + 1px);
+  height: 5px;
+  display: inline-block;
+  margin: 0px;
+  margin-left: -4px;
+  padding: 0px;
+  border: none
+}
+
+.solid-house { background-color: $color-house; }
+.solid-spouse { background-color: $color-spouse; }
+.solid-kids { background-color: $color-kids; }
+.solid-self { background-color: $color-self; }
 
 .biobox-image {
   display: inline-block;
@@ -808,8 +827,6 @@ footer p, footer p em {
 .biobox img {
   width: 100%;
   max-width: 300px;
-  border-radius: 15px;
-  box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
 }
 
 .biobox-image {
@@ -818,13 +835,13 @@ footer p, footer p em {
 
 .biobox h3 {
   text-align: center;
-  color: $color-neutral;
+  color: $color-spouse;
   font-family: $font-script;
   margin-top: 15px;
 }
 
 .biobox h4 {
-  color: $color-neutral;
+  color: $color-self;
   font-weight: 700;
 }
 
@@ -837,6 +854,14 @@ footer p, footer p em {
 
 .tool-box h5 {
   margin-top: 10px;
+}
+
+.user-edit h2 {
+  font-family: $font-script;
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: $color-spouse;
+  text-align: center;
 }
 
 

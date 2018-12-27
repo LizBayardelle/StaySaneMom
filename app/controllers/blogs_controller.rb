@@ -28,6 +28,7 @@ class BlogsController < ApplicationController
     @user = User.where(id: @blog.user_id).first
     @comment = Comment.create
     @comments = Comment.where(blog_id: @blog.id)
+    @response = Response.create
     if current_user
       @comment_user = current_user
     end

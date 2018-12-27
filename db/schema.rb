@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_25_013140) do
+ActiveRecord::Schema.define(version: 2018_12_26_211437) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -153,6 +153,20 @@ ActiveRecord::Schema.define(version: 2018_12_25_013140) do
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
+  create_table "responses", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.boolean "read"
+    t.boolean "approved"
+    t.boolean "email"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_responses_on_comment_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
+  end
+
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
     t.string "category"
@@ -218,6 +232,18 @@ ActiveRecord::Schema.define(version: 2018_12_25_013140) do
     t.integer "avatar_id"
     t.text "bio"
     t.string "tagline"
+    t.string "website_name"
+    t.string "website_url"
+    t.string "sm_facebook"
+    t.string "sm_pinterest"
+    t.string "sm_instagram"
+    t.string "sm_twitter"
+    t.string "sm_other"
+    t.string "sm_youtube"
+    t.string "sm_email"
+    t.boolean "contributor", default: false
+    t.boolean "contributor_request", default: false
+    t.boolean "sm_approved", default: false
     t.index ["avatar_id"], name: "index_users_on_avatar_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

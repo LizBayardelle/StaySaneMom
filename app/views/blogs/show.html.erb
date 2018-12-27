@@ -280,26 +280,95 @@
     <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
     <% @comments.each do |comment| %>
         <div class="row">
-          <div class="col-xs-1">
-            <% if @user.avatar.attached? %>
-              <%= image_tag rails_blob_url(@user.avatar) if @user.avatar.attached?, class="" %>
+          <div class="col-1" style="padding: 0">
+            <% if comment.user && comment.user.avatar.attached? %>
+              <%= image_tag rails_blob_url(comment.user.avatar), class: "img-fluid z-depth-1 rounded-circle", style: "width: 70px; height: 70px; object-fit: cover; margin-bottom: 10px" %>
             <% else %>
-              <%= image_tag "missing_avatar.jpg", class="" %>
+              <%= image_tag "missing_avatar.jpg", class: "img-fluid z-depth-1 rounded-circle", style: "width: 70px; height: 70px; object-fit: cover; margin-bottom: 10px" %>
             <% end %>
           </div> <!-- img col -->
-          <div class="col-xs-11">
-            <p style="margin-top: 10px">
+          <div class="col-11">
+            <p style="width: 100%">
               <span class="comment-byline"><span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span><br />
               <span><%= comment.body %></span>
               <% if current_user && current_user.admin %>
-              <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
-              <%= fa_icon "trash", class: "color-neutral color-neutral-hover" %>
-              <% end %><br />
+                <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
+                  <%= fa_icon "trash", class: "color-neutral color-neutral-hover" %>
+                <% end %><br />
               <% end %>
             </p>
+            <% if comment.user && comment.user.website_url && comment.user.website_name %>
+              <p>From <%= link_to comment.user.website_url do %><%= comment.user.website_name %><% end %>
+            <% end %>
+
+            <p class="color-self font-bold" id="replyCommentTarget<%= comment.id %>">Reply <i class="fas fa-reply"></i></p>
+
+            <% @responses = Response.where(comment_id: comment.id) %>
+            <% @responses.each do |response| %>
+              <div class="row">
+                <div class="col-1" style="padding: 0">
+                  <% if response.user && response.user.avatar.attached? %>
+                    <%= image_tag rails_blob_url(response.user.avatar), class: "img-fluid z-depth-1 rounded-circle", style: "width: 70px; height: 70px; object-fit: cover; margin-bottom: 20px" %>
+                  <% else %>
+                    <%= image_tag "missing_avatar.jpg", class: "img-fluid z-depth-1 rounded-circle", style: "width: 70px; height: 70px; object-fit: cover; margin-bottom: 10px" %>
+                  <% end %>
+                </div> <!-- img col -->
+                <div class="col-11">
+                  <p style="width: 100%">
+                    <span class="comment-byline"><span style="text-transform: capitalize"><%= response.name %></span> on <%= response.created_at.to_formatted_s(:long) %></span><br />
+                    <span><%= response.body %></span>
+                    <% if current_user && current_user.admin %>
+                      <%= link_to comment_response_path(comment, response), method: :delete, data: {confirm: "Are you sure you want to delete that response?"} do %>
+                        <%= fa_icon "trash", class: "color-neutral color-neutral-hover" %>
+                      <% end %><br />
+                    <% end %>
+                  </p>
+                </div> <!-- img col -->
+              </div> <!-- row -->
+            <% end %> <!-- comment each response show -->
+
+            <div class="new-response d-none" id="replyCommentField<%= comment.id %>">
+              <%= simple_form_for [comment, Response.new] do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs col-xs-12" style="margin-bottom: 10px">
+                  <%= f.text_area :body, class: "form-control", placeholder: "Reply to comment" %>
+                </div>
+
+                <% if @comment_user %>
+                  <%= f.hidden_field :name, value: [@comment_user.first_name, @comment_user.last_name].join(' ') %>
+                  <%= f.hidden_field :email, value: @comment_user.email %>
+                <% else %>
+                  <div class="row">
+                    <div class="form-inputs col-sm-6">
+                      <%= f.label "Your Name" %>
+                      <%= f.text_field :name, class: "form-control", required: true, placeholder: "e.g. Warren Buffett" %>
+                    </div>
+                    <div class="form-inputs col-sm-6">
+                      <%= f.label "Your Email (Not Displayed)" %>
+                      <%= f.text_field :email, class: "form-control", required: true, placeholder: "e.g. wbuffett@gmail.com" %>
+                    </div>
+                  </div> <!-- row -->
+                <% end %>
+
+                <div class="form-actions text-right">
+                  <div class="half-buffer"></div>
+                  <%= f.button :submit, "Reply", class: "btn btn-outline-danger submit-comment" %>
+                </div>
+              <% end %>
+            </div>
+
+            <script>
+              $(document).ready(function() {
+                $('#replyCommentTarget<%= comment.id %>').click(function() {
+                  $('#replyCommentField<%= comment.id %>').toggleClass('d-none');
+                });
+              });
+            </script>
+
           </div> <!-- img col -->
         </div> <!-- row -->
-    <% end %>
+    <% end %> <!-- comment each -->
 
     <div class="buffer"></div>
 
@@ -324,6 +393,9 @@
     });
     $('.submit-comment').click(function() {
         ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
+    });
+    $('#replyCommentTarget').click(function() {
+      $(#reply)
     });
   });
 </script>
