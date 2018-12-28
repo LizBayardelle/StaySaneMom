@@ -1,11 +1,12 @@
 <div class="container">
-    <h1 class="text-center">Editing Blog</h1>
+  <h1 class="text-center font-script color-spouse">Edit Blog</h1>
+</div> <!-- container -->
 
-    <%= render 'form', blog: @blog %>
 
-    <div class="half-buffer"></div>
+<%= render 'form', blog: @blog %>
 
-    <div class="text-center">
-      <%= link_to 'Show', @blog %> | <%= link_to 'Back', blogs_path %>
-    </div>
+
+<div class="container text-center">
+  <div class="half-buffer"></div>
+  <%= link_to 'Show', @blog %> | <%= link_to 'Back', blogs_path %>
 </div> <!-- container -->

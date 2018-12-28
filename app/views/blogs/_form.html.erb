@@ -1,18 +1,19 @@
 <%= simple_form_for(@blog) do |f| %>
+
+<div class="container"> <!-- header -->
+  <p class="text-center">Editing as
+    <% if current_user.admin %>Admin<% elsif current_user.contributor %>Contributor<% end %>
+  </p>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+</div> <!-- header container -->
 
+<%= render "layouts/quadborder" %>
+
+<div class="container">
+  <div class="half-buffer"></div>
+  <h2 class="text-center">Basic Blog Info</h2>
   <div class="form-inputs">
-    <div class="form-group">
-      <%= f.input :category, collection: [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
-    </div>
-    <div class="form-group">
-      <%= f.input :subcategory, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: "Subcategory", include_blank: false, selected: @blog.subcategory_id %>
-    </div>
-
-    <%= f.input :published %>
-    <%= f.input :affiliate_links %>
-
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
@@ -22,13 +23,86 @@
       <%= f.text_area :teaser, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :tag_list %>
+      <%= f.label "Tag List (Comma Separated List of Topics)" %>
       <%= f.text_field :tag_list, value: @blog.tag_list.join(", "), class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :body %>
+      <%= f.input :category, collection: [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
+    </div>
+    <div class="form-group">
+      <%= f.input :subcategory, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: "Subcategory", include_blank: false, selected: @blog.subcategory_id %>
+    </div>
+    <% if current_user.admin %>
+      <div class="form-group">
+        <%= f.label "Blog Image" %><br />
+        <%= f.file_field :image %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Pinterest Images" %><br />
+        <%= f.file_field :pin_image, multiple: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Pinterest Description" %>
+        <%= f.text_area :data_pin_description, class: "form-control" %>
+      </div>
+    <% end %> <!-- end admin only images section -->
+  </div> <!-- form inputs -->
+</div> <!-- basic blog info container -->
+
+<%= render "layouts/quadborder" %>
+
+<div class="container">
+  <div class="half-buffer"></div>
+  <h2 class="text-center">Blog Permissions/Status</h2>
+
+  <div class="form-inputs">
+    <div class="form-group">
+      <% if current_user.contributor %>
+        <h5>Contributor Actions</h5>
+        <% if @blog.submitted %>
+          <p>This blog has already been submitted as a final draft.  Please contact an admin if you need to make any changes.</p>
+        <% else %>
+          <%= f.input :submitted, label: "Submit Blog as Final Draft (Cannot be Undone without Admin Assistance)" %>
+        <% end %>
+      <% end %>
+    </div> <!-- form group -->
+    <% if current_user.admin %>
+      <h5>Admin Actions</h5>
+      <div class="form-group">
+        <%= f.input :approved %>
+        <%= f.input :published %>
+        <%= f.input :affiliate_links, label: "This blog contains affiliate links." %>
+      </div> <!-- form group -->
+      <div class="form-group">
+        <%= f.label :published_on %>
+        <input type="text" class="form-control datepicker" data-datepicker-holder="#dateHolder"/>
+        <%= f.hidden_field :published_on, id: "dateHolder", class: "hiddenDateField" %>
+      </div> <!-- form group -->
+    <% end %>
+  </div> <!-- form inputs -->
+</div> <!-- basic blog info container -->
+
+<%= render "layouts/quadborder" %>
+
+<div class="container">
+  <div class="half-buffer"></div>
+  <h2 class="text-center">The Blog Itself</h2>
+
+  <div class="form-inputs">
+    <div class="form-group">
       <%= f.text_area :body, id: "wysiwyg" %>
     </div>
+  </div> <!-- form inputs -->
+</div> <!-- basic blog info container -->
+
+<%= render "layouts/quadborder" %>
+
+<% if current_user.admin %>
+<div class="container">
+  <div class="half-buffer"></div>
+  <h2 class="text-center">CTAs and Media</h2>
+
+  <div class="form-inputs">
     <div class="row">
       <div class="form-group col-sm-4">
         <%= f.label "Read More CTA" %>
@@ -55,6 +129,18 @@
         <%= f.text_field :video_link, class: "form-control" %>
       </div>
     </div> <!-- row -->
+  </div> <!-- form inputs -->
+</div> <!-- basic blog info container -->
+
+<%= render "layouts/quadborder" %>
+<% end %> <!-- end admin only -->
+
+<div class="container">
+  <div class="half-buffer"></div>
+  <h2 class="text-center">Freebie Info</h2>
+
+  <div class="form-inputs">
+    <% if current_user.admin %>
     <div class="form-group">
       <%= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
       <%= f.text_field :freebie_filename, class: "form-control" %>
@@ -63,37 +149,26 @@
       <%= f.label "Freebie Title (Plaintext)" %>
       <%= f.text_field :freebie_description, class: "form-control" %>
     </div>
+    <% end %>
     <div class="form-group">
+      <h2 class="color-spouse">TECH GLITCH: Please mark this to "None"!</h2>
       <%= f.label "Freebie Type" %>
       <%= f.select :freebie_type, [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
     </div>
-    <div class="form-group">
-      <%= f.label "Blog Image" %><br />
-      <%= f.file_field :image %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Pinterest Image" %><br />
-      <%= f.file_field :pin_image, multiple: true %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Pinterest Description" %>
-      <%= f.text_area :data_pin_description, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Linked PDF" %><br />
-      <%= f.file_field :pdf %>
-    </div>
-    <div class="form-group">
-      <%= f.label :published_on %>
-      <input type="text" class="form-control datepicker" data-datepicker-holder="#dateHolder"/>
-      <%= f.hidden_field :published_on, id: "dateHolder", class: "hiddenDateField" %>
-    </div> <!-- col -->
+  </div> <!-- form inputs -->
+</div> <!-- container -->
 
-  </div>
+<%= render "layouts/quadborder" %>
+
+<div class="container">
+  <div class="half-buffer"></div>
 
   <div class="form-actions text-center">
+    <p>Unless you checked the "Submit Blog as Final Draft" checkbox, this will be saved as a <strong>draft</strong>.<br />You can find and edit it at any time from your <%= link_to "My Account", user_path(current_user) %> page if you want to make changes.</p>
     <%= f.button :submit, class: "btn-outline-danger" %>
   </div>
+</div> <!-- container -->
+
 <% end %>
 
 

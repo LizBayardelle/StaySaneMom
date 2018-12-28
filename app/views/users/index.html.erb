@@ -41,6 +41,8 @@
     <table>
       <th>
         <td class="font-bold">Member</td>
+        <td class="font-bold">Status</td>
+        <td class="font-bold">Social Media</td>
         <td class="font-bold">Participation</td>
         <td class="font-bold">Contributions</td>
       </th>
@@ -50,15 +52,79 @@
             <%= user.id %>
           </td>
           <td>
-            <%= user.first_name %> <%= user.last_name %><br />
+            <%= link_to user_path(user) do %>
+              <span class="font-bold color-spouse"><%= user.first_name %> <%= user.last_name %><br /></span>
+            <% end %>
             <%= mail_to user.email %>
+          </td>
+          <td>
+            <% if user.admin %>
+              <span class="font-bold"><i class="fas fa-user-check color-self"></i> Admin</span><br />
+            <% end %>
+            <% if user.contributor %>
+              <span class="font-bold"><i class="fas fa-user-check color-spouse"></i> Contributor</span>
+            <% else %>
+              <%= link_to approve_contributor_path(user), method: :post do %>
+                 <% if user.contributor_request %>
+                  <i class="fas fa-exclamation color-spouse"></i>
+                <% end %>
+                  Make Contributor
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if user.sm_approved %>
+              <span class="font-bold"><i class="fas fa-user-check color-spouse"></i> SM Approved</span>
+            <% else %>
+            <% sm_not_blank = user.website_name || user.website_url || user.sm_facebook || user.sm_pinterest || user.sm_instagram || user.sm_twitter || user.sm_youtube || user.sm_email || user.sm_other %>
+              <% if sm_not_blank && user.sm_approved == false %>
+                <%= link_to approve_sm_path(user), method: :post do %>
+                  <span class="font-bold"><i class="fas fa-exclamation color-spouse"></i> Approve SM Links</span><br />
+                  <% if user.website_name %>
+                    <%= user.website_name %><br />
+                  <% end %>
+                  <% if user.website_url %>
+                    <%= link_to user.website_url %><br />
+                  <% end %>
+                  <% if user.sm_facebook %>
+                    <%= link_to user.sm_facebook %><br />
+                  <% end %>
+                  <% if user.sm_pinterest %>
+                    <%= link_to user.sm_pinterest %><br />
+                  <% end %>
+                  <% if user.sm_instagram %>
+                    <%= link_to user.sm_instagram %><br />
+                  <% end %>
+                  <% if user.sm_twitter %>
+                    <%= link_to user.sm_twitter %><br />
+                  <% end %>
+                  <% if user.sm_youtube %>
+                    <%= link_to user.sm_youtube %><br />
+                  <% end %>
+                  <% if user.sm_email %>
+                    <%= mail_to user.sm_email %><br />
+                  <% end %>
+                  <% if user.sm_other %>
+                    <%= link_to user.sm_other %><br />
+                  <% end %>
+                <% end %>
+              <% else %>
+                None
+              <% end %>
+            <% end %>
           </td>
           <td>
             <%= pluralize(user.comments.count, "Comment") %>
           </td>
           <td>
-            <%= pluralize(user.blogs.where(published: true).count, "Published Blogs") %><br />
-            <%= pluralize(user.blogs.where(published: false).count, "Unublished Blogs") %>
+            <% if user.contributor %>
+              <%= pluralize(user.blogs.where(published: true).count, "Published Blog") %><br />
+              <%= pluralize(user.blogs.where(published: false, approved: true, submitted: true).count, "Approved Blog") %><br />
+              <%= pluralize(user.blogs.where(published: false, approved: false, submitted: true).count, "Submitted Blog") %><br />
+              <%= pluralize(user.blogs.where(published: false, approved: false, submitted: false).count, "WIP Blog") %>
+            <% else %>
+              Not a Contributor
+            <% end %>
           </td>
         </tr>
       <% end %>

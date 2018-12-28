@@ -1,6 +1,12 @@
-<div class="container">
-  <h1 class="text-center" style="font-weight: 700">Guest Post Ideas</h1>
+<h1 class="text-center font-script">Guest Post Dashboard</h1>
 
+<%= render "layouts/quadborder" %>
+
+<div class="container">
+
+  <div class="half-buffer"></div>
+
+  <h2 class="text-center font-script color-spouse">Guest Post Ideas</h2>
   <% if @contributions.count != 0 %>
     <table class="lined-table">
       <thead>
@@ -43,4 +49,78 @@
     <p>You currently have no outstanding guest post ideas.</p>
   <% end %>
 
+</div> <!-- container -->
+
+<%= render "layouts/quadborder" %>
+
+<div class="container">
+
+  <div class="half-buffer"></div>
+
+  <% @wip_blogs = [] %>
+  <% @submitted_blogs = [] %>
+  <% @approved_blogs = [] %>
+  <% @published_blogs = [] %>
+  <% @blogs.each do |blog| %>
+    <% if blog.user.contributor && !blog.user.admin %>
+      <% if !blog.submitted %>
+        <% @wip_blogs << blog %>
+      <% end %>
+      <% if blog.submitted && !blog.approved %>
+        <% @submitted_blogs << blog %>
+      <% end %>
+      <% if blog.approved && !blog.published %>
+        <% @approved_blogs << blog %>
+      <% end %>
+      <% if blog.published && blog.published_on >= Date.today %>
+        <% @published_blogs << blog %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h2 class="text-center font-script color-spouse">Current Guest Posts</h2>
+
+  <h3>WIP Guest Posts</h3>
+  <% if @wip_blogs.count != 0 %>
+    <ul>
+      <% @wip_blogs.each do |blog| %>
+        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You currently have no WIP guest posts.</p>
+  <% end %>
+
+  <h3>Submitted Guest Posts</h3>
+  <% if @submitted_blogs.count != 0 %>
+    <ul>
+      <% @submitted_blogs.each do |blog| %>
+        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %> (<%= link_to "Approve Blog", approve_blog_path(blog), method: :post %>&nbsp; | &nbsp;<%= link_to "Unsubmit Blog", unsubmit_blog_path(blog), method: :post %>)</li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You currently have no submitted guest posts.</p>
+  <% end %>
+
+  <h3>Approved Guest Posts</h3>
+  <% if @approved_blogs.count != 0 %>
+    <ul>
+      <% @approved_blogs.each do |blog| %>
+        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You currently have no accepted guest posts.</p>
+  <% end %>
+
+  <h3>Published Guest Posts</h3>
+  <% if @published_blogs.count != 0 %>
+    <ul>
+      <% @published_blogs.each do |blog| %>
+        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You currently have no published guest posts.</p>
+  <% end %>
 </div> <!-- container -->

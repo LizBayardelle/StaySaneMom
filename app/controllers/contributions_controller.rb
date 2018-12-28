@@ -2,12 +2,13 @@ class ContributionsController < ApplicationController
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :destroy]
   before_action :admin_only, only: [:index, :destroy]
-
+  layout "application-alt", only: [:index]
 
   # GET /contributions
   # GET /contributions.json
   def index
     @contributions = Contribution.all
+    @blogs = Blog.all
   end
 
   # GET /contributions/1

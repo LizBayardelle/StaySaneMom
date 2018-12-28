@@ -14,7 +14,7 @@
   </div> <!-- container -->
   <div class="over-frame-bottom-row text-center">
     <div class="container">
-      <% if current_user && current_user.admin %>
+      <% if current_user && (current_user.admin || current_user.contributor) %>
         <div class="half-buffer"></div>
         <%= link_to 'New Blog', new_blog_path, class: "btn my-btn-outline-secondary" %>
         <div class="buffer"></div>

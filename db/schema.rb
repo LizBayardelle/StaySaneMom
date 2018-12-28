@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_211437) do
+ActiveRecord::Schema.define(version: 2018_12_27_040403) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2018_12_26_211437) do
     t.integer "comments_count"
     t.integer "subcategory_id"
     t.boolean "affiliate_links", default: true
+    t.boolean "approved", default: false
+    t.boolean "submitted", default: false
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
@@ -244,6 +246,7 @@ ActiveRecord::Schema.define(version: 2018_12_26_211437) do
     t.boolean "contributor", default: false
     t.boolean "contributor_request", default: false
     t.boolean "sm_approved", default: false
+    t.boolean "sm_needs_approval", default: true
     t.index ["avatar_id"], name: "index_users_on_avatar_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

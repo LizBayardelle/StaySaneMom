@@ -1,7 +1,10 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
-  before_action :admin_only, only: %i[new create update edit destroy]
+  before_action :admin_or_contributor, only: %i[new create]
+  before_action :admin_or_author, only: %i[update edit]
+  before_action :admin_only, only: %i[destroy]
+  layout "application-alt", only: [:index, :show, :new, :edit]
 
   # GET /blogs
   # GET /blogs.json
@@ -78,7 +81,6 @@ class BlogsController < ApplicationController
     pin_images = params[:blog][:pin_image]
     @subcategories = Subcategory.all
 
-
     if pin_images
       @blog.pin_image.purge
       @blog.pin_image.attach(pin_images)
@@ -129,12 +131,49 @@ class BlogsController < ApplicationController
     end
   end
 
+  def approve_blog
+    @blog = Blog.friendly.find(params[:id])
+    if @blog.update_attributes(approved: true)
+        redirect_to contributions_path
+        flash[:notice] = "That blog is now approved!"
+    else
+        redirect_to contributions_path
+        flash[:warning] = "Oops! Something went wrong!"
+    end
+  end
+
+  def unsubmit_blog
+    @blog = Blog.friendly.find(params[:id])
+    if @blog.update_attributes(submitted: false)
+        redirect_to contributions_path
+        flash[:notice] = "That blog no longer submitted!"
+    else
+        redirect_to contributions_path
+        flash[:warning] = "Oops! Something went wrong!"
+    end
+  end
+
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_blog
     @blog = Blog.friendly.find(params[:id])
   end
+
+  def admin_or_contributor
+    unless (current_user && current_user.admin) || (current_user && current_user.contributor)
+      redirect_to root_path, notice: 'Sorry, you have to be a contributor or admin to do that!'
+    end
+  end
+
+  def admin_or_author
+    @blog = Blog.friendly.find(params[:id])
+    unless (current_user && current_user.admin) || (current_user && current_user == @blog.user && @blog.submitted == false)
+      redirect_to root_path, notice: "Sorry, you can't edit that blog right now."
+    end
+  end
+
 
   def admin_only
     unless current_user && current_user.admin
@@ -169,6 +208,8 @@ class BlogsController < ApplicationController
                   :pdf,
                   :slug,
                   :comments_count,
+                  :approved,
+                  :submitted,
                   :tag_list)
   end
 end

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show, :index]
+   post "users/:id/approve_contributor" => "users#approve_contributor", as: "approve_contributor"
+   post "users/:id/approve_sm" => "users#approve_sm", as: "approve_sm"
+
 
   get 'home/index'
   get 'home/house'
@@ -20,6 +23,10 @@ Rails.application.routes.draw do
       get :autocomplete
     end
   end
+  post "blogs/:id/approve_blog" => "blogs#approve_blog", as: "approve_blog"
+  post "blogs/:id/unsubmit_blog" => "blogs#unsubmit_blog", as: "unsubmit_blog"
+
+
   resources :comments do
     resources :responses
   end

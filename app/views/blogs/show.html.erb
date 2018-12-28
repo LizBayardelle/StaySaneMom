@@ -68,15 +68,21 @@
     <% end %>
 
     <h4 class="text-center"><%= @blog.teaser %></h4>
-    <% if @blog.published != false %>
       <p class="text-center">
-        <strong>Topics:
-          <%= raw @blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </strong><br />
-        Published in <%#= @blog.subcategory.name %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %></p>
-    <% end %>
+        <strong>Written by <%= link_to user_path(@blog.user) do %>
+          <%= @blog.user.first_name %> <%= @blog.user.last_name %>
+        <% end %>
+        &nbsp; | &nbsp;
+        <% if @blog.user.admin %>
+          <i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+        <% elsif @blog.user.contributor %>
+          <i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+        <% end %></strong><br />
+        <% if @blog.published != false %>Published <%#= @blog.subcategory.name %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %><br /><% end %>
+      </p>
   </div> <!-- container -->
 
+<% if @blog.published != false %>
 
 <!-- Social Buttons -->
   <% case @blog.category %>
@@ -102,12 +108,13 @@
     </div> <!-- color stripe -->
 
 <!-- end Social Buttons -->
+<% end %> <!-- end skip if unpublished -->
 
 
 
   <div class="half-buffer"></div>
 
-  <% if @blog.video_link != "" %>
+  <% if @blog.video_link != nil && @blog.video_link != "" %>
     <div class="text-center">
       <iframe width="560" height="315" rel=0 src="<%= @blog.video_link %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div class="half-buffer"></div>
@@ -153,7 +160,7 @@
   </div> <!-- container -->
 
 <!-- admin links -->
-  <% if current_user && current_user.admin %>
+  <% if (current_user && current_user.admin) || (current_user && current_user == @blog.user) %>
   <div class="text-center">
     <div class="half-buffer"></div>
     <%= link_to 'Edit', edit_blog_path(@blog) %> |
@@ -162,10 +169,10 @@
   <% end %>
 <!-- end admin links -->
 
-<div class="half-buffer"></div>
 
 <!-- freebie -->
-    <% if @blog.freebie_type != "None" %>
+  <% if @blog.freebie_type != "None" %>
+    <div class="half-buffer"></div>
     <div class="bg-neutral">
       <div class="container text-center">
 
@@ -191,7 +198,7 @@
     <% end %>
 <!-- end freebie -->
 
-  <div class="half-buffer"></div>
+<div class="half-buffer"></div>
 
 <!-- sharing links -->
   <div class="container padded text-center">
@@ -240,7 +247,7 @@
         </div> <!-- container -->
       </div> <!-- bg row -->
 
-
+<% if @blog.published != false %>
 
   <div class="container"> <!-- comments container -->
     <div class="new-comment">
@@ -251,7 +258,7 @@
         <h2 class="text-center font-script">Give Your Two Cents!</h2>
 
         <div class="form-inputs col-xs-12" style="margin-bottom: 10px">
-          <%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
+          <%= f.text_area :body, class: "form-control", placeholder: "Add a comment", required: true %>
         </div>
 
         <% if @comment_user %>
@@ -269,6 +276,9 @@
             </div>
           </div> <!-- row -->
         <% end %>
+        <% if !current_user %>
+          <p style="margin-top: 15px">To display a link to your website along with your comment, <%= link_to "create an account", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %>.</p>
+        <% end %>
 
         <div class="form-actions text-right">
           <div class="half-buffer"></div>
@@ -280,7 +290,7 @@
     <h2 class="color-neutral"><%= pluralize(@comments.count, "Comment") %></h2>
     <% @comments.each do |comment| %>
         <div class="row">
-          <div class="col-1" style="padding: 0">
+          <div class="col-1 text-right" style="padding: 0">
             <% if comment.user && comment.user.avatar.attached? %>
               <%= image_tag rails_blob_url(comment.user.avatar), class: "img-fluid z-depth-1 rounded-circle", style: "width: 70px; height: 70px; object-fit: cover; margin-bottom: 10px" %>
             <% else %>
@@ -288,8 +298,8 @@
             <% end %>
           </div> <!-- img col -->
           <div class="col-11">
-            <p style="width: 100%">
-              <span class="comment-byline"><span style="text-transform: capitalize"><%= comment.name %></span> on <%= comment.created_at.to_formatted_s(:long) %></span><br />
+            <h5 class="comment-byline" style="text-transform: capitalize; margin-bottom: 0px"><%= comment.name %> on <%= comment.created_at.strftime("%b %d, %Y") %></h5>
+            <p style="width: 100%; margin-bottom: 0px">
               <span><%= comment.body %></span>
               <% if current_user && current_user.admin %>
                 <%= link_to blog_comment_path(@blog, comment), method: :delete, data: {confirm: "Are you sure you want to delete that comment?"} do %>
@@ -297,8 +307,18 @@
                 <% end %><br />
               <% end %>
             </p>
-            <% if comment.user && comment.user.website_url && comment.user.website_name %>
-              <p>From <%= link_to comment.user.website_url do %><%= comment.user.website_name %><% end %>
+            <% if comment.user %>
+              <p style="width: 100%; margin-bottom: 0px"><em><small>
+                <% if comment.user.website_url && comment.user.website_name %>
+                  From <%= link_to comment.user.website_url do %><%= comment.user.website_name %><% end %>
+                <% end %>
+                <% if comment.user.contributor && comment.user.id != 1 %>
+                  &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+                <% end %>
+                <% if comment.user.id == 1 %>
+                  &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+                <% end %>
+              </small></em></p>
             <% end %>
 
             <p class="color-self font-bold" id="replyCommentTarget<%= comment.id %>">Reply <i class="fas fa-reply"></i></p>
@@ -306,7 +326,7 @@
             <% @responses = Response.where(comment_id: comment.id) %>
             <% @responses.each do |response| %>
               <div class="row">
-                <div class="col-1" style="padding: 0">
+                <div class="col-1 text-right" style="padding: 0">
                   <% if response.user && response.user.avatar.attached? %>
                     <%= image_tag rails_blob_url(response.user.avatar), class: "img-fluid z-depth-1 rounded-circle", style: "width: 70px; height: 70px; object-fit: cover; margin-bottom: 20px" %>
                   <% else %>
@@ -314,8 +334,8 @@
                   <% end %>
                 </div> <!-- img col -->
                 <div class="col-11">
-                  <p style="width: 100%">
-                    <span class="comment-byline"><span style="text-transform: capitalize"><%= response.name %></span> on <%= response.created_at.to_formatted_s(:long) %></span><br />
+                  <h5 class="comment-byline" style="text-transform: capitalize; margin-bottom: 0px"><%= response.name %> on <%= response.created_at.strftime("%b %d, %Y") %></h5>
+                  <p style="width: 100%; margin-bottom: 0px">
                     <span><%= response.body %></span>
                     <% if current_user && current_user.admin %>
                       <%= link_to comment_response_path(comment, response), method: :delete, data: {confirm: "Are you sure you want to delete that response?"} do %>
@@ -323,6 +343,19 @@
                       <% end %><br />
                     <% end %>
                   </p>
+                  <% if response.user %>
+                    <p style="width: 100%; margin-bottom: 0px"><em><small>
+                      <% if response.user.website_url && response.user.website_name %>
+                        From <%= link_to response.user.website_url do %><%= response.user.website_name %><% end %>
+                      <% end %>
+                      <% if response.user.contributor && response.user.id != 1 %>
+                        &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+                      <% end %>
+                      <% if response.user.id == 1 %>
+                        &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+                      <% end %>
+                    </small></em></p>
+                  <% end %>
                 </div> <!-- img col -->
               </div> <!-- row -->
             <% end %> <!-- comment each response show -->
@@ -332,7 +365,7 @@
                 <%= f.error_notification %>
 
                 <div class="form-inputs col-xs-12" style="margin-bottom: 10px">
-                  <%= f.text_area :body, class: "form-control", placeholder: "Reply to comment" %>
+                  <%= f.text_area :body, class: "form-control", placeholder: "Reply to comment", required: true %>
                 </div>
 
                 <% if @comment_user %>
@@ -349,6 +382,9 @@
                       <%= f.text_field :email, class: "form-control", required: true, placeholder: "e.g. wbuffett@gmail.com" %>
                     </div>
                   </div> <!-- row -->
+                <% end %>
+                <% if !current_user %>
+                  <p style="margin-top: 15px">To display a link to your website along with your response, <%= link_to "create an account", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %>.</p>
                 <% end %>
 
                 <div class="form-actions text-right">
@@ -369,15 +405,13 @@
           </div> <!-- img col -->
         </div> <!-- row -->
     <% end %> <!-- comment each -->
+<% end %> <!-- end skip if unpublished -->
 
     <div class="buffer"></div>
 
-    <div class="container">
-      <h2 class="text-center font-script">About the Author</h2>
-      <%= render partial: "layouts/biobox", locals: { user: @blog.user } %>
-    </div> <!-- container -->
+    </div> <!-- page container -->
+      <%= render partial: "layouts/biobox", locals: { user: @blog.user, header: "About the Author" } %>
 
-  </div> <!-- page container -->
 </div> <!-- row -->
 
 <script>

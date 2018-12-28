@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "application-alt", only: [:index]
+  layout "application-alt", only: [:index, :show]
   before_action :authenticate_user!, except: %i[show]
 
   def show
@@ -38,5 +38,27 @@ class UsersController < ApplicationController
     @subscribers = @client.subscribers.body
     @sequences = @client.sequences.body['courses']
     @tags = @client.tags.body['tags']
+  end
+
+  def approve_contributor
+    @user = User.find(params[:id])
+    if @user.update_attributes(contributor: true)
+        redirect_to users_path
+        flash[:notice] = "That user is now a contributor!"
+    else
+        redirect_to users_path
+        flash[:warning] = "Oops! Something went wrong!"
+    end
+  end
+
+  def approve_sm
+    @user = User.find(params[:id])
+    if @user.update_attributes(sm_approved: true)
+        redirect_to users_path
+        flash[:notice] = "That SM is officially legit!"
+    else
+        redirect_to users_path
+        flash[:warning] = "Oops! Something went wrong!"
+    end
   end
 end
