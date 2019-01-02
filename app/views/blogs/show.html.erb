@@ -7,7 +7,7 @@
     <meta property="og:title" content="<%= @blog.title %>" />
     <meta property="og:description" content="<% if @blog.data_pin_description != "" %><%= @blog.data_pin_description %><% else %><%= @blog.teaser %><% end %>" />
     <meta property="og:image" content="<%= rails_blob_url(@blog.image) if @blog.image.attached? %>" />
-    <% if @blog.published %><meta property="article:published_time" content="<%= @blog.published_on.strftime('%FT%T') %>" /><% end %>
+    <% if @blog.published_on %><meta property="article:published_time" content="<%= @blog.published_on.strftime('%FT%T') %>" /><% end %>
     <meta property="article:author" content="<%= @blog.user.first_name %> <%= @blog.user.last_name %>" />
   <% end %>
 <!-- page-specific content -->
@@ -78,7 +78,7 @@
         <% elsif @blog.user.contributor %>
           <i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
         <% end %></strong><br />
-        <% if @blog.published != false %>Published <%#= @blog.subcategory.name %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %><br /><% end %>
+        <% if @blog.published_on %>Published <%#= @blog.subcategory.name %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
       </p>
   </div> <!-- container -->
 

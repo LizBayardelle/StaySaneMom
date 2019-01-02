@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_action :admin_or_contributor, only: %i[new create]
   before_action :admin_or_author, only: %i[update edit]
   before_action :admin_only, only: %i[destroy]
-  layout "application-alt", only: [:index, :show, :new, :edit]
+  layout "application-alt", only: [:index, :show, :new, :edit, :all]
 
   # GET /blogs
   # GET /blogs.json
@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
   def show
     @user = User.where(id: @blog.user_id).first
     @comment = Comment.create
-    @comments = Comment.where(blog_id: @blog.id)
+    @comments = Comment.where(blog_id: @blog.id).order("created_at DESC")
     @response = Response.create
     if current_user
       @comment_user = current_user
@@ -77,6 +77,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+
     image = blog_params[:image]
     pin_images = params[:blog][:pin_image]
     @subcategories = Subcategory.all

@@ -15,6 +15,10 @@ class HomeController < ApplicationController
   end
 
 
+  def allblogs
+    @blogs = Blog.order('created_at DESC')
+  end
+
   def house
     @all_house_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).order("published_on DESC")
     @recent_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).order("published_on DESC").limit(3)

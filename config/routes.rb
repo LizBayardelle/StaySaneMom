@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'home/self'
   get 'home/tools'
   get 'home/results'
+  get 'home/allblogs'
 
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
   end
   post "blogs/:id/approve_blog" => "blogs#approve_blog", as: "approve_blog"
   post "blogs/:id/unsubmit_blog" => "blogs#unsubmit_blog", as: "unsubmit_blog"
-
 
   resources :comments do
     resources :responses
