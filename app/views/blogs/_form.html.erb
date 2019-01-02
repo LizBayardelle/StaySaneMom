@@ -57,7 +57,7 @@
 
   <div class="form-inputs">
     <div class="form-group">
-      <% if current_user.contributor %>
+      <% if @blog.user.contributor %>
         <h5>Contributor Actions</h5>
         <% if @blog.submitted %>
           <p>This blog has already been submitted as a final draft.  Please contact an admin if you need to make any changes.</p>
@@ -69,7 +69,9 @@
     <% if current_user.admin %>
       <h5>Admin Actions</h5>
       <div class="form-group">
-        <%= f.input :approved %>
+        <% if @blog.user.contributor %>
+          <%= f.input :approved %>
+        <% end %>
         <%= f.input :published %>
         <%= f.input :affiliate_links, label: "This blog contains affiliate links." %>
       </div> <!-- form group -->

@@ -55,6 +55,7 @@ $(document).on("ready page:load", function() {
   $('input.datepicker').each(function() {
     $(this).data({behaviour: "datepicker"}).datepicker({ altFormat: "yy-mm-dd", altField: $(this).data('datepicker-holder')});
   });
+  console.log("Reaches end of datepicker JS");
 });
 
 
@@ -70,5 +71,6 @@ $(document).on('page:change', function() {
 
 
 
+
 // NAVBARS MDBootstrap
-console.log("Testing JS app");
+console.log("Reaches End of Application.js");
