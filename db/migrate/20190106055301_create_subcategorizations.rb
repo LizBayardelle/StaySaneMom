@@ -1,5 +1,6 @@
 class CreateSubcategorizations < ActiveRecord::Migration[5.2]
   def change
+    drop_table :subcategories
     create_table :subcategories do |t|
       t.string :name
       t.timestamps
