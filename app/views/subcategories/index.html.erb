@@ -6,28 +6,20 @@
 
   <h1 class="text-center font-script">Subcategories</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>
-          <strong>Name (Category)</strong><br />
-        </th>
-        <th>Active</th>
-        <th colspan="3">Actions</th>
-      </tr>
-    </thead>
+  <div class="half-buffer"></div>
 
+  <table>
     <tbody>
       <% @subcategories.each do |subcategory| %>
         <tr>
           <td>
-            <strong><%= subcategory.category %> &nbsp;:: &nbsp;<%= link_to subcategory.name, subcategory %></strong><br />
+            <%= link_to subcategory.category + " :: " + subcategory.name, subcategory, class: "color-spouse boldest" %><br />
             <%= subcategory.description %>
           </td>
-          <td><%= if subcategory.active then "Active" else "Inactive" end %></td>
-          <td></td>
-          <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
-          <td><%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <span class="boldest"><%= if subcategory.active then "Active" else "Inactive" end %></span><br />
+            <%= link_to 'Edit', edit_subcategory_path(subcategory) %>&nbsp; | &nbsp;
+            <%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

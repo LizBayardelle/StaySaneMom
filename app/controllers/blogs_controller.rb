@@ -28,6 +28,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @subcategory = Subcategory.where(id: @blog.subcategory_id).first
     @user = User.where(id: @blog.user_id).first
     @comment = Comment.create
     @comments = Comment.where(blog_id: @blog.id).order("created_at DESC")
@@ -197,13 +198,13 @@ class BlogsController < ApplicationController
                   :freebie_description,
                   :convertkit_href,
                   :category,
+                  :subcategory_id,
                   :linked_module,
                   :data_pin_description,
                   :pin_image,
                   :published,
                   :published_on,
                   :user_id,
-                  :subcategory_id,
                   :affiliate_links,
                   :image,
                   :pdf,

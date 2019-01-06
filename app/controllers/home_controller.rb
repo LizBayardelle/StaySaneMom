@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout "application-alt", except: [:index]
+
   def index
     @blogs = Blog.where("published_on <= ?", Date.today).order("published_on DESC").limit(3)
     @all_blogs = Blog.where("published_on <= ?", Date.today).order("published_on DESC")

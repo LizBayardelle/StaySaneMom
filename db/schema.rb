@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_040403) do
+ActiveRecord::Schema.define(version: 2019_01_06_060246) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -171,11 +171,21 @@ ActiveRecord::Schema.define(version: 2018_12_27_040403) do
 
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
-    t.string "category"
-    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
     t.text "description"
+    t.boolean "active", default: true
+  end
+
+  create_table "subcategorizations", force: :cascade do |t|
+    t.integer "subcategory_id"
+    t.integer "blog_id"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_subcategorizations_on_blog_id"
+    t.index ["subcategory_id"], name: "index_subcategorizations_on_subcategory_id"
   end
 
   create_table "taggings", force: :cascade do |t|

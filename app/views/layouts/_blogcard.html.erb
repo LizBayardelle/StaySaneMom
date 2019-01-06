@@ -2,20 +2,20 @@
   <div class="blog-card">
     <% case blog.category %>
     <% when "House" %>
-      <div class="house transparent-hover contents">
-        <div class="flag">House</div>
+      <div class="house transparent-hover">
+        <div class="flag"><% if Subcategory.where(id: blog.subcategory_id) != [] %><%= Subcategory.where(id: blog.subcategory_id).first.name %><% else %>House<% end %></div>
     <% when "Spouse" %>
-      <div class="spouse transparent-hover contents">
-        <div class="flag">Spouse</div>
+      <div class="spouse transparent-hover">
+        <div class="flag"><% if Subcategory.where(id: blog.subcategory_id) != [] %><%= Subcategory.where(id: blog.subcategory_id).first.name %><% else %>Spouse<% end %></div>
     <% when "Kids" %>
-      <div class="kids transparent-hover contents">
-        <div class="flag">Kids</div>
+      <div class="kids transparent-hover">
+        <div class="flag"><% if Subcategory.where(id: blog.subcategory_id) != [] %><%= Subcategory.where(id: blog.subcategory_id).first.name %><% else %>Kids<% end %></div>
     <% when "Self" %>
-      <div class="self transparent-hover contents">
-        <div class="flag">Self</div>
+      <div class="self transparent-hover">
+        <div class="flag"><% if Subcategory.where(id: blog.subcategory_id) != [] %><%= Subcategory.where(id: blog.subcategory_id).first.name %><% else %>Self<% end %></div>
     <% else %>
-      <div class="other transparent-hover contents neutral">
-        <div class="flag">General</div>
+      <div class="other transparent-hover neutral">
+        <div class="flag"><% if Subcategory.where(id: blog.subcategory_id) != [] %><%= Subcategory.where(id: blog.subcategory_id).first.name %><% else %>General<% end %></div>
     <% end %>
         <div class="height small-blog-frame" style="background-image: url(<%= rails_blob_url(blog.image) if blog.image.attached? %>)">
           <% case blog.category %>
@@ -35,9 +35,9 @@
             <h5><%= blog.title %></h5>
             <p class="published-on">
               <small>
-              <%= blog.subcategory %>
-                In <%#= Subcategory.where(id: blog.subcategory_id).first.name %>
-              <%# end %>
+              <% if Subcategory.where(id: blog.subcategory_id) != [] %>
+                In <%= Subcategory.where(id: blog.subcategory_id).first.name %> &nbsp | &nbsp;
+              <% end %>
               <%= pluralize(blog.comments.count, "Comment") %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
               <% if current_user && current_user.admin %>
                   <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>

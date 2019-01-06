@@ -1,5 +1,6 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
+  layout "application-alt"
 
   # GET /subcategories
   # GET /subcategories.json
@@ -69,6 +70,11 @@ class SubcategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subcategory_params
-      params.require(:subcategory).permit(:name, :category, :description, :active)
+      params.require(:subcategory).permit(
+        :name,
+        :active,
+        :description,
+        :category,
+        :blog_id)
     end
 end
