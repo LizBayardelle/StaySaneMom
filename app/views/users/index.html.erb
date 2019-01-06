@@ -63,7 +63,7 @@
             <% end %>
             <% if user.contributor %>
               <span class="font-bold"><i class="fas fa-user-check color-spouse"></i> Contributor</span>
-            <% else %>
+            <% elsif !user.admin %>
               <%= link_to approve_contributor_path(user), method: :post do %>
                  <% if user.contributor_request %>
                   <i class="fas fa-exclamation color-spouse"></i>
@@ -117,13 +117,15 @@
             <%= pluralize(user.comments.count, "Comment") %>
           </td>
           <td>
-            <% if user.contributor %>
+            <% if user.contributor || user.admin %>
               <%= pluralize(user.blogs.where(published: true).count, "Published Blog") %><br />
-              <%= pluralize(user.blogs.where(published: false, approved: true, submitted: true).count, "Approved Blog") %><br />
-              <%= pluralize(user.blogs.where(published: false, approved: false, submitted: true).count, "Submitted Blog") %><br />
+              <% if !user.admin %>
+                <%= pluralize(user.blogs.where(published: false, approved: true, submitted: true).count, "Approved Blog") %><br />
+                <%= pluralize(user.blogs.where(published: false, approved: false, submitted: true).count, "Submitted Blog") %><br />
+              <% end %>
               <%= pluralize(user.blogs.where(published: false, approved: false, submitted: false).count, "WIP Blog") %>
             <% else %>
-              Not a Contributor
+              Member
             <% end %>
           </td>
         </tr>
