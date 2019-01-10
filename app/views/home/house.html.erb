@@ -34,6 +34,9 @@
   <div class="container padded resource-stripe">
     <h2 class="text-center font-script">Free Household Resources</h2>
     <% if current_user %>
+      <% @subcategories.each do |subcategory| %>
+        <h3><%= subcategory.name %></h3>
+      <% end %>
 
       <h3>Housecleaning & Maintenance</h3>
       <%= link_to "5 Secret Rules to Get (and Keep) Your House Clean (and Workbook)", asset_path("5_House_Secrets.pdf", skip_pipeline: true), target: "_blank" %>
