@@ -5,7 +5,7 @@
         <td><%= blog.id %></td>
         <td>
           <span style="font-weight: 900"><%= link_to blog.title, blog_path(blog) %></span><br />
-          <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %> (<% if blog.user.contributor %>Contributor of <%= Blog.where(user_id: blog.user.id, published: true).count %> / <%= Blog.where(user_id: blog.user.id).count %>)<% end %><br />
+          <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %> <% if blog.user.contributor %>(Contributor of <%= Blog.where(user_id: blog.user.id, published: true).count %> / <%= Blog.where(user_id: blog.user.id).count %>)<% end %><br />
           <%= pluralize(blog.comments_count, "Comment") %><br />
           <% if Subcategory.where(id: blog.subcategory_id) != [] %>
             <span class="color-spouse">In <%= Subcategory.where(id: blog.subcategory_id).first.name %></span><br />
