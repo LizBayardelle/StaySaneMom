@@ -28,6 +28,7 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).order("published_on DESC").offset(3).all
     @tags = Blog.tag_counts_on(:tags)
+    @subcategories = Subcategory.where(category: "House")
   end
 
   def spouse
@@ -37,6 +38,7 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).order("published_on DESC").offset(3).all
     @tags = Blog.tag_counts_on(:tags)
+    @subcategories = Subcategory.where(category: "Spouse")
   end
 
   def kids
@@ -46,6 +48,7 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).order("published_on DESC").offset(3).all
     @tags = Blog.tag_counts_on(:tags)
+    @subcategories = Subcategory.where(category: "Kids")
   end
 
   def self
@@ -55,5 +58,7 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).order("published_on DESC").offset(3).all
     @tags = Blog.tag_counts_on(:tags)
+    @subcategories = Subcategory.where(category: "Self")
+
   end
 end

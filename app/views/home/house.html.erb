@@ -35,18 +35,17 @@
     <h2 class="text-center font-script">Free Household Resources</h2>
     <% if current_user %>
       <% @subcategories.each do |subcategory| %>
-        <h3><%= subcategory.name %></h3>
+        <% if Blog.where(subcategory_id: subcategory.id) != [] %>
+          <h3><%= subcategory.name %></h3>
+          <% Blog.where(subcategory_id: subcategory.id).each do |blog| %>
+            <% if blog.freebie_type == "File" %>
+              <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %>
+            <% else %>
+              <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
-
-      <h3>Housecleaning & Maintenance</h3>
-      <%= link_to "5 Secret Rules to Get (and Keep) Your House Clean (and Workbook)", asset_path("5_House_Secrets.pdf", skip_pipeline: true), target: "_blank" %>
-
-      <h3>Finances & Budgeting</h3>
-      <a href="https://docs.google.com/spreadsheets/d/1HRdOTR-5pEvlUUybTXYbmrZYF5054iEIiXQoV4h7w-4/copy" target="_blank">Yearly Expenses Planner (Google Sheets)</a>
-
-      <h3>Holidays</h3>
-      <%= link_to "Thanksgiving Battle Plan (Meal Timing Organizer)", asset_path("Thanksgiving-Battle-Plan.pdf", skip_pipeline: true), target: "_blank" %>
-
     <% else %>
       <h5 class="text-center">Create a free account for access to the free resource library.</h5>
       <div class="text-center padded">

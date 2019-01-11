@@ -33,15 +33,18 @@
   <div class="container padded resource-stripe">
     <h2 class="text-center font-script">Free Marriage Resources</h2>
     <% if current_user %>
-
-      <h3>Marriage Exercises</h3>
-      <%= link_to "168 Questions to Ask Your Partner", asset_path("168-Questions-to-Ask-Your-Partner.pdf", skip_pipeline: true), target: "_blank" %><br />
-      <%= link_to "31 Days to Keep the Romance Alive (Printable Card Deck)", asset_path("31-Days-to-Keep-the-Romance-Alive.pdf", skip_pipeline: true), target: "_blank" %>
-
-      <h3>Individual Worksheets</h3>
-      <%= link_to "How to Ward Off the Four Horsemen of Divorce", asset_path("Four-Horsemen.pdf", skip_pipeline: true), target: "_blank" %><br />
-
-
+      <% @subcategories.each do |subcategory| %>
+        <% if Blog.where(subcategory_id: subcategory.id) != [] %>
+          <h3><%= subcategory.name %></h3>
+          <% Blog.where(subcategory_id: subcategory.id).each do |blog| %>
+            <% if blog.freebie_type == "File" %>
+              <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %>
+            <% else %>
+              <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
     <% else %>
       <h5 class="text-center">Create a free account for access to the free resource library.</h5>
       <div class="text-center padded">
