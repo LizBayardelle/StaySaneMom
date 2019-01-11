@@ -36,15 +36,19 @@
       <% @subcategories.each do |subcategory| %>
         <% if Blog.where(subcategory_id: subcategory.id) != [] %>
           <h3><%= subcategory.name %></h3>
+          <% alreadyArray = [] %>
           <% Blog.where(subcategory_id: subcategory.id).each do |blog| %>
-            <% if blog.freebie_type == "File" %>
-              <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %><br />
-            <% else %>
-              <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a><br />
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
+            <% if !alreadyArray.include? blog.freebie_filename %>
+              <% if blog.freebie_type == "File" %>
+                  <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %><br />
+              <% elsif blog.freebie_type == "Link" %>
+                <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a><br />
+              <% end %> <!-- if else -->
+              <% alreadyArray << blog.freebie_filename %>
+            <% end %> <!-- unless already -->
+          <% end %> <!-- blog do -->
+        <% end %> <!-- if blog with subcategory exists -->
+      <% end %> <!-- subcategories each -->
     <% else %>
       <h5 class="text-center">Create a free account for access to the free resource library.</h5>
       <div class="text-center padded">
