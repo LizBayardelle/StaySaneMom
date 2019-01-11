@@ -38,9 +38,9 @@
           <h3><%= subcategory.name %></h3>
           <% Blog.where(subcategory_id: subcategory.id).each do |blog| %>
             <% if blog.freebie_type == "File" %>
-              <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %>
+              <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %><br />
             <% else %>
-              <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a>
+              <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a><br />
             <% end %>
           <% end %>
         <% end %>
