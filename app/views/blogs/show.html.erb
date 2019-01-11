@@ -163,7 +163,7 @@
   <div class="container">
     <h2>Related Posts</h2>
     <ul>
-      <% @related = Blog.where(subcategory_id: @blog.subcategory_id).order("comments_count DESC") %>
+      <% @related = Blog.where(subcategory_id: @blog.subcategory_id, published: true, ).where("published_on <= ?", Date.today).order("comments_count DESC") %>
       <% @related.each do |blog| %>
         <li><%= link_to blog.title, blog_path(blog), class: "color-spouse boldest" %></li>
       <% end %>
