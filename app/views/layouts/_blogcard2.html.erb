@@ -34,6 +34,9 @@
         <div class="blog-text">
           <div class="blog-description">
             <h2><%= blog.title %></h2>
+            <% if blog.user_id != 1 %>
+              <h6>Guest Post by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user), class: "color-spouse boldest" %></h6>
+            <% end %>
             <p class="blog-teaser"><%= blog.teaser %><span class="color-neutral" style="padding-left: 5px"><%= blog.cta_read_more + "..." %></span></p>
           </div> <!-- blog description -->
           <div class="blog-info">

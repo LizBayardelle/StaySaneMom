@@ -78,7 +78,7 @@
         <% elsif @blog.user.contributor %>
           <i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
         <% end %></strong><br />
-        <% if @blog.published_on %>Published <% if @subcategory %>in <span class="color-spouse boldest"><%= @blog.category %></span> (<span class="color-spouse boldest"><%= @subcategory.name %></span>)<% end %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
+        <% if @blog.published_on %>Published <% if @subcategory %>in <span class="color-spouse boldest"><%= @blog.category %></span>, <span class="color-spouse boldest"><%= @subcategory.name %></span><% end %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
       </p>
   </div> <!-- container -->
 
