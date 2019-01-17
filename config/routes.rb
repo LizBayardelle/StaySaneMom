@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'home/tools'
   get 'home/results'
   get 'home/allblogs'
+  get 'home/sidenav'
 
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do

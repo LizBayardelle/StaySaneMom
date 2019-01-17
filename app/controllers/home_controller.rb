@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  layout "application-alt", except: [:index]
+  layout "application-alt", except: [:index, :sidenav]
+  layout false, only: [:sidenav]
 
   def index
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
@@ -16,6 +17,8 @@ class HomeController < ApplicationController
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order('published_on DESC').search(query, suggest: true)
   end
 
+  def sidenav
+  end
 
   def allblogs
     @blogs = Blog.where(published: true).order('created_at DESC')

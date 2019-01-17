@@ -19,7 +19,6 @@
  */
 
 @import 'bootstrap';
-@import 'font-awesome';
 @import 'font_awesome5_webfont';
 @import 'font_awesome5.css';
 @import 'trix';
@@ -40,6 +39,7 @@
 @import 'plugins/table.min.css';
 @import 'third_party/embedly.min.css';
 @import 'third_party/spell_checker.min.css';
+@import 'mdb/mdb';
 
 @font-face {
   font-family: "PlaylistScript";
@@ -1264,4 +1264,30 @@ footer p, footer p em {
   .script-header { font-size: 40px }
   .blog-text { width: 100% }
   .biobox img { max-width: 150px; margin-bottom: 15px;}
+}
+
+
+
+
+
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ------ MDB CHANGES ------
+// ---------------------------
+// ---------------------------
+.side-nav .logo-wrapper {
+  height: 11rem;
+}
+
+.sidenav-divider {
+  width: 100%;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.3);
+}
+
+.side-nav .social li {
+  margin: 0 2px 0 2px;
 }
