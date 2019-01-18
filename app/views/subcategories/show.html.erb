@@ -1,19 +1,33 @@
-<p id="notice"><%= notice %></p>
+<h6 class="text-right" style="padding-right: 20px">A Subcategory of <%= @subcategory.category %></h6>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subcategory.name %>
-</p>
+<div class="container text-center">
+  <h1 class="font-script"><%= @subcategory.name %></h1>
+  <p><%= @subcategory.description %></p>
+  <h2 class="color-spouse"><% if !@subcategory.active %>INACTIVE<% end %></h2>
+</div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @subcategory.category %>
-</p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @subcategory.active %>
-</p>
+<!-- related blogs -->
+<% @related = Blog.where(subcategory_id: @subcategory.id, published: true, ).where("published_on <= ?", Date.today).order("comments_count DESC") %>
+<% if @related != [] %>
+  <div class="container">
+    <!-- <h2>Blogs on <%#= @subcategory.name %></h2> -->
+    <div class="row">
+      <% @related.each do |blog| %>
+        <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
+      <% end %>
+    </div> <!-- row -->
+  </div>
+<% end %>
+<!-- related blogs -->
 
-<%= link_to 'Edit', edit_subcategory_path(@subcategory) %> |
-<%= link_to 'Back', subcategories_path %>
+
+<script>
+  $(document).ready(function() {
+    $('.height').matchHeight();
+    $('.blog-text').matchHeight();
+    $('.blog-teaser').matchHeight();
+    $('.blog-description').matchHeight();
+    $('.blog-info').matchHeight();
+  });
+</script>

@@ -154,6 +154,11 @@ p.large-p, .large-p p {
 
 .btn { background: transparent; }
 
+.pin-only {
+  height: 0;
+  width: 0;
+}
+
 .datepicker {z-index:1151 !important;}
 
 .weight-400 { font-weight: 400 !important; }
@@ -522,8 +527,25 @@ table.lined-table td {
   background-color: transparent !important;
 }
 
+@media screen and (min-width: 1440px) {
+  .navbar-brand.left {
+    margin-left: 230px;
+  }
+}
+
 .navbar-brand img {
-  height: 40px;
+  height: 25px;
+}
+
+.navbar-brand p {
+  font-size: 80%;
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+
+.navbar-brand.right {
+  margin-left: auto;
+  margin-right: 0;
 }
 
 .nav-link.font-script {

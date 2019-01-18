@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  layout "application-alt", only: [:index, :show]
   before_action :authenticate_user!, except: %i[show]
 
   def show

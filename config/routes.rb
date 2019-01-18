@@ -4,9 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show, :index]
-   post "users/:id/approve_contributor" => "users#approve_contributor", as: "approve_contributor"
-   post "users/:id/approve_sm" => "users#approve_sm", as: "approve_sm"
-
+  post "users/:id/approve_contributor" => "users#approve_contributor", as: "approve_contributor"
+  post "users/:id/approve_sm" => "users#approve_sm", as: "approve_sm"
 
   get 'home/index'
   get 'home/house'
@@ -16,7 +15,6 @@ Rails.application.routes.draw do
   get 'home/tools'
   get 'home/results'
   get 'home/allblogs'
-  get 'home/sidenav'
 
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
@@ -51,8 +49,6 @@ Rails.application.routes.draw do
   resources :contributions
   post "contributions/:id/replied_contribution" => "contributions#replied_contribution", as: "replied_contribution"
   post "contributions/:id/unreplied_contribution" => "contributions#unreplied_contribution", as: "unreplied_contribution"
-
-  resources :charges
 
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 

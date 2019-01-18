@@ -2,7 +2,6 @@ class ContributionsController < ApplicationController
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :destroy]
   before_action :admin_only, only: [:index, :destroy]
-  layout "application-alt", only: [:index]
 
   # GET /contributions
   # GET /contributions.json
@@ -14,10 +13,12 @@ class ContributionsController < ApplicationController
   # GET /contributions/1
   # GET /contributions/1.json
   def show
+    @headernav = true
   end
 
   # GET /contributions/new
   def new
+    @headernav = true
     @contribution = Contribution.new
   end
 

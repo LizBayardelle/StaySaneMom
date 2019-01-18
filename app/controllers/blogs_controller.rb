@@ -4,7 +4,6 @@ class BlogsController < ApplicationController
   before_action :admin_or_contributor, only: %i[new create]
   before_action :admin_or_author, only: %i[update edit]
   before_action :admin_only, only: %i[destroy]
-  layout "application-alt", only: [:index, :show, :new, :edit, :all]
 
   # GET /blogs
   # GET /blogs.json

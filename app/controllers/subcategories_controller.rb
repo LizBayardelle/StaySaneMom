@@ -1,6 +1,5 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
-  layout "application-alt"
 
   # GET /subcategories
   # GET /subcategories.json
