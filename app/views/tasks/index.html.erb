@@ -1,5 +1,5 @@
 <!-- page-specific content -->
-  <% title "To Do List | SSM" %>
+  <% title "House Task Organizer | SSM" %>
   <%= content_for :head do %>
     <meta name="description" content="Motherhood and house ownership come with a lot of tasks.  Keep your to do list organized and optimized here." />
   <% end %>
@@ -9,12 +9,12 @@
 <div class="over-frame-text">
   <div class="container">
     <div class="buffer"></div>
-    <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>To Do List</h1>
+    <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>House Task Organizer</h1>
   </div> <!-- container -->
   <div class="over-frame-bottom-row">
     <div class="container padded">
 			<%= simple_form_for(@create_task, remote: true) do |f| %>
-				<div class="row padded">
+				<div class="row padded text-center">
 					<div class="col-xs-12 col-sm-9">
 						<%= f.text_field :name, id: "textField", placeholder: "What needs to get done?", class: "form-control" %>
 					</div>
@@ -38,7 +38,7 @@
 
 	  <div class="container">
 			<div class="row">
-				<div class="col-xs-12 col-md-6 col-lg-12">
+				<div class="col-xs-12 col-lg-6 col-xl-12">
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">One-Time Tasks</h2>
             <p class="text-center">These tasks are here to stay, until you complete them.</p>
@@ -47,7 +47,7 @@
 			    </div> <!-- content box -->
 				</div> <!-- col -->
 
-				<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="col-xs-12 col-lg-6 col-xl-4">
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">Daily</h2>
 						<p class="text-center">These automatically uncheck at night so you have a fresh list&nbsp;in&nbsp;the&nbsp;morning.</p>
@@ -56,7 +56,7 @@
 			    </div> <!-- content box -->
 				</div> <!-- col -->
 
-				<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="col-xs-12 col-lg-6 col-xl-4">
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">Weekly</h2>
 						<p class="text-center">These automatically uncheck Sunday night so you get a new list&nbsp;each&nbsp;Monday&nbsp;morning.</p>
@@ -65,7 +65,7 @@
 			    </div> <!-- content box -->
 				</div> <!-- col -->
 
-				<div class="col-xs-12  col-md-6 col-lg-4">
+				<div class="col-xs-12  col-lg-6 col-xl-4">
 			    <div class="content-box to-do">
 			      <h2 class="font-script text-center">Monthly</h2>
 						<p class="text-center">These automatically uncheck on the last day of the month so you start with a clean&nbsp;list&nbsp;each&nbsp;1st.</p>

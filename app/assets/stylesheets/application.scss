@@ -1326,7 +1326,7 @@ footer p, footer p em {
   background: transparent !important;
 }
 
-.side-nav .house.collapsible-body a { background-color: $transparent-house; }
-.side-nav .spouse.collapsible-body a { background-color: $transparent-spouse; }
-.side-nav .kids.collapsible-body a { background-color: $transparent-kids; }
-.side-nav .self.collapsible-body a { background-color: $transparent-self; }
+.side-nav .house.collapsible-body a.sub { background-color: $transparent-house; }
+.side-nav .spouse.collapsible-body a.sub { background-color: $transparent-spouse; }
+.side-nav .kids.collapsible-body a.sub { background-color: $transparent-kids; }
+.side-nav .self.collapsible-body a.sub { background-color: $transparent-self; }

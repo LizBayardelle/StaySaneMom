@@ -84,11 +84,11 @@
         </li>
 
         <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "toolbox", class: "color-spouse" %> &nbsp;Online Tools<i
+          <%= fa_icon "toolbox", class: "color-spouse" %> &nbsp;Online Tools (All)<i
           class="fas fa-angle-down rotate-icon"></i></a>
           <div class="collapsible-body">
             <ul>
-              <li><%= link_to "To Do List", tasks_path, class: "waves-effect" %></li>
+              <li><%= link_to "House Task Organizer", tasks_path, class: "waves-effect" %></li>
               <li><%= link_to "Birthday Tracker", people_path, class: "waves-effect" %></li>
               <li><%= link_to "Gift Planner", occasions_path, class: "waves-effect" %></li>
             </ul>
@@ -128,8 +128,9 @@
             <% @subcategories = Subcategory.where(category: "House", active: true) %>
             <ul>
               <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect" %></li>
+                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
+              <li><%= link_to "TOOL: Task Organizer", tasks_path, class: "waves-effect" %></li>
             </ul>
           </div> <!-- collapsable body -->
         </li>
@@ -140,7 +141,7 @@
             <% @subcategories = Subcategory.where(category: "Spouse", active: true) %>
             <ul>
               <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect" %></li>
+                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
             </ul>
           </div> <!-- collapsable body -->        </li>
@@ -150,7 +151,7 @@
             <% @subcategories = Subcategory.where(category: "Kids", active: true) %>
             <ul>
               <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect" %></li>
+                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
             </ul>
           </div> <!-- collapsable body -->
@@ -162,7 +163,7 @@
             <% @subcategories = Subcategory.where(category: "Self", active: true) %>
             <ul>
               <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect" %></li>
+                <li><%= link_to subcategory.name, subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
             </ul>
           </div> <!-- collapsable body -->
@@ -217,7 +218,7 @@
 
 <nav class="navbar fixed-top navbar-expand-md navbar-light white scrolling-navbar">
   <!-- SideNav slide-out button -->
-  <a href="#" data-activates="slide-out" class="button-collapse" style="padding-left: 20px"><i class="fas fa-bars"></i></a>
+  <a href="#" data-activates="slide-out" class="button-collapse" style="padding-left: 20px; padding-right: 10px"><i class="fas fa-bars"></i></a>
 
 
   <%= link_to root_path, class: "navbar-brand left" do %>

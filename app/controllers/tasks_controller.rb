@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # before_action :redirect_to_landing, only: [:index]
+  # before_action :authenticate_user!
   before_action :set_variables, only: [:index, :create, :destroy, :check_task, :uncheck_task]
 
 
@@ -89,6 +90,12 @@ class TasksController < ApplicationController
           redirect_to tasks_path
           flash[:warning] = "Oops! Something went wrong!"
       end
+  end
+
+  def redirect_to_landing
+    if !current_user
+      redirect_to static_path(:HouseTaskOrganizer)
+    end
   end
 
   private

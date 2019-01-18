@@ -1,0 +1,72 @@
+<!-- page-specific content -->
+  <% title "House Task Organizer | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="Motherhood and house ownership come with a lot of tasks.  Keep your to do list organized and optimized here." />
+  <% end %>
+<!-- page-specific content -->
+
+<div class="header-frame frame" style="background-image: url(<%= asset_path "house-task-organizer.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
+<div class="over-frame-text">
+  <div class="container">
+    <div class="buffer"></div>
+    <h1>"I cleaned once and now I'm&nbsp;done."
+    <br />- No One Ever</h1>
+  </div> <!-- container -->
+  <div class="over-frame-bottom-row">
+    <div class="container padded">
+    </div> <!-- container -->
+  </div> <!-- over-frame-text -->
+</div> <!-- over-frame-text -->
+
+
+<% if current_user %>
+  <h2 class="text-center"><%= link_to "Go to your household task organizer now!", tasks_path, class: "color-spouse" %></h2>
+<% else %>
+  <h2 class="text-center"><%= link_to "Start Organizing Your Household Tasks (for Free)", new_user_registration_path, class: "color-spouse" %></h2>
+  <p class="text-center">(Or existing members <%= link_to "Log In", new_user_registration_path, class: "color-spouse" %> here.)</p>
+<% end %>
+
+<div class="half-buffer"></div>
+
+
+<div class="container">
+  <p>You cleaned your house, so now you're done cleaning, right?</p>
+  <p>Hahahahahaha....  *stops to breathe*  ...ahahahahaha!</p>
+  <p>Nothing in a house ever <em>stays</em> clean.  Not for long.</p>
+
+  <h2>The Problem with Houses</h2>
+  <p>You clean something once and (especially if you have dogs or kids) it's only a matter of time before it gets dirty again.</p>
+  <p>Unfortunately, stuff gets dirty at different rates.</p>
+  <p>You have to vacuum every other day to keep the dust bunnies at bay, grocery shop twice a week, shine the floors monthly, laundry Mondays and Thursdays, and then do a daily trip around the house to magic-eraser the Great Dane slobber off the ceilings and walls.</p>
+  <p>(I truly wish I was kidding on that last one.)</p>
+
+  <h2>Making Your Life Easier</h2>
+  <p>In order to make it a little bit easier (dare I say, saner) to keep your house in order, you now have access to an online, self-replenishing to do list.</p>
+  <p>Here you have a place for <strong>Daily</strong>, <strong>Weekly</strong>, and <strong>Monthly</strong> tasks, as well as a place for the sneaky things that only happen one time.</p>
+
+  <h2>How to Use Your Online Household Task Organizer</h2>
+  <p>All you have to do is input your tasks as well as their frequency (once, daily, weekly, or monthly).  The organizer takes care of the rest.</p>
+  <p>The daily tasks refresh every night at midnight, whether you did them or not, so you have a fresh list every morning.</p>
+  <p>The weekly ones refresh Sunday night at midnight and the monthly tasks refresh on the last day of the month.  The one-time tasks hang out until you actually complete them.</p>
+
+
+  <% if current_user %>
+    <h2 class="text-center"><%= link_to "Go to your lists now!", tasks_path, class: "color-spouse" %></h2>
+  <% else %>
+    <h2 class="text-center"><%= link_to "Create an account to get started", new_user_registration_path, class: "color-spouse" %></h2>
+    <p class="text-center">(Or existing members <%= link_to "Log In", new_user_registration_path, class: "color-spouse" %> here.)</p>
+  <% end %>
+
+</div> <!-- container -->
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		$('.content-box').matchHeight();
+      $('.new-task').click(function() {
+          ga('send', 'event', 'Participation', 'To Do List', 'Create New Task');
+      });
+  	});
+  </script>
+<% end %>
