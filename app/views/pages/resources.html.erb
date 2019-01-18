@@ -117,10 +117,12 @@
 <% end %>
 
 
-<script>
-  $(document).ready(function() {
-    $('.new-account').click(function() {
-        ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Resource Library Create Account Hero Button');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.new-account').click(function() {
+          ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Resource Library Create Account Hero Button');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

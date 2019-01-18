@@ -50,11 +50,13 @@
 
 
 
-<script>
-  $(document).ready(function() {
-    $('.content-box').matchHeight();
-    $('.hero-button').click(function() {
-        ga('send', 'event', 'Subscription', 'Specialty Inquiry', 'Speaking Engagements');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content-box').matchHeight();
+      $('.hero-button').click(function() {
+          ga('send', 'event', 'Subscription', 'Specialty Inquiry', 'Speaking Engagements');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

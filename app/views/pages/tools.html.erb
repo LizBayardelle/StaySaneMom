@@ -66,11 +66,13 @@
 </div> <!-- container -->
 
 
-<script>
-  $(function() {
-    $('.content-box').matchHeight();
-    $('.tool-subscribe').click(function() {
-        ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Tool Page Hero Button Subscription');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.content-box').matchHeight();
+      $('.tool-subscribe').click(function() {
+          ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Tool Page Hero Button Subscription');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

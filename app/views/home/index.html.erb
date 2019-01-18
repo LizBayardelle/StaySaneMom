@@ -193,25 +193,23 @@
 
 
 
-
-
-
-  <script>
-  $(document).ready(function() {
-    $('.height').matchHeight();
-    $('.category-div').matchHeight();
-    $('.blog-text').matchHeight();
-    $('.blog-teaser').matchHeight();
-    $('.blog-description').matchHeight();
-    $('.blog-info').matchHeight();
-    $('.tool-box-text').matchHeight();
-    $('.open-popup-link').magnificPopup({
-      type:'inline',
-      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-    });
-    $('.hero-button').click(function() {
-        ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'Homepage Hero Button Subscription');
-    });
-  });
-
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('.height').matchHeight();
+        $('.category-div').matchHeight();
+        $('.blog-text').matchHeight();
+        $('.blog-teaser').matchHeight();
+        $('.blog-description').matchHeight();
+        $('.blog-info').matchHeight();
+        $('.tool-box-text').matchHeight();
+        $('.open-popup-link').magnificPopup({
+          type:'inline',
+          midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+        });
+        $('.hero-button').click(function() {
+            ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'Homepage Hero Button Subscription');
+        });
+      });
   </script>
+<% end %>

@@ -251,10 +251,12 @@
 
 
 
-<script>
-  $(function() {
-    $('.content-box').matchHeight();
-    $('.text').matchHeight();
-  	$('.card').matchHeight();
-  });
-</script>
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.content-box').matchHeight();
+      $('.text').matchHeight();
+    	$('.card').matchHeight();
+    });
+  </script>
+<% end %>

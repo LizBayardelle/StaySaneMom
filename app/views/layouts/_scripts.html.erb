@@ -1,0 +1,57 @@
+<%= javascript_include_tag 'application' %>
+<!-- magnificPopup js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-126667465-1', 'theStaySaneMom.com');
+    ga('send', 'pageview');
+
+    $(document).ready(function() {
+
+      $('.my-account').click(function() {
+          ga('send', 'event', 'Accounts', 'Application Subscription Header', 'My Account Application Header');
+      });
+      $('.log-in').click(function() {
+          ga('send', 'event', 'Accounts', 'Application Subscription Header', 'Log In Application Header');
+      });
+      $('.sign-up').click(function() {
+          ga('send', 'event', 'Accounts', 'Application Subscription Header', 'Sign Up Application Header');
+      });
+
+      $("#q").autocomplete({
+        source: "/blogs/autocomplete"
+      });
+
+      // SideNav Button Initialization
+      $(".button-collapse").sideNav();
+
+      // SideNav Scrollbar Initialization
+      var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+      Ps.initialize(sideNavScrollbar);
+    });
+</script>
+
+<!-- match height -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
+
+<!-- pinterest -->
+<script type="text/javascript">
+  (function(d){
+      var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+      p.type = 'text/javascript';
+      p.async = true;
+      p.src = '//assets.pinterest.com/js/pinit.js';
+      f.parentNode.insertBefore(p, f);
+  }(document));
+</script>
+
+<!-- subscribers -->
+<script type="text/javascript">
+  var subscribersSiteId = '28f6293f-92fc-4c4b-b21b-f03ac33ea810';
+</script>
+<script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>

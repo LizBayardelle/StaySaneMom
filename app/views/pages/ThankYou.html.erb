@@ -34,8 +34,10 @@
 </div> <!-- container -->
 
 
-<script>
-  $(function() {
-    $('.content-box').matchHeight();
-  });
-</script>
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.content-box').matchHeight();
+    });
+  </script>
+<% end %>

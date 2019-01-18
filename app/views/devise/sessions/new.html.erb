@@ -25,10 +25,12 @@
 	</div> <!-- card padded -->
 </div> <!-- page container -->
 
-<script>
-  $(document).ready(function() {
-    $('.submit-form').click(function() {
-        ga('send', 'event', 'Accounts', 'Log In', 'Submit New Session Login Form');
-    });
-  });
-</script>
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+	  $(document).ready(function() {
+	    $('.submit-form').click(function() {
+	        ga('send', 'event', 'Accounts', 'Log In', 'Submit New Session Login Form');
+	    });
+	  });
+	</script>
+<% end %>

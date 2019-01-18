@@ -58,24 +58,26 @@
 </div>
 
 
-<script>
-  $(function() {
-    $('#seePastButton').click(function(){
-      $('#seePastButton').addClass('d-none');
-      $('#seeFutureButton').removeClass('d-none');
-      $('#futureEvents').addClass('d-none');
-      $('#pastEvents').removeClass('d-none');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('#seePastButton').click(function(){
+        $('#seePastButton').addClass('d-none');
+        $('#seeFutureButton').removeClass('d-none');
+        $('#futureEvents').addClass('d-none');
+        $('#pastEvents').removeClass('d-none');
+      });
+      $('#seeFutureButton').click(function(){
+        $('#seePastButton').removeClass('d-none');
+        $('#seeFutureButton').addClass('d-none');
+        $('#futureEvents').removeClass('d-none');
+        $('#pastEvents').addClass('d-none');
+      });
     });
-    $('#seeFutureButton').click(function(){
-      $('#seePastButton').removeClass('d-none');
-      $('#seeFutureButton').addClass('d-none');
-      $('#futureEvents').removeClass('d-none');
-      $('#pastEvents').addClass('d-none');
-    });
-  });
 
-  $('.open-popup-link').magnificPopup({
-    type:'inline',
-    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-  });
-</script>
+    $('.open-popup-link').magnificPopup({
+      type:'inline',
+      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+  </script>
+<% end %>

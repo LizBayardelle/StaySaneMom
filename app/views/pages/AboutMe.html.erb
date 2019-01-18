@@ -99,11 +99,13 @@
 
 
 
-<script>
-  $(document).ready(function() {
-    $('.content-box').matchHeight();
-    $('.click-simulator').click(function() {
-        ga('send', 'event', 'Subscription', 'In-Page Subscription', 'About Me Subscription Box');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content-box').matchHeight();
+      $('.click-simulator').click(function() {
+          ga('send', 'event', 'Subscription', 'In-Page Subscription', 'About Me Subscription Box');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

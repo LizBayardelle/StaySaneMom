@@ -78,15 +78,17 @@
 
 </div> <!-- page container -->
 
-<script>
-  $(document).ready(function() {
-    $('.height').matchHeight();
-    $('.blog-text').matchHeight();
-    $('.blog-teaser').matchHeight();
-    $('.blog-description').matchHeight();
-    $('.blog-info').matchHeight();
-    $('.formkit-submit').click(function() {
-      ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Blog Index Hero CTA Subscription');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.height').matchHeight();
+      $('.blog-text').matchHeight();
+      $('.blog-teaser').matchHeight();
+      $('.blog-description').matchHeight();
+      $('.blog-info').matchHeight();
+      $('.formkit-submit').click(function() {
+        ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Blog Index Hero CTA Subscription');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

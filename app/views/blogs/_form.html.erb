@@ -171,14 +171,16 @@
 
 
 <!-- script for FROALA-WYSIWYG -->
-<script>
-  $('#wysiwyg').froalaEditor({
-    key: '<%= ENV['FROALA_ACTIVATION_KEY'] %>',
-    inlineMode: false,
-    heightMin: '200px',
-    toolbarButtons: [
-        'bold', 'italic', 'underline', 'paragraphFormat', 'formatOL',
-        'formatUL', 'insertHTML', 'undo', 'redo', 'html'
-      ]
-  })
-</script>
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $('#wysiwyg').froalaEditor({
+      key: '<%= ENV['FROALA_ACTIVATION_KEY'] %>',
+      inlineMode: false,
+      heightMin: '200px',
+      toolbarButtons: [
+          'bold', 'italic', 'underline', 'paragraphFormat', 'formatOL',
+          'formatUL', 'insertHTML', 'undo', 'redo', 'html'
+        ]
+    })
+  </script>
+<% end %>

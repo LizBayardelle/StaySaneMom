@@ -30,10 +30,12 @@
   </div>
 <% end %>
 
-<script>
-  $(document).ready(function() {
-    $('.submit-form').click(function() {
-        ga('send', 'event', 'Participation', 'Gifts', 'Submit Gift Form');
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.submit-form').click(function() {
+          ga('send', 'event', 'Participation', 'Gifts', 'Submit Gift Form');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

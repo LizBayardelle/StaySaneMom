@@ -136,39 +136,41 @@
 </div>
 
 
-<script>
-  $(function() {
-    $('.blog-text').matchHeight();
-  });
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.blog-text').matchHeight();
+    });
 
-  $('.open-popup-link').magnificPopup({
-    type:'inline',
-    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-  });
+    $('.open-popup-link').magnificPopup({
+      type:'inline',
+      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
 
-  $('#relationshipTarget').click(function(){
-    $('.sortingTarget').removeClass('font-bold');
-    $('#relationshipTarget').addClass('font-bold');
-    $('.sortingGroup').addClass('d-none');
-    $('#relationship').removeClass('d-none');
-  });
-  $('#groupTarget').click(function(){
-    $('.sortingTarget').removeClass('font-bold');
-    $('#groupTarget').addClass('font-bold');
-    $('.sortingGroup').addClass('d-none');
-    $('#group').removeClass('d-none');
-  });
-  $('#lastNameTarget').click(function(){
-    $('.sortingTarget').removeClass('font-bold');
-    $('#lastNameTarget').addClass('font-bold');
-    $('.sortingGroup').addClass('d-none');
-    $('#lastName').removeClass('d-none');
-  });
-  $('#birthdayTarget').click(function(){
-    $('.sortingTarget').removeClass('font-bold');
-    $('#birthdayTarget').addClass('font-bold');
-    $('.sortingGroup').addClass('d-none');
-    $('#birthday').removeClass('d-none');
-  });
+    $('#relationshipTarget').click(function(){
+      $('.sortingTarget').removeClass('font-bold');
+      $('#relationshipTarget').addClass('font-bold');
+      $('.sortingGroup').addClass('d-none');
+      $('#relationship').removeClass('d-none');
+    });
+    $('#groupTarget').click(function(){
+      $('.sortingTarget').removeClass('font-bold');
+      $('#groupTarget').addClass('font-bold');
+      $('.sortingGroup').addClass('d-none');
+      $('#group').removeClass('d-none');
+    });
+    $('#lastNameTarget').click(function(){
+      $('.sortingTarget').removeClass('font-bold');
+      $('#lastNameTarget').addClass('font-bold');
+      $('.sortingGroup').addClass('d-none');
+      $('#lastName').removeClass('d-none');
+    });
+    $('#birthdayTarget').click(function(){
+      $('.sortingTarget').removeClass('font-bold');
+      $('#birthdayTarget').addClass('font-bold');
+      $('.sortingGroup').addClass('d-none');
+      $('#birthday').removeClass('d-none');
+    });
 
-</script>
+  </script>
+<% end %>

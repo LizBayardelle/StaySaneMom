@@ -29,12 +29,13 @@
 </div> <!-- container -->
 
 
-<script>
-  $(function() {
-    $('.content-box').matchHeight();
-    $('.hero-button').click(function() {
-        ga('send', 'event', 'Accounts', 'Tool Landing Page', 'To Do Landing Create Account');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.content-box').matchHeight();
+      $('.hero-button').click(function() {
+          ga('send', 'event', 'Accounts', 'Tool Landing Page', 'To Do Landing Create Account');
+      });
     });
-
-  });
-</script>
+  </script>
+<% end %>

@@ -28,10 +28,12 @@
   </div>
 <% end %>
 
-<script>
-  $(document).ready(function() {
-    $('.submit-form').click(function() {
-        ga('send', 'event', 'Participation', 'Occasions', 'Submit Occasion Form');
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.submit-form').click(function() {
+          ga('send', 'event', 'Participation', 'Occasions', 'Submit Occasion Form');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

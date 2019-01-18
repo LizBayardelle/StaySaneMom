@@ -431,22 +431,24 @@
 
 </div> <!-- row -->
 
-<script>
-  $(document).ready(function() {
-    $('.cta-top').click(function() {
-      ga('send', 'event', 'Subscription', 'Blog Freebie CTA Beginning', '<%= @blog.title %> Freebie CTA Beginning');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.cta-top').click(function() {
+        ga('send', 'event', 'Subscription', 'Blog Freebie CTA Beginning', '<%= @blog.title %> Freebie CTA Beginning');
+      });
+      $('.click-simulator').click(function() {
+          ga('send', 'event', 'Subscription', 'In-Page Subscription', '<%= @blog.title %> Subscription Box');
+      });
+      $('.cta-bottom').click(function() {
+        ga('send', 'event', 'Subscription', 'Blog Freebie CTA End', '<%= @blog.title %> Freebie CTA End');
+      });
+      $('.submit-comment').click(function() {
+          ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
+      });
+      $('#replyCommentTarget').click(function() {
+        $(#reply)
+      });
     });
-    $('.click-simulator').click(function() {
-        ga('send', 'event', 'Subscription', 'In-Page Subscription', '<%= @blog.title %> Subscription Box');
-    });
-    $('.cta-bottom').click(function() {
-      ga('send', 'event', 'Subscription', 'Blog Freebie CTA End', '<%= @blog.title %> Freebie CTA End');
-    });
-    $('.submit-comment').click(function() {
-        ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
-    });
-    $('#replyCommentTarget').click(function() {
-      $(#reply)
-    });
-  });
-</script>
+  </script>
+<% end %>

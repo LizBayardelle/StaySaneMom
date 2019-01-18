@@ -142,22 +142,24 @@
 
 
 
-<script>
-  $(document).ready(function(){
-      $(".passwordChangeTarget").click(function(){
-          $(".passwordChange").removeClass("d-none");
-          $(".passwordChangeTarget").addClass("d-none");
-          $(".passwordChangeNope").removeClass("d-none");
-      });
-      $(".passwordChangeNope").click(function(){
-          $(".passwordChange").addClass("d-none");
-          $(".passwordChangeTarget").removeClass("d-none");
-          $(".passwordChangeNope").addClass("d-none");
-          $('#newPW').val('');
-          $('#newPWconf').val('');
-      });
-      $('.submit-form').click(function() {
-          ga('send', 'event', 'Accounts', 'Edit Account', 'Submit Edit Account');
-      });
-  });
-</script>
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $(".passwordChangeTarget").click(function(){
+            $(".passwordChange").removeClass("d-none");
+            $(".passwordChangeTarget").addClass("d-none");
+            $(".passwordChangeNope").removeClass("d-none");
+        });
+        $(".passwordChangeNope").click(function(){
+            $(".passwordChange").addClass("d-none");
+            $(".passwordChangeTarget").removeClass("d-none");
+            $(".passwordChangeNope").addClass("d-none");
+            $('#newPW').val('');
+            $('#newPWconf').val('');
+        });
+        $('.submit-form').click(function() {
+            ga('send', 'event', 'Accounts', 'Edit Account', 'Submit Edit Account');
+        });
+    });
+  </script>
+<% end %>

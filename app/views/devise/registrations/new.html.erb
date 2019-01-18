@@ -38,10 +38,12 @@
   </div> <!-- card -->
 </div> <!-- container -->
 
-<script>
-  $(document).ready(function() {
-    $('.submit-form').click(function() {
-        ga('send', 'event', 'Accounts', 'Create New Account', 'Submit Account Creation');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.submit-form').click(function() {
+          ga('send', 'event', 'Accounts', 'Create New Account', 'Submit Account Creation');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

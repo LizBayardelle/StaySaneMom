@@ -77,11 +77,13 @@
 	  </div> <!-- container -->
 <% end %> <!-- current_user -->
 
-<script>
-	$(document).ready(function() {
-		$('.content-box').matchHeight();
-    $('.new-task').click(function() {
-        ga('send', 'event', 'Participation', 'To Do List', 'Create New Task');
-    });
-	});
-</script>
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		$('.content-box').matchHeight();
+      $('.new-task').click(function() {
+          ga('send', 'event', 'Participation', 'To Do List', 'Create New Task');
+      });
+  	});
+  </script>
+<% end %>

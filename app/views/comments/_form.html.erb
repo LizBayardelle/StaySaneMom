@@ -16,10 +16,12 @@ collection.build(attributes = {}, …) Returns one or more new objects of the co
 <%= f.button :submit, 'Leave a reply', class: "btn btn-outline-danger submit-comment" onClick: "ga('send', { hitType: 'event', eventCategory: 'Subscription', eventAction: 'Freebie CTA End', eventLabel: '<%= @blog.title %> Freebie CTA Bottom'});" %>
 <% end %>
 
-<script>
-  $(document).ready(function() {
-    $('.submit-comment').click(function() {
-        ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.submit-comment').click(function() {
+          ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

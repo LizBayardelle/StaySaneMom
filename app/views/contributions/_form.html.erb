@@ -46,10 +46,12 @@
   <% end %>
 </div> <!-- container -->
 
-<script>
-  $(document).ready(function() {
-    $('.submit-comment').click(function() {
-        ga('send', 'event', 'Participation', 'Guest Post Idea', 'Guest Post Idea');
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.submit-comment').click(function() {
+          ga('send', 'event', 'Participation', 'Guest Post Idea', 'Guest Post Idea');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>

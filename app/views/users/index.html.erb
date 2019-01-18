@@ -165,14 +165,16 @@
 
 
 
-<script>
-  $(function() {
-    $('.blog-text').matchHeight();
-    $('.subscriberTitle').click(function() {
-      $('.subscriberTable').toggleClass('d-none');
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.blog-text').matchHeight();
+      $('.subscriberTitle').click(function() {
+        $('.subscriberTable').toggleClass('d-none');
+      });
+      $('.memberTitle').click(function() {
+        $('.memberTable').toggleClass('d-none');
+      });
     });
-    $('.memberTitle').click(function() {
-      $('.memberTable').toggleClass('d-none');
-    });
-  });
-</script>
+  </script>
+<% end %>
