@@ -62,7 +62,9 @@
     <!-- Logo -->
     <li>
       <div class="logo-wrapper waves-light">
-        <a href="#"><%= image_tag "logo-square.png", class: "img-fluid flex-center" %></a>
+        <%= link_to root_path do %>
+          <%= image_tag "logo-square.png", class: "img-fluid flex-center" %>
+        <% end %>
       </div>
     </li>
     <!--/. Logo -->
