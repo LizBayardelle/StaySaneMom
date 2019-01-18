@@ -1313,3 +1313,20 @@ footer p, footer p em {
 .side-nav .social li {
   margin: 0 2px 0 2px;
 }
+
+.social .svg-inline--fa {
+  font-size: 18px;
+}
+
+.social .svg-inline--fa:hover {
+  color: $color-spouse;
+}
+
+.social a:hover {
+  background: transparent !important;
+}
+
+.side-nav .house.collapsible-body a { background-color: $transparent-house; }
+.side-nav .spouse.collapsible-body a { background-color: $transparent-spouse; }
+.side-nav .kids.collapsible-body a { background-color: $transparent-kids; }
+.side-nav .self.collapsible-body a { background-color: $transparent-self; }
