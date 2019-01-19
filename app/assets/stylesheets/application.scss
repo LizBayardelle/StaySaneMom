@@ -80,7 +80,7 @@ $transparent-neutral: rgba(96, 96, 96, 0.3);
 $transparent-white: rgba(255, 255, 255, 0.3);
 $transparent-whiteish: rgba(210, 210, 210, 0.4);
 
-.color-white, .color-white * { color: #FFFFFF; }
+.color-white, .color-white * { color: #FFFFFF !important; }
 .color-house { color: $color-house; }
 .color-spouse { color: $color-spouse; }
 .color-kids { color: $color-kids; }
@@ -102,6 +102,13 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 .bg-self { background-color: $transparent-self; }
 .bg-neutral { background-color: $transparent-neutral; }
 .bg-neutral-dark { background-color: $color-neutral; }
+
+.bg-solid-house { background-color: $color-house; }
+.bg-solid-spouse { background-color: $color-spouse; }
+.bg-solid-kids { background-color: $color-kids; }
+.bg-solid-self { background-color: $color-self; }
+.bg-solid-neutral { background-color: $color-neutral; }
+.bg-solid-neutral-dark { background-color: $color-neutral; }
 
 .transparent-hover.house:hover { background-color: $transparent-house; }
 .transparent-hover.spouse:hover { background-color: $transparent-spouse; }
