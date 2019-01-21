@@ -36,14 +36,7 @@
         var date = $('#event-date').val();
         $('#dateHolder').val(date);
       });
-      var personJsArray = [];
-      $('.form-check-input').on('change', function() {
-        if ($(".form-check-input").prop('checked')) {
-          var val = $(".form-check-input").value
-          personJsArray.push(val);
-          console.log(personJsArray);
-        };
-      });
+
       $('.submit-form').click(function() {
           ga('send', 'event', 'Participation', 'Occasions', 'Submit Occasion Form');
       });

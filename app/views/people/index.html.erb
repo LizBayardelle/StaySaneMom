@@ -147,6 +147,22 @@
       midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
 
+    $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('#birthday').on('change', function() {
+        var birthday = $('#birthday').val();
+        $('#birthdayHolder').val(birthday);
+      });
+      $('#anniversary').on('change', function() {
+        var anniversary = $('#anniversary').val();
+        $('#anniversaryHolder').val(anniversary);
+      });
+      $('#other').on('change', function() {
+        var other = $('#other').val();
+        $('#otherHolder').val(other);
+      });
+    });
+
     $('#relationshipTarget').click(function(){
       $('.sortingTarget').removeClass('font-bold');
       $('#relationshipTarget').addClass('font-bold');

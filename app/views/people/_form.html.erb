@@ -31,19 +31,20 @@
       </div> <!-- row -->
 
       <div class="form-group row">
-        <div class="col-sm-4">
+
+        <div class="col-sm-4 md-form">
           <%= f.label :birthday %>
-          <input type="text" class="form-control datepicker" data-datepicker-holder="#birthdayHolder"/>
+          <input placeholder="Select Birthday" type="text" id="birthday" class="form-control datepicker"></input>
           <%= f.hidden_field :birthday, id: "birthdayHolder", class: "hiddenDateField" %>
         </div> <!-- col -->
-        <div class="col-sm-4">
+        <div class="col-sm-4 md-form">
           <%= f.label :anniversary %>
-          <input type="text" class="form-control datepicker" data-datepicker-holder="#anniversaryHolder"/>
+          <input placeholder="Select Anniversary" type="text" id="anniversary" class="form-control datepicker"></input>
           <%= f.hidden_field :anniversary, id: "anniversaryHolder", class: "hiddenDateField" %>
         </div> <!-- col -->
-        <div class="col-sm-4">
+        <div class="col-sm-4 md-form">
           <%= f.label :other %>
-          <input type="text" class="form-control datepicker" data-datepicker-holder="#otherHolder"/>
+          <input placeholder="Select Other" type="text" id="other" class="form-control datepicker"></input>
           <%= f.hidden_field :other, id: "otherHolder", class: "hiddenDateField" %>
         </div> <!-- col -->
       </div> <!-- row -->
@@ -73,6 +74,7 @@
 <!-- script for FROALA-WYSIWYG -->
 <%= content_for :additional_js_partial do %>
   <script type="text/javascript">
+
     $('#wysiwyg').froalaEditor({
       key: '<%= ENV['FROALA_ACTIVATION_KEY'] %>',
       inlineMode: false,
@@ -83,6 +85,19 @@
         ]
     })
     $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('#birthday').on('change', function() {
+        var birthday = $('#birthday').val();
+        $('#birthdayHolder').val(birthday);
+      });
+      $('#anniversary').on('change', function() {
+        var anniversary = $('#anniversary').val();
+        $('#anniversaryHolder').val(anniversary);
+      });
+      $('#other').on('change', function() {
+        var other = $('#other').val();
+        $('#otherHolder').val(other);
+      });
       $('.person-form').click(function() {
           ga('send', 'event', 'Participation', 'People', 'Submit Person Form');
       });
