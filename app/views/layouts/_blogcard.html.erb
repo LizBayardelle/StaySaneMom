@@ -41,7 +41,7 @@
               <% if Subcategory.where(id: blog.subcategory_id) != [] %>
                 In <%= Subcategory.where(id: blog.subcategory_id).first.name %> &nbsp | &nbsp;
               <% end %>
-              <%= link_to "Read More", url_for(blog), input_html: { 'data-disqus-url': url_for(blog) } %> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
+              <span class="disqus-comment-count" data-disqus-identifier="<%= blog.slug %>"></span> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
               <% if current_user && current_user.admin %>
                   <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
                   <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>

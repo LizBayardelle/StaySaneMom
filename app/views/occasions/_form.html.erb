@@ -17,20 +17,9 @@
       <%= f.text_area :notes, class: "form-control" %>
     </div> <!-- col -->
     <div class="form-group collection-checkboxes">
-      <%= f.label "Who do you need to shop for?" %><br />
-      <%= f.collection_check_boxes(:person_ids, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name, class: "form-check-input", id: "materialunchecked") %>
+      <%= f.label "Who do you need to shop for? (Click to Select)" %><br />
+      <%= f.collection_select :person_ids, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name, {}, multiple: 'true', placeholder: "Select Recipients", class: 'mdb-select md-form colorful-select dropdown-secondary' %>
     </div> <!-- col -->
-
-    <% people = Person.where(user_id: current_user.id).order("last_name ASC") %>
-    <% personArray = [] %>
-    <% people.each do |person| %>
-      <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="person<%= person.id %>">
-          <label class="form-check-label" for="person<%= person.id %>"><%= person.first_name %> <%= person.last_name %></label>
-      </div>
-    <% end %>
-    <%= f.hidden_field :person_ids, id: "personID" %>
-
   </div>
 
   <div class="form-actions text-center">
@@ -42,6 +31,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.datepicker').pickadate();
+      $('.mdb-select').materialSelect();
       $('#event-date').on('change', function() {
         var date = $('#event-date').val();
         $('#dateHolder').val(date);

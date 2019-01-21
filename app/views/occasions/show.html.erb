@@ -27,11 +27,11 @@
   <div class="row">
 
     <div class="col-sm-6">
-      <h2 class="text-center font-script">Still Need a Gift</h2>
+      <h2 class="text-center font-script">Still Need Gift</h2>
 
         <% @occasion.gifts.each do |gift| %>
           <% if gift.purchased == false %>
-            <h5 style="font-weight: 300"><a href="#editGiftPopup<%= gift.id %>" class="open-popup-link" style="padding-right: 8px"><%= fa_icon "square-o" %></a> <%= gift.person.first_name + " " + gift.person.last_name %> (<% if gift.name %><%= gift.name %><% else %> ? <% end %>)</h5>
+            <h5 style="font-weight: 300"><a href="#editGiftPopup<%= gift.id %>" class="open-popup-link" style="padding-right: 8px"><i class="far fa-square"></i></a> <%= gift.person.first_name + " " + gift.person.last_name %> (<% if gift.name %><%= gift.name %><% else %> ? <% end %>)</h5>
 
             <!-- new person popup itself -->
             <div id="editGiftPopup<%= gift.id %>" class="white-popup mfp-hide">
@@ -46,7 +46,7 @@
     </div> <!-- column -->
 
     <div class="col-sm-6">
-      <h2 class="text-center font-script">Already Purchased</h2>
+      <h2 class="text-center font-script">Purchased</h2>
       <% @occasion.gifts.each do |gift| %>
         <% if gift.purchased == true %>
           <h5 style="font-weight: 300"><a href="#editGiftPopup<%= gift.id %>" class="open-popup-link" style="padding-right: 8px"><%= fa_icon "check-square" %></a> <%= gift.name %> (for <%= gift.person.first_name + " " + gift.person.last_name %>)</h5>
