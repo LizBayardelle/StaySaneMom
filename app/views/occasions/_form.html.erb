@@ -6,11 +6,10 @@
   <div class="form-inputs">
     <div class="form-group col-xs-12">
       <%= f.label "Occasion Name" %>
-      <%= f.text_field :name, required: true, placeholder: "e.g. Christmas, Valentine's Day, etc." %>
+      <%= f.text_field :name, class: "form-control", required: true, placeholder: "e.g. Christmas, Valentine's Day, etc." %>
     </div> <!-- col -->
-    <div class="form-group col-xs-12">
-      <%= f.label :date %>
-      <input type="text" class="form-control datepicker" data-datepicker-holder="#dateHolder"/>
+    <div class="col-xs-12 md-form">
+      <input placeholder="Date of Event" type="text" id="event-date" class="form-control datepicker"></input>
       <%= f.hidden_field :date, id: "dateHolder", class: "hiddenDateField" %>
     </div> <!-- col -->
     <div class="form-group">
@@ -19,8 +18,19 @@
     </div> <!-- col -->
     <div class="form-group collection-checkboxes">
       <%= f.label "Who do you need to shop for?" %><br />
-      <%= f.collection_check_boxes(:person_ids, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name) %>
+      <%= f.collection_check_boxes(:person_ids, Person.where(user_id: current_user.id).order("last_name ASC"), :id, :full_name, class: "form-check-input", id: "materialunchecked") %>
     </div> <!-- col -->
+
+    <% people = Person.where(user_id: current_user.id).order("last_name ASC") %>
+    <% personArray = [] %>
+    <% people.each do |person| %>
+      <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="person<%= person.id %>">
+          <label class="form-check-label" for="person<%= person.id %>"><%= person.first_name %> <%= person.last_name %></label>
+      </div>
+    <% end %>
+    <%= f.hidden_field :person_ids, id: "personID" %>
+
   </div>
 
   <div class="form-actions text-center">
@@ -31,6 +41,19 @@
 <%= content_for :additional_js_partial do %>
   <script type="text/javascript">
     $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('#event-date').on('change', function() {
+        var date = $('#event-date').val();
+        $('#dateHolder').val(date);
+      });
+      var personJsArray = [];
+      $('.form-check-input').on('change', function() {
+        if ($(".form-check-input").prop('checked')) {
+          var val = $(".form-check-input").value
+          personJsArray.push(val);
+          console.log(personJsArray);
+        };
+      });
       $('.submit-form').click(function() {
           ga('send', 'event', 'Participation', 'Occasions', 'Submit Occasion Form');
       });

@@ -20,24 +20,3 @@
   </div>
   <% end %> <!-- task each -->
 </div>
-
-<%= content_for :additional_js_partial do %>
-  <script type="text/javascript">
-  	$(document).on('ready page:load', function() {
-      $(".taskWrapper").sortable({
-
-        update: function(e, ui) {
-          var $that = $(e.target);
-
-          Rails.ajax({
-            url: $(this).data("url"),
-            type: "PATCH",
-            data: $that.sortable('serialize'),
-          });
-
-          console.log(ui.item.index())
-        }
-      });
-  	});
-  </script>
-<% end %>

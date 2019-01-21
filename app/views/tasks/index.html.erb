@@ -19,7 +19,7 @@
 						<%= f.text_field :name, id: "textField", placeholder: "What needs to get done?", class: "form-control" %>
 					</div>
 					<div class="col-xs-12 col-sm-3">
-						<%= f.select :frequency, options_for_select([["One-Time", "OneTime"],["Daily", "Daily"],["Weekly", "Weekly"],["Monthly", "Monthly"]]), {}, {class: "form-control"} %>
+						<%= f.select :frequency, options_for_select([["One-Time", "OneTime"],["Daily", "Daily"],["Weekly", "Weekly"],["Monthly", "Monthly"]]), {}, {class: "form-control browser-default"} %>
 					</div>
 					<div class="container text-center">
 						<div class="half-buffer"></div>
@@ -83,6 +83,23 @@
   		$('.content-box').matchHeight();
       $('.new-task').click(function() {
           ga('send', 'event', 'Participation', 'To Do List', 'Create New Task');
+      });
+  	});
+
+    $(function() {
+      $(".taskWrapper").sortable({
+
+        update: function(e, ui) {
+          var $that = $(e.target);
+
+          $.ajax({
+            url: $(this).data("url"),
+            type: "PATCH",
+            data: $that.sortable('serialize'),
+          });
+
+          console.log(ui.item.index())
+        }
       });
   	});
   </script>

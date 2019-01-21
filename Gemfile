@@ -27,7 +27,7 @@ gem 'simple_form'
 gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
 gem 'aws-sdk' , '~> 3'
 gem 'aws-sdk-s3', require: false
-gem 'simple_form_extension'
+# gem 'simple_form_extension'
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
