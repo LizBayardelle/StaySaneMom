@@ -18,13 +18,33 @@
   </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
+<div class="container text-center">
+  <h2 class="font-script color-spouse">How It Works</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/k1e5hjjiK3M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
-<% if current_user %>
-  <h2 class="text-center"><%= link_to "Go to your household task organizer now!", tasks_path, class: "color-spouse" %></h2>
-<% else %>
-  <h2 class="text-center"><%= link_to "Start Organizing Your Household Tasks (for Free)", new_user_registration_path, class: "color-spouse" %></h2>
-  <p class="text-center">(Or existing members <%= link_to "Log In", new_user_registration_path, class: "color-spouse" %> here.)</p>
-<% end %>
+<div class="half-buffer"></div>
+
+<div class="bg-neutral">
+  <div class="container text-center">
+
+    <div class="half-buffer"></div>
+
+    <h4 class="text-center">Want to get started?</h4>
+    <% if current_user %>
+      <h2 class="text-center">Go to your household task organizer now!</h2>
+      <%= link_to "Keep Organizing", tasks_path, class: "btn btn-outline-danger font-bold" %>
+    <% else %>
+      <h2 class="text-center">Start Organizing Your Household Tasks (for Free)</h2>
+      <%= link_to "Get Started", new_user_registration_path, class: "btn btn-outline-danger font-bold" %>
+      <p class="text-center">(Or existing members <%= link_to "Log In", new_user_registration_path, class: "color-spouse" %> here.)</p>
+    <% end %>
+
+    <div class="half-buffer"></div>
+
+  </div> <!-- container -->
+</div> <!-- bg row -->
+
 
 <div class="half-buffer"></div>
 
@@ -49,15 +69,32 @@
   <p>The daily tasks refresh every night at midnight, whether you did them or not, so you have a fresh list every morning.</p>
   <p>The weekly ones refresh Sunday night at midnight and the monthly tasks refresh on the last day of the month.  The one-time tasks hang out until you actually complete them.</p>
 
-
-  <% if current_user %>
-    <h2 class="text-center"><%= link_to "Go to your lists now!", tasks_path, class: "color-spouse" %></h2>
-  <% else %>
-    <h2 class="text-center"><%= link_to "Create an account to get started", new_user_registration_path, class: "color-spouse" %></h2>
-    <p class="text-center">(Or existing members <%= link_to "Log In", new_user_registration_path, class: "color-spouse" %> here.)</p>
-  <% end %>
-
 </div> <!-- container -->
+
+<div class="half-buffer"></div>
+
+<div class="bg-neutral">
+  <div class="container text-center">
+
+    <div class="half-buffer"></div>
+
+    <% if current_user %>
+      <h2 class="text-center">Go to your household task organizer now!</h2>
+      <%= link_to "Keep Organizing", tasks_path, class: "btn btn-outline-danger font-bold" %>
+    <% else %>
+      <h2 class="text-center">Start Organizing Your Household Tasks (for Free)</h2>
+      <%= link_to "Get Started", new_user_registration_path, class: "btn btn-outline-danger font-bold" %>
+      <p class="text-center">(Or existing members <%= link_to "Log In", new_user_registration_path, class: "color-spouse" %> here.)</p>
+    <% end %>
+
+    <div class="half-buffer"></div>
+
+  </div> <!-- container -->
+</div> <!-- bg row -->
+
+
+<div class="half-buffer"></div>
+
 
 
 <%= content_for :additional_js do %>
