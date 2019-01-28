@@ -17,7 +17,7 @@ gem 'bootsnap'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-ui-rails'
 gem 'sprockets-rails'
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
 gem 'friendly_id', '~> 5.2.0'
 gem 'stripe'
@@ -41,6 +41,8 @@ gem 'acts_as_list'
 gem 'wysiwyg-rails'
 gem 'will_paginate'
 gem 'searchkick'
+
+gem 'solidus'
 
 group :production do
   gem 'pg', '~> 0.20.0'
