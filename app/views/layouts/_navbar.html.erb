@@ -1,0 +1,224 @@
+
+<!-- Sidebar navigation -->
+<div id="slide-out" class="side-nav white fixed">
+  <ul class="custom-scrollbar">
+    <!-- Logo -->
+    <li>
+      <div class="logo-wrapper waves-light">
+        <%= link_to main_app.root_path do %>
+          <%= image_tag "logo-square.png", class: "img-fluid flex-center" %>
+        <% end %>
+      </div>
+    </li>
+    <!--/. Logo -->
+
+    <!--/. My account -->
+    <li>
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <%= link_to main_app.static_path(:resources), class: "waves-effect arrow-r" do %>
+            <%= fa_icon "book-open", class: "color-spouse" %> &nbsp;Resource Library
+          <% end %>
+        </li>
+
+        <li><a class="collapsible-header waves-effect arrow-r">
+          <%= fa_icon "toolbox", class: "color-spouse" %> &nbsp;Online Tools (All)<i
+          class="fas fa-angle-down rotate-icon"></i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><%= link_to "House Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
+              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
+              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
+            </ul>
+          </div> <!-- collapsable body -->
+        </li>
+
+        <% if current_user && current_user.admin %>
+          <li><a class="collapsible-header waves-effect arrow-r">
+            <%= fa_icon "shopping-cart", class: "color-spouse" %> &nbsp;Store<i
+            class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><%= link_to "Frontend", spree.root_path, class: "waves-effect" %></li>
+                <li><%= link_to "Admin Backend", spree.admin_path, class: "waves-effect", target: "_blank" %></li>
+              </ul>
+            </div> <!-- collapsable body -->
+          </li>
+        <% else %>
+          <li>
+            <%= link_to spree.root_path, class: "waves-effect arrow-r" do %>
+              <%= fa_icon "shopping-cart", class: "color-spouse" %> &nbsp;Store
+            <% end %>
+          </li>
+        <% end %>
+
+
+        <li><a class="collapsible-header waves-effect arrow-r">
+          <%= fa_icon "user", class: "color-spouse" %> &nbsp;My Account<i
+              class="fas fa-angle-down rotate-icon"></i></a>
+          <div class="collapsible-body">
+            <ul>
+              <% if current_user %>
+                <li><%= link_to current_user.first_name + "'s Homepage", main_app.user_path(current_user), class: "waves-effect" %></li>
+                <li><%= link_to('Sign Out', main_app.destroy_user_session_path, :method => :delete, class: "waves-effect") %></li>
+              <% else %>
+                <li><%= link_to "Log In", main_app.new_user_session_path, class: "waves-effect" %></li>
+                <li><%= link_to "Sign Up", main_app.new_user_registration_path, class: "waves-effect" %></li>
+              <% end %>
+            </ul>
+          </div> <!-- collapsable body -->
+        </li>
+
+
+      </ul>
+    </li>
+    <!--/. my account -->
+
+    <div class="sidenav-divider"></div>
+
+    <!-- Side navigation links -->
+    <li>
+      <ul class="collapsible collapsible-accordion">
+        <li><a class="collapsible-header waves-effect arrow-r">
+          <%= fa_icon "home", class: "color-house" %> &nbsp;House<i
+              class="fas fa-angle-down rotate-icon"></i></a>
+          <div class="house collapsible-body">
+            <% @subcategories = Subcategory.where(category: "House", active: true) %>
+            <ul>
+              <% @subcategories.each do |subcategory| %>
+                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
+              <% end %>
+              <li><%= link_to "TOOL: Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
+            </ul>
+          </div> <!-- collapsable body -->
+        </li>
+        <li><a class="collapsible-header waves-effect arrow-r">
+          <%= fa_icon "ring", class: "color-spouse" %> &nbsp;Spouse<i
+              class="fas fa-angle-down rotate-icon"></i></a>
+          <div class="spouse collapsible-body">
+            <% @subcategories = Subcategory.where(category: "Spouse", active: true) %>
+            <ul>
+              <% @subcategories.each do |subcategory| %>
+                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
+              <% end %>
+            </ul>
+          </div> <!-- collapsable body -->        </li>
+        <li><a class="collapsible-header waves-effect arrow-r">
+          <%= fa_icon "baby", class: "color-kids" %> &nbsp;Kids<i class="fas fa-angle-down rotate-icon"></i></a>
+          <div class="kids collapsible-body">
+            <% @subcategories = Subcategory.where(category: "Kids", active: true) %>
+            <ul>
+              <% @subcategories.each do |subcategory| %>
+                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
+              <% end %>
+            </ul>
+          </div> <!-- collapsable body -->
+        </li>
+        <li><a class="collapsible-header waves-effect arrow-r">
+          <%= fa_icon "spa", class: "color-self" %> &nbsp;Self<i
+              class="fas fa-angle-down rotate-icon"></i></a>
+          <div class="self collapsible-body">
+            <% @subcategories = Subcategory.where(category: "Self", active: true) %>
+            <ul>
+              <% @subcategories.each do |subcategory| %>
+                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
+              <% end %>
+            </ul>
+          </div> <!-- collapsable body -->
+        </li>
+
+        <li>
+          <%= link_to main_app.blogs_path, class: "waves-effect arrow-r" do %>
+            <%= fa_icon "pen-fancy", class: "color-neutral" %> &nbsp;Blog
+          <% end %>
+        </li>
+
+        <div class="sidenav-divider"></div>
+
+        <!--Social-->
+        <li>
+          <ul class="social">
+            <li><a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://www.pinterest.com/theStaySaneMom/" target="_blank"><i class="fab fa-pinterest-square"></i></a></li>
+            <li><a href="https://www.instagram.com/theStaySaneMom/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.twitter.com/TheStaySaneMom/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UC_g4NFVoQi4t2PbA23q0_VQ" target="_blank"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><i class="fab fa-amazon"></i></a></li>
+            <li><%= mail_to("liz@theStaySaneMom.com") do %><%= fa_icon "envelope", class: "" %><% end %></li>
+          </ul>
+        </li>
+        <!--/Social-->
+
+
+      </ul>
+    </li>
+
+    <!--Search Form-->
+    <li>
+      <div class="text-center search-bar">
+        <div class="half-buffer"></div>
+        <%= form_tag main_app.home_results_path, method: :get do %>
+        <%= text_field_tag :q, nil, placeholder: "Search for wisdom..." %>
+        <% end %>
+      </div> <!-- search bar -->
+    </li>
+    <!--/.Search Form-->
+    <!--/. Side navigation links -->
+  </ul>
+  <div class="sidenav-bg rgba-white-strong"></div>
+</div>
+<!--/. Sidebar navigation -->
+
+
+
+<!--Main Navigation-->
+<header>
+
+<nav class="navbar fixed-top navbar-expand-md navbar-light white scrolling-navbar">
+  <!-- SideNav slide-out button -->
+  <a href="#" data-activates="slide-out" class="button-collapse" style="padding-left: 20px; padding-right: 10px"><i class="fas fa-bars"></i></a>
+
+
+  <%= link_to main_app.root_path, class: "navbar-brand left" do %>
+      <%= image_tag "logo.png", alt: "Logo" %>
+      <p class="d-none d-md-block" style="padding: 0px">Tools and support for the marker-stained, under-slept, soul-hungry mom.</p>
+  <% end %>
+
+  <div class="navbar-brand right d-none d-md-block">
+    <%= link_to main_app.home_house_path do %>
+      <%= fa_icon "home", id: "house-icon", class: "header-icon color-house" %>
+    <% end %>
+    <%= link_to main_app.home_spouse_path do %>
+      <%= fa_icon "ring", id: "spouse-icon", class: "header-icon color-spouse" %>
+    <% end %>
+    <%= link_to main_app.home_kids_path do %>
+      <%= fa_icon "baby", id: "kids-icon", class: "header-icon color-kids" %>
+    <% end %>
+    <%= link_to main_app.home_self_path do %>
+      <%= fa_icon "spa", id: "self-icon", class: "header-icon color-self" %>
+    <% end %>
+    <%= link_to main_app.blogs_path do %>
+      <%= fa_icon "pen-fancy", id: "blog-icon", class: "header-icon color-neutral" %>
+    <% end %>
+    <%= link_to spree.root_path do %>
+      <%= fa_icon "shopping-cart", id: "blog-icon", class: "header-icon color-neutral" %>
+    <% end %>
+    <% if current_user %>
+      <%= link_to main_app.user_path(current_user) do %>
+        <%= fa_icon "user", id: "blog-icon", class: "header-icon color-neutral" %>
+      <% end %>
+    <% else %>
+      <%= link_to main_app.new_user_session_path do %>
+        <%= fa_icon "sign-in-alt", class: "header-icon color-neutral" %>
+      <% end %>
+      <%= link_to main_app.new_user_registration_path do %>
+        <%= fa_icon "user-plus", class: "header-icon color-neutral" %>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
+
+</header>
+<!--Main Navigation-->
+
+<div class="half-buffer"></div>

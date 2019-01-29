@@ -9,6 +9,10 @@
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
 
+    <!--- navbar stuff here -->
+    <%= render "layouts/navbar" %>
+    <!--- END navbar stuff here -->
+
     <div class="container">
 
       <%= render partial: 'spree/shared/header' %>
@@ -28,9 +32,13 @@
 
       </div>
 
-      <%= render partial: 'spree/shared/footer' %>
+      <%#= render partial: 'spree/shared/footer' %>
 
     </div>
+    <%= render "layouts/scripts" %>
+
+    <%= yield :additional_js_partial %>
+    <%= yield :additional_js %>
 
   </body>
 </html>

@@ -1337,3 +1337,43 @@ footer p, footer p em {
 .side-nav .spouse.collapsible-body a.sub { background-color: $transparent-spouse; }
 .side-nav .kids.collapsible-body a.sub { background-color: $transparent-kids; }
 .side-nav .self.collapsible-body a.sub { background-color: $transparent-self; }
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// --- SOLIDUS OVERRIDES -----
+// ---------------------------
+// ---------------------------
+
+.progress-steps li.current-first, .progress-steps li.current {
+  background-color: $color-spouse;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], button, a.button {
+  background-color: $color-spouse;
+  border-color: $transparent-spouse;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], button.gray, a.button {
+  background-color: $color-neutral-light;
+  border-color: $transparent-neutral;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], button.gray, a.button a {
+  color: $color-spouse;
+}
+
+#billing legend, #shipping legend, #shipping_method legend, #payment legend, #order_details legend, #order_summary legend {
+  color: $color-spouse;
+}
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+  position: relative;
+  opacity: 1;
+}
+
+.solidus-form p {
+  margin: 0;
+}
