@@ -42,9 +42,9 @@ class CreateSpreePromotionCodeBatch < ActiveRecord::Migration[5.0]
       column: :promotion_code_batch_id
     )
 
-    add_index(
-      :spree_promotion_codes,
-      :promotion_code_batch_id
-    )
+    # add_index(
+    #   :spree_promotion_codes,
+    #   :promotion_code_batch_id
+    # )
   end
 end
