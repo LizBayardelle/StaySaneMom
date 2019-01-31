@@ -13,11 +13,21 @@ class CreateSpreePromotionCodeBatch < ActiveRecord::Migration[5.0]
       t.timestamps precision: 6
     end
 
+    # create_table :spree_promotion_codes do |t|  << OLD ONE
+    #   t.integer :promotion_id, null: false
+    #   t.string :value, null: false
+    #   t.integer :promotion_code_batch_id
+    #   t.timestamps precision: 6
+    # end
+
     create_table :spree_promotion_codes do |t|
       t.integer :promotion_id, null: false
       t.string :value, null: false
+      t.integer :promotion_id, null: false
       t.integer :promotion_code_batch_id
       t.timestamps precision: 6
+      t.index ["promotion_id"], name: "index_spree_promotion_codes_on_promotion_id"
+      t.index ["value"], name: "index_spree_promotion_codes_on_value", unique: true
     end
 
     add_foreign_key(
