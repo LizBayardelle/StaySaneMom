@@ -1,6 +1,6 @@
 class Additionalmigration9 < ActiveRecord::Migration[5.2]
   def change
-    drop_table :spree_option_value_variants
+    # drop_table :spree_option_value_variants
     create_table "spree_option_values_variants", force: :cascade do |t|
       t.integer "variant_id"
       t.integer "option_value_id"

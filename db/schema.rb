@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "freebie_type", default: "File"
     t.string "freebie_description"
     t.integer "comments_count"
+    t.bigint "subcategory_id"
     t.boolean "affiliate_links", default: true
     t.boolean "approved", default: false
     t.boolean "submitted", default: false
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -106,9 +108,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_friendly_id_slugs_on_deleted_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
@@ -132,11 +133,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   end
 
   create_table "occasions", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "user_id"
     t.string "name"
     t.date "date"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_occasions_on_person_id"
+    t.index ["user_id"], name: "index_occasions_on_user_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -183,31 +188,44 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "company"
     t.integer "state_id"
     t.integer "country_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["country_id"], name: "index_spree_addresses_on_country_id"
     t.index ["firstname"], name: "index_addresses_on_firstname"
     t.index ["lastname"], name: "index_addresses_on_lastname"
     t.index ["state_id"], name: "index_spree_addresses_on_state_id"
   end
 
+  create_table "spree_adjustment_reasons", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["active"], name: "index_spree_adjustment_reasons_on_active"
+    t.index ["code"], name: "index_spree_adjustment_reasons_on_code"
+  end
+
   create_table "spree_adjustments", id: :serial, force: :cascade do |t|
     t.string "source_type"
     t.integer "source_id"
     t.string "adjustable_type"
-    t.integer "adjustable_id"
+    t.integer "adjustable_id", null: false
     t.decimal "amount", precision: 10, scale: 2
     t.string "label"
-    t.boolean "mandatory"
     t.boolean "eligible", default: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "state"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "order_id", null: false
     t.boolean "included", default: false
+    t.integer "promotion_code_id"
+    t.integer "adjustment_reason_id"
+    t.boolean "finalized", default: false, null: false
     t.index ["adjustable_id", "adjustable_type"], name: "index_spree_adjustments_on_adjustable_id_and_adjustable_type"
+    t.index ["adjustable_id"], name: "index_adjustments_on_order_id"
     t.index ["eligible"], name: "index_spree_adjustments_on_eligible"
     t.index ["order_id"], name: "index_spree_adjustments_on_order_id"
+    t.index ["promotion_code_id"], name: "index_spree_adjustments_on_promotion_code_id"
     t.index ["source_id", "source_type"], name: "index_spree_adjustments_on_source_id_and_source_type"
   end
 
@@ -223,9 +241,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "type", limit: 75
     t.datetime "attachment_updated_at"
     t.text "alt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["position"], name: "index_spree_assets_on_position"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["viewable_id"], name: "index_assets_on_viewable_id"
     t.index ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"
   end
@@ -234,13 +251,28 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "type"
     t.string "calculable_type"
     t.integer "calculable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.text "preferences"
-    t.datetime "deleted_at"
     t.index ["calculable_id", "calculable_type"], name: "index_spree_calculators_on_calculable_id_and_calculable_type"
-    t.index ["deleted_at"], name: "index_spree_calculators_on_deleted_at"
     t.index ["id", "type"], name: "index_spree_calculators_on_id_and_type"
+  end
+
+  create_table "spree_cartons", id: :serial, force: :cascade do |t|
+    t.string "number"
+    t.string "external_number"
+    t.integer "stock_location_id"
+    t.integer "address_id"
+    t.integer "shipping_method_id"
+    t.string "tracking"
+    t.datetime "shipped_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.integer "imported_from_shipment_id"
+    t.index ["external_number"], name: "index_spree_cartons_on_external_number"
+    t.index ["imported_from_shipment_id"], name: "index_spree_cartons_on_imported_from_shipment_id", unique: true
+    t.index ["number"], name: "index_spree_cartons_on_number", unique: true
+    t.index ["stock_location_id"], name: "index_spree_cartons_on_stock_location_id"
   end
 
   create_table "spree_countries", id: :serial, force: :cascade do |t|
@@ -250,10 +282,9 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "name"
     t.integer "numcode"
     t.boolean "states_required", default: false
-    t.datetime "updated_at"
-    t.boolean "zipcode_required", default: true
-    t.index "lower((iso_name)::text)", name: "index_spree_countries_on_lower_iso_name", unique: true
-    t.index "lower((name)::text)", name: "index_spree_countries_on_lower_name", unique: true
+    t.datetime "updated_at", precision: 6
+    t.datetime "created_at", precision: 6
+    t.index ["iso"], name: "index_spree_countries_on_iso"
   end
 
   create_table "spree_credit_cards", id: :serial, force: :cascade do |t|
@@ -261,18 +292,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "year"
     t.string "cc_type"
     t.string "last_digits"
-    t.integer "address_id"
     t.string "gateway_customer_profile_id"
     t.string "gateway_payment_profile_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "name"
     t.integer "user_id"
     t.integer "payment_method_id"
     t.boolean "default", default: false, null: false
-    t.datetime "deleted_at"
-    t.index ["address_id"], name: "index_spree_credit_cards_on_address_id"
-    t.index ["deleted_at"], name: "index_spree_credit_cards_on_deleted_at"
+    t.integer "address_id"
     t.index ["payment_method_id"], name: "index_spree_credit_cards_on_payment_method_id"
     t.index ["user_id"], name: "index_spree_credit_cards_on_user_id"
   end
@@ -280,10 +308,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_customer_returns", id: :serial, force: :cascade do |t|
     t.string "number"
     t.integer "stock_location_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["number"], name: "index_spree_customer_returns_on_number", unique: true
-    t.index ["stock_location_id"], name: "index_spree_customer_returns_on_stock_location_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_gateways", id: :serial, force: :cascade do |t|
@@ -305,14 +331,13 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "state"
     t.integer "variant_id"
     t.integer "shipment_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.boolean "pending", default: true
     t.integer "line_item_id"
-    t.integer "quantity", default: 1
-    t.integer "original_return_item_id"
+    t.integer "carton_id"
+    t.index ["carton_id"], name: "index_spree_inventory_units_on_carton_id"
     t.index ["line_item_id"], name: "index_spree_inventory_units_on_line_item_id"
-    t.index ["original_return_item_id"], name: "index_spree_inventory_units_on_original_return_item_id"
     t.index ["shipment_id"], name: "index_inventory_units_on_shipment_id"
     t.index ["variant_id"], name: "index_inventory_units_on_variant_id"
   end
@@ -332,19 +357,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "order_id"
     t.integer "quantity", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.decimal "cost_price", precision: 10, scale: 2
     t.integer "tax_category_id"
     t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0"
     t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
     t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
     t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
-    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
-    t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
   end
 
@@ -352,8 +373,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "source_type"
     t.integer "source_id"
     t.text "details"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["source_id", "source_type"], name: "index_spree_log_entries_on_source_id_and_source_type"
   end
 
@@ -401,18 +422,16 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_option_type_prototypes", id: :serial, force: :cascade do |t|
     t.integer "prototype_id"
     t.integer "option_type_id"
-    t.index ["option_type_id"], name: "index_spree_option_type_prototypes_on_option_type_id"
-    t.index ["prototype_id", "option_type_id"], name: "spree_option_type_prototypes_prototype_id_option_type_id", unique: true
-    t.index ["prototype_id"], name: "index_spree_option_type_prototypes_on_prototype_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_option_types", id: :serial, force: :cascade do |t|
     t.string "name", limit: 100
     t.string "presentation", limit: 100
     t.integer "position", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_spree_option_types_on_name"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["position"], name: "index_spree_option_types_on_position"
   end
 
@@ -421,9 +440,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "name"
     t.string "presentation"
     t.integer "option_type_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_spree_option_values_on_name"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["option_type_id"], name: "index_spree_option_values_on_option_type_id"
     t.index ["position"], name: "index_spree_option_values_on_position"
   end
@@ -466,8 +484,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "payment_state"
     t.string "email"
     t.text "special_instructions"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "currency"
     t.string "last_ip_address"
     t.integer "created_by_id"
@@ -480,29 +498,21 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "approver_id"
     t.datetime "approved_at"
     t.boolean "confirmation_delivered", default: false
-    t.boolean "considered_risky", default: false
-    t.string "token"
+    t.string "guest_token"
     t.datetime "canceled_at"
     t.integer "canceler_id"
     t.integer "store_id"
-    t.integer "state_lock_version", default: 0, null: false
-    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.string "guest_token"
+    t.string "approver_name"
     t.boolean "frontend_viewable", default: true, null: false
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
-    t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
     t.index ["completed_at"], name: "index_spree_orders_on_completed_at"
-    t.index ["confirmation_delivered"], name: "index_spree_orders_on_confirmation_delivered"
-    t.index ["considered_risky"], name: "index_spree_orders_on_considered_risky"
     t.index ["created_by_id"], name: "index_spree_orders_on_created_by_id"
     t.index ["guest_token"], name: "index_spree_orders_on_guest_token"
-    t.index ["number"], name: "index_spree_orders_on_number", unique: true
+    t.index ["number"], name: "index_spree_orders_on_number"
     t.index ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
-    t.index ["store_id"], name: "index_spree_orders_on_store_id"
-    t.index ["token"], name: "index_spree_orders_on_token"
     t.index ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id"
+    t.index ["user_id"], name: "index_spree_orders_on_user_id"
   end
 
   create_table "spree_orders_promotions", force: :cascade do |t|
@@ -518,8 +528,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_payment_capture_events", id: :serial, force: :cascade do |t|
     t.decimal "amount", precision: 10, scale: 2, default: "0.0"
     t.integer "payment_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["payment_id"], name: "index_spree_payment_capture_events_on_payment_id"
   end
 
@@ -529,10 +539,11 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.text "description"
     t.boolean "active", default: true
     t.datetime "deleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.boolean "auto_capture"
     t.text "preferences"
+    t.string "preference_source"
     t.integer "position", default: 0
     t.boolean "available_to_users", default: true
     t.boolean "available_to_admin", default: true
@@ -548,12 +559,11 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "state"
     t.string "response_code"
     t.string "avs_response"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "number"
     t.string "cvv_response_code"
     t.string "cvv_response_message"
-    t.index ["number"], name: "index_spree_payments_on_number", unique: true
     t.index ["order_id"], name: "index_spree_payments_on_order_id"
     t.index ["payment_method_id"], name: "index_spree_payments_on_payment_method_id"
     t.index ["source_id", "source_type"], name: "index_spree_payments_on_source_id_and_source_type"
@@ -562,8 +572,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_preferences", id: :serial, force: :cascade do |t|
     t.text "value"
     t.string "key"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["key"], name: "index_spree_preferences_on_key", unique: true
   end
 
@@ -572,21 +582,20 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.decimal "amount", precision: 10, scale: 2
     t.string "currency"
     t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean "is_default", default: true, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "country_iso", limit: 2
     t.index ["country_iso"], name: "index_spree_prices_on_country_iso"
-    t.index ["deleted_at"], name: "index_spree_prices_on_deleted_at"
     t.index ["variant_id", "currency"], name: "index_spree_prices_on_variant_id_and_currency"
-    t.index ["variant_id"], name: "index_spree_prices_on_variant_id"
   end
 
   create_table "spree_product_option_types", id: :serial, force: :cascade do |t|
     t.integer "position"
     t.integer "product_id"
     t.integer "option_type_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["option_type_id"], name: "index_spree_product_option_types_on_option_type_id"
     t.index ["position"], name: "index_spree_product_option_types_on_position"
     t.index ["product_id"], name: "index_spree_product_option_types_on_product_id"
@@ -595,16 +604,18 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_product_promotion_rules", id: :serial, force: :cascade do |t|
     t.integer "product_id"
     t.integer "promotion_rule_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["product_id"], name: "index_products_promotion_rules_on_product_id"
-    t.index ["promotion_rule_id", "product_id"], name: "index_products_promotion_rules_on_promotion_rule_and_product"
+    t.index ["promotion_rule_id"], name: "index_products_promotion_rules_on_promotion_rule_id"
   end
 
   create_table "spree_product_properties", id: :serial, force: :cascade do |t|
     t.string "value"
     t.integer "product_id"
     t.integer "property_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "position", default: 0
     t.index ["position"], name: "index_spree_product_properties_on_position"
     t.index ["product_id"], name: "index_product_properties_on_product_id"
@@ -621,24 +632,22 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "meta_keywords"
     t.integer "tax_category_id"
     t.integer "shipping_category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.boolean "promotionable", default: true
     t.string "meta_title"
-    t.datetime "discontinue_on"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
-    t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
     t.index ["name"], name: "index_spree_products_on_name"
-    t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
-    t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
   end
 
   create_table "spree_products_taxons", id: :serial, force: :cascade do |t|
     t.integer "product_id"
     t.integer "taxon_id"
     t.integer "position"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["position"], name: "index_spree_products_taxons_on_position"
     t.index ["product_id"], name: "index_spree_products_taxons_on_product_id"
     t.index ["taxon_id"], name: "index_spree_products_taxons_on_taxon_id"
@@ -648,6 +657,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "promotion_action_id"
     t.integer "variant_id"
     t.integer "quantity", default: 1
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["promotion_action_id"], name: "index_spree_promotion_action_line_items_on_promotion_action_id"
     t.index ["variant_id"], name: "index_spree_promotion_action_line_items_on_variant_id"
   end
@@ -657,6 +668,9 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "position"
     t.string "type"
     t.datetime "deleted_at"
+    t.text "preferences"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["deleted_at"], name: "index_spree_promotion_actions_on_deleted_at"
     t.index ["id", "type"], name: "index_spree_promotion_actions_on_id_and_type"
     t.index ["promotion_id"], name: "index_spree_promotion_actions_on_promotion_id"
@@ -664,8 +678,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
 
   create_table "spree_promotion_categories", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "code"
   end
 
@@ -685,15 +699,17 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_promotion_codes", id: :serial, force: :cascade do |t|
     t.integer "promotion_id", null: false
     t.string "value", null: false
-    t.integer "promotion_code_batch_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["promotion_code_batch_id"], name: "index_spree_promotion_codes_on_promotion_code_batch_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["promotion_id"], name: "index_spree_promotion_codes_on_promotion_id"
+    t.index ["value"], name: "index_spree_promotion_codes_on_value", unique: true
   end
 
   create_table "spree_promotion_rule_taxons", id: :serial, force: :cascade do |t|
     t.integer "taxon_id"
     t.integer "promotion_rule_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["promotion_rule_id"], name: "index_spree_promotion_rule_taxons_on_promotion_rule_id"
     t.index ["taxon_id"], name: "index_spree_promotion_rule_taxons_on_taxon_id"
   end
@@ -701,22 +717,19 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_promotion_rule_users", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "promotion_rule_id"
-    t.index ["promotion_rule_id"], name: "index_promotion_rules_users_on_promotion_rule_id"
     t.index ["user_id", "promotion_rule_id"], name: "index_promotion_rules_users_on_user_id_and_promotion_rule_id"
   end
 
   create_table "spree_promotion_rules", id: :serial, force: :cascade do |t|
     t.integer "promotion_id"
-    t.integer "user_id"
     t.integer "product_group_id"
     t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "code"
     t.text "preferences"
     t.index ["product_group_id"], name: "index_promotion_rules_on_product_group_id"
     t.index ["promotion_id"], name: "index_spree_promotion_rules_on_promotion_id"
-    t.index ["user_id"], name: "index_promotion_rules_on_user_id"
   end
 
   create_table "spree_promotion_rules_stores", force: :cascade do |t|
@@ -726,6 +739,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.datetime "updated_at", null: false
     t.index ["promotion_rule_id"], name: "index_spree_promotion_rules_stores_on_promotion_rule_id"
     t.index ["store_id"], name: "index_spree_promotion_rules_stores_on_store_id"
+  end
+
+  create_table "spree_promotion_rules_users", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "promotion_rule_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["promotion_rule_id"], name: "index_promotion_rules_users_on_promotion_rule_id"
+    t.index ["user_id"], name: "index_promotion_rules_users_on_user_id"
   end
 
   create_table "spree_promotions", id: :serial, force: :cascade do |t|
@@ -745,7 +767,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.boolean "apply_automatically", default: false
     t.index ["advertise"], name: "index_spree_promotions_on_advertise"
     t.index ["apply_automatically"], name: "index_spree_promotions_on_apply_automatically"
-    t.index ["code"], name: "index_spree_promotions_on_code", unique: true
+    t.index ["code"], name: "index_spree_promotions_on_code"
     t.index ["expires_at"], name: "index_spree_promotions_on_expires_at"
     t.index ["id", "type"], name: "index_spree_promotions_on_id_and_type"
     t.index ["promotion_category_id"], name: "index_spree_promotions_on_promotion_category_id"
@@ -755,48 +777,47 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_properties", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "presentation", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_spree_properties_on_name"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_property_prototypes", id: :serial, force: :cascade do |t|
     t.integer "prototype_id"
     t.integer "property_id"
-    t.index ["property_id"], name: "index_spree_property_prototypes_on_property_id"
-    t.index ["prototype_id", "property_id"], name: "index_property_prototypes_on_prototype_id_and_property_id", unique: true
-    t.index ["prototype_id"], name: "index_spree_property_prototypes_on_prototype_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_prototype_taxons", id: :serial, force: :cascade do |t|
     t.integer "taxon_id"
     t.integer "prototype_id"
-    t.index ["prototype_id", "taxon_id"], name: "index_spree_prototype_taxons_on_prototype_id_and_taxon_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["prototype_id"], name: "index_spree_prototype_taxons_on_prototype_id"
     t.index ["taxon_id"], name: "index_spree_prototype_taxons_on_taxon_id"
   end
 
   create_table "spree_prototypes", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_refund_reasons", id: :serial, force: :cascade do |t|
     t.string "name"
     t.boolean "active", default: true
     t.boolean "mutable", default: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index "lower((name)::text)", name: "index_spree_refund_reasons_on_lower_name", unique: true
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.string "code"
   end
 
   create_table "spree_refunds", id: :serial, force: :cascade do |t|
     t.integer "payment_id"
     t.decimal "amount", precision: 10, scale: 2, default: "0.0", null: false
     t.string "transaction_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "refund_reason_id"
     t.integer "reimbursement_id"
     t.index ["payment_id"], name: "index_spree_refunds_on_payment_id"
@@ -809,18 +830,17 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "reimbursement_id"
     t.integer "creditable_id"
     t.string "creditable_type"
-    t.index ["creditable_id", "creditable_type"], name: "index_reimbursement_credits_on_creditable_id_and_type"
-    t.index ["reimbursement_id"], name: "index_spree_reimbursement_credits_on_reimbursement_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_reimbursement_types", id: :serial, force: :cascade do |t|
     t.string "name"
     t.boolean "active", default: true
     t.boolean "mutable", default: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "type"
-    t.index "lower((name)::text)", name: "index_spree_reimbursement_types_on_lower_name", unique: true
     t.index ["type"], name: "index_spree_reimbursement_types_on_type"
   end
 
@@ -830,10 +850,9 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "customer_return_id"
     t.integer "order_id"
     t.decimal "total", precision: 10, scale: 2
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["customer_return_id"], name: "index_spree_reimbursements_on_customer_return_id"
-    t.index ["number"], name: "index_spree_reimbursements_on_number", unique: true
     t.index ["order_id"], name: "index_spree_reimbursements_on_order_id"
   end
 
@@ -851,42 +870,34 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "state"
     t.integer "order_id"
     t.text "memo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "stock_location_id"
-    t.integer "return_authorization_reason_id"
-    t.index ["number"], name: "index_spree_return_authorizations_on_number", unique: true
-    t.index ["order_id"], name: "index_spree_return_authorizations_on_order_id"
-    t.index ["return_authorization_reason_id"], name: "index_return_authorizations_on_return_authorization_reason_id"
-    t.index ["stock_location_id"], name: "index_spree_return_authorizations_on_stock_location_id"
+    t.integer "return_reason_id"
+    t.index ["return_reason_id"], name: "index_return_authorizations_on_return_authorization_reason_id"
   end
 
   create_table "spree_return_items", id: :serial, force: :cascade do |t|
     t.integer "return_authorization_id"
     t.integer "inventory_unit_id"
     t.integer "exchange_variant_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.decimal "amount", precision: 12, scale: 4, default: "0.0", null: false
     t.decimal "included_tax_total", precision: 12, scale: 4, default: "0.0", null: false
     t.decimal "additional_tax_total", precision: 12, scale: 4, default: "0.0", null: false
     t.string "reception_status"
     t.string "acceptance_status"
     t.integer "customer_return_id"
     t.integer "reimbursement_id"
+    t.integer "exchange_inventory_unit_id"
     t.text "acceptance_status_errors"
     t.integer "preferred_reimbursement_type_id"
     t.integer "override_reimbursement_type_id"
     t.boolean "resellable", default: true, null: false
-    t.integer "exchange_inventory_unit_id"
+    t.integer "return_reason_id"
     t.index ["customer_return_id"], name: "index_return_items_on_customer_return_id"
     t.index ["exchange_inventory_unit_id"], name: "index_spree_return_items_on_exchange_inventory_unit_id"
-    t.index ["exchange_variant_id"], name: "index_spree_return_items_on_exchange_variant_id"
-    t.index ["inventory_unit_id"], name: "index_spree_return_items_on_inventory_unit_id"
-    t.index ["override_reimbursement_type_id"], name: "index_spree_return_items_on_override_reimbursement_type_id"
-    t.index ["preferred_reimbursement_type_id"], name: "index_spree_return_items_on_preferred_reimbursement_type_id"
-    t.index ["reimbursement_id"], name: "index_spree_return_items_on_reimbursement_id"
-    t.index ["return_authorization_id"], name: "index_spree_return_items_on_return_authorization_id"
   end
 
   create_table "spree_return_reasons", force: :cascade do |t|
@@ -906,16 +917,17 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
 
   create_table "spree_roles", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.index "lower((name)::text)", name: "index_spree_roles_on_lower_name", unique: true
-    t.index ["name"], name: "index_spree_roles_on_name", unique: true
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_roles_users", id: :serial, force: :cascade do |t|
     t.integer "role_id"
     t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "role_id"], name: "index_spree_roles_users_on_user_id_and_role_id", unique: true
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["role_id"], name: "index_spree_roles_users_on_role_id"
+    t.index ["user_id"], name: "index_spree_roles_users_on_user_id"
   end
 
   create_table "spree_shipments", id: :serial, force: :cascade do |t|
@@ -924,38 +936,33 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.decimal "cost", precision: 10, scale: 2, default: "0.0"
     t.datetime "shipped_at"
     t.integer "order_id"
-    t.integer "address_id"
+    t.integer "deprecated_address_id"
     t.string "state"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "stock_location_id"
     t.decimal "adjustment_total", precision: 10, scale: 2, default: "0.0"
     t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0"
     t.decimal "promo_total", precision: 10, scale: 2, default: "0.0"
     t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
-    t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.index ["address_id"], name: "index_spree_shipments_on_address_id"
-    t.index ["number"], name: "index_spree_shipments_on_number", unique: true
+    t.index ["deprecated_address_id"], name: "index_spree_shipments_on_deprecated_address_id"
+    t.index ["number"], name: "index_shipments_on_number"
     t.index ["order_id"], name: "index_spree_shipments_on_order_id"
     t.index ["stock_location_id"], name: "index_spree_shipments_on_stock_location_id"
   end
 
   create_table "spree_shipping_categories", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_spree_shipping_categories_on_name"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_shipping_method_categories", id: :serial, force: :cascade do |t|
     t.integer "shipping_method_id", null: false
     t.integer "shipping_category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["shipping_category_id", "shipping_method_id"], name: "unique_spree_shipping_method_categories", unique: true
-    t.index ["shipping_category_id"], name: "index_spree_shipping_method_categories_on_shipping_category_id"
     t.index ["shipping_method_id"], name: "index_spree_shipping_method_categories_on_shipping_method_id"
   end
 
@@ -971,24 +978,23 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   create_table "spree_shipping_method_zones", id: :serial, force: :cascade do |t|
     t.integer "shipping_method_id"
     t.integer "zone_id"
-    t.index ["shipping_method_id"], name: "index_spree_shipping_method_zones_on_shipping_method_id"
-    t.index ["zone_id"], name: "index_spree_shipping_method_zones_on_zone_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_shipping_methods", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "deleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "tracking_url"
     t.string "admin_name"
     t.integer "tax_category_id"
     t.string "code"
-    t.boolean "available_to_users", default: true
     t.boolean "available_to_all", default: true
     t.string "carrier"
     t.string "service_level"
-    t.index ["deleted_at"], name: "index_spree_shipping_methods_on_deleted_at"
+    t.boolean "available_to_users", default: true
     t.index ["tax_category_id"], name: "index_spree_shipping_methods_on_tax_category_id"
   end
 
@@ -1007,14 +1013,10 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "shipping_method_id"
     t.boolean "selected", default: false
     t.decimal "cost", precision: 8, scale: 2, default: "0.0"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "tax_rate_id"
-    t.index ["selected"], name: "index_spree_shipping_rates_on_selected"
     t.index ["shipment_id", "shipping_method_id"], name: "spree_shipping_rates_join_index", unique: true
-    t.index ["shipment_id"], name: "index_spree_shipping_rates_on_shipment_id"
-    t.index ["shipping_method_id"], name: "index_spree_shipping_rates_on_shipping_method_id"
-    t.index ["tax_rate_id"], name: "index_spree_shipping_rates_on_tax_rate_id"
   end
 
   create_table "spree_state_changes", id: :serial, force: :cascade do |t|
@@ -1024,16 +1026,18 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "user_id"
     t.string "stateful_type"
     t.string "next_state"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["stateful_id", "stateful_type"], name: "index_spree_state_changes_on_stateful_id_and_stateful_type"
+    t.index ["user_id"], name: "index_spree_state_changes_on_user_id"
   end
 
   create_table "spree_states", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "abbr"
     t.integer "country_id"
-    t.datetime "updated_at"
+    t.datetime "updated_at", precision: 6
+    t.datetime "created_at", precision: 6
     t.index ["country_id"], name: "index_spree_states_on_country_id"
   end
 
@@ -1041,21 +1045,20 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "stock_location_id"
     t.integer "variant_id"
     t.integer "count_on_hand", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.boolean "backorderable", default: false
     t.datetime "deleted_at"
-    t.index ["backorderable"], name: "index_spree_stock_items_on_backorderable"
     t.index ["deleted_at"], name: "index_spree_stock_items_on_deleted_at"
     t.index ["stock_location_id", "variant_id"], name: "stock_item_by_loc_and_var_id"
     t.index ["stock_location_id"], name: "index_spree_stock_items_on_stock_location_id"
-    t.index ["variant_id"], name: "index_spree_stock_items_on_variant_id"
+    t.index ["variant_id", "stock_location_id"], name: "index_spree_stock_items_on_variant_id_and_stock_location_id", unique: true, where: "(deleted_at IS NULL)"
   end
 
   create_table "spree_stock_locations", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.boolean "default", default: false, null: false
     t.string "address1"
     t.string "address2"
@@ -1069,10 +1072,12 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.boolean "backorderable_default", default: false
     t.boolean "propagate_all_variants", default: true
     t.string "admin_name"
-    t.index ["active"], name: "index_spree_stock_locations_on_active"
-    t.index ["backorderable_default"], name: "index_spree_stock_locations_on_backorderable_default"
+    t.integer "position", default: 0
+    t.boolean "restock_inventory", default: true, null: false
+    t.boolean "fulfillable", default: true, null: false
+    t.string "code"
+    t.boolean "check_stock_on_transfer", default: true
     t.index ["country_id"], name: "index_spree_stock_locations_on_country_id"
-    t.index ["propagate_all_variants"], name: "index_spree_stock_locations_on_propagate_all_variants"
     t.index ["state_id"], name: "index_spree_stock_locations_on_state_id"
   end
 
@@ -1084,7 +1089,6 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "originator_type"
     t.integer "originator_id"
-    t.index ["originator_id", "originator_type"], name: "index_stock_movements_on_originator_id_and_originator_type"
     t.index ["stock_item_id"], name: "index_spree_stock_movements_on_stock_item_id"
   end
 
@@ -1103,31 +1107,32 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
 
   create_table "spree_store_credit_categories", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spree_store_credit_events", id: :serial, force: :cascade do |t|
     t.integer "store_credit_id", null: false
     t.string "action", null: false
     t.decimal "amount", precision: 8, scale: 2
-    t.string "authorization_code", null: false
     t.decimal "user_total_amount", precision: 8, scale: 2, default: "0.0", null: false
-    t.integer "originator_id"
-    t.string "originator_type"
+    t.string "authorization_code", null: false
     t.datetime "deleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "originator_type"
+    t.integer "originator_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.integer "update_reason_id"
     t.decimal "amount_remaining", precision: 8, scale: 2
-    t.index ["originator_id", "originator_type"], name: "spree_store_credit_events_originator"
+    t.index ["deleted_at"], name: "index_spree_store_credit_events_on_deleted_at"
     t.index ["store_credit_id"], name: "index_spree_store_credit_events_on_store_credit_id"
   end
 
   create_table "spree_store_credit_types", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "priority"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["priority"], name: "index_spree_store_credit_types_on_priority"
   end
 
@@ -1143,17 +1148,16 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "created_by_id"
     t.decimal "amount", precision: 8, scale: 2, default: "0.0", null: false
     t.decimal "amount_used", precision: 8, scale: 2, default: "0.0", null: false
-    t.text "memo"
-    t.datetime "deleted_at"
-    t.string "currency"
     t.decimal "amount_authorized", precision: 8, scale: 2, default: "0.0", null: false
-    t.integer "originator_id"
-    t.string "originator_type"
+    t.string "currency"
+    t.text "memo"
+    t.datetime "spree_store_credits"
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "type_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "invalidated_at"
     t.index ["deleted_at"], name: "index_spree_store_credits_on_deleted_at"
-    t.index ["originator_id", "originator_type"], name: "spree_store_credits_originator"
     t.index ["type_id"], name: "index_spree_store_credits_on_type_id"
     t.index ["user_id"], name: "index_spree_store_credits_on_user_id"
   end
@@ -1186,13 +1190,12 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "default_currency"
     t.string "code"
     t.boolean "default", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "available_locales"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "cart_tax_country_iso"
-    t.index "lower((code)::text)", name: "index_spree_stores_on_lower_code", unique: true
+    t.string "available_locales"
+    t.index ["code"], name: "index_spree_stores_on_code"
     t.index ["default"], name: "index_spree_stores_on_default"
-    t.index ["url"], name: "index_spree_stores_on_url"
   end
 
   create_table "spree_taggings", id: :serial, force: :cascade do |t|
@@ -1257,8 +1260,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
 
   create_table "spree_taxonomies", id: :serial, force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "position", default: 0
     t.index ["position"], name: "index_spree_taxonomies_on_position"
   end
@@ -1271,19 +1274,20 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.integer "taxonomy_id"
     t.integer "lft"
     t.integer "rgt"
+    t.string "icon_file_name"
+    t.string "icon_content_type"
+    t.integer "icon_file_size"
+    t.datetime "icon_updated_at"
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.string "meta_title"
     t.string "meta_description"
     t.string "meta_keywords"
     t.integer "depth"
-    t.index ["lft"], name: "index_spree_taxons_on_lft"
-    t.index ["name"], name: "index_spree_taxons_on_name"
     t.index ["parent_id"], name: "index_taxons_on_parent_id"
     t.index ["permalink"], name: "index_taxons_on_permalink"
     t.index ["position"], name: "index_spree_taxons_on_position"
-    t.index ["rgt"], name: "index_spree_taxons_on_rgt"
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
   end
 
@@ -1294,6 +1298,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "engine", default: 0, null: false
     t.index ["active"], name: "index_spree_trackers_on_active"
+  end
+
+  create_table "spree_unit_cancels", id: :serial, force: :cascade do |t|
+    t.integer "inventory_unit_id", null: false
+    t.string "reason"
+    t.string "created_by"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["inventory_unit_id"], name: "index_spree_unit_cancels_on_inventory_unit_id"
   end
 
   create_table "spree_user_addresses", force: :cascade do |t|
@@ -1308,31 +1321,62 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.index ["user_id"], name: "index_spree_user_addresses_on_user_id"
   end
 
+  create_table "spree_user_stock_locations", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "stock_location_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["user_id"], name: "index_spree_user_stock_locations_on_user_id"
+  end
+
   create_table "spree_users", id: :serial, force: :cascade do |t|
-    t.string "encrypted_password", limit: 128
-    t.string "password_salt", limit: 128
+    t.string "crypted_password", limit: 128
+    t.string "salt", limit: 128
     t.string "email"
     t.string "remember_token"
+    t.string "remember_token_expires_at"
     t.string "persistence_token"
-    t.string "reset_password_token"
+    t.string "single_access_token"
     t.string "perishable_token"
-    t.integer "sign_in_count", default: 0, null: false
-    t.integer "failed_attempts", default: 0, null: false
+    t.integer "login_count", default: 0, null: false
+    t.integer "failed_login_count", default: 0, null: false
     t.datetime "last_request_at"
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string "current_login_ip"
+    t.string "last_login_ip"
     t.string "login"
     t.integer "ship_address_id"
     t.integer "bill_address_id"
-    t.string "authentication_token"
-    t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "remember_created_at"
-    t.datetime "reset_password_sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "openid_identifier"
+  end
+
+  create_table "spree_variant_property_rule_conditions", id: :serial, force: :cascade do |t|
+    t.integer "option_value_id"
+    t.integer "variant_property_rule_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["variant_property_rule_id", "option_value_id"], name: "index_spree_variant_prop_rule_conditions_on_rule_and_optval"
+  end
+
+  create_table "spree_variant_property_rule_values", id: :serial, force: :cascade do |t|
+    t.text "value"
+    t.integer "position", default: 0
+    t.integer "property_id"
+    t.integer "variant_property_rule_id"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["property_id"], name: "index_spree_variant_property_rule_values_on_property_id"
+    t.index ["variant_property_rule_id"], name: "index_spree_variant_property_rule_values_on_rule"
+  end
+
+  create_table "spree_variant_property_rules", id: :serial, force: :cascade do |t|
+    t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_spree_variant_property_rules_on_product_id"
   end
 
   create_table "spree_variants", id: :serial, force: :cascade do |t|
@@ -1349,12 +1393,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "cost_currency"
     t.boolean "track_inventory", default: true
     t.integer "tax_category_id"
-    t.datetime "updated_at", null: false
-    t.datetime "discontinue_on"
-    t.datetime "created_at", null: false
-    t.index ["deleted_at"], name: "index_spree_variants_on_deleted_at"
-    t.index ["discontinue_on"], name: "index_spree_variants_on_discontinue_on"
-    t.index ["is_master"], name: "index_spree_variants_on_is_master"
+    t.datetime "updated_at", precision: 6
+    t.datetime "created_at", precision: 6
     t.index ["position"], name: "index_spree_variants_on_position"
     t.index ["product_id"], name: "index_spree_variants_on_product_id"
     t.index ["sku"], name: "index_spree_variants_on_sku"
@@ -1377,8 +1417,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "zoneable_type"
     t.integer "zoneable_id"
     t.integer "zone_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["zone_id"], name: "index_spree_zone_members_on_zone_id"
     t.index ["zoneable_id", "zoneable_type"], name: "index_spree_zone_members_on_zoneable_id_and_zoneable_type"
   end
@@ -1387,10 +1427,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
     t.string "name"
     t.string "description"
     t.integer "zone_members_count", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "kind"
-    t.index ["kind"], name: "index_spree_zones_on_kind"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -1433,6 +1471,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
 
   create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
+    t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
@@ -1492,15 +1531,16 @@ ActiveRecord::Schema.define(version: 2019_01_29_040628) do
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "gifts", "users"
+  add_foreign_key "occasions", "people"
+  add_foreign_key "occasions", "users"
   add_foreign_key "people", "users"
   add_foreign_key "responses", "comments"
   add_foreign_key "responses", "users"
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
-  add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
-  add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
+  add_foreign_key "spree_wallet_payment_sources", "users"
   add_foreign_key "tasks", "users"
 end
