@@ -11,7 +11,7 @@ class TransformTaxRateCategoryRelation < ActiveRecord::Migration[5.0]
   end
 
   def up
-    add_column :spree_tax_rates, :tax_category_id, :integer
+    # add_column :spree_tax_rates, :tax_category_id, :integer
 
     # create_table :spree_tax_rate_tax_categories do |t|
     #   t.integer :tax_category_id, index: true, null: false
