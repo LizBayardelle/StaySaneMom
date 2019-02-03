@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_02_040953) do
+ActiveRecord::Schema.define(version: 2019_02_02_042123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1539,8 +1539,6 @@ ActiveRecord::Schema.define(version: 2019_02_02_040953) do
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
-  add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
-  add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
   add_foreign_key "spree_wallet_payment_sources", "users"
   add_foreign_key "tasks", "users"
 end

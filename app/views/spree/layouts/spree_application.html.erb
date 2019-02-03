@@ -7,7 +7,7 @@
   <head data-hook="inside_head">
     <%= render partial: 'spree/shared/head' %>
   </head>
-  <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
+  <body class="solidus <%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
 
     <!--- navbar stuff here -->
     <%= render "layouts/navbar" %>
@@ -16,25 +16,27 @@
     <div class="container">
 
       <%= render partial: 'spree/shared/header' %>
-
-      <div id="wrapper" class="row" data-hook>
+      <div id="wrapper" data-hook>
 
         <%= taxon_breadcrumbs(@taxon) %>
 
-        <%= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
+        <div class="row">
+          <%= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
 
-        <div id="content" class="columns <%= !content_for?(:sidebar) ? "sixteen" : "twelve omega" %>" data-hook>
-          <%= flash_messages %>
-          <%= yield %>
-        </div>
+          <div id="content" class="col-12 <%= !content_for?(:sidebar) ? "col-sm-12" : "col-sm-9" %>" data-hook>
+            <%= flash_messages %>
+            <%= yield %>
+          </div> <!-- content -->
 
+        </div> <!-- row -->
         <%= yield :templates %>
 
-      </div>
+      </div> <!-- wrapper -->
 
       <%#= render partial: 'spree/shared/footer' %>
 
-    </div>
+    </div> <!-- container -->
+
     <%= render "layouts/scripts" %>
 
     <%= yield :additional_js_partial %>
