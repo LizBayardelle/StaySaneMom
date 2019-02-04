@@ -9,10 +9,10 @@
               <%= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_for(current_pricing_options), id: variant.id, class: "form-check-input", name: "materialExampleRadios" %>
               <%= label_tag "variant_id_#{ variant.id }", class: "form-check-label", for: variant.id do %>
                 <!-- <span class="variant-description"> -->
-                  <%= variant_options variant %>
+                  <%= variant_options variant %><br />
                 <!-- </span> -->
                 <% if variant_price variant %>
-                  <br /><span class="price diff"><%= variant_price variant %></span>
+                  <span class="price diff"><%= variant_price variant %></span><br />
                 <% end %>
 
                 <% unless variant.can_supply? %>
