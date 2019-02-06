@@ -17,20 +17,7 @@
   <% end %>
 <!-- page-specific content -->
 
-<!-- Exit intent -->
-<script async data-uid="cd10cef13b" src="https://f.convertkit.com/cd10cef13b/f2d65b6d27.js"></script>
-<!-- Exit intent -->
 
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!-- facebook share -->
 
 <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
   <% case @blog.category %>
@@ -324,4 +311,19 @@
       });
     });
   </script>
+
+  <!-- Exit intent -->
+  <script async data-uid="cd10cef13b" src="https://f.convertkit.com/cd10cef13b/f2d65b6d27.js"></script>
+  <!-- Exit intent -->
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <!-- facebook share -->
 <% end %>
