@@ -43,6 +43,8 @@ gem 'will_paginate'
 gem 'searchkick'
 
 gem 'solidus'
+# gem "solidus_stripe"
+gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master
 
 group :production do
   gem 'pg', '~> 0.20.0'

@@ -6,7 +6,7 @@
         <h6 class="product-section-title"><%= t('spree.variants') %></h6>
           <% @product.variants_and_option_values_for(current_pricing_options).each_with_index do |variant, index| %>
             <div class="form-check hidden-dots">
-              <%= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_for(current_pricing_options), id: variant.id, class: "form-check-input", name: "materialExampleRadios" %>
+              <%= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_for(current_pricing_options), id: variant.id, class: "form-check-input" %>
               <%= label_tag "variant_id_#{ variant.id }", class: "form-check-label", for: variant.id do %>
                 <!-- <span class="variant-description"> -->
                   <%= variant_options variant %><br />
