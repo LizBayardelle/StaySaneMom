@@ -1,3 +1,10 @@
+<!-- page-specific content -->
+  <% title @subcategory.name + " | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="<%= @subcategory.description %>" />
+  <% end %>
+<!-- page-specific content -->
+
 <h6 class="text-right" style="padding-right: 20px">A Subcategory of <%= @subcategory.category %></h6>
 
 <div class="container text-center">
