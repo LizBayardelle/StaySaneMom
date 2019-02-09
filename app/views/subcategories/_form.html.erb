@@ -5,8 +5,7 @@
 
   <div class="form-inputs">
     <div class="form-group">
-      <%= f.label :category %><br />
-      <%= f.select :category, [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
+      <%= f.input :category, input_html: {class: 'browser-default'}, collection: [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
     </div>
     <%= f.input :name %>
     <%= f.input :description %>
