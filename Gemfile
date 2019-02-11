@@ -41,6 +41,8 @@ gem 'acts_as_list'
 gem 'wysiwyg-rails'
 gem 'will_paginate'
 gem 'searchkick'
+gem 'dotenv-rails'
+gem 'faraday'
 
 gem 'solidus'
 # gem "solidus_stripe"

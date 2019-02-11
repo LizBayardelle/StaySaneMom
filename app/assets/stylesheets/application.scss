@@ -117,10 +117,9 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
 
 * { font-family: $font-sans; }
-a { color: $color-neutral; }
+a { color: $color-neutral; font-weight: 700; }
 p a, h3 a, h4 a { color: $color-spouse; }
 a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
-a.no-hover:hover { font-weight: 400; }
 
 a.color-house:hover { color: $color-house; }
 a.color-spouse:hover { color: $color-spouse; }
@@ -216,17 +215,17 @@ td p { margin-bottom: 0 }
 
 
 
-.card {
+.mycard {
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
   border: 5px solid $transparent-neutral;
 }
 
-.card.padded {
+.mycard.padded {
   padding: 40px 25px 40px 25px;
   margin-bottom: 20px;
 }
 
-.card.hover:hover {
+.mycard.hover:hover {
   border: 5px solid $color-neutral;
 }
 

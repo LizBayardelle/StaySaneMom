@@ -1138,6 +1138,7 @@ DEPENDENCIES
   convertkit-ruby
   devise
   dotenv-rails
+  faraday
   figaro
   font-awesome-rails
   font-awesome-sass

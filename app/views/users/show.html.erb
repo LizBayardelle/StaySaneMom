@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-sm-6 col-lg-4">
         <%= link_to users_path do %>
-          <div id="subscribers" class="card padded">
+          <div id="subscribers" class="mycard padded">
             <h3 class="text-center">Subscribers</h3>
             <p>Total Subscribers: <%= @subscribers['total_subscribers'] %></p>
           </div>
@@ -37,7 +37,7 @@
 
   		<div class="col-sm-6 col-lg-4">
         <%= link_to users_path do %>
-    			<div id="members" class="card padded">
+    			<div id="members" class="mycard padded">
     				<h3 class="text-center">Members</h3>
     				<p>Member Count: <%= @members.count - 1 %>
               <br />New Members (This Week): <%= @new_members.count %></p>
@@ -47,7 +47,7 @@
 
       <div class="col-sm-6 col-lg-4">
         <%= link_to contributions_path do %>
-          <div id="members" class="card padded">
+          <div id="members" class="mycard padded">
             <h3 class="text-center">Guest Posts</h3>
             <p>
               Unread Guest Post Ideas: <%= @contributions.count %><br />
@@ -60,7 +60,7 @@
 
       <div class="col-sm-6 col-lg-4">
         <%= link_to comments_path do %>
-          <div id="members" class="card padded">
+          <div id="members" class="mycard padded">
             <h3 class="text-center">Comments</h3>
             <p>Total Comments: <%= @comments.count %>
               <br />New Comments (This Week): <%= @new_comments.count %></p>
@@ -70,7 +70,7 @@
 
       <div class="col-sm-6 col-lg-4">
         <%= link_to home_allblogs_path do %>
-          <div id="members" class="card padded">
+          <div id="members" class="mycard padded">
             <h3 class="text-center">Blog Posts</h3>
             <p>Published Posts: <%= Blog.where(published: true).count %>
               <br />Unpublished Posts: <%= Blog.where(published: false).count %></p>
@@ -79,7 +79,7 @@
       </div>
 
       <div class="col-sm-6 col-lg-4">
-          <div id="members" class="card padded">
+          <div id="members" class="mycard padded">
             <h3 class="text-center">Admin Only Pages</h3>
             <%= link_to "Blog Posts Index", home_allblogs_path %>
             <%= link_to "Subcategories Index", subcategories_path %>
@@ -256,7 +256,7 @@
     $(function() {
       $('.content-box').matchHeight();
       $('.text').matchHeight();
-    	$('.card').matchHeight();
+    	$('.mycard').matchHeight();
     });
   </script>
 <% end %>
