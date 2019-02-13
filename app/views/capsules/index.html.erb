@@ -24,9 +24,13 @@
   <div class="card-deck">
     <% @capsules.each do |capsule| %>
 
-      <div class="card mb-4 card-image" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>);">
+      <% if capsule.capsule_items.first %>
+        <div class="card card-image" style="background-image: url(<%= rails_blob_url(capsule.capsule_items.first.photo) %>)">
+      <% else %>
+        <div class="card card-image" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>);">
+      <% end %>
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-          <div>  <!-- Card inner div -->
+          <div style="width: 100%;">  <!-- Card inner div -->
             <h4 class="pink-text bolder"><%= capsule.capsule_date.strftime("%B %e") %></h4>
             <h3 class="card-title pt-2"><strong><%= capsule.name %></strong></h3>
             <p class="text-center">
@@ -39,7 +43,7 @@
             </p>
             <%= link_to 'View Time Capsule', capsule, class: "btn btn-pink" %>
           </div> <!-- Card inner div -->
-        </div>  <!-- card content -->
+        </div>  <!-- text white -->
       </div>  <!-- Card -->
 
     <% end %>  <!-- end capsule each -->
@@ -51,11 +55,9 @@
 
 <%= content_for :additional_js do %>
   <script type="text/javascript">
-    $(function() {
-      $('.blog-text').matchHeight();
-    });
-
     $(document).ready(function() {
+      $('.blog-text').matchHeight();
+      $('.rgba-black-strong').matchHeight();
       $('.datepicker').pickadate();
       $('#birthday').on('change', function() {
         var birthday = $('#birthday').val();
