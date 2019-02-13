@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="text-center font-script">Edit Your Time Capsule</h1>
+
+  <%= render 'form', capsule: @capsule %>
+
+  <div class="text-center">
+    <div class="half-buffer"></div>
+    <%= link_to 'See Time Capsule', @capsule %> |
+    <%= link_to 'Back to Time Capsules Homepage', capsules_path %>
+  </div>
+</div>

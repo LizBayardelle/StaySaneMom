@@ -1,0 +1,162 @@
+<!-- page-specific content -->
+  <% title "Yearly Time Capsules | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+  <% end %>
+<!-- page-specific content -->
+
+<div class="container">
+
+  <div class="text-center">
+    <h1 class="font-script color-self"><%= @capsule.name %></h1>
+    <h2>Taken Yearly on <%= @capsule.capsule_date.strftime("%B %e") %></h2>
+    <p><% if @capsule.comments != "" %><%= @capsule.comments %><br /><% end %>
+      <small><em>
+      <% if @capsule.active %>Active<% else %>Inactive<% end %>
+      &nbsp;&nbsp;</em>|<em>&nbsp;&nbsp;
+      Reminders <% if @capsule.reminder_email %>On<% else %>Off<% end %>
+    </em></small></p>
+    <a href="#newPhotoPopup" class="open-popup-link btn btn-danger">Add a New Photo</a>
+    <div class="half-buffer"></div>
+  </div> <!-- header -->
+
+  <div class="card-deck">
+
+    <% @items.each do |item| %>
+      <% if @capsule.capsule_items.count < 2 %>
+        <div class="">
+      <% elsif @capsule.capsule_items.count < 3 %>
+        <div class="col-sm-6">
+      <% elsif @capsule.capsule_items.count == 3 %>
+        <% if @capsule.photo_orientation == "Vertical" %>
+          <div class="col-sm-6 col-md-4">
+        <% else %>
+          <div class="col-sm-6 col-lg-4">
+        <% end %>
+      <% else %>
+        <% if @capsule.photo_orientation == "Vertical" %>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+        <% else %>
+          <div class="col-sm-6 col-lg-4">
+        <% end %>
+      <% end %>
+        <div class="card" style="margin-bottom: 20px">
+          <a href="#photo<%= item.id %>" class="open-popup-link">
+            <%= image_tag item.photo.variant(auto_orient: true), class: "card-img-top" %>
+          </a>
+          <div class="card-body" style="padding-bottom: 10px">
+            <h4 class="card-title font-script text-center" style="margin: 0">
+              <%= item.title %> <%= item.item_date.strftime("(%m/%d/%y)") if item.item_date %>
+            </h4>
+            <p class="card-text"><%= item.caption if item.caption != nil && item.caption != "" %></p>
+            <p class="text-center boldest" style="margin: 0"><small>
+              <a href="#editPhoto<%= item.id %>" class="open-popup-link color-spouse">Edit</a> |&nbsp;
+              <%= link_to "Delete", capsule_capsule_item_path(@capsule, item), method: :delete, data: { confirm: 'Are you sure?' }, class: "color-spouse" %>
+            </small></p>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+
+      <div id="photo<%= item.id %>" class="white-popup mfp-hide">
+        <%= image_tag item.photo.variant(auto_orient: true), style: "max-width: 100%" %>
+      </div>
+
+
+      <div id="editPhoto<%= item.id %>" class="white-popup mfp-hide">
+        <h2 class="font-script text-center">Edit Photo</h2>
+        <%= simple_form_for [@capsule, item] do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <div class="form-group">
+              <%= f.label :item_date %>
+              <input placeholder="Date of Photograph" type="text" id="date<%= item.id %>" class="form-control datepicker"></input>
+              <%= f.hidden_field :item_date, id: item.id, class: "hiddenDateField" %>
+            </div> <!-- form group -->
+            <%= f.input :photo %>
+            <%= f.input :title %>
+            <%= f.input :caption %>
+            <%= f.hidden_field :capsule %>
+          </div>
+
+          <div class="form-actions text-center">
+            <%= f.button :submit, value: "Confirm Changes", class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      </div> <!-- end popup -->
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+            console.log("Beginning");
+            $('.form_actions').hover(function() {
+              console.log("mouseover");
+              $('#date<%= item.id %>').on('change', function() {
+                var date = $('#date<%= item.id %>').val();
+                $('#<%= item.id %>').val(date);
+              });
+            });
+          });
+        </script>
+
+    <% end %> <!-- each -->
+
+  </div> <!-- capsule photos row -->
+
+
+  <div class="text-center">
+    <div class="half-buffer"></div>
+    <%= link_to 'Edit Capsule Info', edit_capsule_path(@capsule), class: "color-self" %> |
+    <%= link_to 'Delete Entire Time Capsule', @capsule, method: :delete, data: { confirm: 'Are you sure?' }, class: "color-self" %> |
+    <%= link_to 'Time Capsules Homepage', capsules_path, class: "color-self" %>
+  </div> <!-- center -->
+
+</div> <!-- container -->
+
+
+
+
+<div id="newPhotoPopup" class="white-popup mfp-hide">
+  <h2 class="font-script text-center">Add New Photo</h2>
+  <%= simple_form_for [@capsule, CapsuleItem.new] do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <div class="form-group">
+        <%= f.label :item_date %>
+        <input placeholder="Date of Photograph" type="text" id="date" class="form-control datepicker"></input>
+        <%= f.hidden_field :item_date, id: "dateHolder", class: "hiddenDateField" %>
+      </div> <!-- form group -->
+      <%= f.input :photo, required: true %>
+      <%= f.input :title %>
+      <%= f.input :caption %>
+      <%= f.hidden_field :capsule %>
+    </div>
+
+    <div class="form-actions text-center">
+      <%= f.button :submit, value: "Add Photo to Time Capsule", class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div> <!-- end popup -->
+
+
+
+
+
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.card').matchHeight();
+      $('.datepicker').pickadate();
+      $('#date').on('change', function() {
+        var date = $('#date').val();
+        $('#dateHolder').val(date);
+      });
+      $('.open-popup-link').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+      });
+    });
+  </script>
+<% end %>

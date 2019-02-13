@@ -7,7 +7,6 @@ mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
   # We ask that you don't use the :as option here, as Solidus relies on it being the default of "spree"
   mount Spree::Core::Engine, at: '/store'
 
-  resources :subcategories
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -24,6 +23,8 @@ mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
   get 'home/results'
   get 'home/allblogs'
 
+  resources :subcategories
+  
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
     resources :comments
@@ -59,6 +60,10 @@ mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
   post "contributions/:id/unreplied_contribution" => "contributions#unreplied_contribution", as: "unreplied_contribution"
 
   resources :recipes
+
+  resources :capsules do
+    resources :capsule_items
+  end
 
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 

@@ -1,0 +1,66 @@
+<!-- page-specific content -->
+  <% title "Yearly Time Capsules | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+  <% end %>
+<!-- page-specific content -->
+
+<div class="header-frame frame" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
+<div class="over-frame-text">
+  <div class="container">
+    <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>Yearly Time Capsules</h1>
+  </div> <!-- container -->
+  <div class="over-frame-bottom-row">
+    <div class="container text-center">
+      <%= link_to 'Create a New Time Capsule', new_capsule_path, class: "btn my-btn-outline-secondary" %>
+      <div class="buffer"></div>
+    </div> <!-- container -->
+  </div> <!-- over-frame-text -->
+</div> <!-- over-frame-text -->
+
+<div class="half-buffer"></div>
+
+<div class="container">
+  <div class="card-deck">
+    <% @capsules.each do |capsule| %>
+
+      <div class="card mb-4 card-image" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>);">
+        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+          <div>  <!-- Card inner div -->
+            <h4 class="pink-text bolder"><%= capsule.capsule_date.strftime("%B %e") %></h4>
+            <h3 class="card-title pt-2"><strong><%= capsule.name %></strong></h3>
+            <p class="text-center">
+              <strong><%= capsule.comments %></strong><br />
+              <em>
+                <% if capsule.active %>Active<% else %>Inactive<% end %>
+                &nbsp;&nbsp;</em>|<em>&nbsp;&nbsp;
+                Reminders <% if capsule.reminder_email %>On<% else %>Off<% end %>
+              </em>
+            </p>
+            <%= link_to 'View Time Capsule', capsule, class: "btn btn-pink" %>
+          </div> <!-- Card inner div -->
+        </div>  <!-- card content -->
+      </div>  <!-- Card -->
+
+    <% end %>  <!-- end capsule each -->
+  </div> <!-- card deck -->
+</div> <!-- container -->
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.blog-text').matchHeight();
+    });
+
+    $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('#birthday').on('change', function() {
+        var birthday = $('#birthday').val();
+        $('#birthdayHolder').val(birthday);
+      });
+    });
+  </script>
+<% end %>

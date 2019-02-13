@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your Time Capsule Needs Filling Again!</h1>
+    <p>Tomorrow's the day!  Your <strong><%= @capsule.name %></strong> time capsule is due for another photo<% if @capsule_date %> on <%= @capsule.capsule_date.strftime("%B %e") %><% end %>.</p>
+    <% if @capsule.comments %>
+      <p>Just to Refresh Your Memory: <%= @capsule.comments %>.</p>
+    <% end %>
+    <p>Once you've taken your photo, make sure to <%= link_to "upload it", url_for(@capsule) %>.</p>
+  </body>
+</html>

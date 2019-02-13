@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_date: 2019-02-11
+  photo: 
+  title: MyString
+  caption: MyText
+  user: one
+  capsule: one
+
+two:
+  item_date: 2019-02-11
+  photo: 
+  title: MyString
+  caption: MyText
+  user: two
+  capsule: two

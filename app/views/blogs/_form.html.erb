@@ -97,64 +97,61 @@
 <%= render "layouts/quadborder" %>
 
 <% if current_user.admin %>
-<div class="container">
-  <div class="half-buffer"></div>
-  <h2 class="text-center">CTAs and Media</h2>
+  <div class="container">
+    <div class="half-buffer"></div>
+    <h2 class="text-center">CTAs and Media</h2>
 
-  <div class="form-inputs">
-    <div class="row">
-      <div class="form-group col-sm-4">
-        <%= f.label "Read More CTA" %>
-        <%= f.text_field :cta_read_more, class: "form-control" %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= f.label "CTA for PDF Downloads" %>
-        <%= f.text_field :cta_pdf, class: "form-control" %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= f.label "CTA for Free Video" %>
-        <%= f.text_field :cta_video, class: "form-control" %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= f.label "Linked Module" %>
-        <%= f.text_field :linked_module, class: "form-control" %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= f.label "Convertkit Href" %>
-        <%= f.text_field :convertkit_href, class: "form-control" %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= f.label "Video Link" %>
-        <%= f.text_field :video_link, class: "form-control" %>
-      </div>
-    </div> <!-- row -->
-  </div> <!-- form inputs -->
-</div> <!-- basic blog info container -->
+    <div class="form-inputs">
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <%= f.label "Read More CTA" %>
+          <%= f.text_field :cta_read_more, class: "form-control" %>
+        </div>
+        <div class="form-group col-sm-4">
+          <%= f.label "CTA for PDF Downloads" %>
+          <%= f.text_field :cta_pdf, class: "form-control" %>
+        </div>
+        <div class="form-group col-sm-4">
+          <%= f.label "CTA for Free Video" %>
+          <%= f.text_field :cta_video, class: "form-control" %>
+        </div>
+        <div class="form-group col-sm-4">
+          <%= f.label "Linked Module" %>
+          <%= f.text_field :linked_module, class: "form-control" %>
+        </div>
+        <div class="form-group col-sm-4">
+          <%= f.label "Convertkit Href" %>
+          <%= f.text_field :convertkit_href, class: "form-control" %>
+        </div>
+        <div class="form-group col-sm-4">
+          <%= f.label "Video Link" %>
+          <%= f.text_field :video_link, class: "form-control" %>
+        </div>
+      </div> <!-- row -->
+    </div> <!-- form inputs -->
+  </div> <!-- basic blog info container -->
 
-<%= render "layouts/quadborder" %>
-<% end %> <!-- end admin only -->
+  <%= render "layouts/quadborder" %>
 
-<div class="container">
-  <div class="half-buffer"></div>
-  <h2 class="text-center">Freebie Info</h2>
+  <div class="container">
+    <div class="half-buffer"></div>
+    <h2 class="text-center">Freebie Info</h2>
 
-  <div class="form-inputs">
-    <% if current_user.admin %>
-    <div class="form-group">
-      <%= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
-      <%= f.text_field :freebie_filename, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Freebie Title (Plaintext)" %>
-      <%= f.text_field :freebie_description, class: "form-control" %>
-    </div>
-    <% end %>
-    <div class="form-group">
-      <h2 class="color-spouse">TECH GLITCH: Please mark this to "None"!</h2>
-      <%= f.input :freebie_type, input_html: {class: 'browser-default'}, collection: [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
-    </div>
-  </div> <!-- form inputs -->
-</div> <!-- container -->
+    <div class="form-inputs">
+      <div class="form-group">
+        <%= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
+        <%= f.text_field :freebie_filename, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Freebie Title (Plaintext)" %>
+        <%= f.text_field :freebie_description, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.input :freebie_type, input_html: {class: 'browser-default'}, collection: [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
+      </div>
+    </div> <!-- form inputs -->
+  </div> <!-- container -->
+<% end %> <!-- if admin -->
 
 <%= render "layouts/quadborder" %>
 
@@ -170,7 +167,6 @@
 <% end %>
 
 
-<!-- script for FROALA-WYSIWYG -->
 <%= content_for :additional_js_partial do %>
   <script type="text/javascript">
     $(document).ready(function() {

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item date:</strong>
+  <%= @capsule_item.item_date %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @capsule_item.photo %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @capsule_item.title %>
+</p>
+
+<p>
+  <strong>Caption:</strong>
+  <%= @capsule_item.caption %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @capsule_item.user %>
+</p>
+
+<p>
+  <strong>Capsule:</strong>
+  <%= @capsule_item.capsule %>
+</p>
+
+<%= link_to 'Edit', edit_capsule_item_path(@capsule_item) %> |
+<%= link_to 'Back', capsule_items_path %>

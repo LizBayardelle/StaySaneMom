@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="text-center font-script">Add a Photo</h1>
+
+  <%= render 'form', capsule_item: @capsule_item %>
+
+  <div class="text-center">
+    <div class="half-buffer"></div>
+    <%= link_to 'Back to Time Capsules Home', capsules_path %> | <%= link_to 'Back', capsule_path(@capsule_item.capsule) %>
+  </div>
+</div>

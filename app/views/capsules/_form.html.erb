@@ -1,0 +1,37 @@
+
+<%= simple_form_for(@capsule) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name, required: true %>
+    <div class="form-group">
+      <%= f.label :capsule_date %>
+      <input placeholder="Time Capsule Date" type="text" id="date" class="form-control datepicker"></input>
+      <%= f.hidden_field :capsule_date, id: "dateHolder", class: "hiddenDateField" %>
+    </div> <!-- form group -->
+    <div class="form-group">
+      <%= f.input :photo_orientation, label: "Photo Orientation (Should Be The Same Across All Photos)", input_html: {class: 'browser-default'}, collection: [['Square', 'Square'], ['Vertical/Portrait', 'Vertical'], ['Horizontal/Landscape', 'Horizontal']], required: true %>
+    </div>
+    <%= f.input :active, label: "This time capsule is still active." %>
+    <%= f.input :reminder_email, label: "Send me a reminder email the day before a new photo needs to be taken." %>
+    <%= f.input :comments %>
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, class: "btn-danger" %>
+  </div>
+<% end %>
+
+
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('#date').on('change', function() {
+        var date = $('#date').val();
+        $('#dateHolder').val(date);
+      });
+    });
+  </script>
+<% end %>

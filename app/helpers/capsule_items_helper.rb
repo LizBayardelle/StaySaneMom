@@ -1,0 +1,2 @@
+module CapsuleItemsHelper
+end

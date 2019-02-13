@@ -29,3 +29,16 @@
       end
     end
   end
+
+  desc "Send capsule reminder emails"
+  task send_capsule_reminders: :environment do
+    require 'time'
+    t = Time.now.next_day
+    month = t.month
+    day = t.day
+    Capsule.all.each do |capsule|
+      if month == capsule.capsule_date.month && day == capsule.capsule_date && capsule.active && capsule.reminder_email
+        NewCapsuleReminderMailer.send_capsule_reminder_email(capsule).deliver
+      end
+    end
+  end

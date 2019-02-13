@@ -1,0 +1,31 @@
+<%= simple_form_for [@capsule, @capsule_item] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="form-group">
+      <%= f.label :item_date %>
+      <input placeholder="Date of Photograph" type="text" id="date" class="form-control datepicker"></input>
+      <%= f.hidden_field :item_date, id: "dateHolder", class: "hiddenDateField" %>
+    </div> <!-- form group -->
+    <%= f.input :photo, required: true %>
+    <%= f.input :title %>
+    <%= f.input :caption %>
+    <%= f.hidden_field :capsule %>
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, value: "Add Photo to Time Capsule", class: "btn btn-danger" %>
+  </div>
+<% end %>
+
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('#date').on('change', function() {
+        var date = $('#date').val();
+        $('#dateHolder').val(date);
+      });
+    });
+  </script>
+<% end %>

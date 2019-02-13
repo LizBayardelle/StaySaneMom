@@ -12,4 +12,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :people
   has_many :occasions
+  has_many :capsules
+  has_many :capsule_items
 end

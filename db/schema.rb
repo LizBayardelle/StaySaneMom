@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_184207) do
+ActiveRecord::Schema.define(version: 2019_02_13_020544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_184207) do
     t.string "data_pin_description"
     t.string "freebie_filename"
     t.string "video_link"
-    t.string "freebie_type", default: "File"
+    t.string "freebie_type", default: "None"
     t.string "freebie_description"
     t.integer "comments_count"
     t.bigint "subcategory_id"
@@ -72,6 +72,35 @@ ActiveRecord::Schema.define(version: 2019_02_07_184207) do
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
     t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
+
+  create_table "capsule_items", force: :cascade do |t|
+    t.date "item_date"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string "title"
+    t.text "caption"
+    t.bigint "user_id"
+    t.bigint "capsule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["capsule_id"], name: "index_capsule_items_on_capsule_id"
+    t.index ["user_id"], name: "index_capsule_items_on_user_id"
+  end
+
+  create_table "capsules", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.date "capsule_date"
+    t.boolean "active", default: true
+    t.boolean "reminder_email", default: true
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "photo_orientation", default: "Square"
+    t.index ["user_id"], name: "index_capsules_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -1559,6 +1588,9 @@ ActiveRecord::Schema.define(version: 2019_02_07_184207) do
   end
 
   add_foreign_key "blogs", "users"
+  add_foreign_key "capsule_items", "capsules"
+  add_foreign_key "capsule_items", "users"
+  add_foreign_key "capsules", "users"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "gifts", "users"

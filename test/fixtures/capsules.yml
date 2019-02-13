@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  date: 2019-02-11
+  active: false
+  reminder_email: false
+  comments: MyText
+
+two:
+  user: two
+  name: MyString
+  date: 2019-02-11
+  active: false
+  reminder_email: false
+  comments: MyText
