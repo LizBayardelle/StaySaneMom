@@ -5,11 +5,11 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="container">
+<div class="container capsule">
 
   <div class="text-center">
     <h1 class="font-script color-self"><%= @capsule.name %></h1>
-    <h2>Taken Yearly on <%= @capsule.capsule_date.strftime("%B %e") %></h2>
+    <h2>Every Year on <%= @capsule.capsule_date.strftime("%B %e") %></h2>
     <p><% if @capsule.comments != "" %><%= @capsule.comments %><br /><% end %>
       <small><em>
       <% if @capsule.active %>Active<% else %>Inactive<% end %>
@@ -86,19 +86,6 @@
         <% end %>
       </div> <!-- end popup -->
 
-        <script type="text/javascript">
-          $(document).ready(function() {
-            console.log("Beginning");
-            $('.form_actions').hover(function() {
-              console.log("mouseover");
-              $('#date<%= item.id %>').on('change', function() {
-                var date = $('#date<%= item.id %>').val();
-                $('#<%= item.id %>').val(date);
-              });
-            });
-          });
-        </script>
-
     <% end %> <!-- each -->
 
   </div> <!-- capsule photos row -->
@@ -146,6 +133,15 @@
 
 <%= content_for :additional_js_partial do %>
   <script type="text/javascript">
+    $(document).ready(function() {
+      <% @items.each do |item| %>
+        $('#date<%= item.id %>').on('change', function() {
+          var date = $('#date<%= item.id %>').val();
+          $('#<%= item.id %>').val(date);
+        });
+      <% end %>
+    });
+
     $(document).ready(function() {
       $('.card').matchHeight();
       $('.datepicker').pickadate();

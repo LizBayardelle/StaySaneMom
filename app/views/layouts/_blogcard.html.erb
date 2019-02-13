@@ -32,23 +32,10 @@
           <% end %>
         </div>
         <div class="height blog-text">
-            <h5><%= blog.title %></h5>
-            <% if blog.user_id != 1 %>
-              <h6>Guest Post by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user), class: "color-spouse boldest" %></h6>
-            <% end %>
-            <p class="published-on">
-              <small>
-              <% if Subcategory.where(id: blog.subcategory_id) != [] %>
-                In <%= Subcategory.where(id: blog.subcategory_id).first.name %> &nbsp | &nbsp;
-              <% end %>
-              <span class="disqus-comment-count" data-disqus-identifier="<%= blog.slug %>"></span> (<%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%D") %>)
-              <% if current_user && current_user.admin %>
-                  <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
-                  <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
-              <% else %>
-                   | <%= link_to "Home", root_path %>
-              <% end %>
-            </small></p>
+          <h5><%= blog.title %></h5>
+          <% if blog.user_id != 1 %>
+            <h6>Guest Post by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user), class: "color-spouse boldest" %></h6>
+          <% end %>
         </div> <!-- blog-text -->
       </div> <!-- end case div -->
   </div> <!-- blog card/col -->

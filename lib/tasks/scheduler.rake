@@ -33,7 +33,7 @@
   desc "Send capsule reminder emails"
   task send_capsule_reminders: :environment do
     require 'time'
-    t = Time.now.next_day
+    t = Time.now.in_time_zone("Pacific Time (US & Canada)").next_day
     month = t.month
     day = t.day
     Capsule.all.each do |capsule|
