@@ -27,6 +27,7 @@
           <div class="collapsible-body">
             <ul>
               <li><%= link_to "House Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
+              <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
               <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
               <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
             </ul>
@@ -111,6 +112,7 @@
               <% @subcategories.each do |subcategory| %>
                 <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
+              <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
             </ul>
           </div> <!-- collapsable body -->
         </li>

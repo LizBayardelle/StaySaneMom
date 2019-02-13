@@ -152,6 +152,21 @@
             </div> <!-- blog card/col -->
           <% end %>
 
+          <%= link_to capsules_path do %>
+            <div class="blog-card">
+                <div class="other transparent-hover neutral">
+                  <div class="flag">Tool</div>
+                  <div class="small-blog-frame" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>)">
+                      <div class="image-overlay-neutral"></div>
+                  </div>
+                  <div class="height blog-text">
+                    <h5>Photo Time Capsule</h5>
+                    <p>Create year-by-year time capsules to watch your family grow.</p>
+                  </div> <!-- blog-text -->
+                </div> <!-- end case div -->
+              </div> <!-- blog card/col -->
+            <% end %>
+
         <%= link_to people_path do %>
           <div class="blog-card">
               <div class="other transparent-hover neutral">
