@@ -6,6 +6,9 @@
   <div class="form-inputs">
     <%= f.input :name, required: true %>
     <div class="form-group">
+      <%= f.input :interval, label: "Yearly or Monthly", input_html: {class: 'browser-default'}, collection: [['Monthly', 'Monthly'], ['Yearly', 'Yearly']], required: true %>
+    </div>
+    <div class="form-group">
       <%= f.label :capsule_date %>
       <input placeholder="Time Capsule Date" type="text" id="date" class="form-control datepicker"></input>
       <%= f.hidden_field :capsule_date, id: "dateHolder", class: "hiddenDateField" %>

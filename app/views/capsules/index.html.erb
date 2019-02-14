@@ -31,7 +31,7 @@
       <% end %>
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
           <div style="width: 100%;">  <!-- Card inner div -->
-            <h4 class="pink-text bolder"><%= capsule.capsule_date.strftime("%B %e") %></h4>
+            <h4 class="pink-text bolder"><% if capsule.interval == "Yearly" %>Yearly on <%= capsule.capsule_date.strftime("%B %e") %><% else %>Monthly on <%= capsule.capsule_date.strftime("#{capsule.capsule_date.day.ordinalize}") %><% end %></h4>
             <h3 class="card-title pt-2"><strong><%= capsule.name %></strong></h3>
             <p class="text-center">
               <strong><%= capsule.comments %></strong><br />

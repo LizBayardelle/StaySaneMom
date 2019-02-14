@@ -79,6 +79,6 @@ class CapsulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def capsule_params
-      params.require(:capsule).permit(:user_id, :name, :capsule_date, :photo_orientation, :active, :reminder_email, :comments)
+      params.require(:capsule).permit(:user_id, :name, :capsule_date, :interval, :photo_orientation, :active, :reminder_email, :comments)
     end
 end
