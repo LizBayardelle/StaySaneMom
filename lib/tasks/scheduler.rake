@@ -37,8 +37,15 @@
     month = t.month
     day = t.day
     Capsule.all.each do |capsule|
-      if month == capsule.capsule_date.month && day == capsule.capsule_date && capsule.active && capsule.reminder_email
-        NewCapsuleReminderMailer.send_capsule_reminder_email(capsule).deliver
+      if month == capsule.capsule_date.month
+        puts "inside month"
+        if day == capsule.capsule_date.day
+          puts "inside day"
+          if capsule.active && capsule.reminder_email
+            puts "inside boolean"
+            NewCapsuleReminderMailer.send_capsule_reminder_email(capsule).deliver_now
+          end
+        end
       end
     end
   end

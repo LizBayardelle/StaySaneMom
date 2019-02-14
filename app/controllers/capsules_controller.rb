@@ -1,5 +1,6 @@
 class CapsulesController < ApplicationController
   before_action :set_capsule, only: [:show, :edit, :update, :destroy]
+  before_action :user_only
 
   # GET /capsules
   # GET /capsules.json
@@ -68,6 +69,12 @@ class CapsulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_capsule
       @capsule = Capsule.find(params[:id])
+    end
+
+    def user_only
+      unless current_user
+        redirect_to main_app.static_path(:memories)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
