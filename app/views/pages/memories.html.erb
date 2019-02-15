@@ -1,35 +1,42 @@
 <!-- page-specific content -->
   <% title "Time Capsules | SSM" %>
   <%= content_for :head do %>
-    <meta name="description" content="Create year by year photo collections to watch your family grow up." />
+    <meta name="description" content="Create monthly or yearly photo sequences to watch your family grow up with this free photo time capsule web tool." />
+    <meta property="og:url" content="https://www.theStaySaneMom.com/memories" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Create your own free online photo time capsule." />
+    <meta property="og:description" content="Create monthly or yearly photo sequences to watch your family grow up with this free photo time capsule web tool." />
+    <meta property="og:image" content="time-capsule-pin.jpg" />
+    <meta property="article:author" content="Liz Bayardelle" />
   <% end %>
 <!-- page-specific content -->
 
-<div class="container">
 
-  <h1 class="text-center font-script color-spouse">Create Lasting Memories</h1>
-  <h2 class="text-center">Free Web Tool</h2>
+<div class="container text-center">
+
+  <h1 class="font-script color-spouse">Watch your kids grow!</h1>
+  <h2>Free Web Tool</h2>
 
   <div class="half-buffer"></div>
 
-  <div class="text-center">
-    <%= image_tag "watch-your-kids-get-bigger.jpg", style: "width: 100%", alt: "Document your kids' growth with yearly (or monthly) photos" %>
+  <%= image_tag "watch-your-kids-get-bigger.jpg", style: "width: 100%", alt: "Document your kids' growth with yearly (or monthly) photos" %>
 
-    <div class="half-buffer"></div>
+  <div class="half-buffer"></div>
 
-    <h2><%= link_to "Document your kiddos' growth!", capsules_path, class: "color-spouse" %></h2>
-    <h4>Upload your photos to create monthly or yearly time capsules.</h4>
+  <h4>Upload your photos to create monthly or yearly time capsules.</h4>
 
-    <iframe style="margin: 20px 0 20px 0" width="560" height="315" src="https://www.youtube.com/embed/JW7VhcyseOU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe style="margin: 20px 0 20px 0" width="560" height="315" src="https://www.youtube.com/embed/JW7VhcyseOU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    <h2>Our automated email reminders will help you remember when to take the next one...</h2>
-    <h2><%= link_to "...so you never miss a moment!", capsules_path, class: "color-spouse" %></h2>
+  <h2>Our automated email reminders will help you remember when to take the next one...</h2>
+  <h2><%= link_to "...so you never miss a moment!", capsules_path, class: "color-spouse" %></h2>
 
-    <div class="half-buffer"></div>
+  <div class="half-buffer"></div>
 
-    <%= link_to "Get Started Now", capsules_path, class: "btn btn-danger" %>
+  <%= link_to "Get Started Now", capsules_path, class: "btn btn-danger" %>
 
-  </div> <!-- center -->
+  <div class="half-buffer"></div>
+
+  <%= image_tag "time-capsule-pin.jpg", style: "width: 70%; max-width: 500px" %>
 
 </div> <!-- container -->
 
