@@ -916,17 +916,17 @@ footer p, footer p em {
 .blog-show-header.Self h1, .blog-show.Self em h1 { color: $color-self !important; font-weight: 900 !important; }
 .blog-show-header.Neutral h1, .blog-show.Neutral em h1 { color: $color-neutral !important; font-weight: 900 !important; }
 
-.blog-show.house .blog-itself h2, .blog-show.house .blog-itself em h2 { color: $color-house !important; font-weight: 900 !important; font-size: 2.5rem }
-.blog-show.spouse .blog-itself h2, .blog-show.spouse .blog-itself em h2 { color: $color-spouse !important; font-weight: 900 !important; font-size: 2.5rem }
-.blog-show.kids .blog-itself h2, .blog-show.kids .blog-itself em h2 { color: $color-kids !important; font-weight: 900 !important; font-size: 2.5rem }
-.blog-show.self .blog-itself h2, .blog-show.self .blog-itself em h2 { color: $color-self !important; font-weight: 900 !important; font-size: 2.5rem }
-.blog-show.neutral .blog-itself h2, .blog-show.neutral .blog-itself em h2 { color: $color-neutral !important; font-weight: 900 !important; font-size: 2.5rem }
+.blog-show.house .blog-itself h2, .blog-show.house .blog-itself em h2 { color: $color-house; font-size: 2.6rem }
+.blog-show.spouse .blog-itself h2, .blog-show.spouse .blog-itself em h2 { color: $color-spouse; font-size: 2.6rem }
+.blog-show.kids .blog-itself h2, .blog-show.kids .blog-itself em h2 { color: $color-kids; font-size: 2.6rem }
+.blog-show.self .blog-itself h2, .blog-show.self .blog-itself em h2 { color: $color-self; font-size: 2.6rem }
+.blog-show.neutral .blog-itself h2, .blog-show.neutral .blog-itself em h2 { color: $color-neutral; font-size: 2.6rem }
 
-.blog-show.house .blog-itself h3, .blog-show.house .blog-itself em h3 { color: $color-house !important; font-weight: 900 !important; }
-.blog-show.spouse .blog-itself h3, .blog-show.spouse .blog-itself em h3 { color: $color-spouse !important; font-weight: 900 !important; }
-.blog-show.kids .blog-itself h3, .blog-show.kids .blog-itself em h3 { color: $color-kids !important; font-weight: 900 !important; }
-.blog-show.self .blog-itself h3, .blog-show.self .blog-itself em h3 { color: $color-self !important; font-weight: 900 !important; }
-.blog-show.neutral .blog-itself h3, .blog-show.neutral .blog-itself em h3 { color: $color-neutral !important; font-weight: 900 !important; }
+.blog-show.house .blog-itself h3, .blog-show.house .blog-itself em h3 { color: $color-house; font-weight: 900; }
+.blog-show.spouse .blog-itself h3, .blog-show.spouse .blog-itself em h3 { color: $color-spouse; font-weight: 900; }
+.blog-show.kids .blog-itself h3, .blog-show.kids .blog-itself em h3 { color: $color-kids; font-weight: 900; }
+.blog-show.self .blog-itself h3, .blog-show.self .blog-itself em h3 { color: $color-self; font-weight: 900; }
+.blog-show.neutral .blog-itself h3, .blog-show.neutral .blog-itself em h3 { color: $color-neutral; font-weight: 900; }
 
 .blog-show.house .blog-itself h3 a { color: $color-spouse !important; font-weight: 900 !important; text-decoration: underline; }
 .blog-show.spouse .blog-itself h3 a { color: $color-self !important; font-weight: 900 !important; text-decoration: underline; }
@@ -937,7 +937,9 @@ footer p, footer p em {
 .blog-show .blog-itself h4, .blog-show .blog-itself em h4 { color: $color-neutral !important; font-weight: 900 !important; }
 .blog-show.neutral .blog-itself h4, .blog-show.neutral .blog-itself em h4 { color: $color-spouse !important; font-weight: 900 !important; }
 
-
+.blog-headings h3 { font-variant: small-caps;}
+.blog-headings h4 { font-weight: 900; color: $color-neutral }
+.blog-headings strong { font-weight: 900 }
 
 
 .blog-show img {
