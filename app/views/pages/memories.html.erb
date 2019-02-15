@@ -5,26 +5,30 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>)"><div class="image-overlay-neutral"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
-  <div class="container">
-    <h1 class="text-center">Create Lasting Memories</h1>
-  </div>
-  <div class="over-frame-bottom-row">
-    <div class="container">
-      <div class="text-center">
-        <div class="half-buffer"></div>
-        <%= link_to new_user_registration_path, class: "btn btn-outline-tertiary hero-button" do %>Start Creating Memories<% end %>
-        <div class="buffer"></div>
-      </div> <!-- text center -->
-    </div> <!-- container -->
-  </div> <!-- over-frame-bottom-row -->
-</div> <!-- over frame text -->
-
-<div class="half-buffer"></div>
 <div class="container">
-  <h2></h2>
-  <p></p>
+
+  <h1 class="text-center font-script color-spouse">Create Lasting Memories</h1>
+
+  <div class="half-buffer"></div>
+
+  <div class="text-center">
+    <%= image_tag "watch-your-kids-get-bigger.jpg", style: "width: 100%", alt: "Document your kids' growth with yearly (or monthly) photos" %>
+
+    <div class="half-buffer"></div>
+
+    <h2 class="color-spouse">Document your kiddos' growth!</h2>
+    <h4>Upload your photos to create yearly or monthly time capsules.</h4>
+
+    <iframe style="margin: 20px 0 20px 0" width="560" height="315" src="https://www.youtube.com/embed/JW7VhcyseOU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <h2>Our automated email reminders will help you remember when to take the next one...</h2>
+    <h2 class="color-spouse">...so you never miss a moment!</h2>
+
+    <div class="half-buffer"></div>
+
+    <%= link_to "Get Started Now", capsules_path, class: "btn btn-danger" %>
+
+  </div> <!-- center -->
 
 </div> <!-- container -->
 
