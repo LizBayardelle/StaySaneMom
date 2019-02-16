@@ -212,7 +212,9 @@ label {
 td { padding: 5px 10px 5px 0px; vertical-align: top }
 td p { margin-bottom: 0 }
 
-
+.card:hover {
+  box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
+}
 
 
 .mycard {

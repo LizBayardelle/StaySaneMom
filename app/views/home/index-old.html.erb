@@ -103,9 +103,6 @@
     </div> <!-- category callouts -->
 </div> <!-- container -->
 
-
-
-
 <div class="about-me bg-neutral">
   <div class="container" style="padding: 0px 0 20px 0">
     <h2 class="text-center script-header" style="padding-top: 20px">About Me</h2>
@@ -122,54 +119,99 @@
   </div> <!-- container -->
 </div> <!-- about me -->
 
+<div class="buffer"></div>
 
+<div class="container small-boxes">
+  <h2 class="font-script text-center color-neutral">What's New?</h2>
 
+  <div class="row">
+
+    <div class="col-md-6 col-lg-4">
+      <h3 class="text-center">Most Popular Blogs</h3>
+      <% @commented_blogs.each do |blog| %>
+        <%= render partial: "layouts/blogcard", locals: { blog: blog } %>
+      <% end %>
+      <h5 class="text-center font-script"><%= link_to "See " + (@all_blogs.count - 3).to_s + " More Posts...", blogs_path, class: "font-script" %></h5>
+    </div> <!-- popular blogs third -->
+
+    <div class="col-md-6 col-lg-4">
+      <h3 class="text-center">Popular Tools</h3>
+
+        <%= link_to tasks_path do %>
+          <div class="blog-card">
+              <div class="other transparent-hover neutral">
+                <div class="flag">Tool</div>
+                <div class="small-blog-frame" style="background-image: url(<%= asset_path "house-task-organizer.jpg" %>)">
+                    <div class="image-overlay-neutral"></div>
+                </div>
+                <div class="height blog-text">
+                  <h5>House Task Organizer</h5>
+                  <p>Keep your house clean with one-time, daily, weekly, and monthly task lists.</p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div> <!-- blog card/col -->
+          <% end %>
+
+          <%= link_to capsules_path do %>
+            <div class="blog-card">
+                <div class="other transparent-hover neutral">
+                  <div class="flag">Tool</div>
+                  <div class="small-blog-frame" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>)">
+                      <div class="image-overlay-neutral"></div>
+                  </div>
+                  <div class="height blog-text">
+                    <h5>Photo Time Capsule</h5>
+                    <p>Create year-by-year time capsules to watch your family grow.</p>
+                  </div> <!-- blog-text -->
+                </div> <!-- end case div -->
+              </div> <!-- blog card/col -->
+            <% end %>
+
+        <%= link_to people_path do %>
+          <div class="blog-card">
+              <div class="other transparent-hover neutral">
+                <div class="flag">Tool</div>
+                <div class="small-blog-frame" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)">
+                    <div class="image-overlay-neutral"></div>
+                </div>
+                <div class="blog-text">
+                  <h5>Birthday Tracker</h5>
+                  <p>Input birthdays, anniversaries, and more.  Never forget an important date again.</p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div> <!-- blog card/col -->
+          <% end %>
+
+        <%= link_to occasions_path do %>
+          <div class="blog-card">
+              <div class="other transparent-hover neutral">
+                <div class="flag">Tool</div>
+                <div class="small-blog-frame" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)">
+                    <div class="image-overlay-neutral"></div>
+                </div>
+                <div class="blog-text">
+                  <h5>Gift Planner</h5>
+                  <p>Plan all your major holidays with our automated gift planner.</p>
+                </div> <!-- blog-text -->
+              </div> <!-- end case div -->
+            </div> <!-- blog card/col -->
+          <% end %>
+      <h5 class="text-center font-script"><%= link_to "See More Tools...", static_path(:tools), class: "font-script" %></h5>
+    </div> <!-- third -->
+
+    <div class="col-md-12 col-lg-4">
+      <h3 class="text-center">Newest Blogs</h3>
+      <% @recent_blogs.each do |blog| %>
+        <%= render partial: "layouts/blogcard", locals: { blog: blog } %>
+      <% end %>
+      <h5 class="text-center font-script"><%= link_to "See Older Posts...", blogs_path, class: "font-script" %></h5>
+    </div> <!-- third -->
+  </div> <!-- row -->
+</div> <!-- what's new container -->
 
 <div class="buffer"></div>
 
-
-
-
-<div class="container small-boxes">
-
-  <h3 class="text-center">Most Popular Blogs</h3>
-  <div class="row">
-    <% @commented_blogs.each do |blog| %>
-      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
-    <% end %>
-  </div> <!-- row -->
-  <h5 class="text-center"><%= link_to "See " + (@all_blogs.count - 3).to_s + " More Posts...", blogs_path, class: "font-script" %></h5>
-  <div class="half-buffer"></div>
-
-  <h3 class="text-center">Popular Tools</h3>
-  <div class="row">
-    <%= render "layouts/tools/tasks" %>
-    <%= render "layouts/tools/birthdays" %>
-    <%= render "layouts/tools/gifts" %>
-    <%= render "layouts/tools/capsules" %>
-  </div> <!-- row -->
-  <div class="half-buffer"></div>
-
-
-  <h3 class="text-center">Newest Blogs</h3>
-  <div class="row">
-    <% @recent_blogs.each do |blog| %>
-      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
-    <% end %>
-  </div> <!-- row -->
-  <h5 class="text-center"><%= link_to "See Older Posts...", blogs_path, class: "font-script" %></h5>
-  <div class="half-buffer"></div>
-
-</div> <!-- what's new container -->
-
-
-
-
-
-
-
-
-<div class="container text-center">
+<div class="container">
   <h2 class="text-center font-script">Get Your Read On</h2>
   <div class="d-none d-md-block">
     <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=13&l=ez&f=ifr&linkID=526f15239e6428e05b1f619edab282e1&t=thestaysane00-20&tracking_id=thestaysane00-20" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
@@ -194,10 +236,11 @@
     $(document).ready(function() {
         $('.height').matchHeight();
         $('.category-div').matchHeight();
-        $('.card').matchHeight();
-        $('.view').matchHeight();
-        $('.card-title').matchHeight();
-        $('.card-text').matchHeight();
+        $('.blog-text').matchHeight();
+        $('.blog-teaser').matchHeight();
+        $('.blog-description').matchHeight();
+        $('.blog-info').matchHeight();
+        $('.tool-box-text').matchHeight();
         $('.open-popup-link').magnificPopup({
           type:'inline',
           midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
