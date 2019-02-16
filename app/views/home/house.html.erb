@@ -64,39 +64,22 @@
 <div class="buffer"></div>
 
 <div class="container">
-
-  <div class="recent-blogs">
-    <div class="">
-      <h2 class="text-center">Most Popular Household Management Blogs</h2>
-      <div class="row">
-        <% @commented_blogs.each do |blog| %>
-          <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
-        <% end %>
-      </div>
-    </div> <!-- popular blogs third -->
-
-    <div class="buffer"></div>
-
-    <div class="">
-      <h2 class="text-center">Newest Household Management Blogs</h2>
-      <div class="row">
-        <% @recent_blogs.each do |blog| %>
-          <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
-        <% end %>
-      </div>
-    </div> <!-- popular blogs third -->
-
+  <h2 class="text-center font-script">Household Management Tools</h2>
+  <div class="row tools">
+    <%= render "layouts/tools/tasks" %>
+    <%= render "layouts/tools/birthdays" %>
+    <%= render "layouts/tools/gifts" %>
+    <%= render "layouts/tools/capsules" %>
+  </div> <!-- tools row -->
   <div class="buffer"></div>
 
-  <% if @other_blogs && @other_blogs.count > 0 %>
-    <h2 class="text-center">Other Blogs on Household Management</h2>
-    <% @other_blogs.each do |blog| %>
-      <%= link_to blog, class: "weight-400 color-black color-neutral-hover" do %>
-        <h3 class="color-house font-bold"><%= blog.title %></h3>
-        <p><%= blog.teaser %>  <%= link_to blog do %><span class="color-neutral"><%= blog.cta_read_more + "..." %></span><% end %></p>
-      <% end %>
+  <h2 class="text-center font-script">Household Management Blogs</h2>
+  <div class="half-buffer"></div>
+  <div class="row">
+    <% @all_house_blogs.each do |blog| %>
+      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: "house" } %>
     <% end %>
-  <% end %>
+  </div> <!-- row -->
 
 </div> <!-- page container -->
 
@@ -115,10 +98,10 @@
 <%= content_for :additional_js do %>
   <script type="text/javascript">
     $(document).ready(function() {
-      $('.blog-text').matchHeight();
-      $('.blog-teaser').matchHeight();
-      $('.blog-description').matchHeight();
-      $('.blog-info').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
       $('.open-popup-link').magnificPopup({
         type:'inline',
         midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
