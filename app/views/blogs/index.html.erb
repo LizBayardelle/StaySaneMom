@@ -58,7 +58,7 @@
   <h2 class="font-script text-center">Most Popular Blogs</h2>
   <div class="row">
     <% @commented_blogs.each do |blog| %>
-      <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
+      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
     <% end %>
   </div> <!-- row -->
 
@@ -67,7 +67,7 @@
   <h2 class="font-script text-center">Newest Blogs</h2>
   <div class="row">
     <% @blogs.each do |blog| %>
-      <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
+      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
     <% end %>
   </div> <!-- row -->
 
@@ -82,10 +82,10 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.height').matchHeight();
-      $('.blog-text').matchHeight();
-      $('.blog-teaser').matchHeight();
-      $('.blog-description').matchHeight();
-      $('.blog-info').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
       $('.formkit-submit').click(function() {
         ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Blog Index Hero CTA Subscription');
       });

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @headernav = true
+    # @headernav = true
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(4)
     @all_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
     @commented_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(4)
