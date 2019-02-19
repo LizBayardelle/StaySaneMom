@@ -4,7 +4,9 @@
 
   <!-- Search form -->
   <div class="active-purple-3 active-purple-4 mb-4">
-    <input class="form-control" type="text" placeholder="Search for Recipes (press enter to search)" aria-label="Search">
+    <%= form_tag('/recipes/search') do %>
+      <input name="search_term[word]" class="form-control" type="text" placeholder="Search for Recipes (press enter to search)" aria-label="Search">
+    <% end %>
   </div>
   <!-- Search form -->
 
@@ -36,3 +38,14 @@
   <!-- Results -->
 
 </div> <!-- container -->
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
+    });
+  </script>
+<% end %>

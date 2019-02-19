@@ -2,64 +2,59 @@
   <% if @recipe.errors %>
     <%= @recipe.errors[:message] %>
   <% else %>
+    <div class="text-center">
+      <%= link_to "Back to Recipes Search", recipes_path, class: "btn btn-danger" %>
+      <div class="half-buffer"></div>
+      <h1><%= @recipe.title %></h1>
+      <p class="color-neutral">Ready in <%= pluralize(@recipe.ready_in_minutes, "Minute") %>  |  <%= pluralize(@recipe.aggregate_likes, "Spoonacular Likes") %></p>
+      <% if @recipe.image %><%= image_tag @recipe.image, class: 'Recipe-image img-responsive' %><% end %>
+      <div class="Icon-container">
+        <% if @recipe.gluten_free %>
+          <span><i class="fas fa-bread-slice"></i> Gluten Free</span>
+        <% end %>
+
+        <% if @recipe.dairy_free %>
+          <span><i class="fas fa-cheese"></i> Dairy Free</span>
+        <% end %>
+
+        <% if @recipe.vegetarian %>
+          <span><i class="fas fa-carrot"></i> Vegetarian</span>
+        <% end %>
+
+        <% if @recipe.vegan %>
+          <span><i class="fas fa-wheat"></i> Vegan</span>
+        <% end %>
+      </div> <!-- icons -->
+    </div> <!-- text center -->
+
+    <div class="half-buffer"></div>
+
     <div class="row">
-      <div class="col-xs-12">
-        <h1><%= @recipe.title %></h1>
-
-      </div>
-    </div>
-
-    <div class="Recipe">
-      <div class="row">
-        <div class="col-xs-6">
-          <%= image_tag @recipe.image, class: 'Recipe-image img-responsive' %>
-
-          <div class="Icon-container">
-            <% if @recipe.gluten_free %>
-              <i class="Icon Icon--default Icon-glutenFree"></i>
-            <% end %>
-
-            <% if @recipe.dairy_free %>
-              <i class="Icon Icon--default Icon-dairyFree"></i>
-            <% end %>
-
-            <% if @recipe.vegetarian %>
-              <i class="Icon Icon--default Icon-vegetarian"></i>
-            <% end %>
-
-            <% if @recipe.vegan %>
-              <i class="Icon Icon--default Icon-vegan"></i>
-            <% end %>
-
-            <i class="Icon Icon--default Icon-clock"></i> <%= @recipe.ready_in_minutes %> min
-          </div>
-        </div>
-      </div>
-
-      <div class="row Recipe-details">
-        <div class="col-xs-5">
-          <h3>Ingredients</h3>
+        <div class="col-sm-6">
+          <h2 class="color-spouse font-script">Ingredients</h2>
           <% @recipe.ingredients.each do |ingredient| %>
             <div class="Recipe-ingredient">
               <%= ingredient.original_string %>
             </div>
           <% end %>
-        </div>
+        </div> <!-- col -->
 
-        <div class="col-xs-6">
-          <h3>Instructions</h3>
+        <div class="col-sm-6">
+          <h2 class="color-spouse font-script">Instructions</h2>
+          <%#= @recipe.instructions %>
           <% @recipe.instructions.each do |instruction| %>
             <div class="Recipe-instruction">
               <span class="Recipe-instructionNumber">
-                <%= instruction.number %>
+                <strong>Step <%= instruction.number %>: &nbsp;</strong>
               </span>
               <span class="Recipe-instructionStep">
                 <%= instruction.step %>
               </span>
             </div>
           <% end %>
-        </div>
-      </div>
-    </div>
+        </div> <!-- col -->
+
+    </div> <!-- row -->
+
   <% end %>
 </div> <!-- container -->

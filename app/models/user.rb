@@ -14,4 +14,5 @@ class User < ApplicationRecord
   has_many :occasions
   has_many :capsules
   has_many :capsule_items
+  has_many :meals
 end

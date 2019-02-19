@@ -17,15 +17,13 @@ module Spoonacular
 
     def self.all(query = {}, clear_cache)
       cache = CACHE_DEFAULTS.merge({ force: clear_cache })
-      response = Spoonacular::Request.where('recipes/random', cache, query.merge({ number: 20 }))
+      Rails.logger.info query
+      Rails.logger.info clear_cache
+      Rails.logger.info cache
+      response = Spoonacular::Request.where('recipes/random', cache.merge({ number: 20, tags: query['word'] }), query)
       recipes = response.fetch('recipes', []).map { |recipe| Recipe.new(recipe) }
       [ recipes, response[:errors] ]
     end
-
-    # response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=20",
-    #   headers:{
-    #     "X-RapidAPI-Key" => "5be67976e4mshcf29e401e56e68bp11f33fjsn36acde44d587"
-    #   }
 
     def self.random(query = {}, clear_cache)
       cache = CACHE_DEFAULTS.merge({ force: clear_cache })
@@ -35,7 +33,7 @@ module Spoonacular
     end
 
     def self.find(id)
-      response = Spoonacular::Request.get("recipes/#{id}/information", CACHE_DEFAULTS)
+      response = Spoonacular::Request.get("recipes/#{id}/information") #, CACHE_DEFAULTS)
       Recipe.new(response)
     end
 

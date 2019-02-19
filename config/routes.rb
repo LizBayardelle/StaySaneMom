@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meals
 mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
@@ -8,6 +9,8 @@ mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
   mount Spree::Core::Engine, at: '/store'
 
   root 'home#index'
+
+  post 'recipes/search' => 'recipes#index', as: "recipes_search"
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show, :index]
@@ -24,7 +27,7 @@ mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
   get 'home/allblogs'
 
   resources :subcategories
-  
+
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
     resources :comments

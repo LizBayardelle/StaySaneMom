@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_040313) do
+ActiveRecord::Schema.define(version: 2019_02_19_205215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,28 @@ ActiveRecord::Schema.define(version: 2019_02_14_040313) do
     t.index ["occasion_id"], name: "index_gifts_on_occasion_id"
     t.index ["person_id"], name: "index_gifts_on_person_id"
     t.index ["user_id"], name: "index_gifts_on_user_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "title"
+    t.integer "ready_in_minutes"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean "gluten_free", default: false
+    t.boolean "dairy_free", default: false
+    t.boolean "vegetarian", default: false
+    t.boolean "vegan", default: false
+    t.text "ingredients", default: [], array: true
+    t.text "instructions", default: [], array: true
+    t.boolean "downloaded", default: false
+    t.boolean "favorite", default: false
+    t.bigint "user_id"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "occasions", force: :cascade do |t|
@@ -1595,6 +1617,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_040313) do
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "gifts", "users"
+  add_foreign_key "meals", "users"
   add_foreign_key "occasions", "people"
   add_foreign_key "occasions", "users"
   add_foreign_key "people", "users"

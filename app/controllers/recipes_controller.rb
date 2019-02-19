@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   def index
     @tag = query.fetch(:tags, 'all')
     @refresh_params = refresh_params
+    query = params[:search_term]
     @recipes, @errors = Spoonacular::Recipe.all(query, clear_cache)
   end
 

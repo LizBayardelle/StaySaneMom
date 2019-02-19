@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @meal.title %>
+</p>
+
+<p>
+  <strong>Ready in minutes:</strong>
+  <%= @meal.ready_in_minutes %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @meal.image %>
+</p>
+
+<p>
+  <strong>Gluten free:</strong>
+  <%= @meal.gluten_free %>
+</p>
+
+<p>
+  <strong>Dairy free:</strong>
+  <%= @meal.dairy_free %>
+</p>
+
+<p>
+  <strong>Vegetarian:</strong>
+  <%= @meal.vegetarian %>
+</p>
+
+<p>
+  <strong>Vegan:</strong>
+  <%= @meal.vegan %>
+</p>
+
+<p>
+  <strong>Ingredients:</strong>
+  <%= @meal.ingredients %>
+</p>
+
+<p>
+  <strong>Instructions:</strong>
+  <%= @meal.instructions %>
+</p>
+
+<p>
+  <strong>Downloaded:</strong>
+  <%= @meal.downloaded %>
+</p>
+
+<p>
+  <strong>Favorite:</strong>
+  <%= @meal.favorite %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @meal.user_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @meal.notes %>
+</p>
+
+<%= link_to 'Edit', edit_meal_path(@meal) %> |
+<%= link_to 'Back', meals_path %>
