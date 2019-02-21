@@ -2,10 +2,10 @@ class HomeController < ApplicationController
 
   def index
     # @headernav = true
-    @blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(4)
+    @blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(6)
     @all_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
-    @commented_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(4)
-    @recent_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(4)
+    @commented_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(6)
+    @recent_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(6)
   end
 
   def tools

@@ -17,13 +17,14 @@
     <%= f.input :notes %>
 
     <h4>Add Ingredients</h4>
-    <form id="ingredients">
-      <input type="string" id="amount" name="amount" placeholder="#" class="form-control" style="width: 10%; margin-right: 10px; display: inline-block">
-      <input type="string" id="unit" name="unit" placeholder="e.g. Cup" class="form-control" style="width: 20%; margin-right: 10px; display: inline-block">
-      <input type="string" id="name" name="name" placeholder="e.g. White Rice" class="form-control" style="width: 50%; display: inline-block">
-      <i class="fas fa-plus addIngredient" style="margin-left: 8px"></i>
-      <!-- <i class="fas fa-minus" style="margin-left: 8px" id="subtractIngredient"></i> -->
-    </form>
+    <div id="ingredients">
+      <div id="ingredient-row" style="padding-bottom: 10px">
+        <input type="string" id="amount" name="amount" placeholder="#" class="form-control" style="width: 10%; margin-right: 10px; display: inline-block">
+        <input type="string" id="unit" name="unit" placeholder="e.g. Cup" class="form-control" style="width: 20%; margin-right: 10px; display: inline-block">
+        <input type="string" id="name" name="name" placeholder="e.g. White Rice" class="form-control" style="width: 50%; display: inline-block">
+      </div>
+    </div>
+    <div class="text-center"><div class="btn btn-secondary" id="addIngredient">Add Another Ingredient</div></div>
 
 
 :original_string=>
@@ -42,15 +43,15 @@
   </div>
 
   <div class="form-actions text-center">
-    <%= f.submit "Let's Go", class: "btn btn-danger" %>
+    <%= f.submit "Save Meal", class: "btn btn-danger" %>
   </div>
 <% end %>
 
 <%= content_for :additional_js_partial do %>
   <script type="text/javascript">
     $(document).ready(function() {
-      $(".addIngredient").click(function(){
-        $("#ingredients").append("<b>Appended text</b>");
+      $("#addIngredient").click(function(){
+        $("#ingredient-row").clone().appendTo("#ingredients");
       });
     });
   </script>

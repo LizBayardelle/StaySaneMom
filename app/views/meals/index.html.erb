@@ -6,7 +6,7 @@
 <!-- page-specific content -->
 
 <div class="container">
-  <p class="text-center">Bored?  You can always <%= link_to "Input Your Own Recipe", new_meal_path %> or <%= link_to "Browse Our Recipe Library", recipes_path %></p>
+  <p class="text-center">Bored?  You can always <%= link_to "Create Your Own Recipe", new_meal_path %> or <%= link_to "Browse Our Recipe Library", recipes_path %></p>
 
   <h1 class="text-center font-script">My Recipe Box</h1>
 
@@ -27,7 +27,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="card text-center" style="margin-bottom: 20px">
               <div class="card-float-right">
-                <%= link_to meal_path(meal), method: :delete do %> <!-- , remote: true -->
+                <%= link_to meal_path(meal), method: :delete, data: {confirm: "Are you sure you want to delete that meal?"} do %> <!-- , remote: true -->
                   <i class="far fa-trash-alt color-white"></i>
                 <% end %>
                 <% if meal.favorite %>
