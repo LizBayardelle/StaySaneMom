@@ -1353,6 +1353,25 @@ strong { font-weight: 900 }
 .side-nav .self.collapsible-body a.sub { background-color: $transparent-self; }
 
 
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// --- MDB OVERRIDES -----
+// ---------------------------
+// ---------------------------
+
+.card .card-float-right {
+  position: absolute;
+  right: 0;
+  padding: 5px;
+  color: white;
+  font-size: 20px;
+}
+
+
+
+
+
 
 // ---------------------------
 // ---------------------------

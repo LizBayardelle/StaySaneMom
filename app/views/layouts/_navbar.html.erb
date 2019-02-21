@@ -28,6 +28,8 @@
             <ul>
               <li><%= link_to "House Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
               <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
+              <li><%= link_to "Search New Recipe Database", main_app.recipes_path, class: "waves-effect" %></li>
+              <li><%= link_to "My Recipe Box", main_app.meals_path, class: "waves-effect" %></li>
               <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
               <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
             </ul>
@@ -89,7 +91,11 @@
               <% @subcategories.each do |subcategory| %>
                 <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
-              <li><%= link_to "TOOL: Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
+              <li><%= link_to "House Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
+              <li><%= link_to "My Recipe Box", main_app.meals_path, class: "waves-effect" %></li>
+              <li><%= link_to "Search New Recipe Database", main_app.recipes_path, class: "waves-effect" %></li>
+              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
+              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
             </ul>
           </div> <!-- collapsable body -->
         </li>
@@ -102,6 +108,9 @@
               <% @subcategories.each do |subcategory| %>
                 <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
+              <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
+              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
+              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
             </ul>
           </div> <!-- collapsable body -->        </li>
         <li><a class="collapsible-header waves-effect arrow-r">
@@ -113,6 +122,8 @@
                 <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
               <% end %>
               <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
+              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
+              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
             </ul>
           </div> <!-- collapsable body -->
         </li>

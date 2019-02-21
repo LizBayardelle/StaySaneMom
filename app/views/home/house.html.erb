@@ -27,10 +27,16 @@
   </div> <!-- over-frame-bottom-row -->
 </div> <!-- over-frame-text -->
 
-<div class="half-buffer"></div>
+<div class="container text-center" style="padding: 10px; padding-bottom: 15px">
+  <h3>
+    <div id="resourcesClick" class="color-house" style="display: inline-block">Resources</div>&nbsp&nbsp&nbsp|&nbsp&nbsp
+    <div id="toolsClick" class="color-house" style="display: inline-block">Tools</div>&nbsp&nbsp|&nbsp&nbsp
+    <div id="blogsClick" class="color-house" style="display: inline-block">Blogs</div>
+  </h3>
+</div>
 
 
-<div class="bg-house padded">
+<div class="bg-house padded" id="resourcesDiv">
   <div class="container padded resource-stripe">
     <h2 class="text-center font-script">Free Household Resources</h2>
     <% if current_user %>
@@ -63,16 +69,19 @@
 
 <div class="buffer"></div>
 
-<div class="container">
+<div class="container" id="toolsDiv">
   <h2 class="text-center font-script">Household Management Tools</h2>
   <div class="row tools">
     <%= render "layouts/tools/tasks" %>
+    <%= render "layouts/tools/recipes" %>
+    <%= render "layouts/tools/meals" %>
     <%= render "layouts/tools/birthdays" %>
     <%= render "layouts/tools/gifts" %>
   </div> <!-- tools row -->
+
   <div class="buffer"></div>
 
-  <h2 class="text-center font-script">Household Management Blogs</h2>
+  <h2 class="text-center font-script" id="blogsDiv">Household Management Blogs</h2>
   <div class="half-buffer"></div>
   <div class="row">
     <% @all_house_blogs.each do |blog| %>
@@ -105,8 +114,27 @@
         type:'inline',
         midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
       });
+
       $('.hero-button').click(function() {
           ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'House Category Subscription Box');
+      });
+
+      $("#resourcesClick").click(function() {
+        $('html,body').animate({
+            scrollTop: $("#resourcesDiv").offset().top -100 },
+            'slow');
+      });
+
+      $("#toolsClick").click(function() {
+        $('html,body').animate({
+            scrollTop: $("#toolsDiv").offset().top -100 },
+            'slow');
+      });
+
+      $("#blogsClick").click(function() {
+        $('html,body').animate({
+            scrollTop: $("#blogsDiv").offset().top -100 },
+            'slow');
       });
     });
   </script>

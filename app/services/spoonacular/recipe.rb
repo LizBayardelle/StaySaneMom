@@ -20,7 +20,7 @@ module Spoonacular
       Rails.logger.info query
       Rails.logger.info clear_cache
       Rails.logger.info cache
-      response = Spoonacular::Request.where('recipes/random', cache.merge({ number: 20, tags: query['word'] }), query)
+      response = Spoonacular::Request.where('recipes/random', cache.merge({ number: 20, tags: query.try(:[], 'word') }), query)
       recipes = response.fetch('recipes', []).map { |recipe| Recipe.new(recipe) }
       [ recipes, response[:errors] ]
     end

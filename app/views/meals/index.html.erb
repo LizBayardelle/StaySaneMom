@@ -1,51 +1,66 @@
-<p id="notice"><%= notice %></p>
+<!-- page-specific content -->
+  <% title "My Recipe Box | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="My personal stockpile of delicious culinary creations...and grilled cheeese." />
+  <% end %>
+<!-- page-specific content -->
 
-<h1>Meals</h1>
+<div class="container">
+  <p class="text-center">Bored?  You can always <%= link_to "Input Your Own Recipe", new_meal_path %> or <%= link_to "Browse Our Recipe Library", recipes_path %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Ready in minutes</th>
-      <th>Image</th>
-      <th>Gluten free</th>
-      <th>Dairy free</th>
-      <th>Vegetarian</th>
-      <th>Vegan</th>
-      <th>Ingredients</th>
-      <th>Instructions</th>
-      <th>Downloaded</th>
-      <th>Favorite</th>
-      <th>User</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1 class="text-center font-script">My Recipe Box</h1>
 
-  <tbody>
-    <% @meals.each do |meal| %>
-      <tr>
-        <td><%= meal.title %></td>
-        <td><%= meal.ready_in_minutes %></td>
-        <td><%= meal.image %></td>
-        <td><%= meal.gluten_free %></td>
-        <td><%= meal.dairy_free %></td>
-        <td><%= meal.vegetarian %></td>
-        <td><%= meal.vegan %></td>
-        <td><%= meal.ingredients %></td>
-        <td><%= meal.instructions %></td>
-        <td><%= meal.downloaded %></td>
-        <td><%= meal.favorite %></td>
-        <td><%= meal.user_id %></td>
-        <td><%= meal.notes %></td>
-        <td><%= link_to 'Show', meal %></td>
-        <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-        <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+  <div class="half-buffer"></div>
 
-<%= link_to 'New Meal', new_meal_path %>
+  <% if @meals.count == 0 %>
+    <div class="text-center">
+      <h4>Uh oh!  You don't have any meals inputted!</h4>
+      <div class="half-buffer"></div>
+      <%= link_to "Create Your Own Recipe", new_meal_path, class: "btn btn-danger" %>
+      <h4>or</h4>
+      <%= link_to "Browse Our Recipe Library", recipes_path, class: "btn btn-danger" %>
+    </div> <!-- centered -->
+  <% else %>
+    <div class="row">
+      <% @meals.each do |meal| %>
+        <div class="col-sm-6 col-md-4">
+            <div class="card text-center" style="margin-bottom: 20px">
+              <div class="card-float-right">
+                <%= link_to meal_path(meal), method: :delete do %> <!-- , remote: true -->
+                  <i class="far fa-trash-alt color-white"></i>
+                <% end %>
+                <% if meal.favorite %>
+                  <%= link_to unfavorite_meal_path(meal), method: :post do %><i class="fas fa-star" style="color: yellow"></i><% end %>
+                <% else %>
+                  <%= link_to favorite_meal_path(meal), method: :post do %><i class="far fa-star" style="color: white"></i><% end %>
+                <% end %>
+              </div> <!-- float right -->
+              <img src=<%= meal.image %> class='card-img-top' %>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= link_to meal_path(meal) do %>
+                    <%= meal.title %>
+                  <% end %>
+                </h4>
+                <p class="card-text">Ready in <%= pluralize(meal.ready_in_minutes, "Minute") %></p>
+                <%= link_to "See Recipe", meal_path(meal.id), class: "btn btn-danger" %>
+              </div> <!-- card body -->
+            </div> <!-- Card -->
+        </div> <!-- col -->
+      <% end %>
+    </div> <!-- row -->
+  <% end %> <!-- if meals empty -->
+
+</div> <!-- container -->
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
+    });
+  </script>
+<% end %>

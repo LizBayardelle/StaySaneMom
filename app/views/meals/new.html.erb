@@ -1,5 +1,14 @@
-<h1>New Meal</h1>
+<!-- page-specific content -->
+  <% title "New Recipe | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="Create a new culinary masterpiece...or grilled cheeese." />
+  <% end %>
+<!-- page-specific content -->
 
-<%= render 'form', meal: @meal %>
+<div class="container">
+  <h1 class="font-script text-center color-house">Create a New Meal</h1>
+  <div class="half-buffer"></div>
 
-<%= link_to 'Back', meals_path %>
+  <%= render 'form', meal: @meal %>
+
+</div> <!-- container -->

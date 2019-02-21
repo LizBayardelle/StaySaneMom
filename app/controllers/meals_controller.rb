@@ -15,6 +15,7 @@ class MealsController < ApplicationController
   # GET /meals/new
   def new
     @meal = Meal.new
+    @meal.user_id = current_user.id
   end
 
   # GET /meals/1/edit
@@ -61,6 +62,28 @@ class MealsController < ApplicationController
     end
   end
 
+  def favorite
+      @meal = Meal.find(params[:id])
+      if @meal.update_attributes(favorite: true)
+          redirect_to meals_path
+          flash[:notice] = "That meal is now a favorite!"
+      else
+          redirect_to root_path
+          flash[:warning] = "Oops! Something went wrong!"
+      end
+  end
+
+  def unfavorite
+      @meal = Meal.find(params[:id])
+      if @meal.update_attributes(favorite: false)
+          redirect_to meals_path
+          flash[:notice] = "That meal is no longer a favorite!"
+      else
+          redirect_to root_path
+          flash[:warning] = "Oops! Something went wrong!"
+      end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_meal
@@ -69,6 +92,6 @@ class MealsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meal_params
-      params.require(:meal).permit(:title, :ready_in_minutes, :image, :gluten_free, :dairy_free, :vegetarian, :vegan, :ingredients, :instructions, :downloaded, :favorite, :user_id_id, :notes)
+      params.require(:meal).permit(:title, :ready_in_minutes, :image, :gluten_free, :dairy_free, :vegetarian, :vegan, :ingredients, :instructions, :downloaded, :favorite, :user_id, :notes)
     end
 end

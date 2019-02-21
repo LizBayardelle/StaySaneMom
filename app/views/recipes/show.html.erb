@@ -1,12 +1,68 @@
+<div class="container text-center" style="padding-bottom: 10px; margin-top: -15px">
+  <%= link_to "Back to Recipes Search", recipes_path %>
+</div>
+
+<div class="bg-spouse text-center">
+  <div class="container">
+    <p style="padding: 10px"><strong>This is an external recipe.</strong><br />To access it for your weekly meal plans, you need to add it to your meals below.</p>
+  </div>
+</div>
+
 <div class="container">
   <% if @recipe.errors %>
     <%= @recipe.errors[:message] %>
   <% else %>
     <div class="text-center">
-      <%= link_to "Back to Recipes Search", recipes_path, class: "btn btn-danger" %>
-      <div class="half-buffer"></div>
       <h1><%= @recipe.title %></h1>
       <p class="color-neutral">Ready in <%= pluralize(@recipe.ready_in_minutes, "Minute") %>  |  <%= pluralize(@recipe.aggregate_likes, "Spoonacular Likes") %></p>
+
+      <% ingredients = [] %>
+      <% ingredients_hash = {} %>
+      <% y = 0 %>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <% ingredient_hash = { original_string: ingredient.original_string, amount: ingredient.amount, name: ingredient.name, unit: ingredient.unit } %>
+        <% ingredients_hash[y] = ingredient_hash %>
+        <% y += 1 %>
+      <% end %>
+      <% ingredients << ingredients_hash %>
+
+
+      <% instructions = [] %>
+      <% instructions_hash = {} %>
+      <% n = 0 %>
+      <% @recipe.instructions.each do |instruction| %>
+        <% instruction_hash = { number: instruction.number, step: instruction.step } %>
+        <% instructions_hash[n] = instruction_hash %>
+        <% n += 1 %>    <% end %>
+      <% instructions << instructions_hash %>
+
+      <div class="text-center">
+        <%= simple_form_for(@meal) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <%= f.hidden_field :title, value: @recipe.title %>
+            <%= f.hidden_field :ready_in_minutes, value: @recipe.ready_in_minutes %>
+            <%= f.hidden_field :image, value: @recipe.image %>
+            <%= f.hidden_field :gluten_free, value: @recipe.gluten_free %>
+            <%= f.hidden_field :dairy_free, value: @recipe.dairy_free %>
+            <%= f.hidden_field :vegetarian, value: @recipe.vegetarian %>
+            <%= f.hidden_field :vegan, value: @recipe.vegan %>
+            <%= f.hidden_field :ingredients, value: ingredients %>
+            <%= f.hidden_field :instructions, value: instructions %>
+            <%= f.hidden_field :downloaded, value: true %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.submit "Add Recipe to My Meals", class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      </div> <!-- add div center -->
+
+      <div class="half-buffer"></div>
+
       <% if @recipe.image %><%= image_tag @recipe.image, class: 'Recipe-image img-responsive' %><% end %>
       <div class="Icon-container">
         <% if @recipe.gluten_free %>
@@ -28,6 +84,7 @@
     </div> <!-- text center -->
 
     <div class="half-buffer"></div>
+
 
     <div class="row">
         <div class="col-sm-6">

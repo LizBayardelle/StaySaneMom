@@ -1,0 +1,21 @@
+<div class="col-md-6 col-lg-4 col-xl-3" style="margin-bottom: 20px">
+  <div class="card">
+    <div class="view overlay">
+      <%= link_to main_app.recipes_path do %><%= image_tag "search-new-recipe-database.jpg", class: "card-img-top", alt: "Search new recipe database...oooh wait, a delicious pizza!" %><% end %>
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <div class="card-body">
+      <h4 class="card-title"><%= link_to "Search Recipe Database", recipes_path, class: "card-title color-neutral" %></h4>
+      <p class="card-text">Bored with literally every meal you know how to cook?  Do a quick search on the Spoonacular recipe database and save the yummiest ones to your personal recipe box.</p>
+    </div>
+
+    <div class="rounded-bottom mdb-color bg-solid-neutral text-center pt-3">
+      <ul class="list-unstyled list-inline font-small">
+        <%= link_to main_app.recipes_path do %><li class="list-inline-item pr-2 white-text">Search Over 365,000 Recipes</li><% end %>
+      </ul>
+    </div> <!-- bottom -->
+  </div> <!-- card -->
+</div> <!-- col -->

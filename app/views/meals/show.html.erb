@@ -1,69 +1,60 @@
-<p id="notice"><%= notice %></p>
+<!-- page-specific content -->
+  <% title @meal.title + " | SSM" %>
+  <%= content_for :head do %>
+    <meta name="description" content="A delicious recipe for <%= @meal.title %>" />
+  <% end %>
+<!-- page-specific content -->
 
-<p>
-  <strong>Title:</strong>
-  <%= @meal.title %>
-</p>
+<div class="container">
+  <div class="text-center">
+    <p><%= link_to "Back to My Meals Library", meals_path %> or <%= link_to "Search for a New Recipe", recipes_path %></p>
+    <h1><%= @meal.title %></h1>
+    <p class="color-neutral">Ready in <%= pluralize(@meal.ready_in_minutes, "Minute") %></p>
+    <% if @meal.image %><%= image_tag @meal.image, class: 'Recipe-image img-responsive' %><% end %>
+    <div class="Icon-container">
+      <% if @meal.gluten_free %>
+        <span><i class="fas fa-bread-slice"></i> Gluten Free</span>
+      <% end %>
 
-<p>
-  <strong>Ready in minutes:</strong>
-  <%= @meal.ready_in_minutes %>
-</p>
+      <% if @meal.dairy_free %>
+        <span><i class="fas fa-cheese"></i> Dairy Free</span>
+      <% end %>
 
-<p>
-  <strong>Image:</strong>
-  <%= @meal.image %>
-</p>
+      <% if @meal.vegetarian %>
+        <span><i class="fas fa-carrot"></i> Vegetarian</span>
+      <% end %>
 
-<p>
-  <strong>Gluten free:</strong>
-  <%= @meal.gluten_free %>
-</p>
+      <% if @meal.vegan %>
+        <span><i class="fas fa-wheat"></i> Vegan</span>
+      <% end %>
+    </div> <!-- icons -->
+  </div> <!-- text center -->
 
-<p>
-  <strong>Dairy free:</strong>
-  <%= @meal.dairy_free %>
-</p>
+  <div class="half-buffer"></div>
 
-<p>
-  <strong>Vegetarian:</strong>
-  <%= @meal.vegetarian %>
-</p>
+  <div class="row">
+      <div class="col-sm-6">
+        <h2 class="color-spouse font-script">Ingredients</h2>
+        <ul>
+        <% @meal.ingredients.each do |string, amount, name| %>
+          <li>
+            <%= string[18..-1] %>
+            <% amount[10..-1] %> <!-- hidden -->
+            <% name[8..-1] %> <!-- hidden -->
+          </li>
+        <% end %>
+        </ul>
+      </div> <!-- col -->
 
-<p>
-  <strong>Vegan:</strong>
-  <%= @meal.vegan %>
-</p>
+      <div class="col-sm-6">
+        <h2 class="color-spouse font-script">Instructions</h2>
+        <ol>
+        <% @meal.instructions.each do |number, step| %>
+          <li><%= step[8..-1] %></li>
+        <% end %>
+        </ol>
+      </div> <!-- col -->
 
-<p>
-  <strong>Ingredients:</strong>
-  <%= @meal.ingredients %>
-</p>
+  </div> <!-- row -->
 
-<p>
-  <strong>Instructions:</strong>
-  <%= @meal.instructions %>
-</p>
-
-<p>
-  <strong>Downloaded:</strong>
-  <%= @meal.downloaded %>
-</p>
-
-<p>
-  <strong>Favorite:</strong>
-  <%= @meal.favorite %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @meal.user_id %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @meal.notes %>
-</p>
-
-<%= link_to 'Edit', edit_meal_path(@meal) %> |
-<%= link_to 'Back', meals_path %>
+</div> <!-- container -->

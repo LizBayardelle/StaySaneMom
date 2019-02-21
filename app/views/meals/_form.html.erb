@@ -6,20 +6,52 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :ready_in_minutes %>
-    <%= f.input :image %>
+    <div class="form-group">
+      <%= f.label "Picture" %><br />
+      <%= f.file_field :image %>
+    </div>
     <%= f.input :gluten_free %>
     <%= f.input :dairy_free %>
     <%= f.input :vegetarian %>
     <%= f.input :vegan %>
-    <%= f.input :ingredients %>
-    <%= f.input :instructions %>
-    <%= f.input :downloaded %>
-    <%= f.input :favorite %>
-    <%= f.association :user_id %>
     <%= f.input :notes %>
+
+    <h4>Add Ingredients</h4>
+    <form id="ingredients">
+      <input type="string" id="amount" name="amount" placeholder="#" class="form-control" style="width: 10%; margin-right: 10px; display: inline-block">
+      <input type="string" id="unit" name="unit" placeholder="e.g. Cup" class="form-control" style="width: 20%; margin-right: 10px; display: inline-block">
+      <input type="string" id="name" name="name" placeholder="e.g. White Rice" class="form-control" style="width: 50%; display: inline-block">
+      <i class="fas fa-plus addIngredient" style="margin-left: 8px"></i>
+      <!-- <i class="fas fa-minus" style="margin-left: 8px" id="subtractIngredient"></i> -->
+    </form>
+
+
+:original_string=>
+:amount=>
+:name=>
+:unit=>
+
+
+
+
+
+
+
+    <%= f.hidden_field :ingredients %>
+    <%= f.hidden_field :instructions %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions text-center">
+    <%= f.submit "Let's Go", class: "btn btn-danger" %>
   </div>
+<% end %>
+
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".addIngredient").click(function(){
+        $("#ingredients").append("<b>Appended text</b>");
+      });
+    });
+  </script>
 <% end %>

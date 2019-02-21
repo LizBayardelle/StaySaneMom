@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Spoonacular::Recipe.find(params[:id])
+    @meal = Meal.new
   end
 
   private

@@ -27,9 +27,14 @@
   </div> <!-- over-frame-bottom-row -->
 </div> <!-- over-frame-text -->
 
-<div class="half-buffer"></div>
-
-<div class="bg-self padded">
+<div class="container text-center" style="padding: 10px; padding-bottom: 15px">
+  <h3>
+    <div id="resourcesClick" class="color-self" style="display: inline-block">Resources</div>&nbsp&nbsp&nbsp|&nbsp&nbsp
+    <div id="toolsClick" class="color-self" style="display: inline-block">Tools</div>&nbsp&nbsp|&nbsp&nbsp
+    <div id="blogsClick" class="color-self" style="display: inline-block">Blogs</div>
+  </h3>
+</div>
+<div class="bg-self padded" id="resourcesDiv">
   <div class="container padded resource-stripe">
     <h2 class="text-center font-script">Free Personal Development Resources</h2>
     <% if current_user %>
@@ -62,13 +67,14 @@
 
 <div class="buffer"></div>
 
-<div class="container">
-  <!-- <h2 class="text-center font-script">Self-Development Tools</h2> -->
+<div class="container" id="toolsDiv">
+  <h2 class="text-center font-script">Self-Development Tools</h2>
   <div class="row tools">
+    <%= render "layouts/tools/birthdays" %>
   </div> <!-- tools row -->
   <div class="buffer"></div>
 
-  <h2 class="text-center font-script">Self-Development Blogs</h2>
+  <h2 class="text-center font-script" id="blogsDiv">Self-Development Blogs</h2>
   <div class="half-buffer"></div>
   <div class="row">
     <% @all_self_blogs.each do |blog| %>
@@ -104,6 +110,22 @@
       $('.hero-button').click(function() {
           ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'Self Category Subscription Box');
       });
-    });
-  </script>
+      $("#resourcesClick").click(function() {
+        $('html,body').animate({
+            scrollTop: $("#resourcesDiv").offset().top -100 },
+            'slow');
+      });
+
+      $("#toolsClick").click(function() {
+        $('html,body').animate({
+            scrollTop: $("#toolsDiv").offset().top -100 },
+            'slow');
+      });
+
+      $("#blogsClick").click(function() {
+        $('html,body').animate({
+            scrollTop: $("#blogsDiv").offset().top -100 },
+            'slow');
+      });
+    });  </script>
 <% end %>

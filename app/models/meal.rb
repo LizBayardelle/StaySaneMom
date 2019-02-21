@@ -1,5 +1,3 @@
 class Meal < ApplicationRecord
-  belongs_to :user_id
-  has_one_attached :image
-
+  belongs_to :user
 end
