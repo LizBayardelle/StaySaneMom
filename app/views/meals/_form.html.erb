@@ -19,9 +19,9 @@
     <h4>Add Ingredients</h4>
     <div id="ingredients">
       <div id="ingredient-row" style="padding-bottom: 10px">
-        <input type="string" id="amount" name="amount" placeholder="#" class="form-control" style="width: 10%; margin-right: 10px; display: inline-block">
-        <input type="string" id="unit" name="unit" placeholder="e.g. Cup" class="form-control" style="width: 20%; margin-right: 10px; display: inline-block">
-        <input type="string" id="name" name="name" placeholder="e.g. White Rice" class="form-control" style="width: 50%; display: inline-block">
+        <input type="string" id="amount" name="amount" placeholder="#" class="ingredient-field form-control" style="width: 10%; margin-right: 10px; display: inline-block">
+        <input type="string" id="unit" name="unit" placeholder="e.g. Cup" class="ingredient-field form-control" style="width: 20%; margin-right: 10px; display: inline-block">
+        <input type="string" id="name" name="name" placeholder="e.g. White Rice" class="ingredient-field form-control" style="width: 50%; display: inline-block">
       </div>
     </div>
     <div class="text-center"><div class="btn btn-secondary" id="addIngredient">Add Another Ingredient</div></div>
@@ -32,6 +32,16 @@
 :name=>
 :unit=>
 
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var = ingredients = [];
+      $(".btn").mouseover(function(){
+        $(".ingredient-field").each(function(index) { agencies.push($(this).val()); });
+      });
+    });
+  </script>
+<% end %>
 
 
 

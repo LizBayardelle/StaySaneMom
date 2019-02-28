@@ -1,15 +1,18 @@
-<div class="col-md-6 col-lg-4 col-xl-3" style="margin-bottom: 20px">
+<div class="col-md-6 col-lg-4" style="margin-bottom: 20px">
   <div class="card">
     <div class="view overlay">
-      <%= link_to blog do %><img class="card-img-top" src="<%= rails_blob_url(blog.image) if blog.image.attached? %>" alt="Card image cap"><% end %>
-      <a>
+      <img class="card-img-top" src="<%= rails_blob_url(blog.image) if blog.image.attached? %>" alt="Card image cap">
+      <%= link_to blog do %>
         <div class="mask rgba-white-slight"></div>
-      </a>
+      <% end %>
     </div>
 
     <div class="card-body">
       <h4 class="card-title"><%= link_to blog.title, blog_path(blog), class: "card-title color-" + color.to_s %></h4>
-      <p class="card-text"><%= blog.teaser %></p>
+      <p class="card-text">
+        <%= blog.teaser %>
+        <!-- <br /><span class="disqus-comment-count" data-disqus-identifier="<%#= blog.id %>"><%#= blog.title %></span> -->
+      </p>
     </div>
 
     <div class="rounded-bottom mdb-color bg-solid-<%= color %> text-center pt-3">
