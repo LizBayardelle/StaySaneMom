@@ -16,8 +16,8 @@
 
     <div class="rounded-bottom mdb-color bg-solid-<%= color %> text-center pt-3">
       <ul class="list-unstyled list-inline font-small">
-        <!-- <li class="list-inline-item pr-2 white-text"><i class="far fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="<%#= blog.id %>">See Comments</span></li> -->
-        <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i><%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%m/%d/%Y") %></li>
+        <li class="list-inline-item pr-2 white-text"><i class="far fa-comment"></i> <span class="disqus-comment-count" data-disqus-identifier="<%= blog.id %>" data-disqus-url="<%= polymorphic_url(blog) %>">First article</span></li>
+        <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i><%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%m/%d/%Y") %></li><br />
         <li class="list-inline-item pr-2 white-text"><i class="fas fa-book-open pr-1"></i><%= blog.category %> (<%= Subcategory.where(id: blog.subcategory_id).first.name %>)</li>
         <!--
         <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="far fa-comments pr-1"></i>12</a></li>
