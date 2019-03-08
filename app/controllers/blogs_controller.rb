@@ -8,12 +8,12 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC')
+    @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').page(params[:page])
     @commented_blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('comments_count DESC').limit(3)
     if params[:tag]
-      @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag])
+      @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag]).page(params[:page])
     else
-      @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC')
+      @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').page(params[:page])
     end
     @unpublished = Blog.where(published: false)
     @tags = Blog.tag_counts_on(:tags)

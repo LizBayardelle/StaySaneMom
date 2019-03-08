@@ -43,6 +43,7 @@ gem 'wysiwyg-rails'
 gem 'searchkick'
 gem 'dotenv-rails'
 gem 'faraday'
+gem 'kaminari'
 
 gem 'solidus'
 # gem "solidus_stripe"
