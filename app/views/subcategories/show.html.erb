@@ -5,8 +5,21 @@
   <% end %>
 <!-- page-specific content -->
 
-<h6 class="text-right" style="padding-right: 20px">A Subcategory of <%= @subcategory.category %></h6>
-
+<nav aria-label="breadcrumb" style="margin-top: -35px;">
+  <ol class="breadcrumb">
+    <% case @subcategory.category %>
+      <% when "House" %>
+        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_house_path %></li>
+      <% when "Spouse" %>
+        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_spouse_path %></li>
+      <% when "Kids" %>
+        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_kids_path %></li>
+      <% when "Self" %>
+        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_self_path %></li>
+    <% end %>
+    <li class="breadcrumb-item"><%= @subcategory.name %></li>
+  </ol>
+</nav>
 <div class="container text-center">
   <h1 class="font-script"><%= @subcategory.name %></h1>
   <p><%= @subcategory.description %></p>
