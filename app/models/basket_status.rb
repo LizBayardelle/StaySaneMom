@@ -1,0 +1,2 @@
+class BasketStatus < ApplicationRecord
+end

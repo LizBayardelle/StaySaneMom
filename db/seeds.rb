@@ -6,5 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Spree::Core::Engine.load_seed if defined?(Spree::Core)
-# Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
+# Spree::Core::Engine.load_seed if defined?(Spree::Core)
+# # Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
+
+BasketStatus.delete_all
+BasketStatus.create! id: 1, name: "In Progress"
+BasketStatus.create! id: 2, name: "Placed"
+BasketStatus.create! id: 3, name: "Shipped"
+BasketStatus.create! id: 4, name: "Cancelled"
+BasketStatus.create! id: 5, name: "Delivered"

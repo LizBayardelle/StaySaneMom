@@ -100,11 +100,6 @@
 
     </div> <!-- non-footer -->
 
-    <footer class="bg-neutral" id="affiliate">
-      <div class="container text-center">
-        <p>The Stay Sane Mom is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.Jennifer Marx is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
-      </div> <!-- container -->
-    </footer>
 
     <div class="post-footer text-center">
       <div class="container">
@@ -119,7 +114,6 @@
               <a href="https://www.instagram.com/theStaySaneMom/" target="_blank"><i class="fab fa-instagram social-icon"></i></a>
               <a href="https://www.twitter.com/TheStaySaneMom/" target="_blank"><i class="fab fa-twitter social-icon"></i></a>
               <a href="https://www.youtube.com/channel/UC_g4NFVoQi4t2PbA23q0_VQ" target="_blank"><i class="fab fa-youtube social-icon"></i></a>
-              <a href="https://pages.convertkit.com/8d96562969/8204904d02" target="_blank>"><i class="fab fa-amazon social-icon"></i></a>
               <%= mail_to("liz@theStaySaneMom.com") do %><%= fa_icon "envelope", class: "social-icon color-black" %><% end %>
             </div> <!-- centered sm -->
           </div> <!-- left bit -->
@@ -137,8 +131,11 @@
 
     </div> <!-- container -->
 
-    <div class="bg-neutral text-center">
-      <p class="copyright color-neutral">Copyright &copy; <%= Time.current.year %> <em class="color-neutral">The Stay Sane Mom</em></p>
+    <div class="bg-neutral copyright text-center">
+      <div class="container">
+        <p id="affiliate">As an Amazon Associate I earn from qualifying purchases.  I also participate in other linking programs, but will never link to anything I don't like.</p>
+        <p class="color-neutral">Copyright &copy; <%= Time.current.year %> <em class="color-neutral">The Stay Sane Mom</em></p>
+      </div> <!-- container -->
     </div> <!-- container -->
 
 

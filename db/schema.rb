@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_054447) do
+ActiveRecord::Schema.define(version: 2019_03_14_123655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,35 @@ ActiveRecord::Schema.define(version: 2019_03_14_054447) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "basket_items", force: :cascade do |t|
+    t.bigint "variation_id"
+    t.bigint "basket_id"
+    t.decimal "unit_price", precision: 12, scale: 3
+    t.integer "quantity"
+    t.decimal "total_price", precision: 12, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["basket_id"], name: "index_basket_items_on_basket_id"
+    t.index ["variation_id"], name: "index_basket_items_on_variation_id"
+  end
+
+  create_table "basket_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "baskets", force: :cascade do |t|
+    t.decimal "subtotal", precision: 12, scale: 3
+    t.decimal "tax", precision: 12, scale: 3
+    t.decimal "shipping", precision: 12, scale: 3
+    t.decimal "total", precision: 12, scale: 3
+    t.bigint "basket_status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["basket_status_id"], name: "index_baskets_on_basket_status_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -1643,6 +1672,9 @@ ActiveRecord::Schema.define(version: 2019_03_14_054447) do
     t.index ["goody_id"], name: "index_variations_on_goody_id"
   end
 
+  add_foreign_key "basket_items", "baskets"
+  add_foreign_key "basket_items", "variations"
+  add_foreign_key "baskets", "basket_statuses"
   add_foreign_key "blogs", "users"
   add_foreign_key "capsule_items", "capsules"
   add_foreign_key "capsule_items", "users"
