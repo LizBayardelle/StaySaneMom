@@ -1,0 +1,79 @@
+<!-- page-specific content -->
+  <% title "Store | SSM" %>
+<!-- page-specific content -->
+
+
+<% if current_user && current_user.admin %>
+  <div class="text-center bg-self" style="margin-top: -35px">
+    <div class="half-buffer"></div>
+
+    <h2>Admin's Corner</h2>
+    <%= link_to 'Create a New Product', new_goody_path, class: "btn btn-danger" %>
+
+    <div class="half-buffer"></div>
+  </div> <!-- stripe -->
+<% end %>
+
+<div class="container">
+  <h1 class="text-center color-spouse font-script">The Store</h1>
+
+  <!-- Section: Products v.5 -->
+  <section class="text-center my-5">
+
+    <!-- <h2 class="h1-responsive font-weight-bold text-center my-5">Our Bestsellers</h2> -->
+    <!-- <p class="grey-text text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas
+      nostrum quisquam eum porro a pariatur veniam.</p> -->
+
+    <!-- Carousel Wrapper -->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li class="primary-color active" data-target="#multi-item-example" data-slide-to="0"></li>
+        <!-- <li class="primary-color" data-target="#multi-item-example" data-slide-to="1"></li>
+        <li class="primary-color" data-target="#multi-item-example" data-slide-to="2"></li> -->
+      </ol>
+      <!-- Indicators -->
+      <!-- Slides -->
+      <div class="carousel-inner" role="listbox">
+
+        <div class="carousel-item active"> <!-- First slide -->
+          <% @goodies.limit(3).each do |goody| %>
+            <%= render partial: 'goodies/carousel_card', locals: { goody: goody } %>
+          <% end %>
+        </div> <!-- First slide Ends -->
+
+        <% if @goodies.count > 3 %>
+          <div class="carousel-item">
+            <% @goodies.all[3..-1].each do |goody| %>
+              <%= render partial: 'goodies/carousel_card', locals: { goody: goody } %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <!--
+        <div class="carousel-item">
+        </div>
+        -->
+
+      </div> <!-- Slides -->
+    </div> <!-- Carousel Wrapper -->
+  </section> <!-- Section: Products v.5 -->
+
+
+</div> <!-- container -->
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
+      $('.card').matchHeight();
+    });
+  </script>
+<% end %>

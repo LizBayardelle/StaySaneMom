@@ -1,0 +1,78 @@
+<nav aria-label="breadcrumb" style="margin-top: -35px">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Store", goodies_path %></li>
+    <li class="breadcrumb-item"><%= link_to @variation.goody.name.pluralize(2), goody_path(@variation.goody) %></li>
+    <li class="breadcrumb-item active"><%= @variation.name %></li>
+    <div style="position: absolute; right: 0; margin-right: 25px">
+      <% if current_user && current_user.admin %>
+        <%= link_to 'Edit Variation', edit_variation_path(@variation), class: "color-self" %>
+      <% end %>
+    </div> <!-- right -->
+  </ol>
+</nav>
+
+
+
+<div class="container">
+  <div class="text-center">
+    <h1 class="color-spouse font-script"><%= @variation.goody.name %></h1>
+    <% if !@variation.active %><p><em>Currently Inactive</em></p><% end %>
+  </div> <!-- centered -->
+  <div class="half-buffer"></div>
+
+  <div class="row">
+    <div class="col-sm-4">
+
+      <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+
+        <div class="carousel-inner text-center" role="listbox">
+          <div class="carousel-item active">
+            <%= image_tag rails_blob_url(@variation.images.first), style: "max-height: 400px; max-width: 100%" %>
+          </div>
+          <% @variation.images.each do |image| %>
+            <% unless image == @variation.images.first %>
+              <div class="carousel-item">
+                <%= image_tag rails_blob_url(image), style: "max-height: 400px; max-width: 100%" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+        <ol class="carousel-indicators">
+          <% n = 0 %>
+          <% @variation.images.each do |image| %>
+            <li data-target="#carousel-thumb" data-slide-to="<%= n %>" class="active">
+              <%= image_tag rails_blob_url(image), class: "d-block w-100 img-fluid" %>
+            </li>
+            <% n += 1 %>
+          <% end %>
+        </ol>
+      </div> <!-- carousel indicators -->
+
+    </div> <!-- carousel column -->
+
+    <div class="col-sm-8">
+      <h2><%= @variation.name %></h2>
+      <h3 class="color-self"><strong><%= number_to_currency(@variation.price, unit: "$") %></strong></h3>
+      <p><%= @variation.description %></p>
+    </div> <!-- text column -->
+
+  </div> <!-- row -->
+</div> <!-- container -->
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.carousel-item').matchHeight();
+    });
+  </script>
+<% end %>

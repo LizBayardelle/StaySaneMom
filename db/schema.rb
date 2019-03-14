@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_21_165757) do
+ActiveRecord::Schema.define(version: 2019_03_14_054447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,21 @@ ActiveRecord::Schema.define(version: 2019_02_21_165757) do
     t.index ["occasion_id"], name: "index_gifts_on_occasion_id"
     t.index ["person_id"], name: "index_gifts_on_person_id"
     t.index ["user_id"], name: "index_gifts_on_user_id"
+  end
+
+  create_table "goodies", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groupings", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "meals", force: :cascade do |t|
@@ -1607,6 +1622,27 @@ ActiveRecord::Schema.define(version: 2019_02_21_165757) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "variation_grouping", id: false, force: :cascade do |t|
+    t.bigint "variation_id", null: false
+    t.bigint "grouping_id", null: false
+    t.index ["grouping_id", "variation_id"], name: "index_variation_grouping_on_grouping_id_and_variation_id"
+    t.index ["variation_id", "grouping_id"], name: "index_variation_grouping_on_variation_id_and_grouping_id"
+  end
+
+  create_table "variations", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 8, scale: 2
+    t.text "description"
+    t.boolean "active", default: true
+    t.bigint "goody_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "new_product", default: true
+    t.boolean "hot_product", default: false
+    t.string "short_description"
+    t.index ["goody_id"], name: "index_variations_on_goody_id"
+  end
+
   add_foreign_key "blogs", "users"
   add_foreign_key "capsule_items", "capsules"
   add_foreign_key "capsule_items", "users"
@@ -1626,4 +1662,5 @@ ActiveRecord::Schema.define(version: 2019_02_21_165757) do
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_wallet_payment_sources", "users"
   add_foreign_key "tasks", "users"
+  add_foreign_key "variations", "goodies"
 end

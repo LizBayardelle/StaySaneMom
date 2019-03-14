@@ -1,0 +1,97 @@
+<nav aria-label="breadcrumb" style="margin-top: -35px">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><%= link_to "Store", goodies_path %></li>
+    <li class="breadcrumb-item active"><%= @goody.name.pluralize(2) %></li>
+  </ol>
+</nav>
+
+<div class="text-center">
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Edit Product', edit_goody_path(@goody) %> |
+    <%= link_to 'Add Product Variation', new_variation_path(goody: @goody) %> |
+  <% end %>
+  <%= link_to 'Back to Store', goodies_path %>
+</div> <!-- right -->
+
+<div class="half-buffer"></div>
+
+<div class="container">
+
+  <div class="text-center">
+    <h1 class="color-spouse font-script"><%= @goody.name.pluralize(2) %></h1>
+    <p><%= @goody.description %></p>
+    <% if !@goody.active %><p><em>Currently Inactive</em></p><% end %>
+  </div> <!-- centered -->
+
+</div> <!-- container -->
+
+
+
+<div class="container">
+<!-- Section: Products v.3 -->
+<section class="text-center">
+
+  <!-- <h2 class="h1-responsive font-weight-bold text-center my-5">Options</h2> -->
+
+  <div class="row"> <!-- Grid row -->
+
+    <% @goody.variations.each do |variation| %>
+
+    <div class="col-lg-3 col-md-4 mb-lg-0 mb-4"> <!-- Grid column -->
+      <div class="card align-items-center"> <!-- Card -->
+        <div class="view overlay text-center">
+          <% if variation.images.attached? %>
+            <%= image_tag rails_blob_url(variation.images.first), class: "card-img-top", style: "max-width: 100%" %>
+          <% end %>
+          <%= link_to variation_path(variation) do %>
+            <div class="mask rgba-white-slight"></div>
+          <% end %>
+        </div>
+        <div class="card-body text-center">
+          <% if current_user && current_user.admin %>
+            <h5>
+              <%= link_to 'Edit', edit_variation_path(variation), class: "grey-text" %> |
+              <%= link_to 'Delete', variation, method: :delete, data: { confirm: 'Are you sure?' }, class: "grey-text" %>
+            </h5>
+          <% end %>
+          <h5>
+            <strong>
+              <a href="" class="dark-grey-text"><%= variation.name %>
+                <% if variation.new_product %><span class="badge badge-pill danger-color">NEW</span><% end %>
+                <% if variation.hot_product %><span class="badge badge-pill secondary-color">HOT</span><% end %>
+              </a>
+            </strong>
+          </h5>
+          <p><%= variation.short_description %></p>
+          <h4 class="font-weight-bold blue-text">
+            <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
+          </h4>
+        </div>
+        <!-- Card content -->
+      </div>
+      <!-- Card -->
+    </div>
+    <!-- Grid column -->
+
+    <% end %>
+  </div>
+  <!-- Grid row -->
+
+</section> <!-- Section: Products v.3 -->
+
+</div> <!-- container -->
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-body').matchHeight();
+      $('.card').matchHeight();
+    });
+  </script>
+<% end %>

@@ -1,0 +1,13 @@
+class CreateVariations < ActiveRecord::Migration[5.2]
+  def change
+    create_table :variations do |t|
+      t.string :name
+      t.decimal :price, :precision => 8, :scale => 2
+      t.text :description
+      t.boolean :active, default: true
+      t.references :goody, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end

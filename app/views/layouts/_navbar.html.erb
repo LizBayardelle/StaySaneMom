@@ -36,25 +36,11 @@
           </div> <!-- collapsable body -->
         </li>
 
-        <% if current_user && current_user.admin %>
-          <li><a class="collapsible-header waves-effect arrow-r">
-            <%= fa_icon "shopping-cart", class: "color-spouse" %> &nbsp;Store<i
-            class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><%= link_to "Frontend", spree.root_path, class: "waves-effect" %></li>
-                <li><%= link_to "Admin Backend", spree.admin_path, class: "waves-effect", target: "_blank" %></li>
-              </ul>
-            </div> <!-- collapsable body -->
-          </li>
-        <% else %>
-          <li>
-            <%= link_to spree.root_path, class: "waves-effect arrow-r" do %>
-              <%= fa_icon "shopping-cart", class: "color-spouse" %> &nbsp;Store
-            <% end %>
-          </li>
-        <% end %>
-
+        <li>
+          <%= link_to main_app.goodies_path, class: "waves-effect arrow-r" do %>
+            <%= fa_icon "shopping-cart", class: "color-spouse" %> &nbsp;Store
+          <% end %>
+        </li>
 
         <li><a class="collapsible-header waves-effect arrow-r">
           <%= fa_icon "user", class: "color-spouse" %> &nbsp;My Account<i

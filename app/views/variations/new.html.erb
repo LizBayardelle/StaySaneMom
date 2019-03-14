@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="text-center color-spouse font-script">New <%= Goody.where(id: params[:goody]).first.name %> Variation</h1>
+
+    <%= simple_form_for(@variation) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <div class="row">
+          <div class="col-sm-9 form-group">
+            <%= f.input :name %>
+          </div>
+          <div class="col-sm-3 form-group">
+            <%= f.input :price %>
+          </div>
+        </div> <!-- row -->
+        <%= f.input :short_description %>
+        <%= f.input :description %>
+        <div class="form-group">
+          <%= f.label "Product Images" %><br />
+          <%= f.file_field :images, multiple: true %>
+        </div>
+        <%= f.input :new_product %>
+        <%= f.input :hot_product %>
+        <%= f.input :active %>
+        <%= f.hidden_field :goody_id, value: params[:goody] %>
+      </div>
+
+      <div class="text-center form-actions">
+        <%= f.submit "The Variation Be Ready", class: "btn btn-danger" %>
+      </div>
+    <% end %>
+
+  <div class="text-center">
+    <div class="half-buffer"></div>
+    <%= link_to 'Back', goodies_path %>
+  </div> <!-- center -->
+
+</div> <!-- container -->

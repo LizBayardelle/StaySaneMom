@@ -17,7 +17,6 @@ gem 'bootsnap'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-ui-rails'
 gem 'sprockets-rails'
-# gem 'bootstrap-sass'
 gem 'bcrypt', '~> 3.1.7'
 gem 'friendly_id', '~> 5.2.0'
 gem 'stripe'
@@ -27,7 +26,6 @@ gem 'simple_form'
 gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
 gem 'aws-sdk' , '~> 3'
 gem 'aws-sdk-s3', require: false
-# gem 'simple_form_extension'
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
@@ -39,14 +37,12 @@ gem 'convertkit-ruby', require: 'convertkit'
 gem 'dotenv-rails'
 gem 'acts_as_list'
 gem 'wysiwyg-rails'
-# gem 'will_paginate'
 gem 'searchkick'
 gem 'dotenv-rails'
 gem 'faraday'
 gem 'kaminari'
 
 gem 'solidus'
-# gem "solidus_stripe"
 gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master
 
 group :production do
