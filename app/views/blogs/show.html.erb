@@ -19,11 +19,12 @@
 
 
 
-<nav aria-label="breadcrumb" style="margin-top: -35px">
+<nav aria-label="breadcrumb" style="margin-top: -35px;">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to "Blog", blogs_path %></li>
-    <li class="breadcrumb-item"><%= link_to @variation.goody.name.pluralize(2), goody_path(@variation.goody) %></li>
-    <li class="breadcrumb-item active"><%= @variation.name %></li>
+    <li class="breadcrumb-item"><%= link_to @blog.category %></li>
+    <li class="breadcrumb-item"><%= link_to @subcategory.name, subcategory_path(@subcategory) %></li>
+    <li class="breadcrumb-item"><%= @blog.title %></li>
     <div style="position: absolute; right: 0; margin-right: 25px">
       <% if current_user && current_user.admin %>
         <%= link_to 'Edit Variation', edit_blog_path(@blog), class: "color-self" %>
@@ -32,6 +33,7 @@
   </ol>
 </nav>
 
+<div style="width: 100%; height: 15px"></div>
 
 <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
   <% case @blog.category %>
