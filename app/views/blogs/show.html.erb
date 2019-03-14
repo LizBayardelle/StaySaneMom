@@ -27,7 +27,7 @@
     <li class="breadcrumb-item"><%= @blog.title %></li>
     <div style="position: absolute; right: 0; margin-right: 25px">
       <% if current_user && current_user.admin %>
-        <%= link_to 'Edit Variation', edit_blog_path(@blog), class: "color-self" %>
+        <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "color-self" %>
       <% end %>
     </div> <!-- right -->
   </ol>
@@ -69,12 +69,6 @@
   <div class="blog-show neutral">
 <% end %>
   <div class="container">
-    <% if current_user && current_user.admin %>
-      <div class="text-right">
-        <%= link_to "Edit Blog", edit_blog_path(@blog) %>
-      </div>
-    <% end %>
-
     <h4 class="text-center"><%= @blog.teaser %></h4>
       <p class="text-center">
         <strong>Written by <%= link_to user_path(@blog.user) do %>
