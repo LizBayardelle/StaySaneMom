@@ -286,7 +286,6 @@
 
 <%= content_for :additional_js do %>
   <script>
-    console.log('yooooo', "<%= polymorphic_url(@blog) %>");
     var disqus_config = function () {
       this.page.url = "<%= polymorphic_url(@blog) %>";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "<%= @blog.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable

@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  resources :groupings
-  resources :variations
-  resources :goodies
-mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
-  # This line mounts Solidus's routes at the root of your application.
-  # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
-  # If you would like to change where this engine is mounted, simply change the :at option to something different.
-  #
-  # We ask that you don't use the :as option here, as Solidus relies on it being the default of "spree"
-  mount Spree::Core::Engine, at: '/store'
-
   root 'home#index'
 
   resources :meals
@@ -74,7 +63,25 @@ mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
     resources :capsule_items
   end
 
+
+  resources :groupings
+  resources :variations
+  resources :goodies
+  resource :cart, only: [:show]
+  resources :basket_items, only: [:create, :update, :destroy]
+
+
+
+
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+
+  mount SolidusPaypalBraintree::Engine, at: '/solidus_paypal_braintree'
+  # This line mounts Solidus's routes at the root of your application.
+  # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
+  # If you would like to change where this engine is mounted, simply change the :at option to something different.
+  #
+  # We ask that you don't use the :as option here, as Solidus relies on it being the default of "spree"
+  mount Spree::Core::Engine, at: '/store'
 
 
 end

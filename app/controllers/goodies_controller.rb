@@ -10,6 +10,7 @@ class GoodiesController < ApplicationController
   # GET /goodies/1
   # GET /goodies/1.json
   def show
+    @basket_item = current_basket.basket_items.new
   end
 
   # GET /goodies/new

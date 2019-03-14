@@ -1,0 +1,4 @@
+<p class="text-right">
+  <%= fa_icon "shopping-cart", class: "color-neutral" %>
+  <%= link_to "#{current_basket.basket_items.size} Items in Cart ( #{number_to_currency current_basket.subtotal} )", cart_path, class: "color-neutral", style: "text-align: right; margin: 0; padding: 0; font-weight: 300" %>
+</p>

@@ -1,0 +1,45 @@
+<div class="col-lg-3 col-md-4 mb-lg-0 mb-4"> <!-- Grid column -->
+  <div class="card align-items-center"> <!-- Card -->
+    <div class="view overlay text-center">
+      <% if variation.images.attached? %>
+        <%= image_tag rails_blob_url(variation.images.first), class: "card-img-top", style: "max-width: 100%" %>
+      <% end %>
+      <%= link_to variation_path(variation) do %>
+        <div class="mask rgba-white-slight"></div>
+      <% end %>
+    </div>
+    <div class="card-body text-center">
+      <% if current_user && current_user.admin %>
+        <h5>
+          <%= link_to 'Edit', edit_variation_path(variation), class: "grey-text" %> |
+          <%= link_to 'Delete', variation, method: :delete, data: { confirm: 'Are you sure?' }, class: "grey-text" %>
+        </h5>
+      <% end %>
+      <h5>
+        <strong>
+          <a href="" class="dark-grey-text"><%= variation.name %>
+            <% if variation.new_product %><span class="badge badge-pill danger-color">NEW</span><% end %>
+            <% if variation.hot_product %><span class="badge badge-pill secondary-color">HOT</span><% end %>
+          </a>
+        </strong>
+      </h5>
+      <p><%= variation.short_description %></p>
+      <h4 class="font-weight-bold blue-text">
+        <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
+      </h4>
+
+      <%= form_for @basket_item, remote: true do |f| %>
+        <div class="input-group">
+          <%= f.hidden_field :quantity, value: 1 %>
+          <div class="input-group-btn">
+            <%= f.hidden_field :variation_id, value: variation.id %>
+            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- Card content -->
+  </div>
+  <!-- Card -->
+</div>
+<!-- Grid column -->

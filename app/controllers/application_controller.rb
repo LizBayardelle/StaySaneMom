@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protected
+  protect_from_forgery with: :exception
+  helper_method :current_basket
 
   require "dotenv"
   Dotenv.load(".env.local")
@@ -7,6 +9,14 @@ class ApplicationController < ActionController::Base
   Convertkit.configure do |config|
     config.api_secret = ENV["CONVERTKIT_API_SECRET"]
     config.api_key = ENV["CONVERTKIT_API_KEY"]
+  end
+
+  def current_basket
+    if !session[:basket_id].nil?
+      Basket.find(session[:basket_id])
+    else
+      Basket.new
+    end
   end
 
   # @client = Convertkit::Client.new

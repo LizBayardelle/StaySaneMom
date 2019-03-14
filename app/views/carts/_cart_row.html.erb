@@ -1,0 +1,16 @@
+<%= form_for basket_item, remote: true do |f| %>
+  <tr>
+
+    <td style="width: 70%"><%= variation.name %> (<%= number_to_currency basket_item.unit_price %> Each)</td>
+
+    <td style="width: 15%">
+      <%= f.number_field :quantity, value: basket_item.quantity.to_i, class: "form-control", min: 1, style: "width: 150px" %>
+      <%= f.hidden_field :variation_id, value: variation.id %>
+      <%= f.submit "Update", class: "color-spouse", style: "border: none; padding: none; display: inline-block; cursor: pointer; font-weight: 700" %>|&nbsp;
+      <%= link_to "Delete", basket_item, { data: { confirm: "Are you sure you wish to delete the variation '#{basket_item.variation.name}' from your cart?" }, method: :delete, remote: true, class: "color-spouse" } %>
+    </td>
+
+    <td class="text-right" style="width: 15%"><%= number_to_currency basket_item.total_price %></td>
+
+  </tr>
+<% end %>

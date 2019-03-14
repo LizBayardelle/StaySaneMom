@@ -69,7 +69,7 @@
     <li>
       <ul class="collapsible collapsible-accordion">
         <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "home", class: "color-house" %> &nbsp;House<i
+          <%= fa_icon "broom", class: "color-house" %> &nbsp;House<i
               class="fas fa-angle-down rotate-icon"></i></a>
           <div class="house collapsible-body">
             <% @subcategories = Subcategory.where(category: "House", active: true) %>
@@ -128,7 +128,7 @@
 
         <li>
           <%= link_to main_app.blogs_path, class: "waves-effect arrow-r" do %>
-            <%= fa_icon "pen-fancy", class: "color-neutral" %> &nbsp;Blog
+            <%= fa_icon "book", class: "color-neutral" %> &nbsp;Blog
           <% end %>
         </li>
 
@@ -172,7 +172,7 @@
 <!--Main Navigation-->
 <header>
 
-<nav class="navbar fixed-top navbar-expand-md navbar-light white scrolling-navbar">
+<nav class="navbar fixed-top navbar-expand-md navbar-light white scrolling-navbar" style="padding: 3px; padding-right: 10px">
   <!-- SideNav slide-out button -->
   <a href="#" data-activates="slide-out" class="button-collapse" style="padding-left: 20px; padding-right: 10px"><i class="fas fa-bars"></i></a>
 
@@ -183,8 +183,9 @@
   <% end %>
 
   <div class="navbar-brand right d-none d-md-block">
+    <a><div id="cart-text"><%= render 'layouts/cart_text' %></div></a>
     <%= link_to main_app.home_house_path do %>
-      <%= fa_icon "home", id: "house-icon", class: "header-icon color-house" %>
+      <%= fa_icon "broom", id: "house-icon", class: "header-icon color-house" %>
     <% end %>
     <%= link_to main_app.home_spouse_path do %>
       <%= fa_icon "ring", id: "spouse-icon", class: "header-icon color-spouse" %>
@@ -196,9 +197,9 @@
       <%= fa_icon "spa", id: "self-icon", class: "header-icon color-self" %>
     <% end %>
     <%= link_to main_app.blogs_path do %>
-      <%= fa_icon "pen-fancy", id: "blog-icon", class: "header-icon color-neutral" %>
+      <%= fa_icon "book", id: "blog-icon", class: "header-icon color-neutral" %>
     <% end %>
-    <%= link_to spree.root_path do %>
+    <%= link_to main_app.goodies_path do %>
       <%= fa_icon "shopping-cart", id: "blog-icon", class: "header-icon color-neutral" %>
     <% end %>
     <% if current_user %>
