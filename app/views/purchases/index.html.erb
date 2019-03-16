@@ -28,7 +28,7 @@
             <%= mail_to purchase.email, purchase.email, class: "color-self" %><br />
             <%= purchase.phone %>
           </td>
-          <td><strong><%= number_to_currency(purchase.total, unit: "$") %> Total (<%= BasketStatus.where(id: purchase.basket.id).first.name %>)</strong>
+          <td><strong><%= number_to_currency(purchase.total, unit: "$") %> Total (<%= BasketStatus.where(id: purchase.basket.basket_status_id).first.name %>)</strong>
             <ul>
               <% purchase.basket.basket_items.each do |i| %>
                 <li><%= Variation.where(id: i.variation_id).first.name %> (<%= number_to_currency(Variation.where(id: i.variation_id).first.price, unit: "$") %>)</li>

@@ -2,11 +2,13 @@
 
 <% @purchases = Purchase.where(user_id: current_user) %>
 <% @purchases.each do |p| %>
-  <% basket = Basket.where(id: p.basket_id).first %>
-  <% basket.basket_items.each do |i| %>
-    <% v = i.variation %>
-    <% if v.downloadable %>
-      <% @downloadables += 1 %>
+  <% if p.basket.basket_status_id != 1 %>
+    <% basket = Basket.where(id: p.basket_id).first %>
+    <% basket.basket_items.each do |i| %>
+      <% v = i.variation %>
+      <% if v.downloadable %>
+        <% @downloadables += 1 %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
@@ -18,18 +20,20 @@
   <ul>
     <% @purchases = Purchase.where(user_id: current_user) %>
     <% @purchases.each do |p| %>
-      <% basket = Basket.where(id: p.basket_id).first %>
-      <% basket.basket_items.each do |i| %>
-        <% v = i.variation %>
-        <% n = 1 %>
-        <% v.downloadable_files.each do |d| %>
-          <% if n = 1 %>
-            <li><%= link_to v.name, rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
-          <% else %>
-            <li><%= link_to v.name + " (" + n.to_s + ")", rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
-          <% end %>
-          <% n += 1 %>
-        <% end %> <!-- basket items each -->
+      <% if p.basket.basket_status_id != 1 %>
+        <% basket = Basket.where(id: p.basket_id).first %>
+        <% basket.basket_items.each do |i| %>
+          <% v = i.variation %>
+          <% n = 1 %>
+          <% v.downloadable_files.each do |d| %>
+            <% if n = 1 %>
+              <li><%= link_to v.name, rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
+            <% else %>
+              <li><%= link_to v.name + " (" + n.to_s + ")", rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
+            <% end %>
+            <% n += 1 %>
+          <% end %> <!-- basket items each -->
+        <% end %> <!-- basket status not 1 -->
       <% end %> <!-- purchases each -->
   <% end %> <!-- if downloadables > 0 -->
   </ul>

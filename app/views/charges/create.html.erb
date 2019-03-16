@@ -2,20 +2,20 @@
   <h1 class="text-center font-script">Thank you for your purchase!</h1>
   <% basket = @previous_basket %>
 
-  <% @downloadables = 0 %>
-  <% @custom_planners = 0 %>
+  <% downloadables = 0 %>
+  <% custom_planners = 0 %>
 
   <% basket.basket_items.each do |i| %>
     <% v = i.variation %>
     <% if v.downloadable %>
-      <% @downloadables += 1 %>
+      <% downloadables += 1 %>
     <% end %>
     <% if v.custom_planner %>
-      <% @custom_planners += 1 %>
+      <% custom_planners += 1 %>
     <% end %>
   <% end %>
 
-  <% if @downloadables > 0 %>
+  <% if downloadables > 0 %>
     <h2>Your Downloadable Goodies</h2>
     <p>Here are all the instant downloadables you purchased.  Just click the link to download them.  If you ever want them again, the'll be accessible in your account from now on as well.</p>
     <ul>
@@ -34,7 +34,7 @@
     </ul>
   <% end %>
 
-  <% if @custom_planners > 0 %>
+  <% if custom_planners > 0 %>
     <h2>Your Custom Designs</h2>
     <p>If you purchased a custom planner, you now get to do the fun part...design it!  The button below will let you create your planner design.  If you want to leave and come back, don't worry.  It'll be accessible in your "My Account" page any time until you hit the "Submit Final Design" button.</p>
     <ul>
@@ -51,3 +51,7 @@
 
 
 </div> <!-- container -->
+
+<div class="half-buffer"></div>
+<%= render "layouts/quadborder" %>
+<div class="half-buffer"></div>
