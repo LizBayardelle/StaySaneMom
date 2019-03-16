@@ -2,7 +2,7 @@ class BasketItemsController < ApplicationController
   def create
     @basket = current_basket
     @basket_item = @basket.basket_items.new(basket_item_params)
-    if @basket.save
+    if @basket_item.save
       respond_to do |format|
         format.js
         format.html
