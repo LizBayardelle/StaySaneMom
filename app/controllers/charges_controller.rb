@@ -18,7 +18,7 @@ class ChargesController < ApplicationController
       currency: 'usd',
     })
 
-    current_basket.update_attributes(basket_status: 2)
+    current_basket.update_attributes(basket_status_id: 2)
     @previous_basket =  current_basket
     clear_basket
 
