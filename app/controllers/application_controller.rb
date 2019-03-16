@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
       Basket.new
     end
   end
+  helper_method :current_basket
+
+
+  def clear_basket
+    session[:basket_id] = nil
+  end
 
   # @client = Convertkit::Client.new
 
