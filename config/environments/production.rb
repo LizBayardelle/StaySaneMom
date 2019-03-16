@@ -18,7 +18,7 @@ Rails.application.configure do
   config.force_ssl = true
 
   config.assets.compile = true
-  config.assets.debug = true
+  # config.assets.debug = true
 
   # SENDGRID
   ActionMailer::Base.smtp_settings = {
