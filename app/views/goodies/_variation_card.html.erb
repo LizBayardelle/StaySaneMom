@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-4 mb-lg-0 mb-4"> <!-- Grid column -->
+<div class="col-lg-4 col-md-6 mb-2"> <!-- Grid column -->
   <div class="card align-items-center"> <!-- Card -->
     <div class="view overlay text-center">
       <% if variation.images.attached? %>
@@ -24,17 +24,15 @@
         </strong>
       </h5>
       <p><%= variation.short_description %></p>
-      <h4 class="font-weight-bold blue-text">
+      <h4 class="font-weight-bold color-self">
         <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
       </h4>
 
       <%= form_for @basket_item, remote: true do |f| %>
-        <div class="input-group">
+        <div class="text-center">
           <%= f.hidden_field :quantity, value: 1 %>
-          <div class="input-group-btn">
-            <%= f.hidden_field :variation_id, value: variation.id %>
-            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
-          </div>
+          <%= f.hidden_field :variation_id, value: variation.id %>
+          <%= f.submit "Add to Cart", class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>

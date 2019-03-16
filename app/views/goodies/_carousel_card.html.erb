@@ -9,16 +9,13 @@
         <div class="mask rgba-white-slight"></div>
       <% end %>
     </div>
-    <div class="card-body card-body-cascade text-center">
-      <a href="" class="text-muted">
-        <h5></h5>
-      </a>
+    <div class="card-body card-body-cascade bg-neutral text-center">
       <h4 class="card-title">
         <strong>
           <%= link_to goody.name.pluralize(2), goody_path(goody) %>
         </strong>
       </h4>
-      <p class="card-text">
+      <p class="card-text color-black">
         <%= goody.description %><br />
         <% if current_user && current_user.admin %>
           <%= link_to 'Edit', edit_goody_path(goody) %> | <%= link_to 'Destroy', goody, method: :delete, data: { confirm: 'Are you sure?' } %>
