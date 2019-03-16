@@ -1,0 +1,45 @@
+<div class="container">
+  <%= form_tag charges_path do %>
+
+    <h1 class="text-center font-script color-spouse">Checkout</h1>
+
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+    </article>
+
+    <div class="card card-image" style="background-image: url(https://s3-us-west-1.amazonaws.com/staysanemom/gradient-wide.png);">
+      <div class="text-white text-center py-5 px-4 my-5">
+        <div>
+          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Here's Your Last Step</strong></h2>
+          <h3>After your payment processes, you'll be directed to a page where you can download any instant gratification purchases, design any custom purchases, and just revel in your own awesomeness.</h3>
+          <h2><strong>Total: <%= number_to_currency(current_basket.subtotal, unit: "$") %></strong></h2>
+          <div class="half-buffer"></div>
+          <button type="submit" class="btn btn-outline-white btn-md">Buy My Goodies</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="half-buffer"></div>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= current_user.first_name %> <%= current_user.last_name %> Store Purchase"
+          data-amount="<%= (current_basket.subtotal.to_f * 100).round %>"
+          data-locale="auto">
+    </script>
+    <script>
+        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+    </script>
+
+  <% end %>
+</div> <!-- container -->
+
+
+
+<%= content_for :additional_js do %>
+
+<% end %>

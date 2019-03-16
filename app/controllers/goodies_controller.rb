@@ -1,5 +1,6 @@
 class GoodiesController < ApplicationController
   before_action :set_goody, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /goodies
   # GET /goodies.json
@@ -76,6 +77,11 @@ class GoodiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def goody_params
-      params.require(:goody).permit(:name, :description, :active, images: [])
+      params.require(:goody).permit(
+        :name,
+        :description,
+        :active,
+        images: []
+      )
     end
 end

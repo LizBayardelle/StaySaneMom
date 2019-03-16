@@ -1,5 +1,7 @@
 class VariationsController < ApplicationController
   before_action :set_variation, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+
 
   # GET /variations
   # GET /variations.json
@@ -76,6 +78,20 @@ class VariationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def variation_params
-      params.require(:variation).permit(:name, :price, :short_description, :description, :active, :goody_id, :new_product, :hot_product, images: [])
+      params.require(:variation).permit(
+        :name,
+        :price,
+        :short_description,
+        :description,
+        :active,
+        :goody_id,
+        :new_product,
+        :hot_product,
+        :custom_planner,
+        :build_planner,
+        :downloadable,
+        images: [],
+        downloadable_files: []
+      )
     end
 end

@@ -1,0 +1,2 @@
+json.extract! planner_custom, :id, :purchase_id, :user_id, :status, :date_ordered, :date_starting, :time_period, :increment, :monthly, :monthly_comments, :weekly, :weekly_comments, :daily, :daily_comments, :schedule, :segments, :adjectives, :colors, :fonts, :themes, :logo, :personalization, :tagline, :other_comments, :submitted, :created_at, :updated_at
+json.url planner_custom_url(planner_custom, format: :json)

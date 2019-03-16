@@ -41,6 +41,8 @@ gem 'searchkick'
 gem 'dotenv-rails'
 gem 'faraday'
 gem 'kaminari'
+# gem 'braintree', '~> 2.94.0'
+gem 'gon'
 
 gem 'solidus'
 gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master

@@ -6,6 +6,7 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
+      <h2>The Basics</h2>
       <div class="row">
         <div class="col-sm-9 form-group">
           <%= f.input :name %>
@@ -23,6 +24,18 @@
       <%= f.input :new_product %>
       <%= f.input :hot_product %>
       <%= f.input :active %>
+
+      <h2>For Downloadables</h2>
+      <%= f.input :downloadable %>
+      <div class="form-group">
+        <%= f.label "Downloadable Files" %><br />
+        <%= f.file_field :downloadable_files, multiple: true %>
+      </div>
+
+      <h2>For Planners</h2>
+      <%= f.input :custom_planner %>
+      <%= f.input :build_planner %>
+
     </div>
 
     <div class="text-center form-actions">

@@ -12,6 +12,7 @@
       content='<%= yield_meta_tag(:keywords, 'stay sane, mom, motherhood, wife, kids, sanity, happy, organization, research') %>' />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <!-- Froala: Include external CSS. -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -24,7 +25,6 @@
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="p:domain_verify" content="ef1c9dc3c7715b05ab4552ab0e404289"/>
-
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
       <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126667465-1"></script> -->
@@ -50,6 +50,9 @@
         (function(b, o, n, g, s, r, c) { if (b[s]) return; b[s] = {}; b[s].scriptToken = "XzU3NDM0ODkxNA"; r = o.createElement(n); c = o.getElementsByTagName(n)[0]; r.async = 1; r.src = g; r.id = s + n; c.parentNode.insertBefore(r, c); })(window, document, "script", "//cdn.oribi.io/XzU3NDM0ODkxNA/oribi.js", "ORIBI");
       </script>
 
+      <!-- braintree -->
+      <script src="https://js.braintreegateway.com/web/dropin/1.16.0/js/dropin.min.js"></script>
+      <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 
   </head>
 

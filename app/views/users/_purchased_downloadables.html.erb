@@ -1,0 +1,36 @@
+<% @downloadables = 0 %>
+
+<% @purchases = Purchase.where(user_id: current_user) %>
+<% @purchases.each do |p| %>
+  <% basket = Basket.where(id: p.basket_id).first %>
+  <% basket.basket_items.each do |i| %>
+    <% v = i.variation %>
+    <% if v.downloadable %>
+      <% @downloadables += 1 %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<% if @downloadables > 0 %>
+  <h2>Your Purchased Downloadables</h2>
+  <p>Here are all the instant downloadables you purchased.  Just click the link to download them.  If you ever want them again, the'll be accessible in your account from now on as well.</p>
+  <ul>
+    <% @purchases = Purchase.where(user_id: current_user) %>
+    <% @purchases.each do |p| %>
+      <% basket = Basket.where(id: p.basket_id).first %>
+      <% basket.basket_items.each do |i| %>
+        <% v = i.variation %>
+        <% n = 1 %>
+        <% v.downloadable_files.each do |d| %>
+          <% if n = 1 %>
+            <li><%= link_to v.name, rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
+          <% else %>
+            <li><%= link_to v.name + " (" + n.to_s + ")", rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
+          <% end %>
+          <% n += 1 %>
+        <% end %> <!-- basket items each -->
+      <% end %> <!-- purchases each -->
+  <% end %> <!-- if downloadables > 0 -->
+  </ul>
+<% end %>

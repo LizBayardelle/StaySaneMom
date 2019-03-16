@@ -26,7 +26,7 @@
     <%= render 'carts/cart_row', variation: basket_item.variation, basket_item: basket_item, show_total: true %>
   <% end %>
 
-    <tr class="bg-spouse">
+    <tr class="bg-self">
       <td></td>
       <td style="text-align: right; font-weight: 700">Order Total:</td>
       <td style="text-align: right; font-weight: 700"><%= number_to_currency(current_basket.subtotal, unit: "$") %></td>

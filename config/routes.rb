@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :planner_customs
+  resources :purchases
   root 'home#index'
 
   resources :meals
@@ -69,7 +71,7 @@ Rails.application.routes.draw do
   resources :goodies
   resource :cart, only: [:show]
   resources :basket_items, only: [:create, :update, :destroy]
-
+  resources :charges
 
 
 

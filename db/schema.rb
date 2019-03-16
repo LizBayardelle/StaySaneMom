@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_123655) do
+ActiveRecord::Schema.define(version: 2019_03_16_012656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,56 @@ ActiveRecord::Schema.define(version: 2019_03_14_123655) do
     t.datetime "updated_at", null: false
     t.string "group"
     t.index ["user_id"], name: "index_people_on_user_id"
+  end
+
+  create_table "planner_customs", force: :cascade do |t|
+    t.bigint "purchase_id"
+    t.bigint "user_id"
+    t.string "status"
+    t.datetime "date_ordered"
+    t.datetime "date_starting"
+    t.string "time_period"
+    t.string "planner_increment"
+    t.boolean "monthly"
+    t.text "monthly_comments"
+    t.boolean "weekly"
+    t.text "weekly_comments"
+    t.boolean "daily"
+    t.text "daily_comments"
+    t.text "schedule"
+    t.text "segments"
+    t.string "adjectives"
+    t.string "colors"
+    t.string "fonts"
+    t.string "themes"
+    t.boolean "logo"
+    t.string "personalization"
+    t.string "tagline"
+    t.text "other_comments"
+    t.boolean "submitted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["purchase_id"], name: "index_planner_customs_on_purchase_id"
+    t.index ["user_id"], name: "index_planner_customs_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "shipping_1"
+    t.string "shipping_2"
+    t.string "shipping_city"
+    t.string "shipping_state"
+    t.string "shipping_zip"
+    t.string "shipping_country"
+    t.string "phone"
+    t.decimal "total"
+    t.bigint "basket_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email"
+    t.index ["basket_id"], name: "index_purchases_on_basket_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -1669,6 +1719,9 @@ ActiveRecord::Schema.define(version: 2019_03_14_123655) do
     t.boolean "new_product", default: true
     t.boolean "hot_product", default: false
     t.string "short_description"
+    t.boolean "custom_planner", default: false
+    t.boolean "build_planner", default: false
+    t.boolean "downloadable", default: false
     t.index ["goody_id"], name: "index_variations_on_goody_id"
   end
 
@@ -1686,6 +1739,9 @@ ActiveRecord::Schema.define(version: 2019_03_14_123655) do
   add_foreign_key "occasions", "people"
   add_foreign_key "occasions", "users"
   add_foreign_key "people", "users"
+  add_foreign_key "planner_customs", "purchases"
+  add_foreign_key "planner_customs", "users"
+  add_foreign_key "purchases", "baskets"
   add_foreign_key "responses", "comments"
   add_foreign_key "responses", "users"
   add_foreign_key "solidus_paypal_braintree_sources", "spree_payment_methods", column: "payment_method_id"

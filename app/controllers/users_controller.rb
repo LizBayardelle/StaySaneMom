@@ -10,6 +10,8 @@ class UsersController < ApplicationController
       @new_members = []
     end
 
+    @purchases = Purchase.where(user_id: current_user.id)
+    
     @done_onetime_tasks = Task.where(user_id: current_user.id, completed: true, frequency: "OneTime")
     @onetime_tasks = Task.where(user_id: current_user.id, frequency: "OneTime")
     @done_daily_tasks = Task.where(user_id: current_user.id, completed: true, frequency: "Daily")

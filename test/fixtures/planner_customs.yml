@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purchase: one
+  user: one
+  status: MyString
+  date_ordered: 2019-03-15 14:27:30
+  date_starting: 2019-03-15 14:27:30
+  time_period: MyString
+  increment: MyString
+  monthly: false
+  monthly_comments: MyText
+  weekly: false
+  weekly_comments: MyText
+  daily: false
+  daily_comments: MyText
+  schedule: MyText
+  segments: MyText
+  adjectives: MyString
+  colors: MyString
+  fonts: MyString
+  themes: MyString
+  logo: false
+  personalization: MyString
+  tagline: MyString
+  other_comments: MyText
+  submitted: false
+
+two:
+  purchase: two
+  user: two
+  status: MyString
+  date_ordered: 2019-03-15 14:27:30
+  date_starting: 2019-03-15 14:27:30
+  time_period: MyString
+  increment: MyString
+  monthly: false
+  monthly_comments: MyText
+  weekly: false
+  weekly_comments: MyText
+  daily: false
+  daily_comments: MyText
+  schedule: MyText
+  segments: MyText
+  adjectives: MyString
+  colors: MyString
+  fonts: MyString
+  themes: MyString
+  logo: false
+  personalization: MyString
+  tagline: MyString
+  other_comments: MyText
+  submitted: false

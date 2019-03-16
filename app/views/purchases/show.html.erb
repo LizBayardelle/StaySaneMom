@@ -1,0 +1,67 @@
+<h1 class="text-center font-script">Order #<%= @purchase.id %> Details</h1>
+
+<div class="half-buffer"></div>
+<%= render "layouts/quadborder" %>
+<div class="half-buffer"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Customer Information</h2>
+      <p>
+        <%= link_to user_path(@purchase.user_id) do %>
+          <strong class="color-self"><%= @purchase.first_name %> <%= @purchase.last_name %></strong><br />
+        <% end %>
+        <%= @purchase.shipping_1 %><br />
+        <% if @purchase.shipping_2 != "" %><%= @purchase.shipping_2 %><br /><% end %>
+        <%= @purchase.shipping_city %>, <%= @purchase.shipping_state %> &nbsp;<%= @purchase.shipping_zip %><br />
+        <%= @purchase.shipping_country %>
+      </p>
+
+      <h2>Contact Information</h2>
+      <p>
+        <%= mail_to @purchase.email, @purchase.email, class: "color-self" %><br />
+        <%= @purchase.phone %>
+      </p>
+    </div> <!-- col -->
+
+    <div class="col-sm-6">
+      <h2>Order Status</h2>
+      <p><%= BasketStatus.where(id: @purchase.basket.id).first.name %></p>
+    </div> <!-- col -->
+
+  </div> <!-- row -->
+</div> <!-- container -->
+
+<div class="half-buffer"></div>
+<%= render "layouts/quadborder" %>
+<div class="half-buffer"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Purchase Information (<%= number_to_currency(@purchase.total, unit: "$") %>)</h2>
+      <p>
+        <ul>
+          <% @purchase.basket.basket_items.each do |i| %>
+            <li><%= Variation.where(id: i.variation_id).first.name %> (<%= number_to_currency(Variation.where(id: i.variation_id).first.price, unit: "$") %>)</li>
+          <% end %>
+        </ul>
+      </p>
+    </div> <!-- col -->
+  </div> <!-- row -->
+
+</div> <!-- container -->
+
+<div class="half-buffer"></div>
+<%= render "layouts/quadborder" %>
+<div class="half-buffer"></div>
+
+<div class="text-center">
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Edit', edit_purchase_path(@purchase) %> |
+    <%= link_to 'All Orders', purchases_path %>
+  <% end %>
+</div>
+
+<div class="half-buffer"></div>

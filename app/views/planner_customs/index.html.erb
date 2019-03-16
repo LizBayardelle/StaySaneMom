@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Planner Customs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Purchase</th>
+      <th>User</th>
+      <th>Status</th>
+      <th>Date ordered</th>
+      <th>Date starting</th>
+      <th>Time period</th>
+      <th>Increment</th>
+      <th>Monthly</th>
+      <th>Monthly comments</th>
+      <th>Weekly</th>
+      <th>Weekly comments</th>
+      <th>Daily</th>
+      <th>Daily comments</th>
+      <th>Schedule</th>
+      <th>Segments</th>
+      <th>Adjectives</th>
+      <th>Colors</th>
+      <th>Fonts</th>
+      <th>Themes</th>
+      <th>Logo</th>
+      <th>Personalization</th>
+      <th>Tagline</th>
+      <th>Other comments</th>
+      <th>Submitted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @planner_customs.each do |planner_custom| %>
+      <tr>
+        <td><%= planner_custom.purchase %></td>
+        <td><%= planner_custom.user %></td>
+        <td><%= planner_custom.status %></td>
+        <td><%= planner_custom.date_ordered %></td>
+        <td><%= planner_custom.date_starting %></td>
+        <td><%= planner_custom.time_period %></td>
+        <td><%= planner_custom.planner_increment %></td>
+        <td><%= planner_custom.monthly %></td>
+        <td><%= planner_custom.monthly_comments %></td>
+        <td><%= planner_custom.weekly %></td>
+        <td><%= planner_custom.weekly_comments %></td>
+        <td><%= planner_custom.daily %></td>
+        <td><%= planner_custom.daily_comments %></td>
+        <td><%= planner_custom.schedule %></td>
+        <td><%= planner_custom.segments %></td>
+        <td><%= planner_custom.adjectives %></td>
+        <td><%= planner_custom.colors %></td>
+        <td><%= planner_custom.fonts %></td>
+        <td><%= planner_custom.themes %></td>
+        <td><%= planner_custom.logo %></td>
+        <td><%= planner_custom.personalization %></td>
+        <td><%= planner_custom.tagline %></td>
+        <td><%= planner_custom.other_comments %></td>
+        <td><%= planner_custom.submitted %></td>
+        <td><%= link_to 'Show', planner_custom %></td>
+        <td><%= link_to 'Edit', edit_planner_custom_path(planner_custom) %></td>
+        <td><%= link_to 'Destroy', planner_custom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Planner Custom', new_planner_custom_path %>

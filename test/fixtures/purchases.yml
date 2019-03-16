@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  shipping_1: MyString
+  shipping_2: MyString
+  shipping_city: MyString
+  shipping_state: MyString
+  shipping_zip: MyString
+  shipping_country: MyString
+  phone: MyString
+  total: 9.99
+  basket: one
+  user_id: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  shipping_1: MyString
+  shipping_2: MyString
+  shipping_city: MyString
+  shipping_state: MyString
+  shipping_zip: MyString
+  shipping_country: MyString
+  phone: MyString
+  total: 9.99
+  basket: two
+  user_id: 1
