@@ -139,8 +139,12 @@ a.color-self:hover { color: $color-self; }
 }
 
 @media screen and (max-width: 768px) {
-  margin-top: -78px;
+  .nav-breadcrumb {
+    margin-top: -78px;
+  }
 }
+
+
 
 .padded { padding: 15px; }
 .full-width { width: 100%; }
