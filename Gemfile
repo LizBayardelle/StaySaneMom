@@ -4,46 +4,51 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 
 gem 'rails', '~> 5.2.0'
-gem 'puma', '~> 3.11'
-gem 'puma_worker_killer'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
-gem 'mini_magick'
 gem 'jquery-rails'
 gem 'devise'
-gem 'bootsnap'
-gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-ui-rails'
 gem 'sprockets-rails'
 gem 'bcrypt', '~> 3.1.7'
-gem 'friendly_id', '~> 5.2.0'
-gem 'stripe'
-gem 'figaro'
-gem 'magnific-popup-rails', '~> 1.1.0'
-gem 'simple_form'
-gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
+gem 'gon'
+
+gem 'mini_magick'
 gem 'aws-sdk' , '~> 3'
 gem 'aws-sdk-s3', require: false
-gem 'recaptcha', require: "recaptcha/rails"
+
+gem 'bootstrap', '~> 4.1.3'
+gem 'bootsnap'
+gem 'magnific-popup-rails', '~> 1.1.0'
+gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
 gem 'font_awesome5_rails'
+
 gem 'trix-rails', require: 'trix'
-gem 'rack-tracker'
-gem 'high_voltage', '~> 3.1'
-gem 'convertkit-ruby', require: 'convertkit'
-gem 'dotenv-rails'
-gem 'acts_as_list'
 gem 'wysiwyg-rails'
+
+gem 'friendly_id', '~> 5.2.0'
+gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
+gem 'recaptcha', require: "recaptcha/rails"
 gem 'searchkick'
+gem 'kaminari'
+
+gem 'stripe'
+gem 'figaro'
+gem 'convertkit-ruby', require: 'convertkit'
+gem 'high_voltage', '~> 3.1'
+gem 'acts_as_list'
+
+gem 'puma', '~> 3.11'
+gem 'puma_worker_killer'
+gem 'rack-tracker'
 gem 'dotenv-rails'
 gem 'faraday'
-gem 'kaminari'
-# gem 'braintree', '~> 2.94.0'
-gem 'gon'
 gem 'scout_apm'
+
 
 gem 'solidus'
 gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master

@@ -96,12 +96,12 @@ $transparent-whiteish: rgba(210, 210, 210, 0.4);
 .border-self { border: solid $color-self; }
 .border-neutral { border: solid $color-neutral; }
 
-.bg-house { background-color: $transparent-house; }
-.bg-spouse { background-color: $transparent-spouse; }
-.bg-kids { background-color: $transparent-kids; }
-.bg-self { background-color: $transparent-self; }
-.bg-neutral { background-color: $transparent-neutral; }
-.bg-neutral-dark { background-color: $color-neutral; }
+.bg-house { background-color: $transparent-house !important; }
+.bg-spouse { background-color: $transparent-spouse !important; }
+.bg-kids { background-color: $transparent-kids !important; }
+.bg-self { background-color: $transparent-self !important; }
+.bg-neutral { background-color: $transparent-neutral !important; }
+.bg-neutral-dark { background-color: $color-neutral !important; }
 
 .bg-solid-house { background-color: $color-house; }
 .bg-solid-spouse { background-color: $color-spouse; }
@@ -131,6 +131,12 @@ a.color-self:hover { color: $color-self; }
     padding-left: 240px;
   }
 }
+
+.breadcrumb { background-color: $transparent-neutral; }
+.breadcrumb.house { background-color: $transparent-house; }
+.breadcrumb.spouse { background-color: $transparent-spouse; }
+.breadcrumb.kids { background-color: $transparent-kids; }
+.breadcrumb.self { background-color: $transparent-self; }
 
 .nav-breadcrumb {
    margin-top: -35px;
