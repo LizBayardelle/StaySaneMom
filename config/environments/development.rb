@@ -12,6 +12,7 @@ Rails.application.configure do
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+
   # SENDGRID
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV["SENDGRID_USERNAME"],

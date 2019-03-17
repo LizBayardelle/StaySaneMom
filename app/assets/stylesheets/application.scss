@@ -132,6 +132,14 @@ a.color-self:hover { color: $color-self; }
   }
 }
 
+.nav-breadcrumb {
+   margin-top: -35px;
+}
+
+@media screen and (max-width: 768px) {
+  margin-top: -78px;
+}
+
 .padded { padding: 15px; }
 .full-width { width: 100%; }
 

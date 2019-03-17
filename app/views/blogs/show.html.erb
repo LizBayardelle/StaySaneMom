@@ -19,10 +19,10 @@
 
 
 
-<nav aria-label="breadcrumb" style="margin-top: -35px;">
+<nav aria-label="breadcrumb" class="nav-breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to "Blog", blogs_path %></li>
-    <li class="breadcrumb-item"><%= link_to @blog.category %></li>
+    <li class="breadcrumb-item"><%= link_to home_ + @blog.category.downcase + _path%></li>
     <li class="breadcrumb-item"><%= link_to @subcategory.name, subcategory_path(@subcategory) %></li>
     <li class="breadcrumb-item"><%= @blog.title %></li>
     <div style="position: absolute; right: 0; margin-right: 25px">
