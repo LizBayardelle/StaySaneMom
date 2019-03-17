@@ -132,11 +132,7 @@ a.color-self:hover { color: $color-self; }
   }
 }
 
-.breadcrumb { background-color: $transparent-neutral; }
-.breadcrumb.house { background-color: $transparent-house; }
-.breadcrumb.spouse { background-color: $transparent-spouse; }
-.breadcrumb.kids { background-color: $transparent-kids; }
-.breadcrumb.self { background-color: $transparent-self; }
+
 
 .nav-breadcrumb {
    margin-top: -35px;
