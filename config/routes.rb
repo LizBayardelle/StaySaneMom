@@ -67,7 +67,11 @@ Rails.application.routes.draw do
 
 
   resources :groupings
-  resources :variations
+  resources :variations do
+    member do
+      delete :delete_image_attachment, as: "delete_image"
+    end
+  end
   resources :goodies
   resource :cart, only: [:show]
   resources :basket_items, only: [:create, :update, :destroy]

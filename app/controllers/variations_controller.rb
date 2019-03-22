@@ -12,6 +12,7 @@ class VariationsController < ApplicationController
   # GET /variations/1
   # GET /variations/1.json
   def show
+    @basket_item = current_basket.basket_items.new
   end
 
   # GET /variations/new
@@ -30,9 +31,9 @@ class VariationsController < ApplicationController
 
     respond_to do |format|
       if @variation.save
-        if params[:variation][:images]
-          @variation.images.attach(params[:variation][:images])
-        end
+        # if params[:variation][:images]
+        #   @variation.images.attach(params[:variation][:images])
+        # end
         format.html { redirect_to goody_path(@variation.goody), notice: 'Variation was successfully created.' }
         format.json { render :show, status: :created, location: @variation }
       else
@@ -47,9 +48,9 @@ class VariationsController < ApplicationController
   def update
     respond_to do |format|
       if @variation.update(variation_params)
-        if params[:variation][:images]
-          @variation.images.attach(params[:variation][:images])
-        end
+        # if params[:variation][:images]
+        #   @variation.images.attach(params[:variation][:images])
+        # end
         format.html { redirect_to goody_path(@variation.goody), notice: 'Variation was successfully updated.' }
         format.json { render :show, status: :ok, location: @variation }
       else
@@ -68,6 +69,12 @@ class VariationsController < ApplicationController
       format.html { redirect_to goody_path(@goody), notice: 'Variation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def delete_image_attachment
+    @variation = Variation.find(params[:id])
+    @variation.images.purge
+    redirect_back(fallback_location: goodies_path)
   end
 
   private
