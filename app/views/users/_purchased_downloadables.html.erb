@@ -6,7 +6,7 @@
     <% basket = Basket.where(id: p.basket_id).first %>
     <% basket.basket_items.each do |i| %>
       <% v = i.variation %>
-      <% if v.exists? && v.downloadable %>
+      <% if v != nil && v.downloadable %>
         <% @downloadables += 1 %>
       <% end %>
     <% end %>
