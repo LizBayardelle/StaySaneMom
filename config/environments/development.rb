@@ -12,6 +12,7 @@ Rails.application.configure do
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_mailer.raise_delivery_errors = true
 
   # SENDGRID
   ActionMailer::Base.smtp_settings = {

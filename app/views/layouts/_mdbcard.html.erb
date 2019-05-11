@@ -1,11 +1,11 @@
 <div class="col-md-6 col-lg-4" style="margin-bottom: 20px">
   <div class="card">
-    <div class="view overlay">
-      <img class="card-img-top" src="<%= rails_blob_url(blog.image) if blog.image.attached? %>" alt="Card image cap">
-      <%= link_to blog do %>
+    <!-- <div class="view overlay">
+      <img class="card-img-top" src="<%#= rails_blob_url(blog.image) if blog.image.attached? %>" alt="Card image cap">
+      <%#= link_to blog do %>
         <div class="mask rgba-white-slight"></div>
-      <% end %>
-    </div>
+      <%# end %>
+    </div> -->
 
     <div class="card-body">
       <h4 class="card-title"><%= link_to blog.title, blog_path(blog), class: "card-title color-" + color.to_s %></h4>
