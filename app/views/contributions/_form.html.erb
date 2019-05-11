@@ -17,8 +17,7 @@
         <%= f.text_field :blog, class: "form-control", required: true, placeholder: "https://www.yourbloghere.com" %>
       </div> <!-- form group -->
       <div class="form-group">
-        <%= f.label :category %>
-        <%= f.select :category, [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
+        <%= f.input :category, input_html: {class: 'browser-default'}, collection: [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
       </div>
       <div class="form-group">
         <%= f.label "Your Guest Post Idea" %>
@@ -29,12 +28,10 @@
         <%= f.text_area :comments, class: "form-control" %>
       </div> <!-- form group -->
       <div class="checkbox-inline">
-        <%= f.check_box :prev_published, label: false, required: true %>
-        <%= f.label "This idea has not been published anywhere else" %>
+        <%= f.input :prev_published, required: true, label: "This idea has not been published anywhere else" %>
       </div>
       <div class="checkbox-inline">
-        <%= f.check_box :terms, label: false, required: true %>
-        <%= f.label "I agree to the rules stated above" %>
+        <%= f.input :terms, required: true, label: "I agree to the rules stated above" %>
       </div> <!-- form group -->
     </div>
 
