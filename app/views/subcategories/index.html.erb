@@ -13,7 +13,7 @@
       <% @subcategories.each do |subcategory| %>
         <tr>
           <td>
-            <%= image_tag rails_blob_url(subcategory.image) if subcategory.image.attached? %>
+            <%= image_tag rails_blob_url(subcategory.image), style: "width: 100px; height: auto; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); padding: 3px" if subcategory.image.attached? %>
           </td>
           <td>
             <%= link_to subcategory.category + " :: " + subcategory.name, subcategory, class: "color-spouse boldest" %><br />
