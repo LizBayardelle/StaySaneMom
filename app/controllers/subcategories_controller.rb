@@ -28,6 +28,7 @@ class SubcategoriesController < ApplicationController
 
     respond_to do |format|
       if @subcategory.save
+        @subcategory.image.attach(params[:subcategory][:image])
         format.html { redirect_to subcategories_path, notice: 'Subcategory was successfully created.' }
         format.json { render :show, status: :created, location: @subcategory }
       else
@@ -40,6 +41,11 @@ class SubcategoriesController < ApplicationController
   # PATCH/PUT /subcategories/1
   # PATCH/PUT /subcategories/1.json
   def update
+    if @subcategory.image.attached? && subcategory_params[:image].present?
+      @subcategory.image.purge
+      @subcategory.image.attach(params[:subcategory][:image])
+    end
+
     respond_to do |format|
       if @subcategory.update(subcategory_params)
         format.html { redirect_to subcategories_path, notice: 'Subcategory was successfully updated.' }
@@ -74,6 +80,8 @@ class SubcategoriesController < ApplicationController
         :active,
         :description,
         :category,
-        :blog_id)
+        :blog_id,
+        :image
+      )
     end
 end

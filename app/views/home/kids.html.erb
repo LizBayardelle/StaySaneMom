@@ -26,6 +26,25 @@
   </div> <!-- over-frame-bottom-row -->
 </div> <!-- over-frame-text -->
 
+<div class="half-buffer d-md-none"></div>
+
+<div class="container">
+  <div class="row text-center">
+    <% @subcategories.each do |subcategory| %>
+      <div class="view col-6 col-md-4 col-lg-3">
+        <div class="sub-photo" style="margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); padding: 3px">
+          <%= link_to subcategory_path(subcategory) do %>
+            <%= image_tag rails_blob_url(subcategory.image), class: "img-fluid" if subcategory.image.attached? %>
+            <div class="mask flex-center waves-effect waves-light rgba-white-light">
+              <h4 class="boldest color-black"><%= subcategory.name %></h4>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <div class="container text-center" style="padding: 10px; padding-bottom: 15px">
   <h3>
     <div id="resourcesClick" class="color-kids" style="display: inline-block">Resources</div>&nbsp&nbsp&nbsp|&nbsp&nbsp
@@ -40,7 +59,7 @@
     <% if current_user %>
       <% @subcategories.each do |subcategory| %>
         <% if Blog.where(subcategory_id: subcategory.id) != [] %>
-          <h3><%= subcategory.name %></h3>
+        <h3><%= link_to subcategory.name, subcategory_path(subcategory) %></h3>
           <% alreadyArray = [] %>
           <% Blog.where(subcategory_id: subcategory.id).each do |blog| %>
             <% if !alreadyArray.include? blog.freebie_filename %>

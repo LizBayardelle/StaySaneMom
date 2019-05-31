@@ -9,7 +9,12 @@
     </div>
     <%= f.input :name %>
     <%= f.input :description %>
+    <div class="form-group">
+      <%= f.label "Image" %><br />
+      <%= f.file_field :image %>
+    </div>
     <%= f.input :active %>
+
   </div>
 
   <div class="form-actions text-center">

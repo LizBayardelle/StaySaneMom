@@ -13,11 +13,12 @@
       <% @subcategories.each do |subcategory| %>
         <tr>
           <td>
-            <%= link_to subcategory.category + " :: " + subcategory.name, subcategory, class: "color-spouse boldest" %><br />
-            <%= subcategory.description %>
+            <%= image_tag rails_blob_url(subcategory.image) if subcategory.image.attached? %>
           </td>
           <td>
-            <span class="boldest"><%= if subcategory.active then "Active" else "Inactive" end %></span><br />
+            <%= link_to subcategory.category + " :: " + subcategory.name, subcategory, class: "color-spouse boldest" %><br />
+            <%= subcategory.description %><br />
+            <span class="boldest"><%= if subcategory.active then "Active" else "Inactive" end %></span>&nbsp; | &nbsp;
             <%= link_to 'Edit', edit_subcategory_path(subcategory) %>&nbsp; | &nbsp;
             <%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
