@@ -35,7 +35,7 @@
 
   <div class="row"> <!-- Grid row -->
 
-    <% @goody.variations.each do |variation| %>
+    <% @goody.variations.order(id: :asc).each do |variation| %>
       <%= render partial: 'goodies/variation_card', locals: {variation: variation, order_item: @order_item} %>
     <% end %>
   </div>
