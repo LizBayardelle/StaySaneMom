@@ -15,6 +15,14 @@
     <!--/. My account -->
     <li>
       <ul class="collapsible collapsible-accordion">
+        <div id="cart-text" style="margin-left: 18px;"><li><%= render 'layouts/cart_text' %></li></div>
+      </ul>
+    </li>
+
+    <div class="sidenav-divider"></div>
+
+    <li>
+      <ul class="collapsible collapsible-accordion">
         <li>
           <%= link_to main_app.static_path(:resources), class: "waves-effect arrow-r" do %>
             <%= fa_icon "book-open", class: "color-spouse" %> &nbsp;Resource Library
@@ -183,7 +191,14 @@
   <% end %>
 
   <div class="navbar-brand right d-none d-md-block">
-    <a><div id="cart-text"><%= render 'layouts/cart_text' %></div></a>
+    <a>
+      <div id="cart-text">
+        <p class="text-right">
+          <%= fa_icon "shopping-cart", class: "color-neutral" %>
+          <%= render 'layouts/cart_text' %>
+        </p>
+      </div>
+    </a>
     <%= link_to main_app.home_house_path do %>
       <%= fa_icon "broom", id: "house-icon", class: "header-icon color-house" %>
     <% end %>
