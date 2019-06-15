@@ -94,8 +94,10 @@
         <input placeholder="Published on Date" type="text" id="date" class="form-control datepicker"></input>
         <%= f.hidden_field :published_on, id: "dateHolder", class: "hiddenDateField" %>
       </div> <!-- form group -->
-      <%= f.input :featured_home %>
-      <%= f.input :featured_category %>
+      <div class="form-group">
+        <%= f.input :featured_home %>
+        <%= f.input :featured_category %>
+      </div> <!-- form group -->
     <% end %>
   </div> <!-- form inputs -->
 </div> <!-- basic blog info container -->
