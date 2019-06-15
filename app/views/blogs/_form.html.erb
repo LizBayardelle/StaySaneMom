@@ -32,22 +32,39 @@
     <div class="form-group">
       <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: "Subcategory", include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
     </div>
-    <% if current_user.admin %>
-      <div class="form-group">
-        <%= f.label "Blog Image" %><br />
-        <%= f.file_field :image %>
-      </div>
-      <div class="form-group">
-        <%= f.label "Pinterest Images" %><br />
-        <%= f.file_field :pin_image, multiple: true %>
-      </div>
-      <div class="form-group">
-        <%= f.label "Pinterest Description" %>
-        <%= f.text_area :data_pin_description, class: "form-control" %>
-      </div>
-    <% end %> <!-- end admin only images section -->
-  </div> <!-- form inputs -->
-</div> <!-- basic blog info container -->
+  </div> <!-- form inupts -->
+</div> <!-- container -->
+
+  <%= render "layouts/quadborder" %>
+
+<% if current_user.admin %>
+  <div class="container">
+    <div class="form-inputs">
+      <div class="half-buffer"></div>
+      <h2 class="text-center">Images</h2>
+
+        <div class="form-group">
+          <%= f.label "Blog Image" %><br />
+          <%= f.file_field :image %>
+        </div>
+        <div class="form-group">
+          <%= f.label "External Photo URL" %>
+          <%= f.text_field :photo_url, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.input :photo_external %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Pinterest Images" %><br />
+          <%= f.file_field :pin_image, multiple: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Pinterest Description" %>
+          <%= f.text_area :data_pin_description, class: "form-control" %>
+        </div>
+    </div> <!-- form inputs -->
+  </div> <!-- basic blog info container -->
+<% end %> <!-- end admin only images section -->
 
 <%= render "layouts/quadborder" %>
 

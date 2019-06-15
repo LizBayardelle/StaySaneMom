@@ -207,6 +207,8 @@ class BlogsController < ApplicationController
                   :user_id,
                   :affiliate_links,
                   :image,
+                  :photo_url,
+                  :photo_external,
                   :pdf,
                   :slug,
                   :comments_count,
