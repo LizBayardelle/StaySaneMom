@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     # @headernav = true
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(6)
     @all_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
+    @featured_blogs = Blog.where(published: true, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     @commented_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(6)
     @recent_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(6)
   end
@@ -23,6 +24,7 @@ class HomeController < ApplicationController
   def house
     @all_house_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
     @recent_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
+    @featured_blogs = Blog.where(category: "House", published: true, featured_category: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     @commented_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(3)
     @recent_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "House").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").offset(3).all
@@ -33,6 +35,7 @@ class HomeController < ApplicationController
   def spouse
     @all_spouse_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
     @recent_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
+    @featured_blogs = Blog.where(category: "Spouse", published: true, featured_category: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     @commented_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(3)
     @recent_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "Spouse").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").offset(3).all
@@ -43,6 +46,7 @@ class HomeController < ApplicationController
   def kids
     @all_kids_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
     @recent_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
+    @featured_blogs = Blog.where(category: "Kids", published: true, featured_category: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     @commented_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(3)
     @recent_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "Kids").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").offset(3).all
@@ -53,6 +57,7 @@ class HomeController < ApplicationController
   def self
     @all_self_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC")
     @recent_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
+    @featured_blogs = Blog.where(category: "Self", published: true, featured_category: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     @commented_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).where(published: true).order('comments_count DESC').limit(3)
     @recent_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(3)
     @other_blogs = Blog.where(category: "Self").where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").offset(3).all

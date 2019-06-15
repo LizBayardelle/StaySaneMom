@@ -94,16 +94,33 @@
     <%= render "layouts/tools/birthdays" %>
   </div> <!-- tools row -->
   <div class="buffer"></div>
+</div> <!-- container -->
 
-  <h2 class="text-center font-script" id="blogsDiv">Self-Development Blogs</h2>
-  <div class="half-buffer"></div>
+<h2 class="text-center font-script" id="blogsDiv">Self-Development Blogs</h2>
+
+<div class="half-buffer"></div>
+
+<div class="row bg-self">
+  <div class="container">
+    <div class="half-buffer"></div>
+    <div class="row">
+      <% @featured_blogs.each do |blog| %>
+        <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: "self" } %>
+      <% end %>
+    </div> <!-- row for cards -->
+  </div> <!-- container -->
+</div> <!-- featured row -->
+
+<div class="half-buffer"></div>
+
+<div class="container">
   <div class="row">
     <% @all_self_blogs.each do |blog| %>
       <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: "self" } %>
     <% end %>
   </div> <!-- row -->
+</div> <!--  container -->
 
-</div> <!-- page container -->
 
 
 <!-- form itself -->
@@ -123,7 +140,6 @@
       $('.card').matchHeight();
       $('.view').matchHeight();
       $('.view-2').matchHeight();
-      $('.card-title').matchHeight();
       $('.card-text').matchHeight();
       $('.open-popup-link').magnificPopup({
         type:'inline',

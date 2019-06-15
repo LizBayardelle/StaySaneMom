@@ -10,6 +10,7 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').page(params[:page])
     @commented_blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('comments_count DESC').limit(3)
+    @featured_blogs = Blog.where(published: true, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     if params[:tag]
       @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag]).page(params[:page])
     else
@@ -189,6 +190,8 @@ class BlogsController < ApplicationController
           .permit(:title,
                   :teaser,
                   :body,
+                  :featured_home,
+                  :featured_category,
                   :cta_read_more,
                   :cta_pdf,
                   :cta_video,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_152406) do
+ActiveRecord::Schema.define(version: 2019_06_15_170222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 2019_06_15_152406) do
     t.boolean "submitted", default: false
     t.string "photo_url"
     t.boolean "photo_external", default: false
+    t.boolean "featured_home", default: false
+    t.boolean "featured_category", default: false
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"

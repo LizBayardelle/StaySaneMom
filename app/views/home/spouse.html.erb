@@ -96,16 +96,32 @@
     <%= render "layouts/tools/gifts" %>
   </div> <!-- tools row -->
   <div class="buffer"></div>
+</div> <!-- container -->
 
-  <h2 class="text-center font-script" id="blogsDiv">Marriage Blogs</h2>
-  <div class="half-buffer"></div>
+<h2 class="text-center font-script" id="blogsDiv">Marriage Blogs</h2>
+
+<div class="half-buffer"></div>
+
+<div class="row bg-spouse">
+  <div class="container">
+    <div class="half-buffer"></div>
+    <div class="row">
+      <% @featured_blogs.each do |blog| %>
+        <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: "spouse" } %>
+      <% end %>
+    </div> <!-- row for cards -->
+  </div> <!-- container -->
+</div> <!-- featured row -->
+
+<div class="half-buffer"></div>
+
+<div class="container">
   <div class="row">
     <% @all_spouse_blogs.each do |blog| %>
       <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: "spouse" } %>
     <% end %>
   </div> <!-- row -->
-
-</div> <!-- page container -->
+</div> <!--  container -->
 
 <!-- form itself -->
 <div id="convertkitPopup" class="white-popup mfp-hide">
@@ -124,7 +140,6 @@
       $('.card').matchHeight();
       $('.view').matchHeight();
       $('.view-2').matchHeight();
-      $('.card-title').matchHeight();
       $('.card-text').matchHeight();
       $('.open-popup-link').magnificPopup({
         type:'inline',
