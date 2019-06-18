@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     if @user.persisted?
-      NewUserNotificationMailer.send_new_user_email(@user).deliver
+      # NewUserNotificationMailer.send_new_user_email(@user).deliver
 
       @client = Convertkit::Client.new
       @client.add_subscriber_to_sequence(269530, @user.email, options = {})
