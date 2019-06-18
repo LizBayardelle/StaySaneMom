@@ -41,6 +41,7 @@ gem 'figaro'
 gem 'convertkit-ruby', require: 'convertkit'
 gem 'high_voltage', '~> 3.1'
 gem 'acts_as_list'
+gem 'sitemap_generator'
 
 gem 'puma', '~> 3.11'
 gem 'puma_worker_killer'
