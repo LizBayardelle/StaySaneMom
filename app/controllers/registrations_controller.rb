@@ -49,6 +49,10 @@ class RegistrationsController < Devise::RegistrationsController
     user_path(resource)
   end
 
+  def after_sign_up_path_for(resource)
+    static_path(:ThankYou)
+  end
+
   private
 
   def sign_up_params
