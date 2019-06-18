@@ -57,6 +57,9 @@
   </head>
 
   <body class="hidden-sn white-skin">
+    <% if content_for?(:title) %>
+      <% @page_title = yield(:title) %>
+    <% end %>
 
     <!-- Include external JS libs. -->
     <div class=""><%= image_tag "default-image.png", class: "pin-only" %></div>
@@ -88,6 +91,7 @@
 <!--- END navbar stuff here -->
 
 <div class="buffer"></div>
+<%#= "Page Title: " + @page_title.to_s %>
 <div class="half-buffer"></div>
 
 

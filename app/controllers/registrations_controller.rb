@@ -52,10 +52,10 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :subscribed, :avatar, :tagline, :bio, :website_name, :website_url, :sm_youtube, :sm_email, :sm_facebook, :sm_pinterest, :sm_instagram, :sm_twitter, :sm_other, :sm_youtube, :sm_email, :contributor, :contributor_request, :sm_approved, :sm_needs_approval)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :subscribed, :avatar, :tagline, :bio, :website_name, :website_url, :sm_youtube, :sm_email, :sm_facebook, :sm_pinterest, :sm_instagram, :sm_twitter, :sm_other, :sm_youtube, :sm_email, :contributor, :contributor_request, :sm_approved, :sm_needs_approval, :source)
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :admin, :subscribed, :avatar, :tagline, :bio, :website_name, :website_url, :sm_youtube, :sm_email, :sm_facebook, :sm_pinterest, :sm_instagram, :sm_twitter, :sm_other, :sm_youtube, :sm_email, :contributor, :contributor_request, :sm_approved, :sm_needs_approval)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :admin, :subscribed, :avatar, :tagline, :bio, :website_name, :website_url, :sm_youtube, :sm_email, :sm_facebook, :sm_pinterest, :sm_instagram, :sm_twitter, :sm_other, :sm_youtube, :sm_email, :contributor, :contributor_request, :sm_approved, :sm_needs_approval, :source)
   end
 end
