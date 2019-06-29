@@ -57,7 +57,7 @@
 <div style="width: 100%; height: 15px"></div>
 
 <% if @blog.photo_external %>
-  <div class="header-frame frame" style="background-image: url(<%= @blog.photo_url %>)">
+  <div class="header-frame frame" style="background-image: url(<%= @blog.photo_url %>)" role="img" aria-label="<%= @blog.title %>">
 <% else %>
   <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
 <% end %>
