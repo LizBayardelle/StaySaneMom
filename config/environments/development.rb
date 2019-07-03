@@ -25,6 +25,11 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  Recaptcha.configure do |config|
+    config.site_key  = '6LdfaqsUAAAAAJiKLJS-HjqKkn9vlHy6qfoJdnDT'
+    config.secret_key = '6LdfaqsUAAAAALTXli-eKidRgN-Ys4SZXbksSjMJ'
+  end
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

@@ -29,6 +29,9 @@
   		    	<%= f.label "Confirm Password" %>
   		    	<%= f.password_field :password_confirmation, class: "form-control", required: true %>
   	    	</div>
+          <div style="margin-right: auto; margin-left: auto; display: block; margin-top: 5px; margin-bottom: 10px">
+            <%= recaptcha_tags %>
+          </div>
           <%= f.hidden_field :source, value: params[:source] %>
   		  </div> <!-- form-inputs row -->
         <div class="text-center">

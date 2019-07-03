@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    if @user.persisted?
+    if verify_recaptcha(model: @user) && @user.persisted?
       # NewUserNotificationMailer.send_new_user_email(@user).deliver
 
       @client = Convertkit::Client.new
@@ -42,6 +42,7 @@ class RegistrationsController < Devise::RegistrationsController
       @user.update_attributes(sm_approved: false)
     end
   end
+
 
   protected
 

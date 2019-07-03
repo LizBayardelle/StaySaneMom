@@ -15,6 +15,7 @@ gem 'sprockets-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'gon'
 
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'mini_magick'
 gem 'aws-sdk' , '~> 3'
 gem 'aws-sdk-s3', require: false
@@ -49,7 +50,7 @@ gem 'rack-tracker'
 gem 'dotenv-rails'
 gem 'faraday'
 gem 'scout_apm'
-
+gem 'recaptcha'
 
 gem 'solidus'
 gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master

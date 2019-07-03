@@ -222,9 +222,6 @@
         <%= fa_icon "user", id: "blog-icon", class: "header-icon color-neutral" %>
       <% end %>
     <% else %>
-      <%= link_to main_app.new_user_session_path do %>
-        <%= fa_icon "sign-in-alt", class: "header-icon color-neutral" %>
-      <% end %>
       <%= link_to main_app.new_user_registration_path do %>
         <%= fa_icon "user-plus", class: "header-icon color-neutral" %>
       <% end %>
