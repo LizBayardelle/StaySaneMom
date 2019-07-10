@@ -30,6 +30,7 @@
 /config/master.key
 
 /config/secrets.yml
+/config/environments/development.rb
 
 # Ignore application configuration
 /config/application.yml

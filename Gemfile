@@ -36,6 +36,7 @@ gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'searchkick'
 gem 'kaminari'
+gem 'invisible_captcha'
 
 gem 'stripe'
 gem 'figaro'
@@ -50,7 +51,6 @@ gem 'rack-tracker'
 gem 'dotenv-rails'
 gem 'faraday'
 gem 'scout_apm'
-gem 'recaptcha'
 
 gem 'solidus'
 gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master

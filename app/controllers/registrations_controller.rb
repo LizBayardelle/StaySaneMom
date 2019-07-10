@@ -1,10 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
+  # prepend_before_action :check_captcha, only: :create
+  invisible_captcha only: [:create], honeypot: :subtitle
 
   def create
     super
-    if verify_recaptcha(model: @user) && @user.persisted?
+    if @user.persisted?
       # NewUserNotificationMailer.send_new_user_email(@user).deliver
-
       @client = Convertkit::Client.new
       @client.add_subscriber_to_sequence(269530, @user.email, options = {})
       @client.add_subscriber_to_tag(627854, @user.email, options = {})
@@ -55,6 +56,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  # def check_captcha
+  #   unless verify_recaptcha
+  #     self.resource = resource_class.new sign_up_params
+  #     resource.validate # Look for any other validation errors besides Recaptcha
+  #     respond_with_navigational(resource) { redirect_to new_user_registration_path }
+  #   end
+  # end
 
   def sign_up_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :subscribed, :avatar, :tagline, :bio, :website_name, :website_url, :sm_youtube, :sm_email, :sm_facebook, :sm_pinterest, :sm_instagram, :sm_twitter, :sm_other, :sm_youtube, :sm_email, :contributor, :contributor_request, :sm_approved, :sm_needs_approval, :source)

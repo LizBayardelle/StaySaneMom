@@ -873,6 +873,8 @@ GEM
     high_voltage (3.1.0)
     i18n (1.5.3)
       concurrent-ruby (~> 1.0)
+    invisible_captcha (0.12.1)
+      rails (>= 3.2.0)
     io-like (0.3.0)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
@@ -1165,6 +1167,7 @@ DEPENDENCIES
   friendly_id (~> 5.2.0)
   gon
   high_voltage (~> 3.1)
+  invisible_captcha
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails
