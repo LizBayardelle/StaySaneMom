@@ -1,35 +1,72 @@
 <div class="header-frame frame" style="background-image: url(<%= asset_path "tools-for-homepage.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
 <div class="over-frame-text">
   <div class="container text-center">
-    <% if @user.first_name %>
-      <h1><%= @user.first_name %>'s Homepage</h1>
+    <% if current_user && current_user == @user %>
+      <% if @user.first_name %>
+        <h1><%= @user.first_name %>'s Homepage</h1>
+      <% else %>
+        <h1>My Homepage</h1>
+      <% end %>
+      <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
+      <% if @user.contributor && @user == current_user %>
+        <h4><strong>(And all your contributor superpowers.)</strong></h4>
+      <% end %>
+      <% if @user.admin && @user == current_user %>
+        <h3>
+          <%= link_to 'Purchases', purchases_path %>  |  <%= link_to "Blogs", home_allblogs_path %>
+        </h3>
+      <% end %>
+      <div class="half-buffer"></div>
+      <h3><%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
     <% else %>
-      <h1>My Homepage</h1>
+      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+      <h2><strong>
+        <% if @user.admin %>
+          <i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+        <% elsif @user.contributor %>
+          <i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+        <% end %>
+      </strong></h2>
     <% end %>
-    <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
-    <% if @user.contributor && @user == current_user %>
-      <h4><strong>(And all your contributor superpowers.)</strong></h4>
-    <% end %>
-    <% if @user.admin && @user == current_user %>
-      <h3>
-        <%= link_to 'Purchases', purchases_path %>  |  <%= link_to "Blogs", home_allblogs_path %>
-      </h3>
-    <% end %>
-    <div class="half-buffer"></div>
-    <h3><%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
   </div> <!-- container -->
 </div> <!-- over-frame-text -->
 
 
-<%= render "layouts/quadborder" %>
-<div class="half-buffer"></div>
-
-<div class="container">
-  <%= render "users/purchased_downloadables" %>
-</div> <!-- container -->
 
 
-<% if current_user.admin && current_user == @user %>
+<!-- PURCHASES FOR USER IF OWN PAGE -->
+<% if current_user && current_user.id == @user.id %>
+  <%= render "layouts/quadborder" %>
+  <div class="half-buffer"></div>
+
+  <div class="container">
+    <%= render "users/purchased_downloadables" %>
+  </div> <!-- container -->
+<% end %>
+
+
+
+
+<!-- BLOGS BY USER IF NOT OWN PAGE -->
+<% if current_user && current_user.id != @user.id %>
+  <div class="half-buffer"></div>
+  <%= render "layouts/quadborder" %>
+  <div class="half-buffer"></div>
+
+  <div class="container">
+    <h2>Articles by <%= @user.first_name %></h2>
+    <ul>
+      <% Blog.where(user_id: @user.id).each do |blog| %>
+        <li><%= link_to blog.title, blog_path(blog) %></li>
+      <% end %>
+    </ul>
+  </div> <!-- container -->
+<% end %>
+
+
+
+
+<% if current_user && current_user.admin && current_user == @user %>
   <div class="half-buffer"></div>
   <%= render "layouts/quadborder" %>
   <div class="half-buffer"></div>
@@ -178,11 +215,11 @@
 <% end %>
 
 
-<div class="half-buffer"></div>
-<%= render "layouts/quadborder" %>
-<div class="half-buffer"></div>
-
 <% if @user == current_user %>
+  <div class="half-buffer"></div>
+    <%= render "layouts/quadborder" %>
+  <div class="half-buffer"></div>
+
   <div class="container">
     <h2 class="text-center font-script">My Tools</h2>
     <div class="half-buffer"></div>
@@ -201,10 +238,10 @@
 
 <div class="half-buffer"></div>
 
-<% if current_user.bio %>
- <%= render partial: "layouts/biobox", locals: { user: current_user, header: nil } %>
+<% if @user.bio %>
+ <%= render partial: "layouts/biobox", locals: { user: @user, header: nil } %>
  <div class="buffer"></div>
-<% elsif current_user == @user %>
+<% else %>
   <div class="half-buffer"></div>
   <h2 class="text-center color-spouse">- - <%= link_to 'Complete My Profile', edit_user_registration_path, class: "color-spouse" %> - -</h2>
 <% end %>
