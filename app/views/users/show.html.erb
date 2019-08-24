@@ -48,18 +48,21 @@
 
 
 <!-- BLOGS BY USER IF NOT OWN PAGE -->
-<% if current_user && current_user.id != @user.id %>
+<% if !current_user || ( current_user && current_user.id != @user.id) %>
   <div class="half-buffer"></div>
   <%= render "layouts/quadborder" %>
   <div class="half-buffer"></div>
 
   <div class="container">
-    <h2>Articles by <%= @user.first_name %></h2>
-    <ul>
-      <% Blog.where(user_id: @user.id).each do |blog| %>
-        <li><%= link_to blog.title, blog_path(blog) %></li>
-      <% end %>
-    </ul>
+    <% blogsbyuser = Blog.where(user_id: @user.id) %>
+    <% if blogsbyuser.count != 0 %>
+      <h2>Articles by <%= @user.first_name %></h2>
+      <ul>
+        <% blogsbyuser.each do |blog| %>
+          <li><%= link_to blog.title, blog_path(blog) %></li>
+        <% end %>
+      </ul>
+    <% end %>
   </div> <!-- container -->
 <% end %>
 
