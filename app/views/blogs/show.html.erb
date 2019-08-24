@@ -14,6 +14,8 @@
     <meta property="og:image" content="<%= rails_blob_url(@blog.image) if @blog.image.attached? %>" />
     <% if @blog.published_on %><meta property="article:published_time" content="<%= @blog.published_on.strftime('%FT%T') %>" /><% end %>
     <meta property="article:author" content="<%= @blog.user.first_name %> <%= @blog.user.last_name %>" />
+    &nbsp;&nbsp|&nbsp;&nbsp
+    <span class="disqus-comment-count" data-disqus-identifier="<%= blog.id %>" data-disqus-url="<%= polymorphic_url(blog) %>">See Comments</span>
   <% end %>
 <!-- page-specific content -->
 
