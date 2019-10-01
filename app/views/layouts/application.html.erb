@@ -57,6 +57,8 @@
       <script src="https://js.braintreegateway.com/web/dropin/1.16.0/js/dropin.min.js"></script>
       <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 
+      <!-- rss feed -->
+      <%= auto_discovery_link_tag :rss, blogs_url(:format => :rss) %>
   </head>
 
   <body class="hidden-sn white-skin">

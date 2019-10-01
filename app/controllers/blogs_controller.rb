@@ -18,6 +18,10 @@ class BlogsController < ApplicationController
     end
     @unpublished = Blog.where(published: false)
     @tags = Blog.tag_counts_on(:tags)
+    respond_to do |format|
+      format.html
+      format.rss { render :layout => false }
+    end
   end
 
 
