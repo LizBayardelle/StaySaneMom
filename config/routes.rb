@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :resources
   resources :planner_customs
   resources :purchases
   root 'home#index'

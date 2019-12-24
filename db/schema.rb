@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_184725) do
+ActiveRecord::Schema.define(version: 2019_12_24_193950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -306,6 +306,35 @@ ActiveRecord::Schema.define(version: 2019_06_17_184725) do
     t.datetime "updated_at", null: false
     t.string "email"
     t.index ["basket_id"], name: "index_purchases_on_basket_id"
+  end
+
+  create_table "resource_categorizations", force: :cascade do |t|
+    t.bigint "resource_id"
+    t.bigint "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_id"], name: "index_resource_categorizations_on_resource_id"
+    t.index ["subcategory_id"], name: "index_resource_categorizations_on_subcategory_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.string "teaser"
+    t.string "freebie_type"
+    t.text "freebie_description"
+    t.string "cta"
+    t.string "convertkit_href"
+    t.boolean "link_instead", default: false
+    t.string "link_url"
+    t.boolean "house", default: false
+    t.boolean "spouse", default: false
+    t.boolean "kids", default: false
+    t.boolean "self", default: false
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -1747,6 +1776,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_184725) do
   add_foreign_key "planner_customs", "purchases"
   add_foreign_key "planner_customs", "users"
   add_foreign_key "purchases", "baskets"
+  add_foreign_key "resources", "users"
   add_foreign_key "responses", "comments"
   add_foreign_key "responses", "users"
   add_foreign_key "solidus_paypal_braintree_sources", "spree_payment_methods", column: "payment_method_id"

@@ -8,6 +8,10 @@ class ContributionsController < ApplicationController
   def index
     @contributions = Contribution.all
     @blogs = Blog.all
+    @wip_blogs = Blog.where.not(user_id: 1).where(submitted: false)
+    @submitted_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: false)
+    @approved_blogs = Blog.where.not(user_id: 1).where(submitted: false, approved: true)
+    @published_blogs = Blog.where.not(user_id: 1).where(published: true)
   end
 
   # GET /contributions/1

@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Resources</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Teaser</th>
+      <th>Freebie type</th>
+      <th>Freebie description</th>
+      <th>Cta</th>
+      <th>Convertkit href</th>
+      <th>Link instead</th>
+      <th>Link url</th>
+      <th>House</th>
+      <th>Spouse</th>
+      <th>Kids</th>
+      <th>Self</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.user %></td>
+        <td><%= resource.title %></td>
+        <td><%= resource.teaser %></td>
+        <td><%= resource.freebie_type %></td>
+        <td><%= resource.freebie_description %></td>
+        <td><%= resource.cta %></td>
+        <td><%= resource.convertkit_href %></td>
+        <td><%= resource.link_instead %></td>
+        <td><%= resource.link_url %></td>
+        <td><%= resource.house %></td>
+        <td><%= resource.spouse %></td>
+        <td><%= resource.kids %></td>
+        <td><%= resource.self %></td>
+        <td><%= resource.active %></td>
+        <td><%= link_to 'Show', resource %></td>
+        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resource', new_resource_path %>

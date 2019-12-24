@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  title: MyString
+  teaser: MyString
+  freebie_type: MyString
+  freebie_description: MyText
+  cta: MyString
+  convertkit_href: MyString
+  category: MyString
+  link_instead: false
+  link_url: MyString
+  house: false
+  spouse: false
+  kids: false
+  self: false
+  active: false
+
+two:
+  user: two
+  title: MyString
+  teaser: MyString
+  freebie_type: MyString
+  freebie_description: MyText
+  cta: MyString
+  convertkit_href: MyString
+  category: MyString
+  link_instead: false
+  link_url: MyString
+  house: false
+  spouse: false
+  kids: false
+  self: false
+  active: false
