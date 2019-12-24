@@ -81,6 +81,7 @@
   <h2 class="text-center font-script color-spouse">Current Guest Posts</h2>
 
   <h3>WIP Guest Posts</h3>
+  <% @wip_blogs = Blog.where.not(user_id: 1).where(submitted: false) %>
   <% if @wip_blogs.count != 0 %>
     <ul>
       <% @wip_blogs.each do |blog| %>
@@ -92,6 +93,7 @@
   <% end %>
 
   <h3>Submitted Guest Posts</h3>
+  <% @submitted_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: false, published: false) %>
   <% if @submitted_blogs.count != 0 %>
     <ul>
       <% @submitted_blogs.each do |blog| %>
@@ -103,6 +105,7 @@
   <% end %>
 
   <h3>Approved Guest Posts</h3>
+  <% @approved_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: true, published: false) %>
   <% if @approved_blogs.count != 0 %>
     <ul>
       <% @approved_blogs.each do |blog| %>
@@ -114,6 +117,7 @@
   <% end %>
 
   <h3>Published Guest Posts</h3>
+  <% @published_blogs = Blog.where.not(user_id: 1).where(published: true) %>
   <% if @published_blogs.count != 0 %>
     <ul>
       <% @published_blogs.each do |blog| %>
