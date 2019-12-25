@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :purchases
   root 'home#index'
 
+  get 'admin/resources'
+  
   resources :meals
   post "meals/:id/favorite" => "meals#favorite", as: "favorite_meal"
   post "meals/:id/unfavorite" => "meals#unfavorite", as: "unfavorite_meal"

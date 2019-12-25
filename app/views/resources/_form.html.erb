@@ -3,24 +3,66 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.association :user %>
+  <div class="form-inputs h2-pink">
+    <h2>Freebie Info</h2>
     <%= f.input :title %>
     <%= f.input :teaser %>
-    <%= f.input :freebie_type %>
+    <%= f.input :freebie_type, placeholder: "e.g. 'Downloadable PDF' or 'Spreadsheet Template'", required: true %>
     <%= f.input :freebie_description %>
-    <%= f.input :cta %>
-    <%= f.input :convertkit_href %>
-    <%= f.input :link_instead %>
-    <%= f.input :link_url %>
-    <%= f.input :house %>
-    <%= f.input :spouse %>
-    <%= f.input :kids %>
-    <%= f.input :self %>
-    <%= f.input :active %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <%= f.input :house %>
+      </div> <!-- col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <%= f.input :spouse %>
+      </div> <!-- col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <%= f.input :kids %>
+      </div> <!-- col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <%= f.input :self %>
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+    <h2>CTAs and Landing Pages</h2>
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <%= f.input :cta %>
+      </div> <!-- col -->
+
+      <div class="col-12 col-sm-6">
+        <%= f.input :convertkit_href %>
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <%= f.input :link_instead %>
+      </div> <!-- col -->
+
+      <div class="col-12 col-sm-6">
+        <label>Sample Image</label><br>
+        <%= f.file_field :sample %>
+      </div> <!-- col-12 -->
+
+      <div class="col-12">
+        <div class="md-form">
+          <%= f.text_field :link_url, id: "link-url", class: "form-control" %>
+          <label for="link-url">Resource URL</label>
+        </div> <!-- md form -->
+      </div> <!-- col -->
+
+      <div class="col-12 col-sm-6">
+        <label>Attachment</label><br>
+        <%= f.file_field :document %>
+      </div> <!-- col-12 -->
+    </div> <!-- row -->
+
+    <h2>Active Resource</h2>
+    <%= f.input :active %>
+
+  </div> <!-- form-fields -->
+
+  <div class="form-actions text-center py-3">
+    <%= f.submit "Create Resource", class: "btn btn-outline-danger" %>
   </div>
 <% end %>

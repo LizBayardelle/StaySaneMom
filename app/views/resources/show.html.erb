@@ -1,74 +1,60 @@
-<p id="notice"><%= notice %></p>
+<main class="py-5 container">
+  <header class="text-center">
 
-<p>
-  <strong>User:</strong>
-  <%= @resource.user %>
-</p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @resource.title %>
-</p>
+    <% if current_user && current_user.admin %>
+      <p>
+        <%= link_to 'Edit Resource', edit_resource_path(@resource) %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Resource Manager', admin_resources_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Resources Page', resources_path %>
+      </p>
+    <% end %>
 
-<p>
-  <strong>Teaser:</strong>
-  <%= @resource.teaser %>
-</p>
 
-<p>
-  <strong>Freebie type:</strong>
-  <%= @resource.freebie_type %>
-</p>
+    <h1 class="mb-0"><%= @resource.title %></h1>
+    <h3 class="mb-0">(<%= @resource.freebie_type %>)</h3>
 
-<p>
-  <strong>Freebie description:</strong>
-  <%= @resource.freebie_description %>
-</p>
 
-<p>
-  <strong>Cta:</strong>
-  <%= @resource.cta %>
-</p>
 
-<p>
-  <strong>Convertkit href:</strong>
-  <%= @resource.convertkit_href %>
-</p>
+    <p><em>
+      Created by <%= @resource.user.full_name %>
+      <% if current_user && current_user.admin %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <% if @resource.active %>Active<% else %>Inactive<% end %>
+      <% end %>
+    </em></p>
 
-<p>
-  <strong>Link instead:</strong>
-  <%= @resource.link_instead %>
-</p>
 
-<p>
-  <strong>Link url:</strong>
-  <%= @resource.link_url %>
-</p>
+    <img src="<%= rails_blob_path(@resource.sample) %>" class="thumbnail mt-2 mb-4 z-depth-3" alt="Sample <%= @resource.title %> Image" style="max-height: 200px">
 
-<p>
-  <strong>House:</strong>
-  <%= @resource.house %>
-</p>
 
-<p>
-  <strong>Spouse:</strong>
-  <%= @resource.spouse %>
-</p>
+    <% if @resource.house %>
+      <h3 class="font-weight-bold">Helps with Your <span class="font-script color-house" style="font-size: 40px">House</span></h3>
+    <% end %>
+    <% if @resource.spouse %>
+      <h3 class="font-weight-bold">Helps with Your <span class="font-script color-spouse" style="font-size: 40px">Spouse</span></h3>
+    <% end %>
+    <% if @resource.kids %>
+      <h3 class="font-weight-bold">Helps with Your <span class="font-script color-kids" style="font-size: 40px">Kids</span></h3>
+    <% end %>
+    <% if @resource.self %>
+      <h3 class="font-weight-bold">Helps with Your <span class="font-script color-self" style="font-size: 40px">Self</span></h3>
+    <% end %>
 
-<p>
-  <strong>Kids:</strong>
-  <%= @resource.kids %>
-</p>
 
-<p>
-  <strong>Self:</strong>
-  <%= @resource.self %>
-</p>
+    <p class=""><%= @resource.freebie_description %></p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @resource.active %>
-</p>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+    <% if !@resource.link_instead && @resource.document.present? %>
+      <a href="<%= rails_blob_path(@resource.document) %>" class="btn btn-outline-danger btn-md" target="_blank">Download the <%= @resource.freebie_type %></a>
+    <% else %>
+      <a href="<%= @resource.link_url %>" class="btn btn-outline-danger btn-md" target="_blank">Get the <%= @resource.freebie_type %>></a>
+    <% end %>
+
+
+
+
+  </header>
+</main>

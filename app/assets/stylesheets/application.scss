@@ -56,14 +56,6 @@ $font-serif:  'EB Garamond', serif;
 $font-script: 'PlaylistScript', 'Arizonia', cursive;
 $font-script-caps: 'PlaylistCaps', sans-serif;
 
-.font-sans { font-family: $font-sans }
-.font-serif { font-family: $font-serif }
-.font-script { font-family: $font-script }
-.font-bold { font-weight: 700 }
-
-h1.font-script { font-size: 70px }
-h2.font-script { font-size: 50px }
-
 $color-house: #fe5454 !important; // #84C99A;
 $color-spouse: #fd1270 !important; // #526887;
 $color-kids: #c002a7 !important; // #EFB0A1;
@@ -79,6 +71,16 @@ $transparent-self: rgba(108, 12, 157, 0.3);
 $transparent-neutral: rgba(96, 96, 96, 0.3);
 $transparent-white: rgba(255, 255, 255, 0.3);
 $transparent-whiteish: rgba(210, 210, 210, 0.4);
+
+
+.font-sans { font-family: $font-sans }
+.font-serif { font-family: $font-serif }
+.font-script { font-family: $font-script }
+.font-bold { font-weight: 700 }
+
+h1.font-script { font-size: 70px }
+h2.font-script { font-size: 50px }
+.h2-pink h2 { color: $color-spouse; border-bottom: solid thin $color-spouse; margin-bottom: 15px; margin-top: 30px; }
 
 .color-white, .color-white * { color: #FFFFFF !important; }
 .color-house { color: $color-house; }
@@ -132,7 +134,15 @@ a.color-self:hover { color: $color-self; }
   }
 }
 
+.thumbnail {
+  height: 250px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
 
+.thumbnail-sm {
+  height: 150px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
 
 .nav-breadcrumb {
    margin-top: -35px;

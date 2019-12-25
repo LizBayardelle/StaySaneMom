@@ -1,0 +1,53 @@
+<main class="container-fluid p-5">
+
+  <header class="text-center">
+    <h1>Lead Magnets</h1>
+    <%= link_to 'Create a New Resource', new_resource_path, class: "btn btn-outline-danger" %>
+  </header>
+
+  <section>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Resource</th>
+            <th scope="col">Format</th>
+            <th scope="col">Active</th>
+            <th scope="col" colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @resources.each do |resource| %>
+            <tr>
+              <td>
+                <%= link_to resource do %>
+                  <img src="<%= rails_blob_path(resource.sample) %>" class="z-depth-3" style="max-height: 40px">
+                <% end %>
+              </td>
+              <td>
+                <% if resource.house %>
+                  <% category = "house" %>
+                <% elsif resource.spouse %>
+                  <% category = "spouse" %>
+                <% elsif resource.kids %>
+                  <% category = "kids" %>
+                <% elsif resource.self %>
+                  <% category = "self" %>
+                <% end %>
+                <%= link_to resource.title, resource, class: "color-#{category}" %>
+                <br><%= resource.freebie_type %> by <%= resource.user.full_name %>
+              </td>
+              <td><% if !resource.link_instead %>Download<% else %>Link<% end %></td>
+              <td><% if resource.active %><i class="fas fa-check"></i><% end %></td>
+              <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+              <td><%= link_to 'Delete', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>

@@ -15,4 +15,8 @@ class User < ApplicationRecord
   has_many :capsules
   has_many :capsule_items
   has_many :meals
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

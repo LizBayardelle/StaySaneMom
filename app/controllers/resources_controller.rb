@@ -1,30 +1,39 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
-  # GET /resources
-  # GET /resources.json
+
+
   def index
-    @resources = Resource.all
+    @resources = Resource.where(active: true)
+    @house = Resource.where(active: true, house: true)
+    @spouse = Resource.where(active: true, spouse: true)
+    @kids = Resource.where(active: true, kids: true)
+    @self = Resource.where(active: true, self: true)
   end
 
-  # GET /resources/1
-  # GET /resources/1.json
+
+
   def show
   end
 
-  # GET /resources/new
+
+
   def new
     @resource = Resource.new
   end
 
-  # GET /resources/1/edit
+
+
   def edit
   end
 
-  # POST /resources
-  # POST /resources.json
+
+
   def create
     @resource = Resource.new(resource_params)
+    @resource.user_id = current_user.id
+    @resource.document.attach(params[:resource][:document])
+    @resource.sample.attach(params[:resource][:sample])
 
     respond_to do |format|
       if @resource.save
@@ -37,8 +46,8 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /resources/1
-  # PATCH/PUT /resources/1.json
+
+
   def update
     respond_to do |format|
       if @resource.update(resource_params)
@@ -51,8 +60,8 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # DELETE /resources/1
-  # DELETE /resources/1.json
+
+
   def destroy
     @resource.destroy
     respond_to do |format|
@@ -83,7 +92,9 @@ class ResourcesController < ApplicationController
         :spouse,
         :kids,
         :self,
-        :active
+        :active,
+        :sample,
+        :document
       )
     end
 end
