@@ -221,6 +221,8 @@ class BlogsController < ApplicationController
                   :comments_count,
                   :approved,
                   :submitted,
-                  :tag_list)
+                  :tag_list,
+                  :resource_id
+                )
   end
 end

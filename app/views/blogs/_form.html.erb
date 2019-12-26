@@ -158,7 +158,18 @@
   <div class="container">
     <div class="half-buffer"></div>
     <h2 class="text-center">Freebie Info</h2>
+    <h3 class="text-center mt-5">Associated Resource</h3>
+    <% resource_collection = [] %>
+    <% Resource.where(active: true).each do |lm| %>
+      <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
+    <% end %>
+    <div class="row text-left">
+      <div class="form-group col-12">
+        <%= f.input :resource_id, label: false, prompt: "Choose an Associated Resource", input_html: { class: 'browser-default' }, collection: resource_collection, required: true %>
+      </div>
+    </div> <!-- row -->
 
+    <h3 class="text-center mt-5">Old Modele</h3>
     <div class="form-inputs">
       <div class="form-group">
         <%= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>

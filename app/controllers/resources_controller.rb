@@ -14,6 +14,10 @@ class ResourcesController < ApplicationController
 
 
   def show
+    @subcategories = []
+    @resource.subcategory_ids.each do |id|
+      @subcategories << Subcategory.find(id)
+    end
   end
 
 
@@ -94,7 +98,8 @@ class ResourcesController < ApplicationController
         :self,
         :active,
         :sample,
-        :document
+        :document,
+        subcategory_ids: [],
       )
     end
 end

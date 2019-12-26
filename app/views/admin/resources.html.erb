@@ -12,6 +12,7 @@
           <tr>
             <th scope="col">Image</th>
             <th scope="col">Resource</th>
+            <th scope="col">Category</th>
             <th scope="col">Format</th>
             <th scope="col">Active</th>
             <th scope="col" colspan="2"></th>
@@ -39,6 +40,7 @@
                 <%= link_to resource.title, resource, class: "color-#{category}" %>
                 <br><%= resource.freebie_type %> by <%= resource.user.full_name %>
               </td>
+              <td><%= link_to category.capitalize, resource, class: "color-#{category}" %></td>
               <td><% if !resource.link_instead %>Download<% else %>Link<% end %></td>
               <td><% if resource.active %><i class="fas fa-check"></i><% end %></td>
               <td><%= link_to 'Edit', edit_resource_path(resource) %></td>

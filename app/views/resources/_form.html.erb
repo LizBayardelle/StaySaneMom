@@ -25,6 +25,18 @@
       </div> <!-- col -->
     </div> <!-- row -->
 
+    <h2>Subcategories:</h2>
+    <div class="row text-left mb-5">
+
+      <% Subcategory.all.each do |sub| %>
+        <div class="form-check col-sm-6 col-md-4 subCheck">
+            <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
+            <label class="form-check-label font-weight-bold color-<%= sub.category.downcase %>" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
+        </div>
+      <% end %>
+
+    </div> <!-- row -->
+
     <h2>CTAs and Landing Pages</h2>
     <div class="row">
       <div class="col-12 col-sm-6">
@@ -63,6 +75,6 @@
   </div> <!-- form-fields -->
 
   <div class="form-actions text-center py-3">
-    <%= f.submit "Create Resource", class: "btn btn-outline-danger" %>
+    <%= f.submit "All Done", class: "btn btn-outline-danger" %>
   </div>
 <% end %>

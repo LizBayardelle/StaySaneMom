@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_193950) do
+ActiveRecord::Schema.define(version: 2019_12_26_013418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,9 +99,11 @@ ActiveRecord::Schema.define(version: 2019_12_24_193950) do
     t.boolean "photo_external", default: false
     t.boolean "featured_home", default: false
     t.boolean "featured_category", default: false
+    t.bigint "resource_id"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
+    t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
     t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
@@ -1762,6 +1764,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_193950) do
   add_foreign_key "basket_items", "baskets"
   add_foreign_key "basket_items", "variations"
   add_foreign_key "baskets", "basket_statuses"
+  add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "users"
   add_foreign_key "capsule_items", "capsules"
   add_foreign_key "capsule_items", "users"
