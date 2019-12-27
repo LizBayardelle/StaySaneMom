@@ -1,4 +1,4 @@
-<!-- page-specific content -->
+<div id="blog" class="<%= @blog.category.downcase %>"<!-- page-specific content -->
   <% title @blog.title %>
   <%= content_for :head do %>
     <meta name="description" content="<%= @blog.teaser %>" />
@@ -102,14 +102,14 @@
         <% end %>
         &nbsp; | &nbsp;
         <% if @blog.user.admin %>
-          <i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+          <i class="fas fa-glasses color-<%= @blog.category.downcase %>"></i> &nbsp;Stay Sane Mom Founder
         <% elsif @blog.user.contributor %>
-          <i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+          <i class="fas fa-keyboard color-<%= @blog.category.downcase %>"></i> &nbsp;Stay Sane Mom Contributor
         <% end %></strong>
         &nbsp;&nbsp|&nbsp;&nbsp
         <a href="#comments"><span class="disqus-comment-count" data-disqus-identifier="<%= @blog.id %>" data-disqus-url="<%= polymorphic_url(@blog) %>">See Comments</span></a>
         <br />
-        <% if @blog.published_on %>Published <% if @subcategory %>in <span class="color-spouse boldest"><%= @blog.category %></span>, <span class="color-spouse boldest"><%= @subcategory.name %></span><% end %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
+        <% if @blog.published_on %>Published <% if @subcategory %>in <span class="color-<%= @blog.category.downcase %> boldest"><%= @blog.category %></span>, <span class="color-<%= @blog.category.downcase %> boldest"><%= @subcategory.name %></span><% end %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
       </p>
   </div> <!-- container -->
 
@@ -152,22 +152,25 @@
     </div> <!-- centered -->
   <% end %>
 
-  <% if @blog.freebie_type != "None" %>
+  <% if @blog.resource_id %>
     <div class="bg-neutral">
       <div class="container text-center">
 
         <div class="half-buffer"></div>
+        <% resource = Resource.find(@blog.resource_id) %>
 
         <h4 class="text-center">Want to cut to the chase?</h4>
-        <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
+        <h2 class="font-script color-<%= @blog.category.downcase %>"><%= resource.title %></h2>
+        <img src="<%= rails_blob_path(resource.sample) %>" class="z-depth-3 mt-1 mb-4" style="max-height: 150px">
+        <h2 class="text-center">Get My <span class="font-weight-bold"><%= resource.freebie_type %></span>&nbsp;Now</h2>
         <% if current_user %>
-          <% if @blog.freebie_type == "File" %>
-            <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-danger font-bold" do %><%= @blog.freebie_description %><% end %>
+          <% if !resource.link_instead %>
+            <%= link_to resource_path(resource), target: "_blank", class: "btn btn-outline-danger font-bold" do %><%= resource.cta %><% end %>
           <% else %>
-            <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-danger font-bold"><%= @blog.freebie_description %></a>
+            <a href="<%= resource.link_url %>" target="_blank" class="btn btn-outline-danger font-bold"><%= resource.cta %></a>
           <% end %>
         <% else %>
-          <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-danger font-bold cta-top">Download Now</a>
+          <a href="<%= resource.convertkit_href %>" class="btn btn-outline-danger font-bold cta-top">Download Now</a>
           <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
 
@@ -222,17 +225,20 @@
         <div class="half-buffer"></div>
 
         <h4 class="text-center">Start Your Next Step</h4>
-        <h2 class="text-center"><%= @blog.cta_pdf %> Now</h2>
+        <h2 class="font-script color-<%= @blog.category.downcase %>"><%= resource.title %></h2>
+        <img src="<%= rails_blob_path(resource.sample) %>" class="z-depth-3 mt-1 mb-4" style="max-height: 150px">
+        <h2 class="text-center">Get My <span class="font-weight-bold"><%= resource.freebie_type %></span>&nbsp;Now</h2>
         <% if current_user %>
-        <% if @blog.freebie_type == "File" %>
-        <%= link_to asset_path(@blog.freebie_filename, skip_pipeline: true), target: "_blank", class: "btn btn-outline-danger font-bold" do %><%= @blog.freebie_description %><% end %>
+          <% if !resource.link_instead %>
+            <%= link_to resource_path(resource), target: "_blank", class: "btn btn-outline-danger font-bold" do %><%= resource.cta %><% end %>
+          <% else %>
+            <a href="<%= resource.link_url %>" target="_blank" class="btn btn-outline-danger font-bold"><%= resource.cta %></a>
+          <% end %>
         <% else %>
-        <a href="<%= @blog.freebie_filename %>" target="_blank" class="btn btn-outline-danger font-bold"><%= @blog.freebie_description %></a>
+          <a href="<%= resource.convertkit_href %>" class="btn btn-outline-danger font-bold cta-top">Download Now</a>
+          <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
         <% end %>
-        <% else %>
-        <a href="<%= @blog.convertkit_href %>" class="btn btn-outline-danger font-bold cta-bottom">Download Now</a>
-        <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
-        <% end %>
+
 
         <div class="half-buffer"></div>
 
@@ -290,25 +296,25 @@
         </div> <!-- container -->
       </div> <!-- bg row -->
 
-<% if @blog.published != false %>
+  <% if @blog.published != false %>
 
-  <div class="container" id="comments"> <!-- comments container -->
-    <div class="half-buffer"></div>
-    <h2 class="text-center font-script">Give Your Two Cents!</h2>
+    <div class="container" id="comments"> <!-- comments container -->
+      <div class="half-buffer"></div>
+      <h2 class="text-center font-script">Give Your Two Cents!</h2>
 
-    <div id="disqus_thread"></div>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-<% end %> <!-- end skip if unpublished -->
+  <% end %> <!-- end skip if unpublished -->
 
-    <div class="buffer"></div>
+      <div class="buffer"></div>
 
-  </div> <!-- page container -->
+    </div> <!-- page container -->
 
-  <%= render partial: "layouts/biobox", locals: { user: @blog.user, header: "About the Author" } %>
+    <%= render partial: "layouts/biobox", locals: { user: @blog.user, header: "About the Author" } %>
 
-</div> <!-- row -->
-
+  </div> <!-- row -->
+</main>
 
 
 <%= content_for :additional_js do %>

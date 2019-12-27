@@ -70,34 +70,12 @@
     <div class=""><%= image_tag "default-image.png", class: "pin-only" %></div>
     <div class="non-footer">
 
-<!--- navbar stuff here -->
-<%= render "layouts/navbar" %>
+    <%= render "layouts/navbar" %>
+    <%= render "layouts/notifications" %>
 
-<!-- flash notice area -->
-  <div class="flash-notice-area">
-    <% if flash[:notice] %>
-      <div class="alert alert-success" style="margin-top: 40px; margin-bottom: -40px">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:notice] %>
-      </div>
-    <% elsif flash.now[:alert] %>
-      <div class="alert alert-danger" style="margin-top: 40px; margin-bottom: -40px">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash.now[:alert] %>
-      </div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-warning" style="margin-top: 40px; margin-bottom: -40px">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-  </div>
-<!-- flash notice area -->
-<!--- END navbar stuff here -->
-
-<div class="buffer"></div>
-<%#= "Page Title: " + @page_title.to_s %>
-<div class="half-buffer"></div>
+    <div class="buffer"></div>
+    <%#= "Page Title: " + @page_title.to_s %>
+    <div class="half-buffer"></div>
 
 
 <!--- good from here down -->
@@ -154,6 +132,9 @@
 
 
     <%= render "layouts/scripts" %>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <%= javascript_include_tag 'mdb_framework'%>
+
 
     <%= yield :additional_js_partial %>
     <%= yield :additional_js %>

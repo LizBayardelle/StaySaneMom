@@ -59,22 +59,26 @@
   <div class="container padded resource-stripe">
     <h2 class="text-center font-script">Free Household Resources</h2>
     <% if current_user %>
-      <% @subcategories.each do |subcategory| %>
-        <% if Blog.where(subcategory_id: subcategory.id) != [] %>
-          <h3><%= link_to subcategory.name, subcategory_path(subcategory) %></h3>
-          <% alreadyArray = [] %>
-          <% Blog.where(subcategory_id: subcategory.id).each do |blog| %>
-            <% if !alreadyArray.include? blog.freebie_filename %>
-              <% if blog.freebie_type == "File" %>
-                  <%= link_to asset_path(blog.freebie_filename, skip_pipeline: true), target: "_blank" do %><%= blog.freebie_description %><% end %><br />
-              <% elsif blog.freebie_type == "Link" %>
-                <a href="<%= blog.freebie_filename %>" target="_blank"><%= blog.freebie_description %></a><br />
-              <% end %> <!-- if else -->
-              <% alreadyArray << blog.freebie_filename %>
-            <% end %> <!-- unless already -->
-          <% end %> <!-- blog do -->
-        <% end %> <!-- if blog with subcategory exists -->
+
+      <% Subcategory.where(category: "House").each do |subcategory| %>
+        <h3><%= subcategory.name %></h3>
+
+        <% Resource.where(active: true).each do |resource| %>
+          <% resources_list = [] %>
+          <% if resource.subcategory_ids.include? subcategory.id %>
+            <% resources_list << resource %>
+          <% end %> <!-- if include -->
+
+          <% resources_list.each do |resource| %>
+            <% if !resource.link_instead %>
+                <%= link_to asset_path(resource.document, skip_pipeline: true), target: "_blank" do %><%= resource.title %><% end %><br />
+            <% else %>
+              <a href="<%= resource.url %>" target="_blank"><%= resource.title %></a><br />
+            <% end %> <!-- if else -->
+          <% end %> <!-- resource each -->
+        <% end %> <!-- resource each -->
       <% end %> <!-- subcategories each -->
+
     <% else %>
       <h5 class="text-center">Create a free account for access to the free resource library.</h5>
       <div class="text-center padded">

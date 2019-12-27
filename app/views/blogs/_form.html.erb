@@ -158,7 +158,6 @@
   <div class="container">
     <div class="half-buffer"></div>
     <h2 class="text-center">Freebie Info</h2>
-    <h3 class="text-center mt-5">Associated Resource</h3>
     <% resource_collection = [] %>
     <% Resource.where(active: true).each do |lm| %>
       <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
@@ -169,20 +168,21 @@
       </div>
     </div> <!-- row -->
 
-    <h3 class="text-center mt-5">Old Modele</h3>
+    <!-- <h3 class="text-center mt-5">Old Model</h3>
     <div class="form-inputs">
       <div class="form-group">
-        <%= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
-        <%= f.text_field :freebie_filename, class: "form-control" %>
+        <%#= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
+        <%#= f.text_field :freebie_filename, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label "Freebie Title (Plaintext)" %>
-        <%= f.text_field :freebie_description, class: "form-control" %>
+        <%#= f.label "Freebie Title (Plaintext)" %>
+        <%#= f.text_field :freebie_description, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.input :freebie_type, input_html: {class: 'browser-default'}, collection: [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
+        <%#= f.input :freebie_type, input_html: {class: 'browser-default'}, collection: [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
       </div>
-    </div> <!-- form inputs -->
+    </div> -->
+
   </div> <!-- container -->
 <% end %> <!-- if admin -->
 

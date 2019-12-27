@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show]
+  before_action :admin_only, only: [:create, :update, :edit, :new]
 
 
   def index
@@ -73,6 +74,14 @@ class ResourcesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def admin_only
+    unless current_user && current_user.admin
+      redirect_to root_path, notice: 'Sorry, you have to be an admin to do that!'
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
