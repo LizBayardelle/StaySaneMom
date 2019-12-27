@@ -44,7 +44,7 @@
           <% if !resource.link_instead %>
               <%= link_to asset_path(resource.document, skip_pipeline: true), target: "_blank" do %><%= resource.title %><% end %><br />
           <% else %>
-            <a href="<%= resource.url %>" target="_blank"><%= resource.title %></a><br />
+            <a href="<%= resource.link_url %>" target="_blank"><%= resource.title %></a><br />
           <% end %> <!-- if else -->
         <% end %>
       <% else %>
