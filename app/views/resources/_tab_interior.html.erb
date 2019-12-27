@@ -9,7 +9,7 @@
           <% if current_user && current_user.admin %>
             <p class="mb-0">
               <%= link_to 'Edit', edit_resource_path(resource) %> |
-              <%= link_to 'Delete', resource, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Delete', resource_path(resource), method: :delete, data: { confirm: 'Are you sure?' } %>
             </p>
           <% end %>
           <img src="<%= rails_blob_path(resource.sample) %>" class="thumbnail-sm mt-2" alt="Sample project sample">
@@ -27,7 +27,7 @@
             </p>
           </div> <!-- card text -->
           <div class="text-center">
-              <%= link_to "Get it Now", resource, class: "btn btn-outline-danger btn-md" %>
+              <%= link_to "Get it Now", resource_path(resource), class: "btn btn-outline-danger btn-md" %>
           </div> <!-- center -->
         </div> <!-- card body -->
       </div> <!-- Grid column -->

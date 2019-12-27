@@ -38,11 +38,11 @@
                 <% elsif resource.self %>
                   <% category = "self" %>
                 <% end %>
-                <%= link_to resource.title, resource, class: "color-#{category}" %>
+                <%= link_to resource.title, resource_path(resource), class: "color-#{category}" %>
                 <br><%= resource.freebie_type %> by <%= resource.user.full_name %>
               </td>
               <td>
-                <%= link_to category.capitalize, resource, class: "color-#{category}" %>
+                <%= link_to category.capitalize, resource_path(resource), class: "color-#{category}" %>
                 <br>
                 <% subcategories = [] %>
                 <% resource.subcategory_ids.each do |sub| %>
@@ -73,7 +73,7 @@
               <td><% if !resource.link_instead %>Download<% else %>Link<% end %></td>
               <td><% if resource.active %><i class="fas fa-check"></i><% end %></td>
               <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-              <td><%= link_to 'Delete', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', resource_path(resource), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>
