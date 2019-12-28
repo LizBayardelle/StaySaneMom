@@ -33,7 +33,7 @@ class ContributionsController < ApplicationController
 
     respond_to do |format|
       if @contribution.save
-        NewGuestPostIdeaNotificationMailer.send_new_guest_post_idea_email(@contribution).deliver
+        GuestPostMailer.post_idea(@contribution).deliver
         format.html { redirect_to root_path, notice: 'Your idea has been sent!  Be prepared to hear from us within 48 hours!' }
         format.json { render :show, status: :created, location: @contribution }
       else

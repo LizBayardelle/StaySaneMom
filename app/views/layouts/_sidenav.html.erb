@@ -58,10 +58,11 @@
                 <li><%= link_to current_user.first_name + "'s Homepage", main_app.user_path(current_user), class: "waves-effect" %></li>
                 <li><%= link_to('Sign Out', main_app.destroy_user_session_path, :method => :delete, class: "waves-effect") %></li>
                 <% if current_user.admin %>
-                  <li><%= link_to "Blogs Manager", main_app.home_allblogs_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Resource Manager", main_app.admin_resources_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Contributions Manager", main_app.contributions_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Sales", main_app.purchases_path, class: "waves-effect" %></li>
+                <li><%= link_to "Sales", main_app.purchases_path, class: "waves-effect" %></li>
+                <li><%= link_to "Contributions Manager", main_app.contributions_path, class: "waves-effect" %></li>
+                <li><%= link_to "Resource Manager", main_app.admin_resources_path, class: "waves-effect" %></li>
+                <li><%= link_to "Subcategory Manager", main_app.subcategories_path, class: "waves-effect" %></li>                  
+                <li><%= link_to "Blogs Manager", main_app.home_allblogs_path, class: "waves-effect" %></li>
                 <% end %>
               <% else %>
                 <li><%= link_to "Log In", main_app.new_user_session_path, class: "waves-effect" %></li>

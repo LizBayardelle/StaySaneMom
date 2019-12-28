@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+    <h1 style="text-align: center">Guest Post Submitted</h1>
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-bottom: 25px" />
+    <p>
+      Yo slacker,
+    </p>
+    <p>
+      <%= @blog.user.full_name %> has submitted a guest post!
+    </p>
+
+    <p>
+      Head on over to <%= link_to "the website", contributions_url, style: "color: #fd1270; font-weight: 700; text-decoration: none" %> and get editing!  The fate of this blog rests in your humble hands.
+    </p>
+    <p>
+      Thanks,
+      <br>Lizbot
+    </p>
+    <p>
+      If you have any issues, feel free to email us at <a href="mailto:liz@theStaySaneMoms.com" style="color: #fd1270; font-weight: 700; text-decoration: none">liz@theStaySaneMoms.com</a>.
+    </p>
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-top: 25px" />
+    <img src="https://www.thestaysanemom.com/assets/logo-953e7d556c84ded94074ac2498d69f1bf23f84dc65bbcc199763171e86a308a5.png" style="width: 300px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+  </body>
+
+</html>

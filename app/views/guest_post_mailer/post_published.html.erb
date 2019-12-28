@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+    <h1 style="text-align: center">Congratulations!</h1>
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-bottom: 25px" />
+    <p>
+      Hi <%= @blog.user.first_name %>,
+    </p>
+    <p>
+      Congratulations!  Your <em><%= @blog.title %></em> post is now love on <em>The Stay Sane Mom</em>!
+    </p>
+
+    <p>
+      You can now see your post live <%= link_to "here", blogs_url(@blog), style: "color: #fd1270; font-weight: 700; text-decoration: none" %>!  Feel free to comment (and respond to comments), share, and brag to your heart's content!
+    </p>
+    <p>
+      Thank you so much for contributing to <em>The Stay Sane Mom</em>.  We love regular contributors, so keep in mind you still have access as a contributor.  If you want to guest post again. just follow the same process of creating a new blog (once you've logged in) and checking the submit button when you're done.  You can have as many drafts as you want and submit them whenever you think they're ready.
+    </p>
+    <p>
+      Hope to hear from you soon and congratulations again!
+    </p>
+    <p>
+      Thanks,
+      <br>Liz
+    </p>
+    <p>
+      P.S. If you were already notified about this post, feel free to ignore this email.  Sometimes notifications go out a second time if I'm making edits to posts that have already been published.
+    </p>
+    <p>
+      P.P.S. If you have any issues, feel free to email us at <a href="mailto:liz@theStaySaneMoms.com" style="color: #fd1270; font-weight: 700; text-decoration: none">liz@theStaySaneMoms.com</a>.
+    </p>
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-top: 25px" />
+    <img src="https://www.thestaysanemom.com/assets/logo-953e7d556c84ded94074ac2498d69f1bf23f84dc65bbcc199763171e86a308a5.png" style="width: 300px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+  </body>
+
+</html>

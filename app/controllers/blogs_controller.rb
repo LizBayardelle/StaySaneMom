@@ -66,11 +66,16 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+
         @blog.image.attach(params[:blog][:image])
-        @blog.comments_count = 0
         if pin_images
           @blog.pin_image.attach(pin_images)
         end
+
+        if @blog.user_id != 1 && @blog.submitted
+          GuestPostMailer.post_submitted(@blog).deliver
+        end
+
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
@@ -110,6 +115,15 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.update(blog_params)
+
+        if @blog.user_id != 1 && @blog.submitted
+          GuestPostMailer.post_submitted(@blog).deliver
+        end
+
+        if @blog.user_id != 1 && @blog.published
+          GuestPostMailer.post_published(@blog).deliver
+        end
+
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
       else
