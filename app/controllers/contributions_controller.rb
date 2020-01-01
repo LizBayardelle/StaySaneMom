@@ -2,6 +2,7 @@ class ContributionsController < ApplicationController
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :destroy]
   before_action :admin_only, only: [:index, :destroy]
+  invisible_captcha only: [:create, :update], honeypot: :subtitle
 
   # GET /contributions
   # GET /contributions.json
