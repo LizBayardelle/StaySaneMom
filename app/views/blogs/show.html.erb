@@ -152,12 +152,12 @@
     </div> <!-- centered -->
   <% end %>
 
-  <% if @blog.resource_id %>
+  <% if @blog.resource_id != nil %>
+    <% resource = Resource.find(@blog.resource_id) %>
     <div class="bg-neutral">
       <div class="container text-center">
 
         <div class="half-buffer"></div>
-        <% resource = Resource.find(@blog.resource_id) %>
 
         <h4 class="text-center">Want to cut to the chase?</h4>
         <h2 class="font-script color-<%= @blog.category.downcase %>"><%= resource.title %></h2>
@@ -217,6 +217,7 @@
 
 
 <!-- freebie -->
+<% if @blog.resource_id != nil %>
   <% if @blog.freebie_type != "None" %>
     <div class="half-buffer"></div>
     <div class="bg-neutral">
@@ -245,6 +246,7 @@
       </div> <!-- container -->
     </div> <!-- bg row -->
     <% end %>
+  <% end %>
 <!-- end freebie -->
 
 <div class="half-buffer"></div>
