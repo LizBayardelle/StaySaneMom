@@ -5,180 +5,176 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/stay-sane-mom.jpg)" role="img" aria-label="Overwhelmed mom acting like she's tearing her hair out."><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
 
-<div class="over-frame-text">
-  <div class="container">
-    <h1 class="color-black">Need more sanity?</h1>
-    <h4 class="text-center">We help you master your domain,<br .>so you can be more than just "mom".</h4>
-  </div> <!-- container -->
-  <div class="over-frame-bottom-row">
-    <div class="container">
-      <div class="text-center">
-        <div class="half-buffer"></div>
-          <a class="btn my-btn-outline-secondary hero-button" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/2d8e722187/31069c0b92">Your Support System Awaits</a>
-        <div class="buffer"></div>
-      </div> <!-- text center -->
+
+
+
+
+<main class="p-0">
+
+  <section id="hero-image">
+    <div class="header-frame frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/stay-sane-mom.jpg)" role="img" aria-label="Overwhelmed mom acting like she's tearing her hair out."><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
+
+    <div class="over-frame-text">
+      <div class="container text-center">
+        <h1 class="color-black">
+          Need more sanity?
+        </h1>
+        <h4>
+          Duh.  That's why you're here.
+        </h4>
+        <h4 class="text-center mb-5 mb-xl-2">
+          Take a quick quiz to figure out just what's making you feel like you're losing your marbles.
+        </h4>
+        <%= link_to "Take the Quiz", root_path, class: "mt-5 mt-xl-0 btn btn-spouse btn-lg" %>
+      </div> <!-- over-frame-text -->
+    </div> <!-- over-frame-text -->
+  </section>
+
+
+
+
+  <section id="as-seen-on" class="text-center row">
+    <div class="col-12">
+      <h2 class="pt-3">As Seen On</h2>
+    </div>
+    <div class="col-12 pt-2 pb-4">
+      <a href="http://www.scarymommy.com" rel="nofollow" title="Scary Mommy">
+        <img src="https://3a60h1vxk0ezoe7oqzr8fl8l-wpengine.netdna-ssl.com/wp-content/uploads/2015/08/SM_logo_transparent_PNG.jpg" alt="Scary Mommy" style="height: 35px; padding-bottom: 5px; display: inline-block;" />
+      </a>
+      <a href="https://filterfreeparents.com/author/elizabeth-bayardelle/" rel="nofollow" title="Filter Free parents">
+        <%= image_tag "FFPLogo.png", alt: "Filter Free Parents", style: "height: 40px; display: inline-block;" %>
+      </a>
+      <a href="https://www.sammichespsychmeds.com/how-i-survived-my-first-thousand-repetitions-of-baby-shark-7-rules-for-toddler-moms/" rel="nofollow" title="Sammiches & Psych Meds">
+        <%= image_tag "SPMLogo.png", alt: "Sammiches & Psych Meds", style: "height: 40px; margin-right: 30px; display: inline-block;" %>
+      </a>
+      <a href="https://www.imperfectlyperfectmama.com/author/liz-bayardelle/" rel="nofollow" title="Imperfectly Perfect Mama">
+        <%= image_tag "IPMLogo.svg", alt: "Imperfectly Perfect Mama", style: "height: 40px; padding-bottom: 5px; display: inline-block;" %>
+      </a>
+    </div> <!-- col -->
+  </section> <!-- as seen on -->
+
+
+  <hr class="w-25" />
+
+
+  <section id="how-we-help">
+    <div class="container-fluid px-5 pb-5">
+      <%= render partial: "home/services" %>
     </div> <!-- container -->
-  </div> <!-- over-frame-text -->
-</div> <!-- over-frame-text -->
-
-<div class="padded bg-solid-spouse">
-  <div class="container">
-    <h2 class="text-center boldest d-lg-none">New! Custom designed planners for&nbsp;your&nbsp;crazy&nbsp;life!</h2>
-    <div class="half-buffer d-none d-lg-block"></div>
-    <div class="row">
-      <div class="col-sm-3">
-        <%= image_tag "your-name-here-planner.png", style: "max-width: 100%;" %>
-      </div> <!-- small col -->
-      <div class="col-sm-9">
-        <h2 class="text-center boldest d-none d-lg-block">New! Custom designed planners for&nbsp;your&nbsp;crazy&nbsp;life!</h2>
-        <div class="half-buffer d-none d-lg-block"></div>
-        <h5>Can everything you do fit on the mundane pages of the average planner?</h5>
-        <h5>Me neither.</h5>
-        <h5>Get a planner that's designed 100% just for your specific brand of insanity.</h5>
-        <div class="half-buffer d-none d-lg-block"></div>
-        <h3 class="text-center d-none d-lg-block"><%= link_to "Design your custom planner now!", static_path(:planners), class: "boldest color-white" %></h3>
-      </div> <!-- small col -->
-    </div> <!-- row -->
-    <h3 class="text-center d-lg-none"><%= link_to "Design your custom planner now!", static_path(:planners), class: "boldest color-white" %></h3>
-  </div> <!-- container -->
-</div> <!-- stripe bg -->
+  </section>
 
 
-  <div class="container">
 
-    <div class="category-callouts">
-        <h2 class="text-center script-header">Get Help with Your...</h2>
 
+
+
+
+
+
+    <section id="about">
+      <div class="view jarallax text-center">
+        <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Backgrounds/pink-fabric.jpg" alt="">
+        <div class="mask rgba-black-slight">
+          <div class="container flex-center text-center">
+            <%= render partial: "home/about" %>
+          </div> <!-- container -->
+        </div> <!-- mask -->
+      </div> <!-- jarallax -->
+    </section>
+
+
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <h2 class="text-center">Most Popular Blogs</h2>
         <div class="row">
-            <div class="col-sm-6 col-lg-3"><div class="category-div border-house transparent-hover house">
-              <%= link_to home_house_path do %>
-                <div class="frame category-frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/keep-house-clean.jpg)"><div class=""></div></div>
-                <div class="text">
-                  <h3 class="color-house text-center">House</h3>
-                  <p>Let's face it, we all wish we could keep a cleaner house.  No one likes coming home to laundry mountain and a dust bunny brigade.</p>
-                  <p>Here you can learn how to keep the chaos at bay.</p>
-                </div> <!-- text -->
-                <h5 class="text-center"><%= link_to "Clean My House", home_house_path, class: "color-house" %></h5>
-              <% end %>
-            </div></div> <!-- category div / col div -->
-
-            <div class="col-sm-6 col-lg-3"><div class="category-div border-spouse transparent-hover spouse">
-              <%= link_to home_spouse_path do %>
-              <div class="frame category-frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/keep_marriage_healthy.jpg)"><div class=""></div></div>
-              <div class="text">
-                <h3 class="color-spouse text-center font-script">Spouse</h3>
-                <p>It's hard to pay attention to your marriage when jobs, chores, obligations, and all these tiny humans keep demanding things of us.</p>
-                <p>These tools should help you keep a healthy marriage in spite of everything else you have going on.</p>
-              </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Build My Marriage", home_spouse_path, class: "color-spouse" %></h5>
-              <% end %>
-            </div></div> <!-- category div / col div -->
-
-            <div class="col-sm-6 col-lg-3"><div class="category-div border-kids transparent-hover kids">
-              <%= link_to home_kids_path do %>
-              <div class="frame category-frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/raise_balanced_happy_kids.jpg)"><div class=""></div></div>
-              <div class="text">
-                <h3 class="color-kids text-center">Kids</h3>
-                <p>Kids. Progeny. Tiny bulldozers that terrorize your (previously-clean) house and leave nothing but mayhem in their wake.</p>
-                <p>Here are your resources to raise balanced, happy, well-rounded kids without driving yourself crazy.</p>
-              </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Raise Happy Kids", home_kids_path, class: "color-kids" %></h5>
-              <% end %>
-            </div></div> <!-- category div / col div -->
-
-            <div class="col-sm-6 col-lg-3 "><div class="category-div border-self transparent-hover neutral">
-              <%= link_to home_self_path do %>
-              <div class="frame category-frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/take-care-of-yourself.jpg)"><div class=""></div></div>
-              <div class="text">
-                <h3 class="color-self text-center">Self</h3>
-                <p>You wear many different hats throughout the course of the day. (Mom, chauffeur, executive assistant, chef, the list goes on...)  However, you are (believe it or not) also allowed to take care of yourself as a person.</p>
-                <p>This section is for you if you're having trouble remembering who you were before you were "Mom".</p>
-              </div> <!-- text -->
-              <h5 class="text-center"><%= link_to "Stay Sane", home_self_path, class: "color-self" %></h5>
-              <% end %>
-            </div></div> <!-- category div / col div -->
+          <% @featured_blogs.each do |blog| %>
+            <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+          <% end %>
         </div> <!-- row -->
-    </div> <!-- category callouts -->
-</div> <!-- container -->
+      </div> <!-- container -->
+    </section>
 
 
 
 
-<div class="about-me bg-neutral">
-  <div class="container" style="padding: 0px 0 20px 0">
-    <h2 class="text-center script-header" style="padding-top: 20px">About Me</h2>
-    <div class="row">
-      <div class="col-sm-4 text-center">
-        <%= image_tag "liz-bayardelle-stay-sane-mom.jpg", class: "rounded-image" %>
-      </div> <!-- col -->
-      <div class="col-sm-8" style="padding: 0 30px 0 30px">
-        <p>Hello there!  My name is Liz, but I also answer to "Hey Honey?", "Mom", or (more often) "Mom Mom Mom MAHM!".</p>
-        <p>I'm the wife to an amazing man and mom to a preteen stepdaughter (and Instagram aficionado), a sparkle-clad toddlernado, a baby boy (and professional raccoon noise impersonator), two large canine furkids, a bunny of unusual size, and (if I don't vacuum daily) a herd of dustbunnies. My alterego by night is a freelance digital consultant, workout nut, entrepreneur, writer, and avid bookworm.</p>
-        <h5><%= link_to "More About the Stay Sane Mom...", static_path(:AboutMe) %></h5>
-      </div> <!-- col -->
-    </div> <!-- row -->
-  </div> <!-- container -->
-</div> <!-- about me -->
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <h3 class="text-center pb-4">Popular Tools</h3>
+        <div class="row">
+          <%= render "layouts/tools/tasks" %>
+          <%= render "layouts/tools/recipes" %>
+          <%= render "layouts/tools/capsules" %>
+          <%= render "layouts/tools/birthdays" %>
+        </div> <!-- row -->
+        <h5 class="text-center">
+          <%= link_to "See All Tools", static_path(:tools), class: "btn btn-neutral" %>
+        </h5>
+      </div> <!-- container -->
+    </section>
 
 
 
 
-<div class="buffer"></div>
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <h2 class="text-center pb-4">Newest Blogs</h2>
+        <div class="row">
+          <% @recent_blogs.each do |blog| %>
+            <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+          <% end %>
+        </div> <!-- row -->
+        <h5 class="text-center"><%= link_to "See Older Posts...", blogs_path, class: "btn btn-neutral" %></h5>
+      </div> <!-- container -->
+    </section>
 
 
 
 
-<div class="container small-boxes">
-
-  <h3 class="text-center">Most Popular Blogs</h3>
-  <div class="row">
-    <% @featured_blogs.each do |blog| %>
-      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
-    <% end %>
-  </div> <!-- row -->
-  <h5 class="text-center"><%= link_to "See " + (@all_blogs.count - 3).to_s + " More Posts...", blogs_path, class: "font-script" %></h5>
-  <div class="half-buffer"></div>
-
-  <h3 class="text-center">Popular Tools</h3>
-  <div class="row">
-    <%= render "layouts/tools/tasks" %>
-    <%= render "layouts/tools/recipes" %>
-    <%= render "layouts/tools/capsules" %>
-    <%= render "layouts/tools/birthdays" %>
-  </div> <!-- row -->
-  <h5 class="text-center"><%= link_to "See More Tools...", static_path(:tools), class: "font-script" %></h5>
-  <div class="half-buffer"></div>
 
 
-  <h3 class="text-center">Newest Blogs</h3>
-  <div class="row">
-    <% @recent_blogs.each do |blog| %>
-      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
-    <% end %>
-  </div> <!-- row -->
-  <h5 class="text-center"><%= link_to "See Older Posts...", blogs_path, class: "font-script" %></h5>
-  <div class="half-buffer"></div>
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <div class="text-center container">
+          <h2 class="pb-4">Recommended Goodies</h2>
+          <script type="text/javascript">
+            amzn_assoc_placement = "adunit0";
+            amzn_assoc_search_bar = "true";
+            amzn_assoc_tracking_id = "thestaysane0e-20";
+            amzn_assoc_ad_mode = "manual";
+            amzn_assoc_ad_type = "smart";
+            amzn_assoc_marketplace = "amazon";
+            amzn_assoc_region = "US";
+            amzn_assoc_title = "My Amazon Picks";
+            amzn_assoc_linkid = "4be5ced900716142835f8920d04a1290";
+            amzn_assoc_asins = "0345472322,B01N0NXG3W,B00016XNT8,B01JFILPIS,1594484805,B077SXWSRP,B07FTN21JL,B0010TEFFQ";
+          </script>
+          <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+        </div>      </div> <!-- container -->
+    </section>
 
-</div> <!-- what's new container -->
 
-<div class="text-center container">
-  <h2 class="font-script">Recommended Goodies</h2>
-  <script type="text/javascript">
-    amzn_assoc_placement = "adunit0";
-    amzn_assoc_search_bar = "true";
-    amzn_assoc_tracking_id = "thestaysane0e-20";
-    amzn_assoc_ad_mode = "manual";
-    amzn_assoc_ad_type = "smart";
-    amzn_assoc_marketplace = "amazon";
-    amzn_assoc_region = "US";
-    amzn_assoc_title = "My Amazon Picks";
-    amzn_assoc_linkid = "4be5ced900716142835f8920d04a1290";
-    amzn_assoc_asins = "0345472322,B01N0NXG3W,B00016XNT8,B01JFILPIS,1594484805,B077SXWSRP,B07FTN21JL,B0010TEFFQ";
-  </script>
-  <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-</div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,18 +192,27 @@
 <%= content_for :additional_js do %>
   <script type="text/javascript">
     $(document).ready(function() {
-        $('.height').matchHeight();
-        $('.category-div').matchHeight();
-        $('.card').matchHeight();
-        $('.view').matchHeight();
-        $('.card-text').matchHeight();
-        $('.open-popup-link').magnificPopup({
-          type:'inline',
-          midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-        });
-        $('.hero-button').click(function() {
-            ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'Homepage Hero Button Subscription');
-        });
+
+      // object-fit polyfill run
+      objectFitImages();
+      /* init Jarallax */
+      jarallax(document.querySelectorAll('.jarallax'));
+      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
       });
+
+      $('.height').matchHeight();
+      $('.category-div').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-text').matchHeight();
+      $('.open-popup-link').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+      });
+      $('.hero-button').click(function() {
+          ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'Homepage Hero Button Subscription');
+      });
+    });
   </script>
 <% end %>

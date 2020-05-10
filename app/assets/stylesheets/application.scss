@@ -126,6 +126,8 @@ a.color-kids:hover { color: $color-kids; }
 a.color-self:hover { color: $color-self; }
 a.color-white:hover { color: $color-white; }
 
+p { font-size: 1.2rem; }
+
 .btn.btn-house { background-color: $color-house; color: $color-white; border: solid thin $color-house;}
 .btn.btn-spouse { background-color: $color-spouse; color: $color-white; border: solid thin $color-spouse;}
 .btn.btn-kids { background-color: $color-kids; color: $color-white; border: solid thin $color-kids;}
@@ -243,6 +245,7 @@ td p { margin-bottom: 0 }
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
 }
 
+main { padding: 0; }
 
 .mycard {
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
@@ -603,6 +606,17 @@ table.lined-table td {
 
 #nav-timeline img {
   height: 40px;
+}
+
+@media screen and (min-width: 1200px) {
+  #nav-timeline img {
+    height: 50px;
+  }
+
+  #nav-timeline .col-1 p {
+    font-size: .8rem;
+    text-transform: uppercase;
+  }
 }
 
 #nav-timeline .navbar {
