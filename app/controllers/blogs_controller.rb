@@ -218,13 +218,26 @@ class BlogsController < ApplicationController
                   :freebie_type,
                   :freebie_description,
                   :convertkit_href,
+
                   :category,
+                  :house,
+                  :marriage,
+                  :pregnancy,
+                  :babies,
+                  :toddlers,
+                  :kids,
+                  :teens,
+                  :balance,
+
                   :subcategory_id,
                   :linked_module,
+
                   :data_pin_description,
                   :pin_image,
+
                   :published,
                   :published_on,
+                  
                   :user_id,
                   :affiliate_links,
                   :image,

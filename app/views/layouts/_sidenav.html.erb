@@ -22,15 +22,23 @@
 
     <li>
       <ul class="collapsible collapsible-accordion">
+
+
+        <li>
+          <%= link_to main_app.blogs_path, class: "waves-effect arrow-r" do %>
+            Blog
+          <% end %>
+        </li>
+
         <li>
           <%= link_to main_app.static_path(:resources), class: "waves-effect arrow-r" do %>
-            <%= fa_icon "book-open", class: "color-spouse" %> &nbsp;Resource Library
+            Resource Library
           <% end %>
         </li>
 
         <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "toolbox", class: "color-spouse" %> &nbsp;Online Tools (All)<i
-          class="fas fa-angle-down rotate-icon"></i></a>
+          Tools
+          <i class="fas fa-angle-down rotate-icon"></i></a>
           <div class="collapsible-body">
             <ul>
               <li><%= link_to "House Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
@@ -45,23 +53,28 @@
 
         <li>
           <%= link_to main_app.goodies_path, class: "waves-effect arrow-r" do %>
-            <%= fa_icon "shopping-cart", class: "color-spouse" %> &nbsp;Store
+            Store
           <% end %>
         </li>
 
+
+
         <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "user", class: "color-spouse" %> &nbsp;My Account<i
-              class="fas fa-angle-down rotate-icon"></i></a>
+          My Account<i class="fas fa-angle-down rotate-icon"></i></a>
           <div class="collapsible-body">
             <ul>
               <% if current_user %>
                 <li><%= link_to current_user.first_name + "'s Homepage", main_app.user_path(current_user), class: "waves-effect" %></li>
                 <li><%= link_to('Sign Out', main_app.destroy_user_session_path, :method => :delete, class: "waves-effect") %></li>
                 <% if current_user.admin %>
+                <li>
+                  <a style="margin-left: -20px; cursor: default" class="text-spouse font-weight-bold">Admin Actions</a>
+                </li>
+
                 <li><%= link_to "Sales", main_app.purchases_path, class: "waves-effect" %></li>
                 <li><%= link_to "Contributions Manager", main_app.contributions_path, class: "waves-effect" %></li>
                 <li><%= link_to "Resource Manager", main_app.admin_resources_path, class: "waves-effect" %></li>
-                <li><%= link_to "Subcategory Manager", main_app.subcategories_path, class: "waves-effect" %></li>                  
+                <li><%= link_to "Subcategory Manager", main_app.subcategories_path, class: "waves-effect" %></li>
                 <li><%= link_to "Blogs Manager", main_app.home_allblogs_path, class: "waves-effect" %></li>
                 <% end %>
               <% else %>
@@ -82,69 +95,61 @@
     <!-- Side navigation links -->
     <li>
       <ul class="collapsible collapsible-accordion">
-        <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "broom", class: "color-house" %> &nbsp;House<i
-              class="fas fa-angle-down rotate-icon"></i></a>
-          <div class="house collapsible-body">
-            <% @subcategories = Subcategory.where(category: "House", active: true) %>
-            <ul>
-              <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
-              <% end %>
-              <li><%= link_to "House Task Organizer", main_app.tasks_path, class: "waves-effect" %></li>
-              <li><%= link_to "My Recipe Box", main_app.meals_path, class: "waves-effect" %></li>
-              <li><%= link_to "Search New Recipe Database", main_app.recipes_path, class: "waves-effect" %></li>
-              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
-              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
-            </ul>
-          </div> <!-- collapsable body -->
+        <li>
+          <%= link_to page_path("house"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" style="height: 25px; display: inline-block">
+            House
+          <% end %>
         </li>
-        <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "ring", class: "color-spouse" %> &nbsp;Spouse<i
-              class="fas fa-angle-down rotate-icon"></i></a>
-          <div class="spouse collapsible-body">
-            <% @subcategories = Subcategory.where(category: "Spouse", active: true) %>
-            <ul>
-              <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
-              <% end %>
-              <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
-              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
-              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
-            </ul>
-          </div> <!-- collapsable body -->        </li>
-        <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "baby", class: "color-kids" %> &nbsp;Kids<i class="fas fa-angle-down rotate-icon"></i></a>
-          <div class="kids collapsible-body">
-            <% @subcategories = Subcategory.where(category: "Kids", active: true) %>
-            <ul>
-              <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
-              <% end %>
-              <li><%= link_to "Photo Time Capsule", main_app.capsules_path, class: "waves-effect" %></li>
-              <li><%= link_to "Birthday Tracker", main_app.people_path, class: "waves-effect" %></li>
-              <li><%= link_to "Gift Planner", main_app.occasions_path, class: "waves-effect" %></li>
-            </ul>
-          </div> <!-- collapsable body -->
-        </li>
-        <li><a class="collapsible-header waves-effect arrow-r">
-          <%= fa_icon "spa", class: "color-self" %> &nbsp;Self<i
-              class="fas fa-angle-down rotate-icon"></i></a>
-          <div class="self collapsible-body">
-            <% @subcategories = Subcategory.where(category: "Self", active: true) %>
-            <ul>
-              <% @subcategories.each do |subcategory| %>
-                <li><%= link_to subcategory.name, main_app.subcategory_path(subcategory), class: "waves-effect sub" %></li>
-              <% end %>
-            </ul>
-          </div> <!-- collapsable body -->
+        <li>
+          <%= link_to page_path("marriage"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" style="height: 25px; display: inline-block">
+            Marriage
+          <% end %>
         </li>
 
         <li>
-          <%= link_to main_app.blogs_path, class: "waves-effect arrow-r" do %>
-            <%= fa_icon "book", class: "color-neutral" %> &nbsp;Blog
+          <%= link_to page_path("pregnancy"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 25px; display: inline-block">
+            Pregnancy
           <% end %>
         </li>
+
+        <li>
+          <%= link_to page_path("babies"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" style="height: 25px; display: inline-block">
+            Babies
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to page_path("toddlers"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" style="height: 25px; display: inline-block">
+            Toddlers
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to page_path("kids"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" style="height: 25px; display: inline-block">
+            Kids
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to page_path("teens"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" style="height: 25px; display: inline-block">
+            Teens
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to page_path("balance"), class: "waves-effect arrow-r" do %>
+            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" style="height: 25px; display: inline-block">
+            Balance
+          <% end %>
+        </li>
+
 
         <div class="sidenav-divider"></div>
 

@@ -53,16 +53,14 @@ gem 'dotenv-rails'
 gem 'faraday'
 gem 'scout_apm'
 
-gem 'solidus'
-gem 'solidus_paypal_braintree', github: 'solidusio/solidus_paypal_braintree', branch: :master
+gem 'pg', '~> 0.20.0'
+
 
 group :production do
-  gem 'pg', '~> 0.20.0'
 end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3'
   gem 'pry-rails'
 end
 

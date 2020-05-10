@@ -1,0 +1,82 @@
+
+<%= render partial: "layouts/sidenav" %>
+<%= render partial: "layouts/very_fixed_nav" %>
+
+
+
+<!--Main Navigation-->
+<header id="nav-timeline">
+
+<nav class="navbar pt-5 pb-2 navbar-expand-md navbar-light white scrolling-navbar">
+
+  <div class="row justify-content-center text-center">
+
+
+    <div class="col-12 text-center">
+      <%= link_to main_app.root_path do %>
+          <%= image_tag "logo.png", alt: "Logo", class: "mb-0", style: "height: 30px" %>
+          <p class="p-0">Tools and support for the marker-stained, under-slept,&nbsp;soul-hungry&nbsp;mom.</p>
+      <% end %>
+    </div>
+
+    <div class="col-1 d-none d-md-block">
+      <%= link_to page_path("house") do %>
+        <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" >
+        <p>House</p>
+      <% end %>
+    </div>
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("marriage") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" >
+          <p>Marriage</p>
+        <% end %>
+      </div>
+
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("pregnancy") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" >
+          <p>Pregnancy</p>
+        <% end %>
+      </div>
+
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("babies") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" >
+          <p>Babies</p>
+        <% end %>
+      </div>
+
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("toddlers") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" >
+          <p>Toddlers</p>
+        <% end %>
+      </div>
+
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("kids") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" >
+          <p>Kids</p>
+        <% end %>
+      </div>
+
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("teens") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" >
+          <p>Teens</p>
+        <% end %>
+      </div>
+
+      <div class="col-1 d-none d-md-block">
+        <%= link_to page_path("balance") do %>
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" >
+          <p>Balance</p>
+        <% end %>
+      </div>
+
+  </div>
+
+</nav>
+
+</header>
+<!--Main Navigation-->

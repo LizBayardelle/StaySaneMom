@@ -1,1 +1,3 @@
-<%= link_to "#{current_basket.basket_items.size} Items in Cart ( #{number_to_currency current_basket.subtotal} )", cart_path, class: "color-neutral", style: "margin: 0; padding: 0; font-weight: 300" %>
+<%= link_to cart_path, class: "font-weight-bold", id: "cart-text" do %>
+  <%= fa_icon "shopping-cart" %> Cart (<%= current_basket.basket_items.size %>)
+<% end %>

@@ -1,0 +1,139 @@
+<main class="pt-0">
+
+  <div class="view jarallax" style="height: 600px;">
+    <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Categories/6-kids-1.jpg" alt="">
+    <div class="mask rgba-black-med">
+      <div class="container flex-center text-center">
+        <div class="row mb-5">
+          <div class="col-md-12 wow fadeIn mb-3 color-white">
+            <h1 class="display-4 mb-2 wow fadeInDown font-weight-bold" data-wow-delay="0.3s">
+              Little Kids
+            </h1>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">
+              Here's your lifeline for dealing with that period of time after they finish being toddlers, but before they turn&nbsp;into&nbsp;nasty&nbsp;teenagers.
+            </h4>
+            <a class="btn btn-neutral btn-lg wow fadeIn" href="#blogs" data-wow-delay="0.4s">See How</a>
+            <% if !current_user %>
+              <a class="btn btn-kids btn-lg wow fadeIn" href="https://pages.convertkit.com/82832d58e2/4ed68c04c2" target="_blank" data-wow-delay="0.4s">How to Have More Patience as a Mom</a>
+            <% else %>
+              <%= link_to "How to Have More Patience as a Mom", resource_path(Resource.find(10)), class: "btn btn-kids btn-lg wow fadeIn" %>
+            <% end %>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
+  </div> <!-- jarallax view -->
+
+
+  <div class="z-depth-3">
+    <div class="container-fluid p-5">
+      <div class="row text-center">
+
+        <% @subcategories = Subcategory.where(category: "Kids", active: true) %>
+        <% @subcategories.each do |subcategory| %>
+          <div class="view view-2 col-6 col-md-4 col-lg-3">
+            <div class="sub-photo z-depth-2 mb-3 p-2">
+              <%= link_to subcategory_path(subcategory) do %>
+                <%= image_tag rails_blob_url(subcategory.image), class: "img-fluid sub-img" if subcategory.image.attached? %>
+                <div class="mask flex-center waves-effect waves-light rgba-white-strong">
+                  <h4 class="boldest color-black"><%= subcategory.name %></h4>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+
+        <div class="col-md-12 wow fadeIn mb-3 text-center pt-5 py-4">
+          <h2 class="h1 mb-2 wow fadeInDown" data-wow-delay="0.3s">Momming Tools</h2>
+        </div> <!-- col -->
+
+        <%= render "layouts/tools/capsules" %>
+        <%= render "layouts/tools/gifts" %>
+
+
+      </div>
+    </div> <!-- container -->
+  </div> <!-- z depth -->
+
+
+
+
+
+
+  <div class="view jarallax text-center">
+    <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Categories/6-kids-2.jpg" alt="">
+    <div class="mask rgba-black-strong">
+      <div class="container flex-center text-center">
+        <div class="row">
+          <div class="col-12 color-white">
+            <h2 class="h1 pb-3 font-weight-bold">Free Printable Chore Chart</h2>
+            <h4 class="pb-3">
+              This is the age when kids need to start learning about money and helping out around the house.
+            </h4>
+            <h4 class="pb-3">
+              Here's an easy template to create the perfect chore system for your kiddos.
+            </h4>
+            <% if !current_user %>
+              <a class="btn btn-kids btn-lg wow fadeIn" href="https://pages.convertkit.com/f5a6d2b66b/2f53c9aebc" target="_blank" data-wow-delay="0.4s">Get the Printable Chart</a>
+            <% else %>
+              <%= link_to "Get the Printable Chart", resource_path(Resource.find(9)), class: "btn btn-kids btn-lg wow fadeIn" %>
+            <% end %>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
+  </div> <!-- jarallax -->
+
+
+
+
+
+  <div class="container pb-4" id="blogs">
+
+    <div class="row">  <!--Grid row-->
+      <div class="col-md-12 wow fadeIn mb-3 text-center pt-5 py-4">
+        <h2 class="h1 mb-2 wow fadeInDown" data-wow-delay="0.3s">Articles on Kids</h2>
+      </div> <!-- col -->
+
+      <% @blogs = Blog.where(published: true, babies: true).order("created_at DESC") %>
+      <% @blogs.each do |blog| %>
+        <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+      <% end %>
+
+    </div> <!--Grid row-->
+
+  </div> <!-- container -->
+
+
+</main>
+
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+
+      // object-fit polyfill run
+      objectFitImages();
+
+      /* init Jarallax */
+      jarallax(document.querySelectorAll('.jarallax'));
+
+      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+      });
+
+      $("#top-bar").removeClass('bg-solid-neutral');
+      $("#top-bar").addClass('bg-solid-kids');
+
+      $('.height').matchHeight();
+      $('.category-div').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-text').matchHeight();
+      $('.sub-photo').matchHeight();
+      $('.sub-img').matchHeight();
+
+
+    });
+  </script>
+<% end %>

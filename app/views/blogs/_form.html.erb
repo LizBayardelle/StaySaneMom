@@ -27,7 +27,50 @@
       <%= f.text_field :tag_list, value: @blog.tag_list.join(", "), class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.input :category, input_html: {class: 'browser-default'}, collection: [['General', 'General'], ['House', 'House'], ['Spouse', 'Spouse'], ['Kids', 'Kids'], ['Self', 'Self'], ['Other', 'Other']] %>
+      <%= f.input :category, label: "Main Category", input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
+    </div>
+    <div class="form-group">
+      <h5>Categories</h5>
+      <div class="row">
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :house, class: "form-check-input", id: "house" %>
+          <%= f.label :house, class: "form-check-label", for: "house" %>
+        </div>
+
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :marriage, class: "form-check-input", id: "marriage" %>
+          <%= f.label :marriage, class: "form-check-label", for: "marriage" %>
+        </div>
+
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :pregnancy, class: "form-check-input", id: "pregnancy" %>
+          <%= f.label :pregnancy, class: "form-check-label", for: "pregnancy" %>
+        </div>
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :babies, class: "form-check-input", id: "babies" %>
+          <%= f.label :babies, class: "form-check-label", for: "babies" %>
+        </div>
+
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :toddlers, class: "form-check-input", id: "toddlers" %>
+          <%= f.label :toddlers, class: "form-check-label", for: "toddlers" %>
+        </div>
+
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :kids, class: "form-check-input", id: "kids" %>
+          <%= f.label :kids, class: "form-check-label", for: "kids" %>
+        </div>
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :teens, class: "form-check-input", id: "teens" %>
+          <%= f.label :teens, class: "form-check-label", for: "teens" %>
+        </div>
+
+        <div class="col-4 col-lg-2 field form-check">
+          <%= f.check_box :balance, class: "form-check-input", id: "balance" %>
+          <%= f.label :balance, class: "form-check-label", for: "balance" %>
+        </div>
+
+      </div> <!-- row -->
     </div>
     <div class="form-group">
       <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: "Subcategory", include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
@@ -193,7 +236,7 @@
 
   <div class="form-actions text-center">
     <p>Unless you checked the "Submit Blog as Final Draft" checkbox, this will be saved as a <strong>draft</strong>.<br />You can find and edit it at any time from your <%= link_to "My Account", user_path(current_user) %> page if you want to make changes.</p>
-    <%= f.button :submit, class: "btn-outline-danger" %>
+    <%= f.button :submit, class: "btn btn-neutral" %>
   </div>
 </div> <!-- container -->
 

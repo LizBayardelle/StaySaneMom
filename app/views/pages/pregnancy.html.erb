@@ -1,0 +1,145 @@
+<main class="pt-0">
+
+  <div class="view jarallax" style="height: 600px;">
+    <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Categories/3-pregnancy-1.jpg" alt="">
+    <div class="mask rgba-black-med">
+      <div class="container flex-center text-center">
+        <div class="row mb-5">
+          <div class="col-md-12 wow fadeIn mb-3 color-white">
+            <h1 class="dis mb-2 wow fadeInDown font-weight-bold" data-wow-delay="0.3s">
+              Caution: Impending Offspring
+            </h1>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">
+              Pregnancy is a wonderful (and horrible) exprience full of excitement (and ridiculous physical discomfort).
+            </h4>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">
+              Here's all you need to get through this gloriously&nbsp;weird&nbsp;experience.
+            </h4>
+            <a class="btn btn-neutral btn-lg wow fadeIn" href="#blogs" data-wow-delay="0.4s">See How</a>
+            <% if !current_user %>
+              <a class="btn btn-kids btn-lg wow fadeIn" href="https://pages.convertkit.com/d7e7865245/c4c37f04da" target="_blank" data-wow-delay="0.4s">Free Printable Pregnancy Builder</a>
+            <% else %>
+              <%= link_to "Minimalist Baby Shopping List", resource_path(Resource.find(11)), class: "btn btn-kids btn-lg wow fadeIn" %>
+            <% end %>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
+  </div> <!-- jarallax view -->
+
+
+  <div class="z-depth-3">
+    <div class="container-fluid p-5">
+      <div class="row text-center">
+
+        <% @subcategories = Subcategory.where(category: "Pregnancy", active: true) %>
+        <% @subcategories.each do |subcategory| %>
+          <div class="view view-2 col-6 col-md-4 col-lg-3">
+            <div class="sub-photo z-depth-2 mb-3 p-2">
+              <%= link_to subcategory_path(subcategory) do %>
+                <%= image_tag rails_blob_url(subcategory.image), class: "img-fluid sub-img" if subcategory.image.attached? %>
+                <div class="mask flex-center waves-effect waves-light rgba-white-strong">
+                  <h4 class="boldest color-black"><%= subcategory.name %></h4>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+
+        <div class="col-md-12 wow fadeIn mb-3 text-center pt-5 py-4">
+          <h2 class="h1 mb-2 wow fadeInDown" data-wow-delay="0.3s">Pregnancy Tools</h2>
+        </div> <!-- col -->
+
+        <%= render "layouts/tools/capsules" %>
+        <%= render "layouts/tools/recipes" %>
+
+
+      </div>
+    </div> <!-- container -->
+  </div> <!-- z depth -->
+
+
+
+
+
+
+  <div class="view jarallax text-center">
+    <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Categories/3-pregnancy-2.jpg" alt="">
+    <div class="mask rgba-black-strong">
+      <div class="container flex-center text-center">
+        <div class="row">
+          <div class="col-12 color-white">
+            <h2 class="h1 pb-3 font-weight-bold">Stop Before You Shop!</h2>
+            <h4 class="pb-3">
+              People buy WAY too much baby gear...months before they even see their baby.
+            </h4>
+            <h4 class="pb-3">
+              Here's a minimalist's baby shopping list with the only things you actually need to have before your new little one arrives.
+            </h4>
+            <h4 class="pb-3">
+              (No matter what Aunt Mildred says.)
+            </h4>
+            <% if !current_user %>
+              <a class="btn btn-kids btn-lg wow fadeIn" href="https://pages.convertkit.com/d7e7865245/c4c37f04da" target="_blank" data-wow-delay="0.4s">Download Now</a>
+            <% else %>
+              <%= link_to "Download Now", resource_path(Resource.find(11)), class: "btn btn-kids btn-lg wow fadeIn" %>
+            <% end %>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
+  </div> <!-- jarallax -->
+
+
+
+
+
+  <div class="container pb-4" id="blogs">
+
+    <div class="row">  <!--Grid row-->
+      <div class="col-md-12 wow fadeIn mb-3 text-center pt-5 py-4">
+        <h2 class="h1 mb-2 wow fadeInDown" data-wow-delay="0.3s">Articles on Pregnancy</h2>
+      </div> <!-- col -->
+
+      <% @blogs = Blog.where(published: true, pregnancy: true).order("created_at DESC") %>
+      <% @blogs.each do |blog| %>
+        <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+      <% end %>
+
+    </div> <!--Grid row-->
+
+  </div> <!-- container -->
+
+
+</main>
+
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+
+      // object-fit polyfill run
+      objectFitImages();
+
+      /* init Jarallax */
+      jarallax(document.querySelectorAll('.jarallax'));
+
+      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+      });
+
+      $("#top-bar").removeClass('bg-solid-neutral');
+      $("#top-bar").addClass('bg-solid-kids');
+
+      $('.height').matchHeight();
+      $('.category-div').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-text').matchHeight();
+      $('.sub-photo').matchHeight();
+      $('.sub-img').matchHeight();
+
+
+    });
+  </script>
+<% end %>
