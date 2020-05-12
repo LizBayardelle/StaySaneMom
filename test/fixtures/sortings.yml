@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  house: 1
+  marriage: 1
+  pregnancy: 1
+  babies: 1
+  toddlers: 1
+  kids: 1
+  teens: 1
+  balance: 1
+  ip: MyString
+  user: one
+
+two:
+  house: 1
+  marriage: 1
+  pregnancy: 1
+  babies: 1
+  toddlers: 1
+  kids: 1
+  teens: 1
+  balance: 1
+  ip: MyString
+  user: two

@@ -1,0 +1,92 @@
+<main class="container pt-0 pb-5">
+  <header class="text-center">
+    <h1>Our Diagnosis</h1>
+    <p>The answer is usually "yes, all of the above", but if we had to guess, here's what we'd say is making you feel like tearing&nbsp;your&nbsp;hair&nbsp;out:</p>
+  </header>
+
+  <section class="text-center pb-5">
+    <canvas id="pieChart"></canvas>
+  </section>
+
+  <section class="text-center">
+    <% @kids_total = @sorting.pregnancy + @sorting.babies + @sorting.toddlers + @sorting.kids + @sorting.teens %>
+
+    <% if @sorting.house >= @sorting.marriage && @sorting.house >= @kids_total && @sorting.house >= @sorting.balance %>
+      <% @biggest_issue = "House" %>
+      <% @blogs = Blog.where(published: true, house: true).limit(4) %>
+    <% elsif @sorting.marriage >= @sorting.house && @sorting.marriage >= @kids_total && @sorting.marriage >= @sorting.balance %>
+      <% @biggest_issue = "Marriage" %>
+      <% @blogs = Blog.where(published: true, marriage: true).limit(4) %>
+    <% elsif @kids_total >= @sorting.house && @kids_total >= @sorting.marriage && @kids_total >= @sorting.balance %>
+      <% @biggest_issue = "Kids" %>
+
+      <% pertinent_kid_blogs = [] %>
+      <% Blog.where(published: true).each do |blog| %>
+        <% if @sorting.pregnancy == 1 && blog.pregnancy %>
+          <% pertinent_kid_blogs << blog unless pertinent_kid_blogs.include?(blog) %>
+        <% end %>
+        <% if @sorting.babies == 1 && blog.babies %>
+          <% pertinent_kid_blogs << blog unless pertinent_kid_blogs.include?(blog) %>
+        <% end %>
+        <% if @sorting.toddlers == 1 && blog.toddlers %>
+          <% pertinent_kid_blogs << blog unless pertinent_kid_blogs.include?(blog) %>
+        <% end %>
+        <% if @sorting.kids == 1 && blog.kids %>
+          <% pertinent_kid_blogs << blog unless pertinent_kid_blogs.include?(blog) %>
+        <% end %>
+        <% if @sorting.teens == 1 && blog.teens %>
+          <% pertinent_kid_blogs << blog unless pertinent_kid_blogs.include?(blog) %>
+        <% end %>
+      <% end %>
+      <% @blogs = pertinent_kid_blogs.shuffle.first(4) %>
+    <% else %>
+      <% @biggest_issue = "Balance" %>
+      <% @blogs = Blog.where(published: true, balance: true).limit(4) %>
+    <% end %>
+
+    <p>
+      It looks like your biggest issue is your <span class="font-weight-bold"><%= @biggest_issue.downcase %></span>.
+      <br>Here are some articles that may help, or you can browse more <%= link_to "here", page_path("#{@biggest_issue_downcase}") %>.
+    </p>
+  </section>
+
+
+  <section id="relevant-blogs">
+    <div class="container-fluid px-5">
+      <h2 class="text-center">Articles on <%= @biggest_issue %> Stuff</h2>
+      <div class="row">
+        <% @blogs.each do |blog| %>
+          <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+        <% end %>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
+
+
+</main>
+
+
+
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+
+      //pie
+      var ctxP = document.getElementById("pieChart").getContext('2d');
+      var myPieChart = new Chart(ctxP, {
+      type: 'pie',
+      data: {
+      labels: ["Your Messy House", "Spousal Relations", "Your Crazy Kids", "Balancing All of the Above"],
+      datasets: [{
+      data: [<%= @sorting.house %>, <%= @sorting.marriage %>, <%= @kids_total %>, <%= @sorting.balance %>],
+      backgroundColor: ["#fe5454", "#fd1270", "#c002a7", "#6c0c9d"],
+      hoverBackgroundColor: ["#FF8585", "#FF43A1", "#F133D8", "#9D3DCE"]
+      }]
+      },
+      options: {
+      responsive: true
+      }
+      });
+    });
+  </script>
+<% end %>

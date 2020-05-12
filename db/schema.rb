@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_195448) do
+ActiveRecord::Schema.define(version: 2020_05_11_222213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -390,6 +390,22 @@ ActiveRecord::Schema.define(version: 2020_05_08_195448) do
     t.index ["customer_id"], name: "index_solidus_paypal_braintree_sources_on_customer_id"
     t.index ["payment_method_id"], name: "index_solidus_paypal_braintree_sources_on_payment_method_id"
     t.index ["user_id"], name: "index_solidus_paypal_braintree_sources_on_user_id"
+  end
+
+  create_table "sortings", force: :cascade do |t|
+    t.integer "house"
+    t.integer "marriage"
+    t.integer "pregnancy", default: 0
+    t.integer "babies", default: 0
+    t.integer "toddlers", default: 0
+    t.integer "kids", default: 0
+    t.integer "teens", default: 0
+    t.integer "balance"
+    t.string "ip"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sortings_on_user_id"
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
@@ -1632,6 +1648,7 @@ ActiveRecord::Schema.define(version: 2020_05_08_195448) do
   add_foreign_key "responses", "comments"
   add_foreign_key "responses", "users"
   add_foreign_key "solidus_paypal_braintree_sources", "spree_payment_methods", column: "payment_method_id"
+  add_foreign_key "sortings", "users"
   add_foreign_key "spree_wallet_payment_sources", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "variations", "goodies"

@@ -1,0 +1,316 @@
+<div class="container">
+
+  <%= simple_form_for(@sorting) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.hidden_field :house %>
+      <%= f.hidden_field :marriage %>
+      <%= f.hidden_field :pregnancy %>
+      <%= f.hidden_field :babies %>
+      <%= f.hidden_field :toddlers %>
+      <%= f.hidden_field :kids %>
+      <%= f.hidden_field :teens %>
+      <%= f.hidden_field :balance %>
+      <%= f.hidden_field :ip, value: request.remote_ip %>
+      <% if current_user %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      <% end %>
+    </div>
+
+
+
+
+    <section id="slide-1" class="z-depth-3 p-5 text-center">
+      <h2 class="pb-4">How clean is your house on a daily basis?</h2>
+
+      <div id="house-answer-1" class="house-answer hidden">
+        <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Quiz+Images/0.jpg"
+          style="width: 300px" class="img-fluid p-2 z-depth-1 mb-3" alt="zoom">
+        <h3>Absolute Chaos</h3>
+      </div>
+
+      <div id="house-answer-2" class="house-answer hidden">
+        <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Quiz+Images/1.jpg"
+          style="width: 300px" class="img-fluid p-2 z-depth-1 mb-3" alt="zoom">
+        <h3>A Loveable Mess</h3>
+      </div>
+
+      <div id="house-answer-3" class="house-answer">
+        <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Quiz+Images/2.jpg"
+          style="width: 300px" class="img-fluid p-2 z-depth-1 mb-3" alt="zoom">
+        <h3>Meh</h3>
+      </div>
+
+      <div id="house-answer-4" class="house-answer hidden">
+        <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Quiz+Images/3.jpg"
+          style="width: 300px" class="img-fluid p-2 z-depth-1 mb-3" alt="zoom">
+        <h3>Usually Pretty Decent</h3>
+      </div>
+
+      <div id="house-answer-5" class="house-answer hidden">
+        <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Quiz+Images/4.jpg"
+          style="width: 300px" class="img-fluid p-2 z-depth-1 mb-3" alt="zoom">
+        <h3>Constant Perfection</h3>
+      </div>
+
+      <input type="range" class="custom-range" id="houseRange" min="1" max="5">
+
+      <div id="slide-1-to-2" class="hidden mt-4 btn btn-neutral">Next Question</div>
+    </section>
+
+
+
+
+    <section id="slide-2" class="hidden z-depth-3 p-5 text-center">
+      <h2 class="pb-4">If you're married, how happy is your marriage?</h2>
+
+      <div id="marriage-answer-0" class="marriage-answer">
+        <h3 class="color-spouse font-weight-bold">I'm not married.</h3>
+      </div>
+
+      <div id="marriage-answer-1" class="marriage-answer hidden">
+        <h3 class="color-spouse font-weight-bold">No murder (yet).</h3>
+      </div>
+
+      <div id="marriage-answer-2" class="marriage-answer hidden">
+        <h3 class="color-spouse font-weight-bold">We have our rocky periods.</h3>
+      </div>
+
+      <div id="marriage-answer-3" class="marriage-answer hidden">
+        <h3 class="color-spouse font-weight-bold">We have more good times than bad.</h3>
+      </div>
+
+      <div id="marriage-answer-4" class="marriage-answer hidden">
+        <h3 class="color-spouse font-weight-bold">We get along surprisingly well.</h3>
+      </div>
+
+      <div id="marriage-answer-5" class="marriage-answer hidden">
+        <h3 class="color-spouse font-weight-bold">Every day is a second honeymoon.</h3>
+      </div>
+
+      <input type="range" class="custom-range" id="marriageRange" min="0" max="5" value="0">
+
+
+      <div id="slide-2-to-3" class="hidden mt-4 btn btn-neutral">Next Question</div>
+    </section>
+
+
+
+
+
+
+    <section id="slide-3" class="hidden z-depth-3 p-5 text-center">
+      <h2>What offspring do you have?</h2>
+      <p class="pb-4">(Select all that apply.)</p>
+
+      <div class="badge bg-solid-neutral kiddos" id="check-pregnancy">I'm Currently Pregnant</div>
+      <div class="badge bg-solid-neutral kiddos" id="check-babies">Babies</div>
+      <div class="badge bg-solid-neutral kiddos" id="check-toddlers">Toddlers</div>
+      <div class="badge bg-solid-neutral kiddos" id="check-kids">Small Kids</div>
+      <div class="badge bg-solid-neutral kiddos" id="check-teens">Teenagers</div>
+
+      <div id="slide-3-to-4" class="hidden mt-4 btn btn-neutral">Next Question</div>
+    </section>
+
+
+
+    <section id="slide-4" class="hidden z-depth-3 p-5 text-center">
+      <h2 class="pb-4">Do you have a hard time juggling all your different responsibilities?</h2>
+
+      <div id="balance-answer-1" class="balance-answer hidden color-self">
+        <h3>Every. Damn. Day.</h3>
+      </div>
+
+      <div id="balance-answer-2" class="balance-answer hidden color-self">
+        <h3>Yes, but I'm still hanging on.</h3>
+      </div>
+
+      <div id="balance-answer-3" class="balance-answer">
+        <h3>Sometimes.</h3>
+      </div>
+
+      <div id="balance-answer-4" class="balance-answer hidden color-self">
+        <h3>Only when life gets reeeeeally busy.</h3>
+      </div>
+
+      <div id="balance-answer-5" class="balance-answer hidden color-self">
+        <h3>Nope.  I've got it all together.</h3>
+      </div>
+
+      <input type="range" class="custom-range" id="balanceRange" min="1" max="5">
+
+      <%= f.submit "Why Am I Crazy?", class: "hidden btn btn-neutral", id: "submit" %>
+    </section>
+
+  <% end %>
+
+
+
+  <%= content_for :additional_js do %>
+    <script>
+      $(document).ready(function() {
+
+        $("#houseRange").on('input change', () => {
+          if ( $("#houseRange").val() == 1 ) {
+            $(".house-answer").addClass("hidden");
+            $("#house-answer-1").removeClass("hidden");
+            $("#sorting_house").val(5);
+          } else if ( $("#houseRange").val() == 2 ) {
+            $(".house-answer").addClass("hidden");
+            $("#house-answer-2").removeClass("hidden");
+            $("#sorting_house").val(4);
+          } else if ( $("#houseRange").val() == 3 ) {
+            $(".house-answer").addClass("hidden");
+            $("#house-answer-3").removeClass("hidden");
+            $("#sorting_house").val(3);
+          } else if ( $("#houseRange").val() == 4 ) {
+            $(".house-answer").addClass("hidden");
+            $("#house-answer-4").removeClass("hidden");
+            $("#sorting_house").val(2);
+          } else if ( $("#houseRange").val() == 5 ) {
+            $(".house-answer").addClass("hidden");
+            $("#house-answer-5").removeClass("hidden");
+            $("#sorting_house").val(1);
+          };
+          $("#slide-1-to-2").removeClass("hidden");
+        });
+
+        $("#slide-1-to-2").click(function(){
+          $("#slide-1").addClass("hidden");
+          $("#slide-2").removeClass("hidden");
+        })
+
+        $("#marriageRange").on('input change', () => {
+          if ( $("#marriageRange").val() == 0 ) {
+            $(".marriage-answer").addClass("hidden");
+            $("#marriage-answer-0").removeClass("hidden");
+            $("#sorting_marriage").val(0);
+          } else if ( $("#marriageRange").val() == 1 ) {
+            $(".marriage-answer").addClass("hidden");
+            $("#marriage-answer-1").removeClass("hidden");
+            $("#sorting_marriage").val(5);
+          } else if ( $("#marriageRange").val() == 2 ) {
+            $(".marriage-answer").addClass("hidden");
+            $("#marriage-answer-2").removeClass("hidden");
+            $("#sorting_marriage").val(4);
+          } else if ( $("#marriageRange").val() == 3 ) {
+            $(".marriage-answer").addClass("hidden");
+            $("#marriage-answer-3").removeClass("hidden");
+            $("#sorting_marriage").val(3);
+          } else if ( $("#marriageRange").val() == 4 ) {
+            $(".marriage-answer").addClass("hidden");
+            $("#marriage-answer-4").removeClass("hidden");
+            $("#sorting_marriage").val(2);
+          } else if ( $("#marriageRange").val() == 5 ) {
+            $(".marriage-answer").addClass("hidden");
+            $("#marriage-answer-5").removeClass("hidden");
+            $("#sorting_marriage").val(1);
+          };
+          $("#slide-2-to-3").removeClass("hidden");
+        });
+
+        $("#slide-2-to-3").click(function(){
+          $("#slide-2").addClass("hidden");
+          $("#slide-3").removeClass("hidden");
+        })
+
+
+
+
+
+        $("#check-pregnancy").click(function(){
+          $("#slide-3-to-4").removeClass("hidden");
+          $("#check-pregnancy").toggleClass("active");
+          $("#check-pregnancy").toggleClass("bg-solid-neutral");
+          $("#check-pregnancy").toggleClass("bg-solid-kids");
+          if ( $("#check-pregnancy").hasClass("active") ) {
+            $("#sorting_pregnancy").val(1);
+          } else {
+            $("#sorting_pregnancy").val(0);
+          };
+        });
+        $("#check-babies").click(function(){
+          $("#slide-3-to-4").removeClass("hidden");
+          $("#check-babies").toggleClass("active");
+          $("#check-babies").toggleClass("bg-solid-neutral");
+          $("#check-babies").toggleClass("bg-solid-kids");
+          if ( $("#check-babies").hasClass("active") ) {
+            $("#sorting_babies").val(1);
+          } else {
+            $("#sorting_babies").val(0);
+          };
+        });
+        $("#check-toddlers").click(function(){
+          $("#slide-3-to-4").removeClass("hidden");
+          $("#check-toddlers").toggleClass("active");
+          $("#check-toddlers").toggleClass("bg-solid-neutral");
+          $("#check-toddlers").toggleClass("bg-solid-kids");
+          if ( $("#check-toddlers").hasClass("active") ) {
+            $("#sorting_toddlers").val(1);
+          } else {
+            $("#sorting_toddlers").val(0);
+          };
+        });
+        $("#check-kids").click(function(){
+          $("#slide-3-to-4").removeClass("hidden");
+          $("#check-kids").toggleClass("active");
+          $("#check-kids").toggleClass("bg-solid-neutral");
+          $("#check-kids").toggleClass("bg-solid-kids");
+          if ( $("#check-kids").hasClass("active") ) {
+            $("#sorting_kids").val(1);
+          } else {
+            $("#sorting_kids").val(0);
+          };
+        });
+        $("#check-teens").click(function(){
+          $("#slide-3-to-4").removeClass("hidden");
+          $("#check-teens").toggleClass("active");
+          $("#check-teens").toggleClass("bg-solid-neutral");
+          $("#check-teens").toggleClass("bg-solid-kids");
+          if ( $("#check-teens").hasClass("active") ) {
+            $("#sorting_teens").val(1);
+          } else {
+            $("#sorting_teens").val(0);
+          };
+        });
+
+        $("#slide-3-to-4").click(function(){
+          $("#slide-3").addClass("hidden");
+          $("#slide-4").removeClass("hidden");
+        })
+
+
+
+
+        $("#balanceRange").on('input change', () => {
+          if ( $("#balanceRange").val() == 1 ) {
+            $(".balance-answer").addClass("hidden");
+            $("#balance-answer-1").removeClass("hidden");
+            $("#sorting_balance").val(5);
+          } else if ( $("#balanceRange").val() == 2 ) {
+            $(".balance-answer").addClass("hidden");
+            $("#balance-answer-2").removeClass("hidden");
+            $("#sorting_balance").val(4);
+          } else if ( $("#balanceRange").val() == 3 ) {
+            $(".balance-answer").addClass("hidden");
+            $("#balance-answer-3").removeClass("hidden");
+            $("#sorting_balance").val(3);
+          } else if ( $("#balanceRange").val() == 4 ) {
+            $(".balance-answer").addClass("hidden");
+            $("#balance-answer-4").removeClass("hidden");
+            $("#sorting_balance").val(2);
+          } else if ( $("#balanceRange").val() == 5 ) {
+            $(".balance-answer").addClass("hidden");
+            $("#balance-answer-5").removeClass("hidden");
+            $("#sorting_balance").val(1);
+          };
+          $("#submit").removeClass("hidden");
+        });
+
+      });
+    </script>
+  <% end %>
+
+</div>

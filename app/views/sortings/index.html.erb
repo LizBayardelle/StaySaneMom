@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sortings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>House</th>
+      <th>Marriage</th>
+      <th>Pregnancy</th>
+      <th>Babies</th>
+      <th>Toddlers</th>
+      <th>Kids</th>
+      <th>Teens</th>
+      <th>Balance</th>
+      <th>Ip</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sortings.each do |sorting| %>
+      <tr>
+        <td><%= sorting.house %></td>
+        <td><%= sorting.marriage %></td>
+        <td><%= sorting.pregnancy %></td>
+        <td><%= sorting.babies %></td>
+        <td><%= sorting.toddlers %></td>
+        <td><%= sorting.kids %></td>
+        <td><%= sorting.teens %></td>
+        <td><%= sorting.balance %></td>
+        <td><%= sorting.ip %></td>
+        <td><%= sorting.user %></td>
+        <td><%= link_to 'Show', sorting %></td>
+        <td><%= link_to 'Edit', edit_sorting_path(sorting) %></td>
+        <td><%= link_to 'Destroy', sorting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sorting', new_sorting_path %>
