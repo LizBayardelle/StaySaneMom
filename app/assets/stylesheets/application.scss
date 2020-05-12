@@ -249,7 +249,7 @@ td p { margin-bottom: 0 }
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
 }
 
-main { padding: 0; }
+main { padding: 0 !important; }
 
 .mycard {
   box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
@@ -1485,7 +1485,7 @@ table.dataTable thead .sorting_desc_disabled:before {
 bottom: .5em;
 }
 
-#blog.house a { color: $color-house; }
-#blog.spouse a { color: $color-spouse; }
-#blog.kids a { color: $color-kids; }
-#blog.self a { color: $color-self; }
+#blog.house p a, #blog.house li a { color: $color-house; }
+#blog.spouse p a, #blog.spouse li a { color: $color-spouse; }
+#blog.kids p a, #blog.kids li a { color: $color-kids; }
+#blog.self p a, #blog.self li a { color: $color-self; }
