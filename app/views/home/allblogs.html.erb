@@ -1,31 +1,102 @@
-<div class="container">
-  <table class="lined-table">
-    <% @blogs.each do |blog| %>
+<div class="container-fluid px-5 table-responsive">
+  <table id="blogsTable" class="table">
+    <thead>
       <tr>
-        <td><%= blog.id %></td>
-        <td>
-          <span style="font-weight: 900"><%= link_to blog.title, blog_path(blog) %></span><br />
-          <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %> <% if blog.user.contributor %>(Contributor of <%= Blog.where(user_id: blog.user.id, published: true).count %> / <%= Blog.where(user_id: blog.user.id).count %>)<% end %><br />
-          <span class="disqus-comment-count" data-disqus-identifier="<%= blog.id %>" data-disqus-url="<%= polymorphic_url(blog) %>">See Comments</span><br />
-          <% if Subcategory.where(id: blog.subcategory_id) != [] %>
-            <span class="color-spouse">In <%= Subcategory.where(id: blog.subcategory_id).first.name %></span><br />
-          <% end %>
-          <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
-          <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
-        </td>
-        <td>
-          <% if blog.published %>
-            <span style="font-weight: 900" class="color-spouse">Published</span>
-          <% else %>
-            <span style="font-weight: 900" class="color-self">Not Published</span>
-          <% end %><br />
-          <% if blog.published_on %>
-            Published On: <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y") %><br />
-          <% end %>
-          Submitted: <%= blog.submitted %><br />
-          Approved: <%= blog.approved %>
-        </td>
+        <th>#</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Guest</th>
+        <th>Comments</th>
+        <th>Category</th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" style="height: 20px"></th>
+        <th>Subcategory</th>
+        <th>Published</th>
+        <th>Sub?</th>
+        <th>Appr?</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @blogs.each do |blog| %>
+        <tr>
+          <td>
+            <%= blog.id %>
+            <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
+            <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
+          </td>
+          <td>
+            <%= link_to blog.title, blog_path(blog) %>
+          </td>
+          <td>
+            <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %>
+          </td>
+          <td>
+            <% if blog.user.contributor %><%= Blog.where(user_id: blog.user.id, published: true).count %> of <%= Blog.where(user_id: blog.user.id).count %><% end %>
+          </td>
+          <td>
+            <span class="disqus-comment-count" data-disqus-identifier="<%= blog.id %>" data-disqus-url="<%= polymorphic_url(blog) %>">See Comments</span><br />
+          </td>
+          <td>
+            <%= blog.category %>
+          </td>
+          <td><% if blog.house %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" style="height: 20px"><% end %></td>
+          <td><% if blog.marriage %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" style="height: 20px"><% end %></td>
+          <td><% if blog.pregnancy %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 20px"><% end %></td>
+          <td><% if blog.babies %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" style="height: 20px"><% end %></td>
+          <td><% if blog.toddlers %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" style="height: 20px"><% end %></td>
+          <td><% if blog.kids %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" style="height: 20px"><% end %></td>
+          <td><% if blog.teens %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" style="height: 20px"><% end %></td>
+          <td><% if blog.balance %><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" style="height: 20px"><% end %></td>
+          <td>
+            <% if Subcategory.where(id: blog.subcategory_id) != [] %>
+            <%= Subcategory.where(id: blog.subcategory_id).first.name %>
+            <% end %>
+          </td>
+          <td>
+            <% if blog.published %>
+              <% if blog.published_on %>
+                <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%-m/%-d/%y") %><br />
+              <% else %>
+                <i class="fas fa-check"></i>
+              <% end %>
+            <% else %>
+              <i class="fas fa-times"></i>
+            <% end %>
+          </td>
+          <td>
+            <% if blog.submitted %><i class="fas fa-check"></i><% end %>
+          </td>
+          <td>
+            <% if blog.approved %><i class="fas fa-check"></i><% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div> <!-- container -->
+
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#blogsTable').DataTable({
+        "aaSorting": [],
+        columnDefs: [{
+        orderable: false,
+        targets: 3
+        }]
+      });
+      $('.dataTables_length').addClass('bs-select');
+    });
+  </script>
+<% end %>

@@ -455,6 +455,21 @@ table.lined-table td {
 // ---------------------------
 // ---------------------------
 
+@media screen and (max-width: 768px) {
+  #about {
+    font-size: .8rem;
+  }
+  #about * {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #about .jarallax {
+    height: 1000px;
+  }
+}
+
 .seva-form.formkit-form {
   margin-left: auto;
   margin-right: auto;
@@ -627,8 +642,23 @@ table.lined-table td {
   box-shadow: none !important;
 }
 
+#nav-timeline * {
+  font-size: .9rem
+}
+
 #top-bar #cart-text {
   color: $color-white;
+}
+
+#top-bar * {
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  #top-bar * {
+    font-size: .7rem;
+  }
 }
 
 .side-nav #cart-text {
