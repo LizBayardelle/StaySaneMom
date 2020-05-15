@@ -31,7 +31,7 @@
             <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
           </td>
           <td>
-            <%= link_to blog.title, blog_path(blog) %>
+            <%= link_to blog.title, blog_path(blog.id) %>
           </td>
           <td>
             <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %>
