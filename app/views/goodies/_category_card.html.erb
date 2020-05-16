@@ -9,22 +9,8 @@
           </a>
         </div>
         <div class="col-6">
-          
           <h3><%= link_to goody.name.pluralize(2), goody_path(goody) %><h3>
           <p><%= goody.description %></p>
-
-          <% max = 0 %>
-          <% min = 1000000 %>
-          <% goody.variations.each do |v| %>
-            <% if v.price > max %>
-              <% max = v.price %>
-            <% end %>
-            <% if v.price < min %>
-              <% min = v.price %>
-            <% end %>
-          <% end %>
-          <p class="pt-2 font-weight-bold"><%= number_to_currency(min, unit: "$", precision: 0) %> to <%= number_to_currency(max, unit: "$", precision: 0) %></p>
-
         </div>
       </div>
     </div> <!-- col -->

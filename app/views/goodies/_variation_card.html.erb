@@ -1,43 +1,37 @@
-<div class="col-lg-4 col-md-6 mb-2"> <!-- Grid column -->
-  <div class="card align-items-center"> <!-- Card -->
-    <div class="view overlay text-center">
-      <% if variation.images.attached? %>
-        <%= image_tag rails_blob_url(variation.images.first), class: "card-img-top", style: "max-width: 100%" %>
-      <% end %>
-      <%= link_to variation_path(variation) do %>
-        <div class="mask rgba-white-slight"></div>
-      <% end %>
-    </div>
-    <div class="card-body text-center" style="padding-top: 0">
-      <% if current_user && current_user.admin %>
-        <h5>
-          <%= link_to 'Edit', edit_variation_path(variation), class: "grey-text" %> |
-          <%= link_to 'Delete', variation, method: :delete, data: { confirm: 'Are you sure?' }, class: "grey-text" %>
-        </h5>
-      <% end %>
-      <h5>
-        <strong>
-          <a href="" class="dark-grey-text"><%= variation.name %>
-            <% if variation.new_product %><span class="badge badge-pill danger-color">NEW</span><% end %>
-            <% if variation.hot_product %><span class="badge badge-pill secondary-color">HOT</span><% end %>
-          </a>
-        </strong>
-      </h5>
-      <p><%= variation.short_description %></p>
-      <h4 class="font-weight-bold color-self">
-        <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
-      </h4>
-
-      <%= form_for @basket_item, remote: true do |f| %>
-        <div class="text-center">
-          <%= f.hidden_field :quantity, value: 1 %>
-          <%= f.hidden_field :variation_id, value: variation.id %>
-          <%= f.submit "Add to Cart", class: "btn btn-danger" %>
+<div class="col-12 col-lg-4">
+  <div class="card hoverable mb-4 w-100">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 col-lg-12 px-0">
+          <% if variation.images.attached? %>
+            <%= image_tag rails_blob_url(variation.images.first), class: "image-fluid", style: "max-width: 100%; max-height: 250px" %>
+          <% end %>
+          <% if current_user && current_user.admin %>
+            <h5>
+              <%= link_to 'Edit', edit_variation_path(variation), class: "grey-text" %> |
+              <%= link_to 'Delete', variation, method: :delete, data: { confirm: 'Are you sure?' }, class: "grey-text" %>
+            </h5>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-    <!-- Card content -->
-  </div>
-  <!-- Card -->
+        <div class="col-12 col-md-6 col-lg-12">
+          <h3 class="font-weight-bold mb-0">
+            <%= variation.name %>
+          </h3>
+          <p><em><small><%= variation.short_description %></small></em></p>
+          <p><%= variation.description %></p>
+          <h4 class="font-weight-bold color-self">
+            <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
+          </h4>
+
+          <%= form_for @basket_item, remote: true do |f| %>
+            <div class="text-center">
+              <%= d f.hidden_field :quantity, value: 1 %>
+              <%= f.hidden_field :variation_id, value: variation.id %>
+              <%= f.submit "Add to Cart", class: "btn btn-spouse" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div> <!-- col -->
+  </div> <!-- card -->
 </div>
-<!-- Grid column -->

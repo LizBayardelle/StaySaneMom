@@ -82,6 +82,7 @@ h2.font-script { font-size: 50px }
 .color-white, .color-white * { color: #FFFFFF !important; }
 .color-house { color: $color-house; }
 .color-spouse { color: $color-spouse; }
+.color-marriage { color: $color-spouse; }
 .color-kids { color: $color-kids; }
 .color-self { color: $color-self; }
 .color-neutral { color: $color-neutral; }
@@ -91,12 +92,14 @@ h2.font-script { font-size: 50px }
 
 .border-house { border: solid $color-house; }
 .border-spouse { border: solid $color-spouse; }
+.border-marriage { border: solid $color-spouse; }
 .border-kids { border: solid $color-kids; }
 .border-self { border: solid $color-self; }
 .border-neutral { border: solid $color-neutral; }
 
 .bg-house { background-color: $transparent-house !important; }
 .bg-spouse { background-color: $transparent-spouse !important; }
+.bg-marriage { background-color: $transparent-spouse !important; }
 .bg-kids { background-color: $transparent-kids !important; }
 .bg-self { background-color: $transparent-self !important; }
 .bg-neutral { background-color: $transparent-neutral !important; }
@@ -104,6 +107,7 @@ h2.font-script { font-size: 50px }
 
 .bg-solid-house { background-color: $color-house; }
 .bg-solid-spouse { background-color: $color-spouse; }
+.bg-solid-marriage { background-color: $color-spouse; }
 .bg-solid-kids { background-color: $color-kids; }
 .bg-solid-self { background-color: $color-self; }
 .bg-solid-neutral { background-color: $color-neutral; }
@@ -111,6 +115,7 @@ h2.font-script { font-size: 50px }
 
 .transparent-hover.house:hover { background-color: $transparent-house; }
 .transparent-hover.spouse:hover { background-color: $transparent-spouse; }
+.transparent-hover.marriage:hover { background-color: $transparent-spouse; }
 .transparent-hover.kids:hover { background-color: $transparent-kids; }
 .transparent-hover.self:hover { background-color: $transparent-self; }
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
@@ -122,6 +127,7 @@ a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 
 a.color-house:hover { color: $color-house; }
 a.color-spouse:hover { color: $color-spouse; }
+a.color-marriage:hover { color: $color-spouse; }
 a.color-kids:hover { color: $color-kids; }
 a.color-self:hover { color: $color-self; }
 a.color-white:hover { color: $color-white; }
