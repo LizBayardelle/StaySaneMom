@@ -6,18 +6,18 @@
   <div class="form-inputs row">
     <div class="form-group col-sm-6">
       <%= f.label "Your Information" %>
-      <%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %><br />
-      <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %><br />
-      <%= f.text_field :email, value: current_user.email, class: "form-control" %><br />
+      <%= f.text_field :first_name, required: true, placeholder: "First Name", class: "form-control" %><br />
+      <%= f.text_field :last_name, required: true, placeholder: "Last Name", class: "form-control" %><br />
+      <%= f.text_field :email, required: true, value: current_user.email, class: "form-control" %><br />
       <%= f.text_field :phone, placeholder: "Phone Number (Issues Only)", class: "form-control" %><br />
     </div>
     <div class="form-group col-sm-6">
       <%= f.label "Address" %>
-      <%= f.text_field :shipping_1, placeholder: "Address Line 1", class: "form-control" %>
+      <%= f.text_field :shipping_1, required: true, placeholder: "Address Line 1", class: "form-control" %>
       <%= f.text_field :shipping_2, placeholder: "Address Line 2", class: "form-control" %>
-      <%= f.text_field :shipping_city, placeholder: "City", class: "form-control" %>
-      <%= f.text_field :shipping_state, placeholder: "State", class: "form-control" %>
-      <%= f.text_field :shipping_zip, placeholder: "Zip Code", class: "form-control" %>
+      <%= f.text_field :shipping_city, required: true, placeholder: "City", class: "form-control" %>
+      <%= f.text_field :shipping_state, required: true, placeholder: "State", class: "form-control" %>
+      <%= f.text_field :shipping_zip,required: true,  placeholder: "Zip Code", class: "form-control" %>
       <%= f.text_field :shipping_country, placeholder: "Country", class: "form-control" %>
     </div>
 
@@ -28,6 +28,6 @@
   </div>
 
   <div class="form-actions text-center">
-    <%= f.submit "Go to Payment", class: "btn btn-danger" %>
+    <%= f.submit "Go to Payment", class: "btn btn-spouse" %>
   </div>
 <% end %>

@@ -145,6 +145,10 @@ p { font-size: 1.2rem; }
 .btn.btn-self:hover { background-color: $color-white; color: $color-self; }
 .btn.btn-neutral:hover { background-color: $color-white; color: $color-neutral; }
 
+.thin { font-weight: 200 }
+.uppercase { text-transform: uppercase; }
+
+
 @media screen and (min-width: 1440px) {
   body {
     padding-left: 240px;

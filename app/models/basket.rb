@@ -1,6 +1,6 @@
 class Basket < ApplicationRecord
   belongs_to :basket_status
-  has_many :basket_items
+  has_many :basket_items, dependent: :destroy
   before_create :set_basket_status
   before_save :update_subtotal
 
@@ -9,7 +9,7 @@ class Basket < ApplicationRecord
   end
 
   private
-  
+
   def set_basket_status
     self.basket_status_id = 1
   end

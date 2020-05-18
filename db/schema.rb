@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_222213) do
+ActiveRecord::Schema.define(version: 2020_05_18_170147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1628,7 +1628,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_222213) do
 
   add_foreign_key "basket_items", "baskets"
   add_foreign_key "basket_items", "variations"
-  add_foreign_key "baskets", "basket_statuses"
+  add_foreign_key "baskets", "basket_statuses", on_delete: :cascade
   add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "users"
   add_foreign_key "capsule_items", "capsules"

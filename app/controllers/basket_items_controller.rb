@@ -1,8 +1,10 @@
 class BasketItemsController < ApplicationController
+  before_action :current_basket
+  
   def create
     @basket = current_basket
     @basket_item = @basket.basket_items.build(basket_item_params)
-    if @basket.save
+    if @basket.save!
       respond_to do |format|
         format.js
         format.html

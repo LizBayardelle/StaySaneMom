@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center font-script">Thank you for your purchase!</h1>
+  <h1 class="text-center font-script color-spouse">Thank you for your purchase!</h1>
   <% basket = @previous_basket %>
 
   <% downloadables = 0 %>
@@ -16,7 +16,7 @@
   <% end %>
 
   <% if downloadables > 0 %>
-    <h2>Your Downloadable Goodies</h2>
+    <h2 class="thin uppercase">Your Downloadable Goodies</h2>
     <p>Here are all the instant downloadables you purchased.  Just click the link to download them.  If you ever want them again, the'll be accessible in your account from now on as well.</p>
     <ul>
     <% basket.basket_items.each do |i| %>
@@ -35,7 +35,7 @@
   <% end %>
 
   <% if custom_planners > 0 %>
-    <h2>Your Custom Designs</h2>
+    <h2 class="thin uppercase">Your Custom Designs</h2>
     <p>If you purchased a custom planner, you now get to do the fun part...design it!  The button below will let you create your planner design.  If you want to leave and come back, don't worry.  It'll be accessible in your "My Account" page any time until you hit the "Submit Final Design" button.</p>
     <ul>
     <% basket.basket_items.each do |i| %>

@@ -15,11 +15,9 @@ class ApplicationController < ActionController::Base
     if !session[:basket_id].nil?
       Basket.find(session[:basket_id])
     else
-      Basket.new
+      Basket.new(basket_status_id: 1)
     end
   end
-  helper_method :current_basket
-
 
   def clear_basket
     session[:basket_id] = nil
