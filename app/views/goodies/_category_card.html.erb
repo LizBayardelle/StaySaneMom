@@ -1,15 +1,15 @@
   <div class="card hoverable mb-4">
     <div class="card-body">
       <div class="row align-items-center">
-        <div class="col-12 col-md-4 col-lg-12 px-4">
+        <div class="col-12 col-md-5 col-lg-12 px-4">
           <a>
             <% if goody.images.attached? %>
-              <%= image_tag rails_blob_url(goody.images.first), style: "height: 250px; width: auto" %>
+              <%= image_tag rails_blob_url(goody.images.last), style: "max-width: 100%" %>
             <% end %>
           </a>
         </div>
-        <div class="col-12 col-md-8 col-lg-12">
-          <h3><%= link_to goody.name.pluralize(2), goody_path(goody) %><h3>
+        <div class="col-12 col-md-7 col-lg-12">
+          <h3><%= link_to goody.name, goody_path(goody) %><h3>
           <p><%= goody.description %></p>
         </div>
       </div>
