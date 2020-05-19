@@ -5,12 +5,13 @@ class GoodiesController < ApplicationController
   # GET /goodies
   # GET /goodies.json
   def index
-    @goodies = Goody.all
+    @goodies = Goody.order(:sort).all
   end
 
   # GET /goodies/1
   # GET /goodies/1.json
   def show
+    @variations = Variation.where(goody_id: @goody.id, active: true).order("sort ASC")
     @basket_item = current_basket.basket_items.new
   end
 
@@ -78,6 +79,7 @@ class GoodiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def goody_params
       params.require(:goody).permit(
+        :sort,
         :name,
         :description,
         :active,

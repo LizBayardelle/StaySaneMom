@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center color-spouse font-script">New <%= Goody.where(id: params[:goody]).first.name %> Variation</h1>
+  <h1 class="text-center thin uppercase">New <%= Goody.where(id: params[:goody]).first.name %> Variation</h1>
 
     <%= simple_form_for(@variation) do |f| %>
       <%= f.error_notification %>
@@ -15,6 +15,7 @@
             <%= f.input :price %>
           </div>
         </div> <!-- row -->
+        <%= f.input :subcategories, label: "Subcategories (Separated by Commas)" %>
         <%= f.input :short_description %>
         <%= f.input :description %>
         <div class="form-group">
@@ -38,7 +39,7 @@
         <%= f.hidden_field :goody_id, value: params[:goody] %>
 
       </div>
-      
+
       <div class="text-center form-actions">
         <%= f.submit "The Variation Be Ready", class: "btn btn-danger" %>
       </div>

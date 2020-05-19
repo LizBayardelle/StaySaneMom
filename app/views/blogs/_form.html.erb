@@ -207,7 +207,17 @@
     <% end %>
     <div class="row text-left">
       <div class="form-group col-12">
-        <%= f.input :resource_id, label: false, prompt: "Choose an Associated Resource", input_html: { class: 'browser-default' }, collection: resource_collection, required: true %>
+        <%= f.input :resource_id, label: false, prompt: "Choose an Associated Resource", input_html: { class: 'browser-default' }, collection: resource_collection, required: false %>
+      </div>
+    </div> <!-- row -->
+
+    <% variation_collection = [] %>
+    <% Variation.all.each do |lm| %>
+      <% variation_collection << ["#{lm.name}", "#{lm.id}"] %>
+    <% end %>
+    <div class="row text-left">
+      <div class="form-group col-12">
+        <%= f.input :variation_id, label: false, prompt: "Choose a Related Goody", input_html: { class: 'browser-default' }, collection: variation_collection, required: false %>
       </div>
     </div> <!-- row -->
 

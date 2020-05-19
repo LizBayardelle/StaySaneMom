@@ -173,6 +173,7 @@ p { font-size: 1.2rem; }
 
 .padded { padding: 15px; }
 .full-width { width: 100%; }
+td.min { width: 1px; white-space: nowrap; text-align: center; padding: .6rem; }
 
 #tag_cloud {
   width: 500px;

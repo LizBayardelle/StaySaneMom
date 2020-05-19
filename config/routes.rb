@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :sortings
   root 'home#index'
 
+  get 'admin/store_manager'
 
   get 'admin/resources'
   resources :resources

@@ -6,7 +6,7 @@ class VariationsController < ApplicationController
   # GET /variations
   # GET /variations.json
   def index
-    @variations = Variation.all
+    @variations = Variation.all.order("sort ASC")
   end
 
   # GET /variations/1
@@ -86,8 +86,10 @@ class VariationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def variation_params
       params.require(:variation).permit(
+        :sort,
         :name,
         :price,
+        :subcategories,
         :short_description,
         :description,
         :active,

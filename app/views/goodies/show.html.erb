@@ -20,8 +20,8 @@
 <div class="container">
 
   <div class="text-center">
-    <h1 class="color-spouse font-script"><%= @goody.name.pluralize(2) %></h1>
-    <p><%= @goody.description %></p>
+    <h1 class="color-spouse font-script"><%= @goody.name %></h1>
+    <p class="pb-3"><%= @goody.description %></p>
     <% if !@goody.active %><p><em>Currently Inactive</em></p><% end %>
   </div> <!-- centered -->
 
@@ -37,7 +37,7 @@
 
   <div class="row"> <!-- Grid row -->
 
-    <% @goody.variations.order(id: :asc).each do |variation| %>
+    <% @variations.each do |variation| %>
       <%= render partial: 'goodies/variation_card', locals: {variation: variation, order_item: @order_item} %>
     <% end %>
   </div>

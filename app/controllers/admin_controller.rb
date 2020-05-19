@@ -5,6 +5,11 @@ before_action :admin_only
     @resources = Resource.all
   end
 
+  def store_manager
+    @goodies = Goody.order(:sort).all
+    @variations = Variation.order(:sort).all
+  end
+
   def admin_only
     unless current_user && current_user.admin
       redirect_to root_path, notice: 'Sorry, you have to be an admin to do that!'

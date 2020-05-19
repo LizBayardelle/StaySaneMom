@@ -18,7 +18,8 @@
             <%= variation.name %>
           </h3>
           <p style="line-height: 1"><em><small><%= variation.short_description %></small></em></p>
-          <p><%= variation.description %></p>
+          <p class="mb-0"><%= variation.description %></p>
+          <p class="color-spouse" style="line-height: 1"><small><%= variation.subcategories %></small></p>
           <h4 class="font-weight-bold color-self">
             <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
           </h4>
