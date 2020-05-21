@@ -31,9 +31,10 @@ class VariationsController < ApplicationController
 
     respond_to do |format|
       if @variation.save
-        # if params[:variation][:images]
-        #   @variation.images.attach(params[:variation][:images])
-        # end
+        if params[:variation][:image].present?
+          @variation.image.attach(params[:variation][:image])
+          @variation.save
+        end
         format.html { redirect_to goody_path(@variation.goody), notice: 'Variation was successfully created.' }
         format.json { render :show, status: :created, location: @variation }
       else
@@ -48,9 +49,11 @@ class VariationsController < ApplicationController
   def update
     respond_to do |format|
       if @variation.update(variation_params)
-        # if params[:variation][:images]
-        #   @variation.images.attach(params[:variation][:images])
-        # end
+        if params[:variation][:image].present?
+          @variation.image.purge
+          @variation.image.attach(params[:variation][:image])
+          @variation.save
+        end
         format.html { redirect_to goody_path(@variation.goody), notice: 'Variation was successfully updated.' }
         format.json { render :show, status: :ok, location: @variation }
       else
@@ -99,8 +102,8 @@ class VariationsController < ApplicationController
         :custom_planner,
         :build_planner,
         :downloadable,
-        images: [],
-        downloadable_files: []
+        :image,
+        :downloadable_file
       )
     end
 end

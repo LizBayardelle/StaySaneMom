@@ -9,6 +9,15 @@ class HomeController < ApplicationController
     @recent_blogs = Blog.where("published_on <= ?", Date.today).where(published: true).order("published_on DESC").limit(8)
   end
 
+  def redirect
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      redirect_to root_path
+      flash[:notice] = "Uh oh.  Something appears to have gone wrong."
+    end
+  end
+
   def tools
   end
 

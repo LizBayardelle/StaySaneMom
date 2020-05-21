@@ -31,8 +31,8 @@
         </li>
 
         <li>
-          <%= link_to main_app.static_path(:resources), class: "waves-effect arrow-r" do %>
-            Resource Library
+          <%= link_to goodies_path, class: "waves-effect arrow-r" do %>
+            Goodies
           <% end %>
         </li>
 
@@ -51,11 +51,6 @@
           </div> <!-- collapsable body -->
         </li>
 
-        <li>
-          <%= link_to main_app.goodies_path, class: "waves-effect arrow-r" do %>
-            Store
-          <% end %>
-        </li>
 
 
 
@@ -74,7 +69,6 @@
                 <li><%= link_to "Sales", main_app.purchases_path, class: "waves-effect" %></li>
                 <li><%= link_to "Contributions Manager", main_app.contributions_path, class: "waves-effect" %></li>
                 <li><%= link_to "Store Manager", admin_store_manager_path, class: "waves-effect" %></li>
-                <li><%= link_to "Resource Manager", main_app.admin_resources_path, class: "waves-effect" %></li>
                 <li><%= link_to "Subcategory Manager", main_app.subcategories_path, class: "waves-effect" %></li>
                 <li><%= link_to "Blogs Manager", main_app.home_allblogs_path, class: "waves-effect" %></li>
                 <% end %>

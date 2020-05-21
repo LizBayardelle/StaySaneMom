@@ -1,0 +1,10 @@
+<section id="blog-body" class="container">
+  <div class="blog-itself blog-headings">
+    <% if @blog.affiliate_links %>
+      <p class="text-center"><em>
+        This post contains some affiliate links for your convenience. Click <a href="#affiliate">here</a> to read my&nbsp;full&nbsp;disclosure&nbsp;policy.
+      </em></p>
+    <% end %>
+    <%= raw(@blog.body) %>
+  </div>
+</section> <!-- container -->

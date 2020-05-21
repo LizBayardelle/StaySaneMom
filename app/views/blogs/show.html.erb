@@ -19,323 +19,36 @@
   <!-- page-specific content -->
 
 
-  <section id="breadcrumbs" class="mb-5">
-    <% case @blog.category %>
-    <% when "House" %>
-      <nav aria-label="breadcrumb" class="nav-breadcrumb house">
-    <% when "Spouse" %>
-      <nav aria-label="breadcrumb" class="nav-breadcrumb spouse">
-    <% when "Kids" %>
-      <nav aria-label="breadcrumb" class="nav-breadcrumb kids">
-    <% when "Self" %>
-      <nav aria-label="breadcrumb" class="nav-breadcrumb self">
-    <% else %>
-      <nav aria-label="breadcrumb" class="nav-breadcrumb">
-    <% end %>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><%= link_to "Blog", blogs_path %></li>
-          <% case @blog.category %>
-          <% when "House" %>
-            <li class="breadcrumb-item"><%= link_to "House", home_house_path %></li>
-          <% when "Spouse" %>
-            <li class="breadcrumb-item"><%= link_to "Spouse", home_spouse_path %></li>
-          <% when "Kids" %>
-            <li class="breadcrumb-item"><%= link_to "Kids", home_kids_path %></li>
-          <% when "Self" %>
-            <li class="breadcrumb-item"><%= link_to "Self", home_self_path %></li>
-          <% else %>
-            <li class="breadcrumb-item">Other</li>
-          <% end %>
-          <li class="breadcrumb-item"><%= link_to @subcategory.name, subcategory_path(@subcategory) %></li>
-          <li class="breadcrumb-item"><%= @blog.title %></li>
-          <div style="position: absolute; right: 0; margin-right: 25px">
-            <% if current_user && current_user.admin %>
-              <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "color-self" %>
-            <% end %>
-          </div> <!-- right -->
-        </ol>
-      </nav>
-  </section>
-
-
-
-
-  <section id="hero-and-header" class="pb-5">
-
-    <% if @blog.photo_external %>
-      <div class="header-frame frame" style="background-image: url(<%= @blog.photo_url %>)" role="img" aria-label="<%= @blog.title %>">
-    <% else %>
-      <div class="header-frame frame" style="background-image: url(<%= rails_blob_url(@blog.image) if @blog.image.attached? %>)">
-    <% end %>
-
-    <% case @blog.category %>
-    <% when "House" %>
-      <div class="image-overlay-white"><div class="inner-frame border-house"></div></div>
-    <% when "Spouse" %>
-      <div class="image-overlay-white"><div class="inner-frame border-spouse"></div></div>
-    <% when "Kids" %>
-      <div class="image-overlay-white"><div class="inner-frame border-kids"></div></div>
-    <% when "Self" %>
-      <div class="image-overlay-white"><div class="inner-frame border-self"></div></div>
-    <% else %>
-      <div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div>
-    <% end %>
-
-    </div>
-    <div class="over-frame-text blog-show-header <%= @blog.category %>">
-      <div class="container">
-        <h1><%= @blog.title %></h1>
-      </div> <!-- container -->
-    </div> <!-- over-frame-text -->
-
-    <% case @blog.category %>
-    <% when "House" %>
-      <div class="blog-show house">
-    <% when "Spouse" %>
-      <div class="blog-show spouse">
-    <% when "Kids" %>
-      <div class="blog-show kids">
-    <% when "Self" %>
-      <div class="blog-show self">
-    <% else %>
-      <div class="blog-show neutral">
-    <% end %>
-    <div class="container">
-      <h4 class="text-center"><%= @blog.teaser %></h4>
-      <p class="text-center">
-        <strong>Written by <%= link_to user_path(@blog.user) do %>
-          <%= @blog.user.first_name %> <%= @blog.user.last_name %>
-        <% end %>
-        &nbsp; | &nbsp;
-        <% if @blog.user.admin %>
-          <i class="fas fa-glasses color-<%= @blog.category.downcase %>"></i> &nbsp;Stay Sane Mom Founder
-        <% elsif @blog.user.contributor %>
-          <i class="fas fa-keyboard color-<%= @blog.category.downcase %>"></i> &nbsp;Stay Sane Mom Contributor
-        <% end %></strong>
-        &nbsp;&nbsp|&nbsp;&nbsp
-        <a href="#comments"><span class="disqus-comment-count" data-disqus-identifier="<%= @blog.id %>" data-disqus-url="<%= polymorphic_url(@blog) %>">See Comments</span></a>
-        <br />
-        <% if @blog.published_on %>Published <% if @subcategory %>in <span class="color-<%= @blog.category.downcase %> boldest"><%= @blog.category %></span>, <span class="color-<%= @blog.category.downcase %> boldest"><%= @subcategory.name %></span><% end %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
-      </p>
-    </div> <!-- container -->
-  </section> <!-- header -->
-
-
+  <%= render partial: "blogs/breadcrumbs", locals: { blog: @blog, subcategory: @subcategory } %>
+  <%= render partial: "blogs/hero", locals: { blog: @blog } %>
 
   <% if @blog.published != false %>
-    <section id="sm" class="mb-5">
-      <div class="view jarallax text-center color-black" style="height: 200px; min-height: 0px">
-        <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Backgrounds/white-wood.jpg" alt="">
-        <div class="mask rgba-black-slight">
-          <div class="container flex-center text-center">
-            <div class="row">
-              <div class="col-12">
-                <h2 class="font-script">Care to Share?</h2>
-              </div> <!-- col -->
-              <div class="col-12">
-                <div class="fb-share-button pr-3"
-                  data-href="<%= polymorphic_url(@blog) %>"
-                  data-layout="button_count">
-                </div>
-                <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
-              </div> <!-- col -->
-            </div> <!-- row -->
-          </div> <!-- container -->
-        </div> <!-- mask -->
-      </div> <!-- jarallax -->
-
-    </section> <!-- social share -->
+    <%= render partial: "blogs/share", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
-
-
-
-
-
 
   <% if @blog.video_link != nil && @blog.video_link != "" %>
-    <section id="video" class="pb-5">
-      <div class="text-center">
-        <iframe width="560" style="max-width: 100%" height="315" rel=0 src="<%= @blog.video_link %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div> <!-- centered -->
-    </section> <!-- video -->
+    <%= render partial: "blogs/video", locals: { blog: @blog } %>
   <% end %>
 
-
-
-
-
-  <% if @blog.resource_id != nil %>
-    <section id="resource" class="mb-5">
-      <div class="view jarallax text-center color-black" style="height: 400px; min-height: 0px">
-        <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Backgrounds/white-wood.jpg" alt="">
-        <div class="mask rgba-black-slight">
-          <div class="container flex-center text-center py-5">
-            <% resource = Resource.find(@blog.resource_id) %>
-            <div class="row">
-              <div class="col-12">
-                <h4 class="text-center">Want to cut to the chase?</h4>
-                <h2 class="font-script color-<%= @blog.category.downcase %>"><%= resource.title %></h2>
-                <img src="<%= rails_blob_path(resource.sample) %>" class="z-depth-3 mt-1 mb-4" style="max-height: 150px">
-                <h2 class="text-center">Get My <span class="font-weight-bold"><%= resource.freebie_type %></span>&nbsp;Now</h2>
-                <% if current_user %>
-                  <% if !resource.link_instead %>
-                    <%= link_to resource_path(resource), target: "_blank", class: "btn btn-#{@blog.category.downcase} font-bold" do %><%= resource.cta %><% end %>
-                  <% else %>
-                    <a href="<%= resource.link_url %>" target="_blank" class="btn btn-<%= @blog.category.downcase %> font-bold"><%= resource.cta %></a>
-                  <% end %>
-                <% else %>
-                  <a href="<%= resource.convertkit_href %>" class="btn btn-<%= @blog.category.downcase %> font-bold cta-top">Download Now</a>
-                  <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
-                <% end %>
-              </div> <!-- col -->
-            </div> <!-- row -->
-          </div> <!-- container -->
-        </div> <!-- mask -->
-      </div> <!-- jarallax -->
-
-    </section> <!-- resource -->
+  <% if @blog.variation_id != nil %>
+    <%= render partial: "blogs/top_optin", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
 
+  <%= render partial: "blogs/blog_body", locals: { blog: @blog } %>
 
-
-
-
-
-  <section id="blog-body" class="container">
-    <div class="half-buffer"></div>
-
-    <div class="blog-itself blog-headings col-xs-12">
-      <% if @blog.affiliate_links %>
-        <p class="text-center"><em>This post contains some affiliate links for your convenience. Click <a href="#affiliate">here</a> to read my&nbsp;full&nbsp;disclosure&nbsp;policy.</em></p>
-      <% end %>
-      <%= raw(@blog.body) %>
-    </div>
-
-  </section> <!-- container -->
-
-
-
-
-  <section id="related-posts" class="container-fluid p-5">
-    <div class="row">  <!--Grid row-->
-      <div class="col-md-12 wow fadeIn mb-3 text-center">
-        <h2 class="mb-2 wow fadeInDown" data-wow-delay="0.3s">Related Reading</h2>
-      </div> <!-- col -->
-
-      <% @related = Blog.where(subcategory_id: @blog.subcategory_id, published: true, ).where("published_on <= ?", Date.today).where.not(id: @blog.id).order("comments_count DESC") %>
-      <% @related.limit(4).each do |blog| %>
-        <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
-      <% end %>
-    </div> <!-- row -->
-  </section> <!-- related posts -->
-
-
-
-
-
-
-
-
-  <% if @blog.resource_id != nil %>
-    <section id="resource">
-      <div class="view jarallax text-center color-black" style="height: 400px; min-height: 0px">
-        <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Backgrounds/white-wood.jpg" alt="">
-        <div class="mask rgba-black-slight">
-          <div class="container flex-center text-center pt-5">
-            <% resource = Resource.find(@blog.resource_id) %>
-            <div class="row">
-              <div class="col-12">
-                <h4 class="text-center">Start Your Next Step</h4>
-                <h2 class="font-script color-<%= @blog.category.downcase %>"><%= resource.title %></h2>
-                <img src="<%= rails_blob_path(resource.sample) %>" class="z-depth-3 mt-1 mb-4" style="max-height: 150px">
-                <h2 class="text-center">Get My <span class="font-weight-bold"><%= resource.freebie_type %></span>&nbsp;Now</h2>
-                <% if current_user %>
-                  <% if !resource.link_instead %>
-                    <%= link_to resource_path(resource), target: "_blank", class: "btn btn-#{@blog.category.downcase} font-bold" do %><%= resource.cta %><% end %>
-                  <% else %>
-                    <a href="<%= resource.link_url %>" target="_blank" class="btn btn-<%= @blog.category.downcase %> font-bold"><%= resource.cta %></a>
-                  <% end %>
-                <% else %>
-                  <a href="<%= resource.convertkit_href %>" class="btn btn-<%= @blog.category.downcase %> font-bold cta-top">Download Now</a>
-                  <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "resource library", static_path(:resources) %>.</p>
-                <% end %>
-              </div> <!-- col -->
-            </div> <!-- row -->
-          </div> <!-- container -->
-        </div> <!-- mask -->
-      </div> <!-- jarallax -->
-
-    </section> <!-- resource -->
+  <% if @blog.variation_id != nil %>
+    <%= render partial: "blogs/bottom_optin", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
 
+  <%= render partial: "blogs/related", locals: { blog: @blog } %>
+  <%= render partial: "blogs/pinterest", locals: { blog: @blog } %>
+  <%= render partial: "blogs/subscribe", locals: { blog: @blog } %>
+  <%= render partial: "layouts/biobox", locals: { user: @blog.user, header: "About the Author" } %>
 
+  <% if @blog.published %>
+    <%= render partial: "blogs/comments", locals: { blog: @blog } %>
+  <% end %>
 
-
-
-
-
-  <section id="pinterest" class="container text-center pb-5">
-    <h2 class="font-script">Care to Share?</h2>
-    <div class="fb-share-button"
-      data-href="<%= polymorphic_url(@blog) %>"
-      data-layout="button_count">
-    </div>
-    <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
-
-    <% if @blog.pin_image.attached? %>
-      <div class="pinterest-image row padded pin-image-stripe">
-        <div class="container">
-          <% @blog.pin_image.each do |image| %>
-            <%= image_tag url_for(image)%>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </section> <!-- pinterest -->
-
-
-
-
-
-  <section id="subscribe" class="mb-5">
-    <div class="view jarallax text-center color-black" style="height: 400px; min-height: 400px">
-      <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Backgrounds/white-wood.jpg" alt="">
-      <div class="mask rgba-black-slight">
-        <div class="container flex-center text-center py-5">
-          <% resource = Resource.find(@blog.resource_id) %>
-          <div class="row">
-            <div class="col-12">
-              <h2>Get Sanity, Delivered to Your Inbox.</h2>
-              <div class="click-simulator"><script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script></div>
-            </div> <!-- col -->
-          </div> <!-- row -->
-        </div> <!-- container -->
-      </div> <!-- mask -->
-    </div> <!-- jarallax -->
-  </section> <!-- subscribe -->
-
-
-
-
-
-
-
-  <% if @blog.published != false %>
-    <div class="container" id="comments"> <!-- comments container -->
-      <div class="half-buffer"></div>
-      <h2 class="text-center font-script">Give Your Two Cents!</h2>
-      <div id="disqus_thread"></div>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div> <!-- page container -->
-  <% end %> <!-- end skip if unpublished -->
-
-
-
-
-
-  <section id="biobox">
-    <%= render partial: "layouts/biobox", locals: { user: @blog.user, header: "About the Author" } %>
-  </section>
 
 </main>
 
@@ -361,14 +74,6 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      // object-fit polyfill run
-      objectFitImages();
-      /* init Jarallax */
-      jarallax(document.querySelectorAll('.jarallax'));
-      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
-        keepImg: true,
-      });
-
 
       $("#top-bar").removeClass('bg-solid-neutral');
       $("#top-bar").addClass('bg-solid-<%= @blog.category.downcase %>');
@@ -390,6 +95,17 @@
       $('.submit-comment').click(function() {
           ga('send', 'event', 'Participation', 'Blog Comment', '<%= @blog.title %> Comment');
       });
+
+      // object-fit polyfill run
+      objectFitImages();
+
+      /* init Jarallax */
+      jarallax(document.querySelectorAll('.jarallax'));
+
+      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+          keepImg: true,
+      });
+
     });
   </script>
 

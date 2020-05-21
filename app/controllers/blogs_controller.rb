@@ -9,7 +9,6 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').page(params[:page])
-    @commented_blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('comments_count DESC').limit(3)
     @featured_blogs = Blog.where(published: true, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     if params[:tag]
       @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag]).page(params[:page])
@@ -34,8 +33,6 @@ class BlogsController < ApplicationController
   def show
     @subcategory = Subcategory.where(id: @blog.subcategory_id).first
     @user = User.where(id: @blog.user_id).first
-    @comment = Comment.create
-    @comments = Comment.where(blog_id: @blog.id).order("created_at DESC")
     @response = Response.create
     if current_user
       @comment_user = current_user
@@ -237,7 +234,7 @@ class BlogsController < ApplicationController
 
                   :published,
                   :published_on,
-                  
+
                   :user_id,
                   :affiliate_links,
                   :image,
@@ -249,7 +246,8 @@ class BlogsController < ApplicationController
                   :approved,
                   :submitted,
                   :tag_list,
-                  :resource_id
+                  :resource_id,
+                  :variation_id
                 )
   end
 end

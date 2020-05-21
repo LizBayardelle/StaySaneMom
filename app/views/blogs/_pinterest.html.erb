@@ -1,0 +1,18 @@
+<section id="pinterest" class="container text-center pb-5">
+  <h2 class="font-script">Care to Share?</h2>
+  <div class="fb-share-button"
+    data-href="<%= polymorphic_url(@blog) %>"
+    data-layout="button_count">
+  </div>
+  <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+
+  <% if @blog.pin_image.attached? %>
+    <div class="pinterest-image row padded pin-image-stripe">
+      <div class="container">
+        <% @blog.pin_image.each do |image| %>
+          <%= image_tag url_for(image)%>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</section> <!-- pinterest -->

@@ -1,6 +1,12 @@
 <div class="container">
-  <h1 class="text-center font-script">Checkout (Your Information)</h1>
+  <h1 class="pt-3 mb-0 text-center thin uppercase">Info & Shipping</h1>
 
-  <%= render 'form', purchase: @purchase %>
+  <div class="pb-4">
+    <%= render partial: "purchases/stepper" %>
+  </div>
+
+  <div class="z-depth-2 py-4 px-3 mb-5">
+    <%= render 'form', purchase: @purchase %>
+  </div>
 
 </div>

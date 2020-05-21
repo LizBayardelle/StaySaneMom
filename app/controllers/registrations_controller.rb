@@ -3,12 +3,20 @@ class RegistrationsController < Devise::RegistrationsController
   invisible_captcha only: [:create], honeypot: :subtitle
 
   def create
+
     super
+
     if @user.persisted?
+      if params[:purchase_id]
+        purchase = Purchase.find(params[:purchase_id])
+        purchase.user_id = @user.id
+        purchase.save
+      end
+      
       # NewUserNotificationMailer.send_new_user_email(@user).deliver
       @client = Convertkit::Client.new
-      @client.add_subscriber_to_sequence(269530, @user.email, options = {})
-      @client.add_subscriber_to_tag(627854, @user.email, options = {})
+      @client.add_subscriber_to_sequence(618663, @user.email, options = { first_name: @user.first_name })
+      @client.add_subscriber_to_tag(1585457, @user.email, options = { first_name: @user.first_name })
     end
   end
 

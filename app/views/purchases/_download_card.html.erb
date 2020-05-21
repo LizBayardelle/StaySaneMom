@@ -1,16 +1,10 @@
-<div id="var<%= variation.id.to_s %>"  class="col-12 col-lg-4">
+<div class="col-12 col-lg-4">
   <div class="card hoverable mb-4 w-100">
     <div class="card-body">
       <div class="row align-items-center">
         <div class="col-12 col-md-4 col-lg-12 px-0">
           <% if variation.image.attached? %>
             <%= image_tag rails_blob_url(variation.image), class: "image-fluid", style: "max-width: 100%; max-height: 250px" %>
-          <% end %>
-          <% if current_user && current_user.admin %>
-            <h5>
-              <%= link_to 'Edit', edit_variation_path(variation), class: "grey-text" %> |
-              <%= link_to 'Delete', variation, method: :delete, data: { confirm: 'Are you sure?' }, class: "grey-text" %>
-            </h5>
           <% end %>
         </div>
         <div class="col-12 col-md-8 col-lg-12">
@@ -20,19 +14,13 @@
           <p style="line-height: 1"><em><small><%= variation.short_description %></small></em></p>
           <p class="mb-0"><%= variation.description %></p>
           <p class="color-spouse" style="line-height: 1"><small><%= variation.subcategories %></small></p>
-          <h4 class="font-weight-bold color-self">
-            <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
-          </h4>
-
-          <%= form_for @basket_item, remote: true do |f| %>
-            <div class="text-center">
-              <%= f.hidden_field :quantity, value: 1 %>
-              <%= f.hidden_field :variation_id, value: variation.id %>
-              <%= f.submit "Add to Cart", class: "btn btn-spouse" %>
-            </div>
+          <% if !variation.link_instead && variation.downloadable_file.attached? %>
+            <a href="<%= rails_blob_url(variation.downloadable_file) %>" target="_blank" class="btn btn-spouse">Download</a>
+          <% else %>
+            <a href="<%= variation.link_url %>" target="_blank" class="btn btn-spouse">Get It Now</a>
           <% end %>
         </div>
       </div>
     </div> <!-- col -->
   </div> <!-- card -->
-</div>
+</div> <!-- big col -->

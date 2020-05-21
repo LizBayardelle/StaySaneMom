@@ -18,6 +18,10 @@ class ChargesController < ApplicationController
       currency: 'usd',
     })
 
+    @purchase = Purchase.find(params[:purchase_id])
+    @purchase.status = "Paid"
+    @purchase.save
+    
     current_basket.update_attributes(basket_status_id: 2)
     @previous_basket =  current_basket
     clear_basket

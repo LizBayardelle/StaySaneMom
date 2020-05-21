@@ -1,8 +1,8 @@
 class Variation < ApplicationRecord
   belongs_to :goody
   has_many :groupings, through: :variation_groupings
-  has_many_attached :images
-  has_many_attached :downloadable_files
+  has_one_attached :image
+  has_one_attached :downloadable_file
   has_many :basket_items
   has_many :blogs
 

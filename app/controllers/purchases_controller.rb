@@ -30,13 +30,36 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
 
-    respond_to do |format|
-      if @purchase.save
-        format.html { redirect_to new_charge_path }
-        format.json { render :show, status: :created, location: @purchase }
-      else
-        format.html { render :new }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
+    if @purchase.total == 0
+      @client = Convertkit::Client.new
+      @client.add_subscriber_to_sequence(618663, @purchase.email, options = { first_name: @purchase.first_name })
+      @client.add_subscriber_to_tag(1585457, @purchase.email, options = { first_name: @purchase.first_name })
+
+      @purchase.status = "Completed (Free Purchase)"
+      @purchase.save
+
+      respond_to do |format|
+        if @purchase.save
+          format.html { redirect_to purchase_path(@purchase) }
+          format.json { render :show, status: :created, location: @purchase }
+        else
+          format.html { render :new }
+          format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @client = Convertkit::Client.new
+      @client.add_subscriber_to_sequence(618663, @purchase.email, options = { first_name: @purchase.first_name })
+      @client.add_subscriber_to_tag(1585460, @purchase.email, options = { first_name: @purchase.first_name })
+
+      respond_to do |format|
+        if @purchase.save
+          format.html { redirect_to new_charge_path }
+          format.json { render :show, status: :created, location: @purchase }
+        else
+          format.html { render :new }
+          format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -100,6 +123,7 @@ class PurchasesController < ApplicationController
         :phone,
         :email,
         :total,
+        :status,
         :basket_id,
         :user_id
       )

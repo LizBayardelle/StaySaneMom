@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'home/tools'
   get 'home/results'
   get 'home/allblogs'
+  get 'home/redirect'
 
   resources :subcategories
 

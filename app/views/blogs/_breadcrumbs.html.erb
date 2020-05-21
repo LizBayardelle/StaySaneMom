@@ -1,0 +1,37 @@
+<section id="breadcrumbs" class="mb-5">
+  <% case @blog.category %>
+  <% when "House" %>
+    <nav aria-label="breadcrumb" class="nav-breadcrumb house">
+  <% when "Spouse" %>
+    <nav aria-label="breadcrumb" class="nav-breadcrumb spouse">
+  <% when "Kids" %>
+    <nav aria-label="breadcrumb" class="nav-breadcrumb kids">
+  <% when "Self" %>
+    <nav aria-label="breadcrumb" class="nav-breadcrumb self">
+  <% else %>
+    <nav aria-label="breadcrumb" class="nav-breadcrumb">
+  <% end %>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Blog", blogs_path %></li>
+        <% case @blog.category %>
+        <% when "House" %>
+          <li class="breadcrumb-item"><%= link_to "House", home_house_path %></li>
+        <% when "Spouse" %>
+          <li class="breadcrumb-item"><%= link_to "Spouse", home_spouse_path %></li>
+        <% when "Kids" %>
+          <li class="breadcrumb-item"><%= link_to "Kids", home_kids_path %></li>
+        <% when "Self" %>
+          <li class="breadcrumb-item"><%= link_to "Self", home_self_path %></li>
+        <% else %>
+          <li class="breadcrumb-item">Other</li>
+        <% end %>
+        <li class="breadcrumb-item"><%= link_to @subcategory.name, subcategory_path(@subcategory) %></li>
+        <li class="breadcrumb-item"><%= @blog.title %></li>
+        <div style="position: absolute; right: 0; margin-right: 25px">
+          <% if current_user && current_user.admin %>
+            <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "color-self" %>
+          <% end %>
+        </div> <!-- right -->
+      </ol>
+    </nav>
+</section>

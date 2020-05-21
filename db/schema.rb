@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_030638) do
+ActiveRecord::Schema.define(version: 2020_05_20_150711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,20 +147,6 @@ ActiveRecord::Schema.define(version: 2020_05_19_030638) do
     t.string "photo_orientation", default: "Square"
     t.string "interval", default: "Yearly"
     t.index ["user_id"], name: "index_capsules_on_user_id"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.text "body"
-    t.bigint "user_id"
-    t.bigint "blog_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "approved", default: false
-    t.boolean "read", default: false
-    t.string "email"
-    t.string "name"
-    t.index ["blog_id"], name: "index_comments_on_blog_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contributions", force: :cascade do |t|
@@ -318,6 +304,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_030638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
+    t.string "status", default: "Abandoned Pre-Checkout"
     t.index ["basket_id"], name: "index_purchases_on_basket_id"
   end
 
@@ -362,37 +349,6 @@ ActiveRecord::Schema.define(version: 2020_05_19_030638) do
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_responses_on_comment_id"
     t.index ["user_id"], name: "index_responses_on_user_id"
-  end
-
-  create_table "solidus_paypal_braintree_configurations", id: :serial, force: :cascade do |t|
-    t.boolean "paypal", default: false, null: false
-    t.boolean "apple_pay", default: false, null: false
-    t.integer "store_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "credit_card", default: false, null: false
-    t.index ["store_id"], name: "index_solidus_paypal_braintree_configurations_on_store_id"
-  end
-
-  create_table "solidus_paypal_braintree_customers", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.string "braintree_customer_id"
-    t.index ["braintree_customer_id"], name: "index_braintree_customers_on_braintree_customer_id", unique: true
-    t.index ["user_id"], name: "index_braintree_customers_on_user_id", unique: true
-  end
-
-  create_table "solidus_paypal_braintree_sources", id: :serial, force: :cascade do |t|
-    t.string "nonce"
-    t.string "token"
-    t.string "payment_type", null: false
-    t.integer "user_id"
-    t.integer "customer_id"
-    t.integer "payment_method_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_solidus_paypal_braintree_sources_on_customer_id"
-    t.index ["payment_method_id"], name: "index_solidus_paypal_braintree_sources_on_payment_method_id"
-    t.index ["user_id"], name: "index_solidus_paypal_braintree_sources_on_user_id"
   end
 
   create_table "sortings", force: :cascade do |t|
@@ -531,6 +487,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_030638) do
     t.boolean "downloadable", default: false
     t.string "subcategories"
     t.integer "sort"
+    t.boolean "link_instead", default: false
+    t.string "link_url"
     t.index ["goody_id"], name: "index_variations_on_goody_id"
   end
 
@@ -543,8 +501,6 @@ ActiveRecord::Schema.define(version: 2020_05_19_030638) do
   add_foreign_key "capsule_items", "capsules"
   add_foreign_key "capsule_items", "users"
   add_foreign_key "capsules", "users"
-  add_foreign_key "comments", "blogs"
-  add_foreign_key "comments", "users"
   add_foreign_key "gifts", "users"
   add_foreign_key "meals", "users"
   add_foreign_key "occasions", "people"
@@ -554,7 +510,6 @@ ActiveRecord::Schema.define(version: 2020_05_19_030638) do
   add_foreign_key "planner_customs", "users"
   add_foreign_key "purchases", "baskets"
   add_foreign_key "resources", "users"
-  add_foreign_key "responses", "comments"
   add_foreign_key "responses", "users"
   add_foreign_key "sortings", "users"
   add_foreign_key "tasks", "users"

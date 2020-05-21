@@ -83,7 +83,7 @@ h2.font-script { font-size: 50px }
 .color-house { color: $color-house; }
 .color-spouse { color: $color-spouse; }
 .color-marriage { color: $color-spouse; }
-.color-kids { color: $color-kids; }
+.color-kids, .color-pregnancy, .color-babies, .color-toddlers, .color-kids, .color-teens { color: $color-kids; }
 .color-self { color: $color-self; }
 .color-neutral { color: $color-neutral; }
 .color-neutral-light { color: $color-neutral-light; }
@@ -91,27 +91,26 @@ h2.font-script { font-size: 50px }
 .color-black { color: $color-black; }
 
 .border-house { border: solid $color-house; }
-.border-spouse { border: solid $color-spouse; }
-.border-marriage { border: solid $color-spouse; }
+.border-spouse, .border-marriage { border: solid $color-spouse; }
 .border-kids { border: solid $color-kids; }
 .border-self { border: solid $color-self; }
 .border-neutral { border: solid $color-neutral; }
 
 .bg-house { background-color: $transparent-house !important; }
-.bg-spouse { background-color: $transparent-spouse !important; }
-.bg-marriage { background-color: $transparent-spouse !important; }
-.bg-kids { background-color: $transparent-kids !important; }
+.bg-spouse, .bg-marriage { background-color: $transparent-spouse !important; }
+.bg-kids, .bg-pregnancy, .bg-babies, .bg-toddlers, .bg-kids, .bg-teens { background-color: $transparent-kids !important; }
 .bg-self { background-color: $transparent-self !important; }
 .bg-neutral { background-color: $transparent-neutral !important; }
 .bg-neutral-dark { background-color: $color-neutral !important; }
 
 .bg-solid-house { background-color: $color-house; }
-.bg-solid-spouse { background-color: $color-spouse; }
-.bg-solid-marriage { background-color: $color-spouse; }
+.bg-solid-spouse, .bg-solid-marriage { background-color: $color-spouse; }
 .bg-solid-kids { background-color: $color-kids; }
 .bg-solid-self { background-color: $color-self; }
 .bg-solid-neutral { background-color: $color-neutral; }
 .bg-solid-neutral-dark { background-color: $color-neutral; }
+
+.border-bottom-spouse { border-bottom: solid medium $color-spouse; }
 
 .transparent-hover.house:hover { background-color: $transparent-house; }
 .transparent-hover.spouse:hover { background-color: $transparent-spouse; }
@@ -1493,6 +1492,16 @@ strong { font-weight: 900 }
 .side-nav .self.collapsible-body a.sub { background-color: $transparent-self; }
 
 
+
+
+
+
+
+
+
+
+
+
 // ---------------------------
 // ---------------------------
 // ---------------------------
@@ -1530,3 +1539,22 @@ bottom: .5em;
 #blog.spouse p a, #blog.spouse li a { color: $color-spouse; }
 #blog.kids p a, #blog.kids li a { color: $color-kids; }
 #blog.self p a, #blog.self li a { color: $color-self; }
+
+
+
+
+
+.stepper-horizontal {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+ul.stepper li.active a .circle,
+.white-skin .primary-color, .white-skin ul.stepper li.active a .circle, ul.stepper li.active a .white-skin .circle, .white-skin ul.stepper li.completed a .circle, ul.stepper li.completed a .white-skin .circle {
+  background-color: $color-spouse;
+}
+
+
+ul.stepper li.inactive a .circle {
+  background-color: $color-neutral
+}

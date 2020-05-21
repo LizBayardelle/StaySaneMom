@@ -1,0 +1,23 @@
+<main class="pb-5 container">
+  <header class="text-center">
+    <h1 class="color-spouse font-script">Thank You!</h1>
+    <p>
+      Here are your goodies! You can download everything below.
+      <% unless current_user %>
+        <br>For permanent access to all our free resources, you can always <%= link_to "create a free account", new_user_registration_path(purchase_id: @purchase.id) %>&nbsp;here.
+      <% end %>
+    </p>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <% @purchase.basket.basket_items.each do |i| %>
+          <% variation = Variation.find(i.variation_id) %>
+          <%= render partial: "purchases/download_card", locals: { variation: variation } %>
+        <% end %>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
+
+</main>

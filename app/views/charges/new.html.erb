@@ -1,7 +1,13 @@
 <div class="container">
   <%= form_tag charges_path do %>
 
-    <h1 class="text-center thin uppercase">Checkout</h1>
+  <h1 class="pt-3 mb-0 text-center thin uppercase">My Shopping Cart</h1>
+
+  <div class="pb-4">
+    <%= render partial: "charges/stepper" %>
+  </div>
+
+    <%= purchase = Purchase.where(basket_id: current_basket).last %>
 
     <article>
       <% if flash[:error].present? %>

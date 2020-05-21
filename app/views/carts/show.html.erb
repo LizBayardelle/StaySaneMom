@@ -1,15 +1,18 @@
 <div class="container">
-  <h1 class="text-center thin uppercase">My Goodies</h1>
 
-  <div class="half-buffer"></div>
+  <h1 class="pt-3 mb-0 text-center thin uppercase">My Shopping Cart</h1>
 
-  <div class="shopping-cart">
+  <div class="pb-4">
+    <%= render partial: "carts/stepper" %>
+  </div>
+
+  <div class="shopping-cart z-depth-2">
     <%= render "shopping_cart" %>
   </div> <!-- shopping cart -->
 
   <div class="text-right">
     <div id="dropin-container"></div>
-    <%= link_to "Checkout", new_purchase_path, class: "btn btn-spouse" %>
+    <%= link_to "Let's Go", new_purchase_path, class: "btn btn-spouse" %>
   </div>
 
 </div> <!-- container -->

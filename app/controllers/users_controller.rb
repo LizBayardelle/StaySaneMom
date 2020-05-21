@@ -26,8 +26,6 @@ class UsersController < ApplicationController
     @occasions = Occasion.where(user_id: @user.id).where("date > ?", Time.now).order("date ASC")
     @gifts = Gift.where(user_id: @user.id, purchased: false)
 
-    @comments = Comment.where.not(blog_id: nil)
-    @new_comments = Comment.where("created_at >= ?", Time.zone.now.beginning_of_week).where.not(blog_id: nil)
     @contributions = Contribution.where(responded: false, archived: false)
     @client = Convertkit::Client.new
     @subscribers = @client.subscribers.body

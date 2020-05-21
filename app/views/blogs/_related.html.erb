@@ -1,0 +1,12 @@
+<section id="related-posts" class="container-fluid p-5">
+  <div class="row">  <!--Grid row-->
+    <div class="col-md-12 wow fadeIn mb-3 text-center">
+      <h2 class="mb-2 wow fadeInDown" data-wow-delay="0.3s">Related Reading</h2>
+    </div> <!-- col -->
+
+    <% @related = Blog.where(subcategory_id: @blog.subcategory_id, published: true, ).where("published_on <= ?", Date.today).where.not(id: @blog.id).order("comments_count DESC") %>
+    <% @related.limit(4).each do |blog| %>
+      <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+    <% end %>
+  </div> <!-- row -->
+</section> <!-- related posts -->

@@ -1,65 +1,60 @@
-<div class="biobox">
-  <%= render "layouts/quadborder" %>
+<section id="biobox">
+  <div class="biobox">
+    <div class="container">
 
-  <div class="container">
-    <div class="half-buffer"></div>
-
-    <h2 class="text-center font-script"><%= header %></h2>
-    <% if header != nil %>
-      <div class="half-buffer"></div>
-    <% end %>
-
-    <div class="row">
-      <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
-        <% if @user.avatar.attached? %>
-          <%= image_tag rails_blob_url(@user.avatar), class: "img-fluid z-depth-1 rounded-circle" %>
-        <% else %>
-          <%= image_tag "missing_avatar.jpg", class: "img-fluid z-depth-1 rounded-circle" %>
-        <% end %>
-      </div> <!-- biobox-image -->
-      <div class="biobox-bio col-sm-9">
-        <h4><%= @user.first_name %> <%= @user.last_name %></h4>
-        <% if @user.id == 1 %>
-          <p class="font-bold"><i class="fas fa-glasses color-spouse"></i> &nbsp;Founder &nbsp;&nbsp;| &nbsp;&nbsp;<i class="fas fa-keyboard color-spouse"></i> &nbsp;Contributor</p>
-        <% elsif @user.contributor %>
-          <p class="font-bold"><i class="fas fa-keyboard color-spouse"></i> &nbsp;Contributor</p>
-        <% end %>
-        <p style="color: black"><%= @user.bio %></p>
-        <h4 class="text-center font-script d-none d-lg-block" style="color: black">My Motto: <%= @user.tagline %></h4>
-      </div> <!-- biobox-image -->
-    </div> <!-- row -->
-
-    <h4 class="text-center font-script d-lg-none" style="color: black">My Motto: <%= @user.tagline %></h4>
-
-    <div class="text-center sm-links" style="margin-top: 15px">
-      <% if @user.sm_facebook != "" && @user.sm_approved %>
-        <a href="<%= @user.sm_facebook %>" target="_blank"><i class="color-spouse fab fa-facebook social-icon"></i></a>
-      <% end %>
-      <% if @user.sm_pinterest != "" && @user.sm_approved %>
-        <a href="<%= @user.sm_pinterest %>" target="_blank"><i class="color-spouse fab fa-pinterest-square social-icon"></i></a>
-      <% end %>
-      <% if @user.sm_instagram != "" && @user.sm_approved %>
-        <a href="<%= @user.sm_instagram %>" target="_blank"><i class="color-spouse fab fa-instagram social-icon"></i></a>
-      <% end %>
-      <% if @user.sm_twitter != "" && @user.sm_approved %>
-        <a href="<%= @user.sm_twitter %>" target="_blank"><i class="color-spouse fab fa-twitter social-icon"></i></a>
-      <% end %>
-      <% if @user.sm_youtube != "" && @user.sm_approved %>
-        <a href="<%= @user.sm_youtube %>" target="_blank"><i class="color-spouse fab fa-youtube social-icon"></i></a>
-      <% end %>
-      <% if @user.sm_other != "" && @user.sm_approved %>
-        <a href="<%= @user.sm_other %>" target="_blank"><i class="color-spouse fas fa-mouse-pointer social-icon"></i></a>
-      <% end %>
-      <% if @user.sm_email != "" && @user.sm_approved %>
-        <%= mail_to(@user.sm_email) do %><%= fa_icon "envelope", class: "color-spouse social-icon" %><% end %>
+      <h2 class="text-center font-script"><%= header %></h2>
+      <% if header != nil %>
+        <div class="half-buffer"></div>
       <% end %>
 
-    </div> <!-- sm -->
+      <div class="z-depth-3 p-5">
+        <div class="row">
+          <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
+            <% if @user.avatar.attached? %>
+              <%= image_tag rails_blob_url(@user.avatar), class: "img-fluid z-depth-1 rounded-circle" %>
+            <% else %>
+              <%= image_tag "missing_avatar.jpg", class: "img-fluid z-depth-1 rounded-circle" %>
+            <% end %>
+          </div> <!-- biobox-image -->
+          <div class="biobox-bio col-sm-9">
+            <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+            <% if @user.id == 1 %>
+              <p class="font-bold"><i class="fas fa-glasses color-spouse"></i> &nbsp;Founder &nbsp;&nbsp;| &nbsp;&nbsp;<i class="fas fa-keyboard color-spouse"></i> &nbsp;Contributor</p>
+            <% elsif @user.contributor %>
+              <p class="font-bold"><i class="fas fa-keyboard color-spouse"></i> &nbsp;Contributor</p>
+            <% end %>
+            <p style="color: black"><%= @user.bio %></p>
+            <h4 class="text-center thin d-none d-lg-block">My Motto: <%= @user.tagline %></h4>
+          </div> <!-- biobox-image -->
+        </div> <!-- row -->
 
-    <div class="half-buffer"></div>
+        <h4 class="text-center thin d-lg-none">My Motto: <%= @user.tagline %></h4>
 
-  </div> <!-- container -->
+        <div class="text-center sm-links" style="margin-top: 15px">
+          <% if @user.sm_facebook != "" && @user.sm_approved %>
+            <a href="<%= @user.sm_facebook %>" target="_blank"><i class="color-spouse fab fa-facebook social-icon"></i></a>
+          <% end %>
+          <% if @user.sm_pinterest != "" && @user.sm_approved %>
+            <a href="<%= @user.sm_pinterest %>" target="_blank"><i class="color-spouse fab fa-pinterest-square social-icon"></i></a>
+          <% end %>
+          <% if @user.sm_instagram != "" && @user.sm_approved %>
+            <a href="<%= @user.sm_instagram %>" target="_blank"><i class="color-spouse fab fa-instagram social-icon"></i></a>
+          <% end %>
+          <% if @user.sm_twitter != "" && @user.sm_approved %>
+            <a href="<%= @user.sm_twitter %>" target="_blank"><i class="color-spouse fab fa-twitter social-icon"></i></a>
+          <% end %>
+          <% if @user.sm_youtube != "" && @user.sm_approved %>
+            <a href="<%= @user.sm_youtube %>" target="_blank"><i class="color-spouse fab fa-youtube social-icon"></i></a>
+          <% end %>
+          <% if @user.sm_other != "" && @user.sm_approved %>
+            <a href="<%= @user.sm_other %>" target="_blank"><i class="color-spouse fas fa-mouse-pointer social-icon"></i></a>
+          <% end %>
+          <% if @user.sm_email != "" && @user.sm_approved %>
+            <%= mail_to(@user.sm_email) do %><%= fa_icon "envelope", class: "color-spouse social-icon" %><% end %>
+          <% end %>
+        </div> <!-- sm -->
+      </div> <!-- z depth -->
 
-  <%= render "layouts/quadborder" %>
-
-</div> <!-- biobox -->
+    </div> <!-- container -->
+  </div> <!-- biobox -->
+</section>

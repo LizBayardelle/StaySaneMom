@@ -1,0 +1,31 @@
+<section id="variation">
+  <div class="container py-5">
+    <div class="z-depth-3 p-5 text-center">
+
+      <% variation = Variation.find(@blog.variation_id) %>
+
+      <h4 class="">Want to cut to the chase?</h4>
+      <h2 class="h1 thin uppercase color-<%= @blog.category.downcase %>"><%= variation.name %></h2>
+
+      <img src="<%= rails_blob_path(variation.image) %>" class="mt-1 mb-4" style="max-height: 150px">
+      <h2>Get My <span class="font-weight-bold"><%= variation.short_description %></span>&nbsp;Now</h2>
+
+      <% if current_user %>
+
+        <% if !variation.link_instead && variation.downloadable_file.attached? %>
+          <a href="<%= rails_blob_url(variation.downloadable_file) %>" target="_blank" class="btn btn-<%= @blog.category.downcase %>">Download</a>
+        <% else %>
+          <a href="<%= variation.link_url %>" target="_blank" class="btn btn-<%= @blog.category.downcase %>">Get It Now</a>
+        <% end %>
+
+      <% else %>
+
+        <%= link_to goody_path(Variation.find(variation.goody_id), anchor: "var" + variation.id.to_s ), class: "btn btn-#{blog.category.downcase}" %>
+        <p><br />Or <%= link_to "log in", new_user_session_path %> for direct access to this and the rest of our <%= link_to "library of goodies", static_path(:variations) %>.</p>
+
+      <% end %>
+
+    </div> <!-- z depth -->
+  </div> <!-- container -->
+
+</section> <!-- variation -->
