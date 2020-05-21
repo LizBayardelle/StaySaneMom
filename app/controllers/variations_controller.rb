@@ -103,7 +103,9 @@ class VariationsController < ApplicationController
         :build_planner,
         :downloadable,
         :image,
-        :downloadable_file
+        :downloadable_file,
+        :link_instead,
+        :link_url
       )
     end
 end
