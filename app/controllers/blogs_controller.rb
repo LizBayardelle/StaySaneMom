@@ -135,7 +135,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+      format.html { redirect_to admin_blogs_path, notice: 'Blog was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

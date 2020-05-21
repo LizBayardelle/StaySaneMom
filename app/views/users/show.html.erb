@@ -13,7 +13,7 @@
       <% end %>
       <% if @user.admin && @user == current_user %>
         <h3>
-          <%= link_to 'Purchases', purchases_path %>  |  <%= link_to "Blogs", home_allblogs_path %>
+          <%= link_to 'Purchases', purchases_path %>  |  <%= link_to "Blogs", admin_blogs_path %>
         </h3>
       <% end %>
       <div class="half-buffer"></div>
@@ -113,7 +113,7 @@
       </div>
 
       <div class="col-sm-6 col-lg-4">
-        <%= link_to home_allblogs_path do %>
+        <%= link_to admin_blogs_path do %>
           <div id="members" class="mycard padded">
             <h3 class="text-center">Blog Posts</h3>
             <p>Published Posts: <%= Blog.where(published: true).count %>
@@ -125,7 +125,7 @@
       <div class="col-sm-6 col-lg-4">
           <div id="members" class="mycard padded">
             <h3 class="text-center">Admin Only Pages</h3>
-            <%= link_to "Blog Posts Index", home_allblogs_path %>
+            <%= link_to "Blog Posts Index", admin_blogs_path %>
             <%= link_to "Subcategories Index", subcategories_path %>
           </div>
       </div>

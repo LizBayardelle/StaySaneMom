@@ -3,11 +3,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'admin/store_manager'
-
+  get 'admin/blogs'
   get 'admin/resources'
-  resources :resources
-  resources :planner_customs
-  resources :purchases
 
   resources :meals
   post "meals/:id/favorite" => "meals#favorite", as: "favorite_meal"
@@ -28,28 +25,18 @@ Rails.application.routes.draw do
   get 'home/self'
   get 'home/tools'
   get 'home/results'
-  get 'home/allblogs'
   get 'home/redirect'
 
   resources :subcategories
 
   get 'tags/:tag', to: 'blogs#index', as: :tag
   resources :blogs do
-    resources :comments
     collection do
       get :autocomplete
     end
   end
   post "blogs/:id/approve_blog" => "blogs#approve_blog", as: "approve_blog"
   post "blogs/:id/unsubmit_blog" => "blogs#unsubmit_blog", as: "unsubmit_blog"
-
-  resources :comments do
-    resources :responses
-  end
-  post "comment/:id/approve" => "comments#approve_comment", as: "approve_comment"
-  post "comment/:id/unapprove" => "comments#unapprove_comment", as: "unapprove_comment"
-  post "comment/:id/comment_read" => "comments#comment_read", as: "comment_read"
-  post "comment/:id/comment_unread" => "comments#comment_unread", as: "comment_unread"
 
   resources :tasks do
     collection do
@@ -67,10 +54,13 @@ Rails.application.routes.draw do
   post "contributions/:id/replied_contribution" => "contributions#replied_contribution", as: "replied_contribution"
   post "contributions/:id/unreplied_contribution" => "contributions#unreplied_contribution", as: "unreplied_contribution"
 
-
   resources :capsules do
     resources :capsule_items
   end
+
+  resources :resources
+  resources :planner_customs
+  resources :purchases
 
 
   resources :groupings

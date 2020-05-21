@@ -26,7 +26,7 @@
       <% @blogs.each do |blog| %>
         <tr>
           <td>
-            <%= blog.id %>
+            <%= "%03d" % blog.id %>
             <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
             <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
           </td>
@@ -90,6 +90,7 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $('#blogsTable').DataTable({
+        "paging": false,
         "aaSorting": [],
         columnDefs: [{
         orderable: false,

@@ -6,7 +6,6 @@ class Blog < ApplicationRecord
   belongs_to :user
   has_many :subcategorizations
   has_many :subcategories, through: :subcategorizations
-  has_many :comments, dependent: :destroy
   belongs_to :resource, optional: true
   belongs_to :variation, optional: true
 
