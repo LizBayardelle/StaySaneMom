@@ -172,6 +172,20 @@ class BlogsController < ApplicationController
   end
 
 
+  def update_goody
+    @blog = Blog.friendly.find(params[:id])
+    respond_to do |format|
+      if @blog.update!(blog_params)
+        format.html { redirect_to admin_blogs_path, notice: 'Blog was successfully updated.' }
+        format.json { render :show, status: :ok, location: @blog }
+      else
+        format.html { render :edit }
+        format.json { render json: @blog.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

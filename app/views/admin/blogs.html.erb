@@ -4,6 +4,7 @@
       <tr>
         <th>#</th>
         <th>Title</th>
+        <th>Goody</th>
         <th>Author</th>
         <th>Guest</th>
         <th>Comments</th>
@@ -32,6 +33,23 @@
           </td>
           <td>
             <%= link_to blog.title, blog_path(blog.id) %>
+          </td>
+          <td style="min-width: 150px">
+            <%= simple_form_for(blog, url: update_goody_path(blog), method: :patch) do |f| %>
+              <% variation_collection = [] %>
+              <% Variation.all.each do |lm| %>
+                <% variation_collection << ["#{lm.name}", "#{lm.id}"] %>
+              <% end %>
+              <div class="row text-left">
+                <div class="form-group col-12 mb-0 pb-0">
+                  <%= f.input :variation_id, label: false, prompt: "Choose a Related Goody", input_html: { id: "lmFor" + blog.id.to_s, class: 'browser-default', onchange: "this.form.submit();" }, collection: variation_collection, required: false %>
+                </div>
+              </div> <!-- row -->
+            <% end %>
+            <!-- show existing -->
+            <% if blog.variation_id %>
+              <%= Variation.find(blog.variation_id).name %>
+            <% end %>
           </td>
           <td>
             <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %>

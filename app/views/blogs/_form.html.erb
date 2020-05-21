@@ -201,15 +201,6 @@
   <div class="container">
     <div class="half-buffer"></div>
     <h2 class="text-center">Freebie Info</h2>
-    <% resource_collection = [] %>
-    <% Resource.where(active: true).each do |lm| %>
-      <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
-    <% end %>
-    <div class="row text-left">
-      <div class="form-group col-12">
-        <%= f.input :resource_id, label: false, prompt: "Choose an Associated Resource", input_html: { class: 'browser-default' }, collection: resource_collection, required: false %>
-      </div>
-    </div> <!-- row -->
 
     <% variation_collection = [] %>
     <% Variation.all.each do |lm| %>

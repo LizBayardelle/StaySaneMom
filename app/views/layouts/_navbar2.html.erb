@@ -1,13 +1,16 @@
 
 <%= render partial: "layouts/sidenav" %>
 <%= render partial: "layouts/very_fixed_nav" %>
+<div style="position: fixed; top: 0px; z-index: 5000; width: 100%;">
+  <%= render partial: "layouts/notifications" %>
+</div>
 
 
 
 <!--Main Navigation-->
 <header id="nav-timeline">
 
-<nav class="navbar pt-5 pb-2 navbar-expand-md navbar-light white scrolling-navbar">
+<nav class="navbar pt-5 pb-2 navbar-expand-md navbar-light scrolling-navbar">
 
   <div class="row w-100 px-xl-5 justify-content-center text-center">
 
