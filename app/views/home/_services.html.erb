@@ -7,46 +7,14 @@
 
   <div class="row">
 
-    <div class="col-md-3 col-sm-6 mb-4">
-      <div class="card collection-card z-depth-1-half">
-        <div class="view zoom">
-          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Callouts/store.jpg" class="img-fluid"
-            alt="">
-          <div class="stripe dark">
-            <%= link_to static_path(:planners) do %>
-              <p>Custom Planners
-                <i class="fas fa-angle-right"></i>
-              </p>
-            <% end %>
-          </div> <!-- stripe -->
-        </div> <!-- Card image -->
-      </div> <!-- Collection card -->
-    </div> <!-- Grid column -->
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <div class="card collection-card z-depth-1-half">
-        <div class="view zoom">
-          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Callouts/planners.jpg" class="img-fluid"
-            alt="">
-          <div class="stripe dark">
-            <%= link_to page_path("goodies") do %>
-              <p>Store
-                <i class="fas fa-angle-right"></i>
-              </p>
-            <% end %>
-          </div> <!-- stripe -->
-        </div> <!-- Card image -->
-      </div> <!-- Collection card -->
-    </div> <!-- Grid column -->
-
-    <div class="col-md-3 col-sm-6 mb-4">
+    <div class="col-sm-4 mb-4">
       <div class="card collection-card z-depth-1-half">
         <div class="view zoom">
           <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Callouts/tools.jpg" class="img-fluid"
             alt="">
           <div class="stripe dark">
             <%= link_to page_path("tools") do %>
-              <p>Online Tools
+              <p>Online<br class="d-lg-none">Tools
                 <i class="fas fa-angle-right"></i>
               </p>
             <% end %>
@@ -55,14 +23,14 @@
       </div> <!-- Collection card -->
     </div> <!-- Grid column -->
 
-    <div class="col-md-3 col-sm-6 mb-4">
+    <div class="col-sm-4 mb-4">
       <div class="card collection-card z-depth-1-half">
         <div class="view zoom">
           <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Callouts/resources.jpg" class="img-fluid"
             alt="">
           <div class="stripe dark">
-            <%= link_to resources_path do %>
-              <p>Resources
+            <%= link_to goodies_path do %>
+              <p>Goodies &<br class="d-lg-none">Resources
                 <i class="fas fa-angle-right"></i>
               </p>
             <% end %>
@@ -70,6 +38,24 @@
         </div> <!-- Card image -->
       </div> <!-- Collection card -->
     </div> <!-- Fourth column -->
+
+    <div class="col-sm-4 mb-4">
+      <div class="card collection-card z-depth-1-half">
+        <div class="view zoom">
+          <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Callouts/store.jpg" class="img-fluid"
+            alt="">
+          <div class="stripe dark">
+            <%= link_to static_path(:planners) do %>
+              <p>Custom<br class="d-lg-none">Planners
+                <i class="fas fa-angle-right"></i>
+              </p>
+            <% end %>
+          </div> <!-- stripe -->
+        </div> <!-- Card image -->
+      </div> <!-- Collection card -->
+    </div> <!-- Grid column -->
+
+
 
   </div> <!-- Grid row -->
 

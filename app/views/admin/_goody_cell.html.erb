@@ -1,0 +1,15 @@
+<% if blog.variation_id %>
+  <%= Variation.find(blog.variation_id).name %>
+<% end %>
+
+<%= simple_form_for(blog, url: update_goody_path(blog), remote: true, method: :patch, authenticity_token: true) do |f| %>
+  <% variation_collection = [] %>
+  <% Variation.all.each do |lm| %>
+    <% variation_collection << ["#{lm.name}", "#{lm.id}"] %>
+  <% end %>
+  <div class="row text-left">
+    <div class="form-group col-12 mb-0 pb-0">
+      <%= f.input :variation_id, label: false, prompt: "Choose a Related Goody", input_html: { id: "lmFor" + blog.id.to_s, class: 'browser-default', onchange: "this.form.submit();" }, collection: variation_collection, required: false %>
+    </div>
+  </div> <!-- row -->
+<% end %>
