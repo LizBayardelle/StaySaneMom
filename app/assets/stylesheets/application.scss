@@ -84,7 +84,7 @@ h2.font-script { font-size: 50px }
 .color-spouse { color: $color-spouse; }
 .color-marriage { color: $color-spouse; }
 .color-kids, .color-pregnancy, .color-babies, .color-toddlers, .color-kids, .color-teens { color: $color-kids; }
-.color-self { color: $color-self; }
+.color-self, .color-balance { color: $color-self; }
 .color-neutral { color: $color-neutral; }
 .color-neutral-light { color: $color-neutral-light; }
 .color-neutral-hover:hover { color: $color-black; }
@@ -93,20 +93,20 @@ h2.font-script { font-size: 50px }
 .border-house { border: solid $color-house; }
 .border-spouse, .border-marriage { border: solid $color-spouse; }
 .border-kids { border: solid $color-kids; }
-.border-self { border: solid $color-self; }
+.border-self, .border-balance { border: solid $color-self; }
 .border-neutral { border: solid $color-neutral; }
 
 .bg-house { background-color: $transparent-house !important; }
 .bg-spouse, .bg-marriage { background-color: $transparent-spouse !important; }
 .bg-kids, .bg-pregnancy, .bg-babies, .bg-toddlers, .bg-kids, .bg-teens { background-color: $transparent-kids !important; }
-.bg-self { background-color: $transparent-self !important; }
+.bg-self, .bg-balance { background-color: $transparent-self !important; }
 .bg-neutral { background-color: $transparent-neutral !important; }
 .bg-neutral-dark { background-color: $color-neutral !important; }
 
 .bg-solid-house { background-color: $color-house; }
 .bg-solid-spouse, .bg-solid-marriage { background-color: $color-spouse; }
 .bg-solid-kids { background-color: $color-kids; }
-.bg-solid-self { background-color: $color-self; }
+.bg-solid-self, .bg-solid-balance { background-color: $color-self; }
 .bg-solid-neutral { background-color: $color-neutral; }
 .bg-solid-neutral-dark { background-color: $color-neutral; }
 
@@ -116,7 +116,7 @@ h2.font-script { font-size: 50px }
 .transparent-hover.spouse:hover { background-color: $transparent-spouse; }
 .transparent-hover.marriage:hover { background-color: $transparent-spouse; }
 .transparent-hover.kids:hover { background-color: $transparent-kids; }
-.transparent-hover.self:hover { background-color: $transparent-self; }
+.transparent-hover.self:hover, .transparent-hover.balance:hover { background-color: $transparent-self; }
 .transparent-hover.neutral:hover { background-color: $transparent-neutral; }
 
 * { font-family: $font-sans; }
