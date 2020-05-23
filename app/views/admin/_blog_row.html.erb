@@ -21,6 +21,10 @@
 <td>
   <%= blog.category %>
 </td>
+<td>
+  <% unless blog.house || blog.marriage || blog.pregnancy || blog.babies || blog.toddlers || blog.kids || blog.teens || blog.balance %>
+    <i class="fas fa-hourglass-half"></i>
+  <% end %>
 <div>
   <%= render partial: "admin/category_cells", locals: { blog: blog } %>
 </div>
