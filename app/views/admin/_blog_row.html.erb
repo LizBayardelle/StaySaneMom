@@ -1,0 +1,48 @@
+<td>
+  <%= "%03d" % blog.id %>
+  <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
+  <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
+</td>
+<td>
+  <%= link_to blog.title, blog_path(blog.id) %>
+</td>
+<td style="min-width: 150px" id="goody_cell<%= blog.id %>">
+  <%= render partial: "admin/goody_cell", locals: { blog: blog } %>
+</td>
+<td>
+  <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %>
+</td>
+<td>
+  <% if blog.user.contributor %><%= Blog.where(user_id: blog.user.id, published: true).count %> of <%= Blog.where(user_id: blog.user.id).count %><% end %>
+</td>
+<td>
+  <span class="disqus-comment-count" data-disqus-identifier="<%= blog.id %>" data-disqus-url="<%= polymorphic_url(blog) %>">See Comments</span><br />
+</td>
+<td>
+  <%= blog.category %>
+</td>
+<div>
+  <%= render partial: "admin/category_cells", locals: { blog: blog } %>
+</div>
+<td>
+  <% if Subcategory.where(id: blog.subcategory_id) != [] %>
+  <%= Subcategory.where(id: blog.subcategory_id).first.name %>
+  <% end %>
+</td>
+<td>
+  <% if blog.published %>
+    <% if blog.published_on %>
+      <%= blog.published_on.in_time_zone("America/Los_Angeles").strftime("%-m/%-d/%y") %><br />
+    <% else %>
+      <i class="fas fa-check"></i>
+    <% end %>
+  <% else %>
+    <i class="fas fa-times"></i>
+  <% end %>
+</td>
+<td>
+  <% if blog.submitted %><i class="fas fa-check"></i><% end %>
+</td>
+<td>
+  <% if blog.approved %><i class="fas fa-check"></i><% end %>
+</td>

@@ -176,11 +176,44 @@ class BlogsController < ApplicationController
     @blog = Blog.friendly.find(params[:id])
     if @blog.update!(blog_params)
       respond_to do |format|
-        format.js
+        format.js do
+          @blog = Blog.friendly.find(params[:id])
+        end
       end
     else
       format.html { render :edit }
       format.json { render json: @blog.errors, status: :unprocessable_entity }
+    end
+  end
+
+
+
+  def toggle_category
+    @blog = Blog.friendly.find(params[:id])
+    case params[:category]
+    when "house"
+      @blog.house = params[:value]
+    when "marriage"
+      @blog.marriage = params[:value]
+    when "pregnancy"
+      @blog.pregnancy = params[:value]
+    when "babies"
+      @blog.babies = params[:value]
+    when "toddlers"
+      @blog.toddlers = params[:value]
+    when "kids"
+      @blog.kids = params[:value]
+    when "teens"
+      @blog.teens = params[:value]
+    when "balance"
+      @blog.balance = params[:value]
+    end
+    if @blog.save
+      respond_to do |format|
+        format.js do
+          @blog = Blog.friendly.find(params[:id])
+        end
+      end
     end
   end
 

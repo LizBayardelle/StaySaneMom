@@ -1,0 +1,72 @@
+<td>
+  <% if blog.house %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "house", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "house", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.marriage %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "marriage", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "marriage", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.pregnancy %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "pregnancy", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "pregnancy", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.babies %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "babies", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "babies", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.toddlers %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "toddlers", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "toddlers", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.kids %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "kids", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "kids", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.teens %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "teens", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "teens", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>
+<td>
+  <% if blog.balance %>
+    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "balance", value: false), method: :patch, remote: true do %>
+      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" style="height: 20px">
+    <% end %>
+  <% else %>
+    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "balance", value: true), method: :patch, remote: true %>
+  <% end %>
+</td>

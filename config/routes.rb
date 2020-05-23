@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   post "blogs/:id/approve_blog" => "blogs#approve_blog", as: "approve_blog"
   post "blogs/:id/unsubmit_blog" => "blogs#unsubmit_blog", as: "unsubmit_blog"
   patch "blogs/:id/update_goody" => "blogs#update_goody", as: "update_goody"
+  patch "blogs/:id/toggle_category" => "blogs#toggle_category", as: "toggle_category"
 
   resources :tasks do
     collection do
