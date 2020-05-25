@@ -5,13 +5,12 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "tools.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
+<div class="header-frame frame" style="background-image: url(<%= asset_path "tools.jpg" %>)"><div class="image-overlay-black"><div class="inner-frame border-neutral"></div></div></div>
 <div class="over-frame-text">
   <div class="container text-center">
-  	<h1>Mom Tools</h1>
-    <h4>Get notified when a new tool is born.</h4>
+  	<h1 class="display-1 pt-5 mt-5 color-white">Mom Tools</h1>
     <div class="half-buffer"></div>
-    <a class="btn my-btn-outline-secondary tool-subscribe" style="font-weight: 700; border: solid medium; margin-bottom: 20px" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/6e409b399f/68d10a4da2">Don't Miss a Thing</a>
+    <a class="btn btn-spouse tool-subscribe" style="font-weight: 700; border: solid medium; margin-bottom: 20px" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/6e409b399f/68d10a4da2">Get notified when a new tool is born.</a>
   </div> <!-- container -->
 	<div class="over-frame-bottom-row">
 		<div class="container text-center">
@@ -24,43 +23,13 @@
 <div class="container">
 	<div class="row">
 
+    <%= render "layouts/tools/tasks" %>
+    <%= render "layouts/tools/recipes" %>
+    <%= render "layouts/tools/capsules" %>
+    <%= render "layouts/tools/birthdays" %>
+    <%= render "layouts/tools/gifts" %>
+    <%= render "layouts/tools/meals" %>
 
-    <div class="col-lg-4"><div class="content-box border-neutral transparent-hover neutral">
-      <%= link_to tasks_path do %>
-        <div class="content-box-img" style="background-image: url(<%= asset_path "to-do-list.jpg" %>)"><div class="image-overlay-neutral"></div></div>
-        <div class="text">
-          <h2 class="color-neutral font-script text-center">To Do List</h2>
-          <p class="weight-400">Let's face it, we all wish we could keep a cleaner house.  No one likes coming home to laundry mountain and a dust bunny brigade.</p>
-          <p class="weight-400">Here you can learn how to keep the chaos at bay.</p>
-        </div> <!-- text -->
-        <h5 class="text-center"><%= link_to "Go to My List", tasks_path, class: "color-neutral" %></h5>
-      <% end %>
-    </div></div> <!-- category div / col div -->
-
-
-		<div class="col-lg-4"><div class="content-box border-neutral transparent-hover neutral">
-			<%= link_to people_path do %>
-				<div class="content-box-img" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)"><div class="image-overlay-neutral"></div></div>
-				<div class="text">
-					<h2 class="color-neutral font-script text-center">Birthday Tracker</h2>
-					<p class="weight-400">Birthdays, anniversaries, family photos, special events, gifts for the holidays...</p>
-					<p class="weight-400">It's hard to keep track of the special events, dates to come, and all the other important information about one's "tribe".</p>
-				</div> <!-- text -->
-				<h5 class="text-center"><%= link_to "Stop Forgetting Birthdays Now", tasks_path, class: "color-neutral" %></h5>
-			<% end %>
-		</div></div> <!-- category div / col div -->
-
-		<div class="col-lg-4"><div class="content-box border-neutral transparent-hover neutral">
-			<%= link_to occasions_path do %>
-				<div class="content-box-img" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)"><div class="image-overlay-neutral"></div></div>
-				<div class="text">
-					<h2 class="color-neutral font-script text-center">Gift Planner</h2>
-					<p class="weight-400">Let's face it.  Being the head of a household requires buying a lot of junk for a lot of people.</p>
-					<p class="weight-400">Use this easy tracker to figure out what you need to buy, for whom, and by when.  Without losing your marbles.</p>
-				</div> <!-- text -->
-				<h5 class="text-center"><%= link_to "Make Holidays Less Stressful", tasks_path, class: "color-neutral" %></h5>
-			<% end %>
-		</div></div> <!-- category div / col div -->
 
 	</div> <!-- row -->
 </div> <!-- container -->
@@ -70,6 +39,12 @@
   <script type="text/javascript">
     $(function() {
       $('.content-box').matchHeight();
+      $('.height').matchHeight();
+      $('.category-div').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-text').matchHeight();
+
       $('.tool-subscribe').click(function() {
           ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Tool Page Hero Button Subscription');
       });

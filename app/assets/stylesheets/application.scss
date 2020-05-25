@@ -68,6 +68,7 @@ $transparent-self: rgba(108, 12, 157, 0.3);
 $transparent-neutral: rgba(96, 96, 96, 0.3);
 $transparent-white: rgba(255, 255, 255, 0.3);
 $transparent-whiteish: rgba(210, 210, 210, 0.4);
+$transparent-black: rgba(0, 0, 0, 0.4);
 
 
 .font-sans { font-family: $font-sans }
@@ -339,6 +340,7 @@ table.lined-table td {
 .blog-card:hover .image-overlay-white { background-color: $transparent-whiteish; width: 100%; height: 100%; }
 
 .image-overlay-white { background-color: $transparent-whiteish; width: 100%; height: 100%; }
+.image-overlay-black { background-color: $transparent-black; width: 100%; height: 100%; }
 
 .over-frame-text {
   position: relative;
@@ -358,6 +360,10 @@ table.lined-table td {
   color: $color-black;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.over-frame-text h1.color-white {
+  color: $color-white;
 }
 
 .over-frame-text h4 {
