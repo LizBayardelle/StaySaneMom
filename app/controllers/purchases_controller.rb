@@ -38,6 +38,8 @@ class PurchasesController < ApplicationController
       @purchase.status = "Completed (Free Purchase)"
       @purchase.save
 
+      clear_basket
+
       respond_to do |format|
         if @purchase.save
           format.html { redirect_to purchase_path(@purchase) }

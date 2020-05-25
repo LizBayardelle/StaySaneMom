@@ -96,7 +96,7 @@
         <h2 class="h1 mb-2 wow fadeInDown" data-wow-delay="0.3s">Articles on Kids</h2>
       </div> <!-- col -->
 
-      <% @blogs = Blog.where(published: true, babies: true).order("created_at DESC") %>
+      <% @blogs = Blog.where(published: true, kids: true).order("created_at DESC") %>
       <% @blogs.each do |blog| %>
         <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
       <% end %>

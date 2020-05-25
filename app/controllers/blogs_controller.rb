@@ -176,6 +176,7 @@ class BlogsController < ApplicationController
     @blog = Blog.friendly.find(params[:id])
     if @blog.update!(blog_params)
       respond_to do |format|
+        format
         format.js do
           @blog = Blog.friendly.find(params[:id])
         end
