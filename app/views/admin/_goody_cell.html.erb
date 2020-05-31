@@ -2,7 +2,7 @@
   <%= Variation.find(blog.variation_id).name %>
 <% end %>
 
-<%= simple_form_for(blog, url: update_goody_path(blog), remote: true, method: :patch, authenticity_token: true) do |f| %>
+<%= simple_form_for blog, :url => { controller: 'blogs', action: 'update_goody', method: :patch, :authenticity_token => true, :remote => true } do |f|%>
   <% variation_collection = [] %>
   <% Variation.all.each do |lm| %>
     <% variation_collection << ["#{lm.name}", "#{lm.id}"] %>
