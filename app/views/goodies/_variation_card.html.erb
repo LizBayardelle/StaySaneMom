@@ -23,13 +23,20 @@
           <h4 class="font-weight-bold color-self">
             <strong><%= number_to_currency(variation.price, unit: "$") %></strong>
           </h4>
-
-          <%= form_for @basket_item, remote: true do |f| %>
-            <div class="text-center">
-              <%= f.hidden_field :quantity, value: 1 %>
-              <%= f.hidden_field :variation_id, value: variation.id %>
-              <%= f.submit "Add to Cart", class: "btn btn-spouse" %>
-            </div>
+          <% if variation.price == 0 && current_user %>
+            <% if !variation.link_instead && variation.downloadable_file.attached? %>
+              <a href="<%= rails_blob_url(variation.downloadable_file) %>" target="_blank" class="btn btn-spouse">Free Member Download</a>
+            <% else %>
+              <a href="<%= variation.link_url %>" target="_blank" class="btn btn-spouse">Free Member Access</a>
+            <% end %>
+          <% else %>
+            <%= form_for @basket_item, remote: true do |f| %>
+              <div class="text-center">
+                <%= f.hidden_field :quantity, value: 1 %>
+                <%= f.hidden_field :variation_id, value: variation.id %>
+                <%= f.submit "Add to Cart", class: "btn btn-spouse" %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
