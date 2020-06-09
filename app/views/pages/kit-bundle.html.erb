@@ -1,0 +1,39 @@
+<main class="container py-5">
+
+  <header class="text-center">
+    <h1 class="uppercase thin">Get Your Ultimate Blog Planner</h1>
+    <%= image_tag "ultimate_blog_planner_sample.png", style: "width: 300px" %>
+    <p>
+      This is a monthly printable PDF with everything you need for your blog, from post planning and SM scheduling to to-do lists and SEO notes.
+    </p>
+  </header>
+
+  <section id="code">
+    <label for="unlockCode">Input Your Code to Unlock the Magic</label>
+    <input type="text" id="unlockCode" class="form-control">
+  </section>
+
+  <section id="goodies" class="hidden text-center">
+    <% variation = Variation.where(name: "Ultimate Blog Planner").first %>
+    <a href="<%= rails_blob_url(variation.downloadable_file) %>" target="_blank" class="btn btn-spouse">Download My Planner</a>
+  </section>
+
+</main>
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+      $('#unlockCode').keyup(function() {
+        var code = $('#unlockCode').val();
+        if ( code == 'KITBLOGSROCK' ) {
+          $('#goodies').removeClass('hidden');
+          $('#code').addClass('hidden');
+        }
+      });
+    });
+  </script>
+<% end %>
