@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_150711) do
+ActiveRecord::Schema.define(version: 2020_06_27_153822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,15 @@ ActiveRecord::Schema.define(version: 2020_05_20_150711) do
     t.datetime "updated_at", null: false
     t.index ["purchase_id"], name: "index_planner_customs_on_purchase_id"
     t.index ["user_id"], name: "index_planner_customs_on_user_id"
+  end
+
+  create_table "preauthorizations", force: :cascade do |t|
+    t.string "email"
+    t.boolean "admin", default: false
+    t.boolean "contributor", default: false
+    t.boolean "fulfilled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "purchases", force: :cascade do |t|

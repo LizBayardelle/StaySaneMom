@@ -1,0 +1,35 @@
+<main class="container py-5">
+
+  <header class="text-center">
+    <h1 class="uppercase thin">Get Your Printable Chore Chart</h1>
+    <%= image_tag "chore-chart-cover.jpg", style: "width: 500px" %>
+    <p>
+      Childhood is when kids learn important skills like money management, work ethic, and intrinsic motivation. Here's how to do it.
+    </p>
+  </header>
+
+
+  <section id="goodies" class="text-center">
+    <% variation = Variation.where(name: "Chore Chart").first %>
+    <a href="<%= rails_blob_url(variation.downloadable_file) %>" target="_blank" class="btn btn-spouse">Download</a>
+  </section>
+
+</main>
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+      $('#unlockCode').keyup(function() {
+        var code = $('#unlockCode').val();
+        if ( code == 'KITBLOGSROCK' ) {
+          $('#goodies').removeClass('hidden');
+          $('#code').addClass('hidden');
+        }
+      });
+    });
+  </script>
+<% end %>

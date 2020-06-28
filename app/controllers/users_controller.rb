@@ -50,6 +50,15 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def make_contributor
+    @user = User.find(params[:id])
+    if @user.update_attributes(contributor: true)
+      redirect_back(fallback_location: users_path)
+      flash[:notice] = "That user is now a contributor!"
+    end
+  end
+
   def approve_sm
     @user = User.find(params[:id])
     if @user.update_attributes(sm_approved: true)

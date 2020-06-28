@@ -6,7 +6,6 @@
         <th>#</th>
         <th>Date</th>
         <th>Customer</th>
-        <th>Address</th>
         <th>Contact Info</th>
         <th>Purchase Info</th>
         <th></th>
@@ -18,12 +17,10 @@
         <tr>
           <td><%= purchase.id %></td>
           <td><%= purchase.created_at.in_time_zone("America/Los_Angeles").strftime("%-m/%-d/%y") %></td>
-          <td>
+          <td class="col-3">
             <%= link_to user_path(purchase.user_id) do %>
-              <strong class="color-self"><%= purchase.first_name %> <%= purchase.last_name %></strong><br />
-            <% end %>
-          </td>
-          <td>
+              <strong class="color-self"><%= purchase.first_name %> <%= purchase.last_name %></strong>
+            <% end %><br />
             <%= purchase.shipping_1 %><br />
             <% if purchase.shipping_2 != "" %><%= purchase.shipping_2 %><br /><% end %>
             <%= purchase.shipping_city %>, <%= purchase.shipping_state %> &nbsp;<%= purchase.shipping_zip %><br />
@@ -35,7 +32,7 @@
             <%= purchase.phone %>
           </td>
 
-          <td>
+          <td class="col-3">
             <strong><%= number_to_currency(purchase.total, unit: "$") %> Total (<%= BasketStatus.where(id: purchase.basket.basket_status_id).first.name %>)</strong>
             <ul>
               <% purchase.basket.basket_items.each do |i| %>

@@ -12,7 +12,14 @@ class RegistrationsController < Devise::RegistrationsController
         purchase.user_id = @user.id
         purchase.save
       end
-      
+
+      Preauthorization.all.each do |pre|
+        if @user.email == pre.email
+          @user.update_attributes(admin: pre.admin, contributor: pre.contributor)
+          pre.update_attributes(fulfilled: true)
+        end
+      end
+
       # NewUserNotificationMailer.send_new_user_email(@user).deliver
       @client = Convertkit::Client.new
       @client.add_subscriber_to_sequence(618663, @user.email, options = { first_name: @user.first_name })

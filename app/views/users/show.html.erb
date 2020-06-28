@@ -8,16 +8,15 @@
         <h1>My Homepage</h1>
       <% end %>
       <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
-      <% if @user.contributor && @user == current_user %>
-        <h4><strong>(And all your contributor superpowers.)</strong></h4>
+      <%= link_to 'Purchases', purchases_path, class: "btn btn-sm btn-spouse" %>
+      <%= link_to 'Edit My Info', edit_user_registration_path, class: "btn btn-sm btn-spouse" %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-sm btn-spouse" %>
+
+      <% if ( @user.contributor || @user.admin ) && @user == current_user %>
+        <h4 class="pt-4 font-weight-bold">(And all your contributor superpowers.)</h4>
+        <%= link_to "Contributor Welcome", page_path("contributor_welcome"), class: "btn btn-sm btn-self" %>
+        <%= link_to "My Drafts", admin_drafts_path, class: "btn btn-sm btn-self" %>
       <% end %>
-      <% if @user.admin && @user == current_user %>
-        <h3>
-          <%= link_to 'Purchases', purchases_path %>  |  <%= link_to "Blogs", admin_blogs_path %>
-        </h3>
-      <% end %>
-      <div class="half-buffer"></div>
-      <h3><%= link_to 'Edit My Info', edit_user_registration_path %>  |  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
     <% else %>
       <h1><%= @user.first_name %> <%= @user.last_name %></h1>
       <h2><strong>
@@ -38,6 +37,7 @@
 <% if current_user && current_user.id == @user.id %>
   <%= render "layouts/quadborder" %>
   <div class="half-buffer"></div>
+
 
   <div class="container">
     <%= render "users/purchased_downloadables" %>

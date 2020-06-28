@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  resources :preauthorizations
   resources :sortings
   root 'home#index'
 
   get 'admin/store_manager'
   get 'admin/blogs'
   get 'admin/resources'
+  get 'admin/drafts'
+  get 'admin/users'
 
   resources :meals
   post "meals/:id/favorite" => "meals#favorite", as: "favorite_meal"
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:show, :index]
   post "users/:id/approve_contributor" => "users#approve_contributor", as: "approve_contributor"
+  post "users/:id/make_contributor" => "users#make_contributor", as: "make_contributor"
   post "users/:id/approve_sm" => "users#approve_sm", as: "approve_sm"
 
   get 'home/index'

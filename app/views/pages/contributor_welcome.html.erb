@@ -1,0 +1,45 @@
+<main class="py-4">
+
+  <header class="text-center">
+    <h1>Welcome to The Stay Sane Mom!</h1>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="z-depth-3 p-5 mt-5">
+
+        <p>Dear <%= current_user.first_name %>,</p>
+
+        <p>
+          Congratulations on being accepted as a guest contributor with <em>The Stay Sane Mom</em>!  We're excited to have you on board and we can't wait to read the wisdom you bring to the table.
+        </p>
+
+        <p>
+          To get started, go to the <%= link_to "blog page", blogs_path %>.  You should now see a magical row of buttons that give you the ability to create a new blog or see your WIP drafts.
+        </p>
+
+        <p>
+          You can work on as many blogs as you want and save them to your account.  You can always see your drafts on your <%= link_to "drafts page", admin_drafts_path %> (duh).
+        </p>
+
+        <p>
+          Your drafts will remain drafts (visible only to you) until you check the "submit draft" button on the blog itself and hit save.  (At this point they go to our team for editing.  If you accidentally submit one by mistake just <a href="mailto:liz@scarytechforbloggers.com">shoot us a quick email</a> and we'll reset it for you.)
+        </p>
+
+        <p>
+          Thank you so much for working with us!  We can't wait to read your stuff!
+        </p>
+
+        <p>
+          All the best,<br>The Stay Sane Mom Team
+        </p>
+
+        <p>
+          P.S. Don't worry about remembering all this.  If you ever have questions you can access this letter any time you want from the "<%= link_to "My Account", user_path(current_user) %>" page.
+        </p>
+
+      </div> <!-- stb box -->
+    </div> <!-- container -->
+  </section>
+
+</main>
