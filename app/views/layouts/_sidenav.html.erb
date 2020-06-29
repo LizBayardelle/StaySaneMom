@@ -51,7 +51,7 @@
           </div> <!-- collapsable body -->
         </li>
 
-        <% if current_user.admin || current_user.contributor %>
+        <% if current_user && ( current_user.admin || current_user.contributor ) %>
           <li><a class="collapsible-header waves-effect arrow-r">
             Contributor Actions<i class="fas fa-angle-down rotate-icon"></i></a>
             <div class="collapsible-body">
@@ -64,7 +64,7 @@
           <% end %>
 
 
-          <% if current_user.admin %>
+          <% if current_user && current_user.admin %>
             <li><a class="collapsible-header waves-effect arrow-r">
               Admin Actions<i class="fas fa-angle-down rotate-icon"></i></a>
               <div class="collapsible-body">
