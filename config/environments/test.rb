@@ -23,6 +23,9 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  config.action_mailer.default_url_options = { :host => "www.thestaysanemom.com" }
+
+
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {

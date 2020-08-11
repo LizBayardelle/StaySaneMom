@@ -22,6 +22,8 @@ Rails.application.configure do
   # config.assets.debug = true
   config.assets.compile = true
 
+  config.action_mailer.default_url_options = { :host => "www.thestaysanemom.com" }
+
   # SENDGRID
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV["SENDGRID_USERNAME"],
