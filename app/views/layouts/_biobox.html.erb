@@ -24,7 +24,7 @@
               <p class="font-bold"><i class="fas fa-keyboard color-spouse"></i> &nbsp;Contributor</p>
             <% end %>
             <p style="color: black"><%= @user.bio %></p>
-            <h4 class="text-center thin d-none d-lg-block">My Motto: <%= @user.tagline %></h4>
+            <% if @user.tagline != "" %><h4 class="text-center thin d-none d-lg-block">My Motto: <%= @user.tagline %></h4><% end %>
           </div> <!-- biobox-image -->
         </div> <!-- row -->
 
