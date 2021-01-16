@@ -1,0 +1,27 @@
+<div class="col-sm-6 col-lg-4">
+  <div class="card hoverable mb-4">
+    <div class="card-body text-center">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <a href="<%= printable.link %>" target="_blank">
+            <% if printable.image.attached? %>
+              <%= image_tag rails_blob_url(printable.image), style: "max-width: 100%" %>
+            <% end %>
+          </a>
+        </div>
+        <div class="col-12 p-bottom-margin">
+          <h3><a href="<%= printable.link %>" target="_blank"><%= printable.name %></a><h3>
+          <%= simple_format(printable.description) %>
+          <a class="btn btn-spouse" href="<%= printable.link %>" target="_blank"><%= number_to_currency(printable.price) %></a>
+          <% if current_user && current_user.admin %>
+            <p><small>
+              <%= link_to 'Edit', edit_printable_path(printable) %>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <%= link_to 'Destroy', printable, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </small></p>
+          <% end %>
+        </div>
+      </div>
+    </div> <!-- col -->
+  </div> <!-- row -->
+</div>

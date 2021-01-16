@@ -11,6 +11,26 @@ class ApplicationController < ActionController::Base
     config.api_key = ENV["CONVERTKIT_API_KEY"]
   end
 
+  def admin_or_contributor
+    unless (current_user && current_user.admin) || (current_user && current_user.contributor)
+      redirect_to root_path, notice: 'Sorry, you have to be a contributor or admin to do that!'
+    end
+  end
+
+  def admin_or_author
+    @blog = Blog.friendly.find(params[:id])
+    unless (current_user && current_user.admin) || (current_user && current_user == @blog.user && @blog.submitted == false)
+      redirect_to root_path, notice: "Sorry, you can't edit that blog right now."
+    end
+  end
+
+
+  def admin_only
+    unless current_user && current_user.admin
+      redirect_to root_path, notice: 'Sorry, you have to be an admin to do that!'
+    end
+  end
+
   def current_basket
     if !session[:basket_id].nil?
       Basket.find(session[:basket_id])

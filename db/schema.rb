@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_153822) do
+ActiveRecord::Schema.define(version: 2021_01_16_211847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -293,6 +293,24 @@ ActiveRecord::Schema.define(version: 2020_06_27_153822) do
     t.boolean "admin", default: false
     t.boolean "contributor", default: false
     t.boolean "fulfilled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "printables", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 8, scale: 2
+    t.text "description"
+    t.text "link"
+    t.boolean "house", default: false
+    t.boolean "marriage", default: false
+    t.boolean "pregnancy", default: false
+    t.boolean "babies", default: false
+    t.boolean "toddlers", default: false
+    t.boolean "kids", default: false
+    t.boolean "teens", default: false
+    t.boolean "balance", default: false
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

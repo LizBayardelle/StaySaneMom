@@ -1,0 +1,40 @@
+<!-- page-specific content -->
+  <% title "Printables | SSM" %>
+<!-- page-specific content -->
+
+
+<% if current_user && current_user.admin %>
+  <div class="text-right px-5">
+    <%= link_to 'Input a New Printable', new_printable_path %>
+  </div> <!-- right -->
+<% end %>
+
+<div class="container">
+  <h1 class="pt-3 text-center color-spouse font-script">Printables</h1>
+  <p class="text-center pb-3">Hate cursive? Need something black and white?  Like bold colors?  All our printables come in multiple designs so you can choose the one&nbsp;that&nbsp;fits&nbsp;you.</p>
+
+  <section>
+    <div class="row">
+      <% @printables.each do |printable| %>
+        <%= render partial: 'printables/card', locals: { printable: printable } %>
+      <% end %>
+    </div>
+
+  </section> <!-- Section: Products v.5 -->
+
+
+</div> <!-- container -->
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
+      $('.card').matchHeight();
+    });
+  </script>
+<% end %>

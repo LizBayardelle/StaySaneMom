@@ -133,6 +133,7 @@ a.color-self:hover { color: $color-self; }
 a.color-white:hover { color: $color-white; }
 
 p { font-size: 1.2rem; }
+.p-bottom-margin br { display: block; margin-bottom: 8px; }
 
 .btn.btn-house { background-color: $color-house; color: $color-white; border: solid thin $color-house;}
 .btn.btn-spouse { background-color: $color-spouse; color: $color-white; border: solid thin $color-spouse;}
