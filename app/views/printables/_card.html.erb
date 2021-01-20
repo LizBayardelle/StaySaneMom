@@ -10,9 +10,9 @@
           </a>
         </div>
         <div class="col-12 p-bottom-margin">
-          <h3><a href="<%= printable.link %>" target="_blank"><%= printable.name %></a><h3>
+          <h3 class="color-spouse"><a href="" target="_blank"><%= printable.name %></a><h3>
           <%= simple_format(printable.description) %>
-          <a class="btn btn-spouse" href="<%= printable.link %>" target="_blank"><%= number_to_currency(printable.price) %></a>
+          <a href="<%= printable.link %>" target="_blank" class="btn btn-spouse btn-lg"><%= number_to_currency(printable.price) %></a>
           <% if current_user && current_user.admin %>
             <p><small>
               <%= link_to 'Edit', edit_printable_path(printable) %>
