@@ -30,13 +30,13 @@
     <%= render partial: "blogs/video", locals: { blog: @blog } %>
   <% end %>
 
-  <% if @blog.variation_id != nil %>
+  <% if @blog.freebie_id != nil %>
     <%= render partial: "blogs/top_optin", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
 
   <%= render partial: "blogs/blog_body", locals: { blog: @blog } %>
 
-  <% if @blog.variation_id != nil %>
+  <% if @blog.freebie_id != nil %>
     <%= render partial: "blogs/bottom_optin", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
 

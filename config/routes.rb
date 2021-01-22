@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  resources :printables
-  resources :preauthorizations
-  resources :sortings
   root 'home#index'
 
   get 'admin/store_manager'
   get 'admin/blogs'
-  get 'admin/resources'
+  get 'admin/freebies'
   get 'admin/drafts'
   get 'admin/users'
 
@@ -65,21 +62,12 @@ Rails.application.routes.draw do
     resources :capsule_items
   end
 
-  resources :resources
-  resources :planner_customs
-  resources :purchases
+  resources :freebies
+  resources :printables
 
-
+  resources :preauthorizations
+  resources :sortings
   resources :groupings
-  resources :variations do
-    member do
-      delete :delete_image_attachment, as: "delete_image"
-    end
-  end
-  resources :goodies
-  resource :cart, only: [:show]
-  resources :basket_items, only: [:create, :update, :destroy]
-  resources :charges
 
 
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get

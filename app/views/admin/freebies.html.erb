@@ -1,0 +1,73 @@
+<main class="container-fluid px-5 pb-5 pt-0">
+
+  <header class="text-center">
+    <h1>Lead Magnets</h1>
+    <%= link_to 'Create a New Freebie', new_freebie_path, class: "btn btn-outline-danger" %>
+  </header>
+
+  <section>
+    <div class="table-responsive" style="width: 100%">
+      <table id="dtBasicExample" class="table" width="100%">
+        <thead>
+          <tr>
+            <th class="th-sm" scope="col">Image</th>
+            <th class="th-sm" scope="col">Freebie</th>
+            <th class="th-sm" scope="col">Blogs</th>
+            <th class="th-sm" scope="col">Active</th>
+            <th class="th-sm" scope="col" colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @freebies.each do |freebie| %>
+            <tr>
+              <td>
+                <%= link_to freebie do %>
+                  <img src="<%= rails_blob_path(freebie.image) %>" class="z-depth-3" style="max-height: 40px">
+                <% end %>
+              </td>
+              <td>
+                <%= link_to freebie.name, freebie_path(freebie) %>
+              </td>
+              <td>
+                <% rblogs = Blog.where(id: freebie.id) %>
+                <%= link_to rblogs.count, "#", data: { toggle: "modal", target: "#modal-#{freebie.id}"} %>
+
+                <div class="modal p-5" id="modal-<%= freebie.id %>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <h4>Blogs Using <span class="font-weight-bold"><%= freebie.name %></span>:</h4>
+                        <ul>
+                          <% rblogs.each do |blog| %>
+                            <li><%= link_to blog.title, blog %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </td>
+              <td><% if freebie.active %><i class="fas fa-check"></i><% end %></td>
+              <td><%= link_to 'Edit', edit_freebie_path(freebie) %></td>
+              <td><%= link_to 'Delete', freebie_path(freebie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+
+
+<%= content_for :additional_js_partial do %>
+  <script>
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('.dataTables_length').addClass('bs-select');
+    });
+  </script>
+<% end %>

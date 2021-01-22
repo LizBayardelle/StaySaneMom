@@ -1,5 +1,0 @@
-<% if current_user && current_user.admin && !current_user.email == @purchase.email %>
-  <%= render partial: "purchases/admin", locals: { purchase: @purchase } %>
-<% else %>
-  <%= render partial: "purchases/customer", locals: { purchase: @purchase } %>
-<% end %>

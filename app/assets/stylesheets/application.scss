@@ -140,6 +140,8 @@ p { font-size: 1.2rem; }
 .btn.btn-kids { background-color: $color-kids; color: $color-white; border: solid thin $color-kids;}
 .btn.btn-self { background-color: $color-self; color: $color-white; border: solid thin $color-self;}
 .btn.btn-neutral { background-color: $color-neutral; color: $color-white; border: solid thin $color-neutral;}
+.btn.btn-neutral-light, .btn.btn-grey-light { background-color: $color-neutral-light; color: $color-black; border: solid thin $color-neutral-light;}
+
 .btn.btn-house:hover { background-color: $color-white; color: $color-house; }
 .btn.btn-spouse:hover { background-color: $color-white; color: $color-spouse; }
 .btn.btn-kids:hover { background-color: $color-white; color: $color-kids; }

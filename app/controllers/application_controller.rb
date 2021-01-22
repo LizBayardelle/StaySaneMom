@@ -31,19 +31,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_basket
-    if !session[:basket_id].nil?
-      Basket.find(session[:basket_id])
-    else
-      Basket.new(basket_status_id: 1)
-    end
-  end
-
-  def clear_basket
-    session[:basket_id] = nil
-  end
-
-  # @client = Convertkit::Client.new
 
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path

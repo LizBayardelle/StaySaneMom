@@ -6,8 +6,7 @@ class Blog < ApplicationRecord
   belongs_to :user
   has_many :subcategorizations
   has_many :subcategories, through: :subcategorizations
-  belongs_to :resource, optional: true
-  belongs_to :variation, optional: true
+  belongs_to :freebie, optional: true
 
 
   has_one_attached :image

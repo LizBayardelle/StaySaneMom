@@ -202,30 +202,15 @@
     <div class="half-buffer"></div>
     <h2 class="text-center">Freebie Info</h2>
 
-    <% variation_collection = [] %>
-    <% Variation.all.each do |lm| %>
-      <% variation_collection << ["#{lm.name}", "#{lm.id}"] %>
+    <% freebie_collection = [] %>
+    <% Freebie.where(active: true).each do |freebie| %>
+      <% freebie_collection << ["#{freebie.name}", "#{freebie.id}"] %>
     <% end %>
     <div class="row text-left">
       <div class="form-group col-12">
-        <%= f.input :variation_id, label: false, prompt: "Choose a Related Goody", input_html: { class: 'browser-default' }, collection: variation_collection, required: false %>
+        <%= f.input :freebie_id, label: false, prompt: "Choose a Related Goody", input_html: { class: 'browser-default' }, collection: freebie_collection, required: false %>
       </div>
     </div> <!-- row -->
-
-    <!-- <h3 class="text-center mt-5">Old Model</h3>
-    <div class="form-inputs">
-      <div class="form-group">
-        <%#= f.label "Freebie Filename (Put In Public Folder) or Link (if Type is Link)" %>
-        <%#= f.text_field :freebie_filename, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%#= f.label "Freebie Title (Plaintext)" %>
-        <%#= f.text_field :freebie_description, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%#= f.input :freebie_type, input_html: {class: 'browser-default'}, collection: [['File', 'File'], ['Link', 'Link'], ['None', 'None']] %>
-      </div>
-    </div> -->
 
   </div> <!-- container -->
 <% end %> <!-- if admin -->

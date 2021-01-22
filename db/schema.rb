@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_211847) do
+ActiveRecord::Schema.define(version: 2021_01_22_184028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,35 +34,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "basket_items", force: :cascade do |t|
-    t.bigint "variation_id"
-    t.bigint "basket_id"
-    t.decimal "unit_price", precision: 12, scale: 3
-    t.integer "quantity"
-    t.decimal "total_price", precision: 12, scale: 3
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["basket_id"], name: "index_basket_items_on_basket_id"
-    t.index ["variation_id"], name: "index_basket_items_on_variation_id"
-  end
-
-  create_table "basket_statuses", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "baskets", force: :cascade do |t|
-    t.decimal "subtotal", precision: 12, scale: 3
-    t.decimal "tax", precision: 12, scale: 3
-    t.decimal "shipping", precision: 12, scale: 3
-    t.decimal "total", precision: 12, scale: 3
-    t.bigint "basket_status_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["basket_status_id"], name: "index_baskets_on_basket_status_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -109,6 +80,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.boolean "teens", default: false
     t.boolean "balance", default: false
     t.bigint "variation_id"
+    t.bigint "freebie_id"
+    t.index ["freebie_id"], name: "index_blogs_on_freebie_id"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
@@ -164,6 +137,15 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.string "blog"
   end
 
+  create_table "freebies", force: :cascade do |t|
+    t.string "name"
+    t.string "short_description"
+    t.string "convertkit_url"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -191,15 +173,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.index ["occasion_id"], name: "index_gifts_on_occasion_id"
     t.index ["person_id"], name: "index_gifts_on_person_id"
     t.index ["user_id"], name: "index_gifts_on_user_id"
-  end
-
-  create_table "goodies", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.boolean "active", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "sort"
   end
 
   create_table "groupings", force: :cascade do |t|
@@ -257,37 +230,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
-  create_table "planner_customs", force: :cascade do |t|
-    t.bigint "purchase_id"
-    t.bigint "user_id"
-    t.string "status"
-    t.datetime "date_ordered"
-    t.datetime "date_starting"
-    t.string "time_period"
-    t.string "planner_increment"
-    t.boolean "monthly"
-    t.text "monthly_comments"
-    t.boolean "weekly"
-    t.text "weekly_comments"
-    t.boolean "daily"
-    t.text "daily_comments"
-    t.text "schedule"
-    t.text "segments"
-    t.string "adjectives"
-    t.string "colors"
-    t.string "fonts"
-    t.string "themes"
-    t.boolean "logo"
-    t.string "personalization"
-    t.string "tagline"
-    t.text "other_comments"
-    t.boolean "submitted"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["purchase_id"], name: "index_planner_customs_on_purchase_id"
-    t.index ["user_id"], name: "index_planner_customs_on_user_id"
-  end
-
   create_table "preauthorizations", force: :cascade do |t|
     t.string "email"
     t.boolean "admin", default: false
@@ -313,55 +255,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "shipping_1"
-    t.string "shipping_2"
-    t.string "shipping_city"
-    t.string "shipping_state"
-    t.string "shipping_zip"
-    t.string "shipping_country"
-    t.string "phone"
-    t.decimal "total"
-    t.bigint "basket_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email"
-    t.string "status", default: "Abandoned Pre-Checkout"
-    t.index ["basket_id"], name: "index_purchases_on_basket_id"
-  end
-
-  create_table "resource_categorizations", force: :cascade do |t|
-    t.bigint "resource_id"
-    t.bigint "subcategory_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["resource_id"], name: "index_resource_categorizations_on_resource_id"
-    t.index ["subcategory_id"], name: "index_resource_categorizations_on_subcategory_id"
-  end
-
-  create_table "resources", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "title"
-    t.string "teaser"
-    t.string "freebie_type"
-    t.text "freebie_description"
-    t.string "cta"
-    t.string "convertkit_href"
-    t.boolean "link_instead", default: false
-    t.string "link_url"
-    t.boolean "house", default: false
-    t.boolean "spouse", default: false
-    t.boolean "kids", default: false
-    t.boolean "self", default: false
-    t.boolean "active", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -491,40 +384,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "variation_grouping", id: false, force: :cascade do |t|
-    t.bigint "variation_id", null: false
-    t.bigint "grouping_id", null: false
-    t.index ["grouping_id", "variation_id"], name: "index_variation_grouping_on_grouping_id_and_variation_id"
-    t.index ["variation_id", "grouping_id"], name: "index_variation_grouping_on_variation_id_and_grouping_id"
-  end
-
-  create_table "variations", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price", precision: 8, scale: 2
-    t.text "description"
-    t.boolean "active", default: true
-    t.bigint "goody_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "new_product", default: true
-    t.boolean "hot_product", default: false
-    t.string "short_description"
-    t.boolean "custom_planner", default: false
-    t.boolean "build_planner", default: false
-    t.boolean "downloadable", default: false
-    t.string "subcategories"
-    t.integer "sort"
-    t.boolean "link_instead", default: false
-    t.string "link_url"
-    t.index ["goody_id"], name: "index_variations_on_goody_id"
-  end
-
-  add_foreign_key "basket_items", "baskets"
-  add_foreign_key "basket_items", "variations"
-  add_foreign_key "baskets", "basket_statuses", on_delete: :cascade
-  add_foreign_key "blogs", "resources"
+  add_foreign_key "blogs", "freebies", column: "freebie_id"
   add_foreign_key "blogs", "users"
-  add_foreign_key "blogs", "variations"
   add_foreign_key "capsule_items", "capsules"
   add_foreign_key "capsule_items", "users"
   add_foreign_key "capsules", "users"
@@ -533,12 +394,7 @@ ActiveRecord::Schema.define(version: 2021_01_16_211847) do
   add_foreign_key "occasions", "people"
   add_foreign_key "occasions", "users"
   add_foreign_key "people", "users"
-  add_foreign_key "planner_customs", "purchases"
-  add_foreign_key "planner_customs", "users"
-  add_foreign_key "purchases", "baskets"
-  add_foreign_key "resources", "users"
   add_foreign_key "responses", "users"
   add_foreign_key "sortings", "users"
   add_foreign_key "tasks", "users"
-  add_foreign_key "variations", "goodies"
 end

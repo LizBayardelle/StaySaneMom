@@ -1,0 +1,21 @@
+<div class="col-sm-6 col-lg-4 text-center p-3">
+  <a href="<%= freebie.convertkit_url %>" target="_blank">
+    <h2 class="pb-0 mb-0 h1 thin uppercase color-spouse"><%= freebie.name %></h2>
+  </a>
+
+  <% if current_user && current_user.admin %>
+    <% unless freebie.active %>
+      <h2>INACTIVE</h2>
+    <% end %>
+  <% end %>
+  <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4 w-75 z-depth-3">
+
+  <div class="text-center pb-5 mb-5">
+    <a href="<%= freebie.convertkit_url %>" class="btn btn-spouse" target="_blank"><%= freebie.short_description %></a>
+    <br>
+    <% if current_user && current_user.admin %>
+      <%= link_to 'Edit', edit_freebie_path(freebie), class: "btn btn-grey-light btn-sm" %>
+    <% end %>
+  </div>
+
+</div>

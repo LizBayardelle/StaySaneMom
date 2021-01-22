@@ -1,0 +1,23 @@
+<div class="container text-center mt-3">
+  <h1 class="font-script color-spouse"><%= @freebie.name %></h1>
+
+  <% if current_user && current_user.admin %>
+    <% unless @freebie.active %>
+      <h2>INACTIVE</h2>
+    <% end %>
+  <% end %>
+
+  <h3>Download your free <strong><%= @freebie.short_description %></strong> now!</h3>
+
+  <img src="<%= rails_blob_url(@freebie.image) if @freebie.image.attached? %>" class="my-4 z-depth-3" style="max-width: 50%; max-height: 30vh">
+
+  <div class="text-center pb-5 mb-5">
+    <a href="<%= @freebie.convertkit_url %>" class="btn btn-spouse btn-lg" target="_blank">Download</a>
+    <br>
+    <% if current_user && current_user.admin %>
+      <%= link_to 'Admin Page', admin_freebies_path, class: "btn btn-grey-light btn-sm" %>
+    <% end %>
+    <%= link_to 'See All Freebies', freebies_path, class: "btn btn-grey-light btn-sm" %>
+  </div>
+
+</div>

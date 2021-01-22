@@ -273,8 +273,7 @@ class BlogsController < ApplicationController
                   :approved,
                   :submitted,
                   :tag_list,
-                  :resource_id,
-                  :variation_id
+                  :freebie_id
                 )
   end
 end

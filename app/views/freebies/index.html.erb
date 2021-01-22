@@ -1,0 +1,14 @@
+<div class="container pt-2">
+  <h1 class="text-center font-script color-spouse">Free Resources</h1>
+
+  <div class="row">
+    <% @freebies.each do |freebie| %>
+      <%= render partial: "freebies/card", locals: { freebie: freebie } %>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to 'Admin Page', admin_freebies_path, class: "btn btn-spouse btn-sm" %>
+    <%= link_to 'Public Index', freebies_path, class: "btn btn-spouse btn-sm" %>
+  </div>
+</div>
