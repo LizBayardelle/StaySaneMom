@@ -30,7 +30,7 @@
                 <%= link_to freebie.name, freebie_path(freebie) %>
               </td>
               <td>
-                <% rblogs = Blog.where(id: freebie.id) %>
+                <% rblogs = Blog.where(freebie_id: freebie.id) %>
                 <%= link_to rblogs.count, "#", data: { toggle: "modal", target: "#modal-#{freebie.id}"} %>
 
                 <div class="modal p-5" id="modal-<%= freebie.id %>" tabindex="-1" role="dialog">
