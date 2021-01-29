@@ -7,7 +7,7 @@
 
 <div class="container">
 
-  <h2 class="font-script text-center">Blogs About "<%= params[:q] %>"</h2>
+  <h2 class="font-script text-center py-5">Blogs About "<%= params[:q] %>"</h2>
   <div class="text-center">
     <% if @blogs.suggestions.any? %>
       <p>Did you mean "<%= @blogs.suggestions.first %>"?</p>
@@ -15,7 +15,6 @@
   </div>
 
   <div class="row">
-
     <% @blogs.each do |blog| %>
       <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
     <% end %>
@@ -27,10 +26,10 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.height').matchHeight();
-      $('.blog-text').matchHeight();
-      $('.blog-teaser').matchHeight();
-      $('.blog-description').matchHeight();
-      $('.blog-info').matchHeight();
+      $('.category-div').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-text').matchHeight();
       $('.formkit-submit').click(function() {
         ga('send', 'event', 'Subscription', 'Hero CTA Subscription', 'Blog Index Hero CTA Subscription');
       });
