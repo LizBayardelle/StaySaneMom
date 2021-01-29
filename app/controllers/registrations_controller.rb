@@ -22,8 +22,8 @@ class RegistrationsController < Devise::RegistrationsController
 
       # NewUserNotificationMailer.send_new_user_email(@user).deliver
       @client = Convertkit::Client.new
-      @client.add_subscriber_to_sequence(618663, @user.email, options = { first_name: @user.first_name })
-      @client.add_subscriber_to_tag(1585457, @user.email, options = { first_name: @user.first_name })
+      # @client.add_subscriber_to_sequence(618663, @user.email, options = { first_name: @user.first_name })
+      # @client.add_subscriber_to_tag(1585457, @user.email, options = { first_name: @user.first_name })
     end
   end
 

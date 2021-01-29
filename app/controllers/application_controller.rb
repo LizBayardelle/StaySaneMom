@@ -37,9 +37,9 @@ class ApplicationController < ActionController::Base
   end
 
   def add_subscriber
-    @client = Convertkit::Client.new
-    @client.add_subscriber_to_sequence(618663, params[:email], options = { first_name: params[:first_name] })
-    @client.add_subscriber_to_tag(1585457, params[:email], options = { first_name: params[:first_name] })
+    # @client = Convertkit::Client.new
+    # @client.add_subscriber_to_sequence(618663, params[:email], options = { first_name: params[:first_name] })
+    # @client.add_subscriber_to_tag(1585457, params[:email], options = { first_name: params[:first_name] })
     # INTRO SEQUENCE 618663
     # HOUSE 669064
     # MARRIAGE 669065
