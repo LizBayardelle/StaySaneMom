@@ -27,37 +27,6 @@
 </div>
 
 
-<% resources = Resource.where(active: true) %>
-<% sub_resources = [] %>
-<% resources.each do |r| %>
-  <% if r.subcategory_ids.include? @subcategory.id %>
-    <% sub_resources << r %>
-  <% end %>
-<% end %>
-
-<% if sub_resources.count != 0 %>
-  <div class="bg-<%= @subcategory.category.downcase %> padded my-4" id="resourcesDiv">
-    <div class="container padded resource-stripe">
-      <h2 class="text-center font-script">Free Resources</h2>
-      <% if current_user %>
-        <% sub_resources.each do |resource| %>
-          <% if !resource.link_instead %>
-              <%= link_to asset_path(resource.document, skip_pipeline: true), target: "_blank" do %><%= resource.title %><% end %><br />
-          <% else %>
-            <a href="<%= resource.link_url %>" target="_blank"><%= resource.title %></a><br />
-          <% end %> <!-- if else -->
-        <% end %>
-      <% else %>
-        <h5 class="text-center">Create a free account for access to the free resource library.</h5>
-        <div class="text-center padded">
-          <%= link_to new_user_registration_path(source: @page_title.to_s) do %><button class="btn my-btn-outline-secondary">Create an Account</button><% end %>
-           or
-           <%= link_to new_user_session_path do %><button class="btn my-btn-outline-secondary">Log In</button><% end %>
-        </div>
-      <% end %> <!-- current user -->
-    </div> <!-- container -->
-  </div> <!-- bg house -->
-<% end %>
 
 <!-- related blogs -->
 <% @related = Blog.where(subcategory_id: @subcategory.id, published: true, ).where("published_on <= ?", Date.today).order("comments_count DESC") %>
