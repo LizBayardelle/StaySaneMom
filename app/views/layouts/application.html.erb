@@ -26,9 +26,6 @@
     </script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 
-    <!-- Froala: Include Editor style. -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,800,800i|Arizonia|Roboto:100,300,400,700,900" rel="stylesheet">
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,6 +64,24 @@
 
       <!-- rss feed -->
       <%= auto_discovery_link_tag :rss, blogs_url(:format => :rss) %>
+
+      <!-- Facebook Pixel Code -->
+      <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '511265239880816');
+      fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=511265239880816&ev=PageView&noscript=1"
+      /></noscript>
+      <!-- End Facebook Pixel Code -->
   </head>
 
   <body class="hidden-sn white-skin w-100">
