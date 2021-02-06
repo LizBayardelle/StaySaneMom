@@ -243,6 +243,7 @@ class BlogsController < ApplicationController
                   :freebie_description,
                   :convertkit_href,
 
+                  :pillar,
                   :category,
                   :house,
                   :marriage,

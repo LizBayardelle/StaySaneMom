@@ -29,6 +29,12 @@
     <div class="form-group">
       <%= f.input :category, label: "Main Category", input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
     </div>
+    <% if current_user && current_user.admin %>
+      <div class="row field form-check pb-4">
+        <%= f.check_box :pillar, class: "form-check-input", id: "pillar" %>
+        <%= f.label "This blog is pillar content.", class: "form-check-label", for: "pillar" %>
+      </div>
+    <% end %>
     <div class="form-group">
       <h5>Categories</h5>
       <div class="row">

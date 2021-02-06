@@ -1,3 +1,7 @@
+<header class="text-center">
+  <h1>Pillar Blogs</h1>
+</header>
+
 <div class="container-fluid px-5 table-responsive">
   <table id="blogsTable" class="table">
     <thead>
@@ -25,7 +29,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @blogs.each do |blog| %>
+      <% @blogs.where(pillar: true).each do |blog| %>
         <tr id="blog_row_<%= blog.id %>">
           <%= render partial: "admin/blog_row", locals: { blog: blog } %>
         </tr>
@@ -36,6 +40,45 @@
 
 
 
+<header class="text-center mt-5">
+  <h1>Other Blogs</h1>
+</header>
+
+<div class="container-fluid px-5 table-responsive">
+  <table id="blogsTableNonPillar" class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>LM</th>
+        <th>Author</th>
+        <th>Guest</th>
+        <th>Comments</th>
+        <th>Category</th>
+        <th>Sub?</th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" style="height: 20px"></th>
+        <th><img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" style="height: 20px"></th>
+        <th>Subcategory</th>
+        <th>Published</th>
+        <th>Sub?</th>
+        <th>Appr?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @blogs.where(pillar: false).each do |blog| %>
+        <tr id="blog_row_<%= blog.id %>">
+          <%= render partial: "admin/blog_row", locals: { blog: blog } %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div> <!-- container -->
 
 
 
@@ -43,6 +86,14 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $('#blogsTable').DataTable({
+        "paging": false,
+        "aaSorting": [],
+        columnDefs: [{
+        orderable: false,
+        targets: 3
+        }]
+      });
+      $('#blogsTableNonPillar').DataTable({
         "paging": false,
         "aaSorting": [],
         columnDefs: [{
