@@ -1,5 +1,5 @@
 <div class="col-sm-6 col-lg-4 text-center p-3">
-  <a href="<%= freebie.convertkit_url %>" target="_blank">
+  <a href="<%= freebie.convertkit_url %>" target="_blank" onclick="dataLayer.push({'category': 'Funnels', 'action': 'Button to Freebie Landing Page', 'label': 'Freebie: <%= freebie.name %>', 'value':0});">
     <h2 class="card-title pb-0 mb-0 h1 thin uppercase color-spouse"><%= freebie.name %></h2>
   </a>
 
@@ -11,7 +11,7 @@
   <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4 w-75">
 
   <div class="text-center pb-5 mb-5">
-    <a href="<%= freebie.convertkit_url %>" class="btn btn-spouse" target="_blank"><%= freebie.short_description %></a>
+    <a href="<%= freebie.convertkit_url %>" class="btn btn-spouse" target="_blank" onclick="dataLayer.push({'category': 'Funnels', 'action': 'Button to Freebie Landing Page', 'label': 'Freebie: <%= freebie.name %>', 'value':0});"><%= freebie.short_description %></a>
     <br>
     <% if current_user && current_user.admin %>
       <%= link_to 'Edit', edit_freebie_path(freebie), class: "btn btn-grey-light btn-sm" %>
