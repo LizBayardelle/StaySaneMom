@@ -8,7 +8,6 @@
         <h1>My Homepage</h1>
       <% end %>
       <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
-      <%= link_to 'Purchases', purchases_path, class: "btn btn-sm btn-spouse" %>
       <%= link_to 'Edit My Info', edit_user_registration_path, class: "btn btn-sm btn-spouse" %>
       <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-sm btn-spouse" %>
 
@@ -30,19 +29,6 @@
   </div> <!-- container -->
 </div> <!-- over-frame-text -->
 
-
-
-
-<!-- PURCHASES FOR USER IF OWN PAGE -->
-<% if current_user && current_user.id == @user.id %>
-  <%= render "layouts/quadborder" %>
-  <div class="half-buffer"></div>
-
-
-  <div class="container">
-    <%= render "users/purchased_downloadables" %>
-  </div> <!-- container -->
-<% end %>
 
 
 
