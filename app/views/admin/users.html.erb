@@ -85,6 +85,87 @@
 
 
 
+    <section class="text-center mb-5 my-"> <!-- users -->
+      <h2>Contributors</h2>
+
+      <div class="table-responsive" style="width: 100%">
+        <table id="tableMembers" class="table table-striped table-bordered" width="100%">
+          <thead>
+            <tr>
+              <td></td>
+              <td class="font-bold">Contributor</td>
+              <td class="font-bold">Social Media</td>
+            </tr>
+          </thead>
+
+          <% @contributors.each do |user| %>
+            <tr class="text-left">
+              <td>
+                <%= user.id %>
+              </td>
+              <td>
+                <%= link_to user_path(user) do %>
+                  <span class="font-bold color-spouse"><%= user.first_name %> <%= user.last_name %><br /></span>
+                <% end %>
+                <%= mail_to user.email %><br>
+                <%= pluralize(user.blogs.where(published: true).count, "Published Blog") %><br />
+                <% if !user.admin %>
+                  <%= pluralize(user.blogs.where(published: false, approved: true, submitted: true).count, "Approved Blog") %><br />
+                  <%= pluralize(user.blogs.where(published: false, approved: false, submitted: true).count, "Submitted Blog") %><br />
+                <% end %>
+                <%= pluralize(user.blogs.where(published: false, approved: false, submitted: false).count, "WIP Blog") %>
+
+              </td>
+              <td>
+                <% if user.sm_approved %>
+                  <span class="font-bold"><i class="fas fa-user-check color-spouse"></i> SM Approved</span>
+                <% end %>
+                <% sm_not_blank = user.website_name || user.website_url || user.sm_facebook || user.sm_pinterest || user.sm_instagram || user.sm_twitter || user.sm_youtube || user.sm_email || user.sm_other %>
+                <% if sm_not_blank && user.sm_approved == false %>
+                  <%= link_to approve_sm_path(user), method: :post do %>
+                    <span class="font-bold"><i class="fas fa-exclamation color-spouse"></i> Approve SM Links</span><br />
+                  <% end %>
+                <% end %>
+                <% if user.website_name != "" %>
+                  <br />Website Name: <%= user.website_name %>
+                <% end %>
+                <% if user.website_url != "" %>
+                  <br />Website URL: <%= link_to user.website_url %>
+                <% end %>
+                <% if user.sm_facebook != "" %>
+                  <br />Facebook: <%= link_to user.sm_facebook %>
+                <% end %>
+                <% if user.sm_pinterest != "" %>
+                  <br />Pinterest: <%= link_to user.sm_pinterest %>
+                <% end %>
+                <% if user.sm_instagram != "" %>
+                  <br />Instagram: <%= link_to user.sm_instagram %>
+                <% end %>
+                <% if user.sm_twitter != "" %>
+                  <br />Twitter: <%= link_to user.sm_twitter %>
+                <% end %>
+                <% if user.sm_youtube != "" %>
+                  <br />YouTube: <%= link_to user.sm_youtube %>
+                <% end %>
+                <% if user.sm_email != "" %>
+                  <br />Email: <%= mail_to user.sm_email %>
+                <% end %>
+                <% if user.sm_other != "" %>
+                  <br />Other: <%= link_to user.sm_other %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+
+
+        </table>
+      </div> <!-- table responsive -->
+    </section>
+
+
+
+
+
 
 
 

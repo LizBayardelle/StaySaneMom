@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def make_contributor
     @user = User.find(params[:id])
     if @user.update_attributes(contributor: true)
-      redirect_back(fallback_location: users_path)
+      redirect_back(fallback_location: admin_users_path)
       flash[:notice] = "That user is now a contributor!"
     end
   end
