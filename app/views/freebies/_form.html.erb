@@ -4,15 +4,50 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <h2 class="text-center mt-5 thin uppercase color-spouse">The Basics</h2>
     <%= f.input :name %>
     <%= f.input :short_description %>
-    <%= f.input :convertkit_url %>
     <div class="form-group">
-      <%= f.label "Image" %><br />
-      <%= f.file_field :image %>
+      <%= f.input :category, label: "Main Category", input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
+    </div>
+    <%= f.input :active %>
+
+    <h2 class="text-center mt-5 thin uppercase color-spouse">Sales Jargon</h2>
+    <%= f.input :top_question %>
+    <%= f.input :main_heading %>
+    <%= f.input :main_subheading %>
+    <%= f.input :outcome %>
+    <%= f.input :outcome_2, label: "Final Outcome" %>
+
+
+    <h2 class="text-center mt-5 thin uppercase color-spouse">Testimonial</h2>
+    <%= f.input :t1_short, label: "Short Blurb" %>
+    <%= f.input :t1_long, label: "Full Testimonial" %>
+    <%= f.input :t1_name, label: "Person Name" %>
+    <%= f.input :t1_title, label: "Person Title" %>
+    <div class="form-group">
+      <%= f.label "Testimonial Avatar" %><br />
+      <%= f.file_field :t1_image %>
     </div>
 
-    <%= f.input :active %>
+    <h2 class="text-center mt-5 thin uppercase color-spouse">Features</h2>
+    <%= f.input :wyg1, label: "What you get... (Feature #1)" %>
+    <%= f.input :wyg2, label: "What you get... (Feature #2)" %>
+    <%= f.input :wyg3, label: "What you get... (Feature #3)" %>
+
+    <h2 class="text-center mt-5 thin uppercase color-spouse">ConvertKit Link</h2>
+    <%= f.input :convertkit_url, as: :string, label: "HTML for ConvertKit Embed" %>
+
+    <h2 class="text-center mt-5 thin uppercase color-spouse">Images</h2>
+    <div class="form-group">
+      <%= f.label "Mockup Image" %><br />
+      <%= f.file_field :image %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Sample Page" %><br />
+      <%= f.file_field :sample_image %>
+    </div>
+
   </div>
 
   <div class="form-actions text-center">

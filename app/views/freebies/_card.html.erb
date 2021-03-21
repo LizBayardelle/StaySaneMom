@@ -8,10 +8,10 @@
       <h2>INACTIVE</h2>
     <% end %>
   <% end %>
-  <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4 w-75">
+  <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4" style="max-width: 100%; max-height: 30vh">
 
   <div class="text-center pb-5 mb-5">
-    <a href="<%= freebie.convertkit_url %>" class="btn btn-spouse" target="_blank" onclick="dataLayer.push({'category': 'Funnels', 'action': 'Button to Freebie Landing Page', 'label': 'Freebie: <%= freebie.name %>', 'value':0});"><%= freebie.short_description %></a>
+    <%= link_to freebie.short_description, freebie_path(freebie), class: "btn btn-spouse" %>
     <br>
     <% if current_user && current_user.admin %>
       <%= link_to 'Edit', edit_freebie_path(freebie), class: "btn btn-grey-light btn-sm" %>

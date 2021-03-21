@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_162943) do
+ActiveRecord::Schema.define(version: 2021_03_21_223023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,21 @@ ActiveRecord::Schema.define(version: 2021_02_06_162943) do
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "top_question"
+    t.string "main_heading"
+    t.string "main_subheading"
+    t.string "t1_short"
+    t.string "t1_name"
+    t.string "t1_title"
+    t.string "t1_long"
+    t.string "wyg1"
+    t.string "wyg2"
+    t.string "wyg3"
+    t.string "outcome"
+    t.string "category"
+    t.string "outcome_2"
+    t.string "slug"
+    t.index ["slug"], name: "index_freebies_on_slug", unique: true
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

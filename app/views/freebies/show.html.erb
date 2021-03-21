@@ -1,24 +1,101 @@
-<div class="container text-center mt-3">
-  <h1 class="font-script color-spouse"><%= @freebie.name %></h1>
+
+<section class="bg-solid-spouse p-5 text-center">
+  <h2 class="color-white"><%= @freebie.top_question %></h2>
+</section>
+
+<section id="hero" class="container py-4">
 
   <% if current_user && current_user.admin %>
-    <% unless @freebie.active %>
-      <h2>INACTIVE</h2>
-    <% end %>
+    <div id="adminbuttons" class="text-center">
+      <% unless @freebie.active %>
+        <h2>INACTIVE</h2>
+      <% end %>
+      <%= link_to 'Edit Freebie', edit_freebie_path(@freebie), class: "btn btn-grey-light btn-sm" %>
+      <%= link_to 'Admin Page', admin_freebies_path, class: "btn btn-grey-light btn-sm" %>
+      <%= link_to 'Public Index', freebies_path, class: "btn btn-grey-light btn-sm" %>
+    </div>
   <% end %>
 
-  <h3>Download your free <strong><%= @freebie.short_description %></strong> now!</h3>
+  <div class="row py-4">
 
-  <img src="<%= rails_blob_url(@freebie.image) if @freebie.image.attached? %>" class="my-4" style="max-width: 50%; max-height: 30vh">
+    <div class="col-sm-8">
+      <h1 class="thin uppercase color-spouse"><%= @freebie.main_heading %></h1>
+      <h3 class="bold"><%= @freebie.main_subheading %></h3>
+      <a class="btn btn-spouse btn-lg my-3 mt-5" href="#ck-embed">Download <%= @freebie.short_description %></a>
+    </div> <!-- col -->
 
-  <div class="text-center pb-5 mb-5">
-    <a href="<%= @freebie.convertkit_url %>" class="btn btn-spouse btn-lg" target="_blank">Download</a>
-    <br>
-    <% if current_user && current_user.admin %>
-      <%= link_to 'Edit', edit_freebie_path(@freebie), class: "btn btn-grey-light btn-sm" %>
-      <%= link_to 'Admin Page', admin_freebies_path, class: "btn btn-grey-light btn-sm" %>
-    <% end %>
-    <%= link_to 'See All Freebies', freebies_path, class: "btn btn-grey-light btn-sm" %>
+    <div class="col-sm-4 text-center">
+      <img src="<%= rails_blob_url(@freebie.sample_image) if @freebie.sample_image.attached? %>" class="z-depth-5" style="max-width: 80%; max-height: 30vh; transform: rotate(10deg)">
+      <div class="w-100 pt-4">
+      <img src="<%= asset_url("Arrow.png") %>" class="pr-5" style="height: 50px">
+      <h3 class="font-script color-spouse mt-2 text-left">Free <%= @freebie.name %></h3>
+    </div> <!-- col -->
+
+  </div> <!-- row -->
+</section>
+
+
+<% if @freebie.t1_long != "" %>
+  <section class="bg-solid-spouse py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center pb-4">
+          <h2 class="color-white boldest">"<%= @freebie.t1_short %>"</h2>
+        </div>
+        <div class="col-sm-3 text-center">
+          <div class="image-cropper mb-3" style="display: block; margin-left: auto; margin-right: auto">
+            <img src="<%= rails_blob_url(@freebie.t1_image) if @freebie.t1_image.attached? %>" class="rounded">
+          </div>
+          <p class="color-white boldest mb-0"><%= @freebie.t1_name %></p>
+          <p style="line-height: 1" class="color-white"><small><em><%= @freebie.t1_title %></em></small></p>
+        </div> <!-- col -->
+        <div class="col-sm-9">
+          <p class="boldest color-white">"<%= @freebie.t1_long %>"</p>
+        </div> <!-- col -->
+        <div class="col-12 text-center">
+          <a class="btn bg-white color-spouse btn-lg" href="#ck-embed">Download <%= @freebie.short_description %></a>
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
+<% end %>
+
+<section id="pain-points" class="container py-5">
+  <div class="text-center">
+    <h2><%= @freebie.outcome %></h2>
+    <img src="<%= rails_blob_url(@freebie.image) if @freebie.image.attached? %>" class="my-3" style="max-width: 80%; max-height: 30vh;">
   </div>
+
+  <% if @freebie.wyg1 != "" %>
+    <div class="outline-box z-depth-3">
+      <h3 class="text-center boldest pb-2 mt-2">Here's what you get...</h3>
+      <ul class="checkmarks">
+        <li><%= @freebie.wyg1 %></li>
+        <li><%= @freebie.wyg2 %></li>
+        <li><%= @freebie.wyg3 %></li>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2 class="text-center pt-5"><%= @freebie.outcome_2 %></h2>
+</section>
+
+
+
+<section id="ck-embed" class="py-3">
+  <%= @freebie.convertkit_url.html_safe %>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+  <h3 class="text-center py-5"><%= link_to 'Not for you?<br>Check out our&nbsp;other&nbsp;free&nbsp;stuff!'.html_safe, freebies_path, class: "thin uppercase color-grey" %></h3>
 
 </div>

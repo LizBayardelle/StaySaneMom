@@ -151,6 +151,17 @@ p { font-size: 1.2rem; }
 .thin { font-weight: 200 }
 .uppercase { text-transform: uppercase; }
 
+ul.checkmarks {
+  list-style: none;
+}
+
+ul.checkmarks li:before {
+  color: $color-spouse;
+  font-size: 1.5rem;
+  padding-right: 20px;
+  margin-left: -10px;
+  content: '✓';
+}
 
 @media screen and (min-width: 1440px) {
   body {
@@ -170,6 +181,21 @@ p { font-size: 1.2rem; }
 .thumbnail-sm {
   height: 150px;
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.image-cropper {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
 }
 
 
@@ -1284,6 +1310,25 @@ strong { font-weight: 900 }
 .bg-self .resource-stripe h3 { color: $color-self }
 .bg-neutral .resource-stripe h3 { color: $color-neutral }
 
+
+
+
+// ---------------------------
+// ---------------------------
+// ---------------------------
+// ----- LANDING PAGES -------
+// ---------------------------
+// ---------------------------
+
+.formkit-header h2 {
+  text-align: center;
+  font-size: 28px;
+}
+
+.outline-box {
+  padding: 30px;
+  border: solid thick $color-spouse;
+}
 
 
 
