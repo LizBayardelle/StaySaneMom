@@ -20,7 +20,7 @@
 
     <div class="col-sm-8">
       <h1 class="thin uppercase color-spouse"><%= @freebie.main_heading %></h1>
-      <h3 class="bold"><%= @freebie.main_subheading %></h3>
+      <h3 class="bold"><%= simple_format(@freebie.main_subheading) %></h3>
       <a class="btn btn-spouse btn-lg my-3 mt-5" href="#ck-embed">Download <%= @freebie.short_description %></a>
     </div> <!-- col -->
 
