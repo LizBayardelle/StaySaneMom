@@ -13,7 +13,7 @@
             <th class="th-sm" scope="col">Image</th>
             <th class="th-sm" scope="col">Freebie</th>
             <th class="th-sm" scope="col">Blogs</th>
-            <th class="th-sm" scope="col">CK Link</th>
+            <th class="th-sm" scope="col">Testimonial</th>
             <th class="th-sm" scope="col">Active</th>
             <th class="th-sm" scope="col" colspan="2"></th>
           </tr>
@@ -50,7 +50,7 @@
                 </div>
 
               </td>
-              <td><%= freebie.convertkit_url %></td>
+              <td><%= freebie.t1_name %></td>
               <td><% if freebie.active %><i class="fas fa-check"></i><% end %></td>
               <td><%= link_to 'Edit', edit_freebie_path(freebie) %></td>
               <td><%= link_to 'Delete', freebie_path(freebie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
