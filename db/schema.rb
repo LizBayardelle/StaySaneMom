@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_223023) do
+ActiveRecord::Schema.define(version: 2021_03_22_235240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_223023) do
     t.datetime "updated_at", null: false
     t.string "top_question"
     t.string "main_heading"
-    t.string "main_subheading"
+    t.text "main_subheading"
     t.string "t1_short"
     t.string "t1_name"
     t.string "t1_title"
