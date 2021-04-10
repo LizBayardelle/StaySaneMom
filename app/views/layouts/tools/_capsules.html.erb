@@ -8,11 +8,11 @@
     </div>
 
     <div class="card-body">
-      <h4 class="card-title"><%= link_to "Photo Time Capsules", capsules_path, class: "card-title color-neutral" %></h4>
+      <h4 class="card-title"><%= link_to "Photo Time Capsules", capsules_path, class: "card-title color-pink" %></h4>
       <p class="card-text">Create year-by-year time capsules to watch your family grow.</p>
     </div>
 
-    <div class="rounded-bottom mdb-color bg-solid-neutral text-center pt-3">
+    <div class="rounded-bottom mdb-color bg-pink text-center pt-3">
       <ul class="list-unstyled list-inline font-small">
         <% if current_user %>
           <%= link_to main_app.capsules_path do %><li class="list-inline-item pr-2 white-text">You Have <%= pluralize( Capsule.where(user_id: current_user.id).where(capsule_date: Time.now.beginning_of_month..(Time.now.end_of_month)).count, "Photos") %> This Month</li><% end %>

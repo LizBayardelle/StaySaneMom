@@ -60,15 +60,15 @@
                   From <%= link_to comment.user.website_url do %><%= comment.user.website_name %><% end %>
                 <% end %>
                 <% if comment.user.contributor && comment.user.id != 1 %>
-                  &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+                  &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-keyboard color-pink"></i> &nbsp;Stay Sane Mom Contributor
                 <% end %>
                 <% if comment.user.id == 1 %>
-                  &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+                  &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-glasses color-pink"></i> &nbsp;Stay Sane Mom Founder
                 <% end %>
               </small></em></p>
             <% end %>
 
-            <p class="color-self font-bold" id="replyCommentTarget<%= comment.id %>">Reply <i class="fas fa-reply"></i></p>
+            <p class="color-pink font-bold" id="replyCommentTarget<%= comment.id %>">Reply <i class="fas fa-reply"></i></p>
 
             <% @responses = Response.where(comment_id: comment.id) %>
             <% @responses.each do |response| %>
@@ -96,10 +96,10 @@
                         From <%= link_to response.user.website_url do %><%= response.user.website_name %><% end %>
                       <% end %>
                       <% if response.user.contributor && response.user.id != 1 %>
-                        &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+                        &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-keyboard color-pink"></i> &nbsp;Stay Sane Mom Contributor
                       <% end %>
                       <% if response.user.id == 1 %>
-                        &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+                        &nbsp;&nbsp </em>|<em> &nbsp;&nbsp<i class="fas fa-glasses color-pink"></i> &nbsp;Stay Sane Mom Founder
                       <% end %>
                     </small></em></p>
                   <% end %>

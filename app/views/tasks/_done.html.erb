@@ -6,7 +6,7 @@
       <% end %>
       <%= task.name %>
       <%= link_to task_path(task), method: :delete, remote: true do %>
-        <%= fa_icon "trash", id: (task.id.to_s + "task"), class: "color-spouse", style: "margin-left: 5px" %>
+        <%= fa_icon "trash", id: (task.id.to_s + "task"), class: "color-pink", style: "margin-left: 5px" %>
       <% end %>
     </p>
   <% end %>

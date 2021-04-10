@@ -2,7 +2,7 @@
   <%= link_to "Back to Recipes Search", recipes_path %>
 </div>
 
-<div class="bg-spouse text-center">
+<div class="bg-transparent-pink text-center">
   <div class="container">
     <p style="padding: 10px"><strong>This is an external recipe.</strong><br />To access it for your weekly meal plans, you need to add it to your meals below.</p>
   </div>
@@ -88,7 +88,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-          <h2 class="color-spouse font-script">Ingredients</h2>
+          <h2 class="color-pink font-script">Ingredients</h2>
           <% @recipe.ingredients.each do |ingredient| %>
             <div class="Recipe-ingredient">
               <%= ingredient.original_string %>
@@ -97,7 +97,7 @@
         </div> <!-- col -->
 
         <div class="col-sm-6">
-          <h2 class="color-spouse font-script">Instructions</h2>
+          <h2 class="color-pink font-script">Instructions</h2>
           <%#= @recipe.instructions %>
           <% @recipe.instructions.each do |instruction| %>
             <div class="Recipe-instruction">

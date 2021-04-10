@@ -12,20 +12,10 @@
     </div>
 
     <div class="card-body">
-      <h4 class="card-title"><%= link_to blog.title, blog_path(blog), class: "card-title color-" + color.to_s %></h4>
+      <h4 class="card-title"><%= link_to blog.title, blog_path(blog), class: "card-title" %></h4>
       <p class="card-text">
-        <%= blog.teaser %> <%= link_to "Read More...", blog_path(blog), id: blog.id.to_s + "readMore" %>
+        <%= blog.teaser %><br><%= link_to "Read More...", blog_path(blog), id: blog.id.to_s + "readMore" %>
       </p>
     </div>
   </div> <!-- card -->
 </div> <!-- col -->
-
-
-
-<%= content_for :additional_js do %>
-  <script>
-    $(document).ready(function() {
-      $("#<%= blog.id.to_s + 'readMore' %>").addClass('color-<%= blog.category.downcase %>');
-    });
-  </script>
-<% end %>

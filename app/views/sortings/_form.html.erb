@@ -67,27 +67,27 @@
       <h2 class="pb-4">If you're married, how happy is your marriage?</h2>
 
       <div id="marriage-answer-0" class="marriage-answer">
-        <h3 class="color-spouse font-weight-bold">I'm not married.</h3>
+        <h3 class="color-pink font-weight-bold">I'm not married.</h3>
       </div>
 
       <div id="marriage-answer-1" class="marriage-answer hidden">
-        <h3 class="color-spouse font-weight-bold">No murder (yet).</h3>
+        <h3 class="color-pink font-weight-bold">No murder (yet).</h3>
       </div>
 
       <div id="marriage-answer-2" class="marriage-answer hidden">
-        <h3 class="color-spouse font-weight-bold">We have our rocky periods.</h3>
+        <h3 class="color-pink font-weight-bold">We have our rocky periods.</h3>
       </div>
 
       <div id="marriage-answer-3" class="marriage-answer hidden">
-        <h3 class="color-spouse font-weight-bold">We have more good times than bad.</h3>
+        <h3 class="color-pink font-weight-bold">We have more good times than bad.</h3>
       </div>
 
       <div id="marriage-answer-4" class="marriage-answer hidden">
-        <h3 class="color-spouse font-weight-bold">We get along surprisingly well.</h3>
+        <h3 class="color-pink font-weight-bold">We get along surprisingly well.</h3>
       </div>
 
       <div id="marriage-answer-5" class="marriage-answer hidden">
-        <h3 class="color-spouse font-weight-bold">Every day is a second honeymoon.</h3>
+        <h3 class="color-pink font-weight-bold">Every day is a second honeymoon.</h3>
       </div>
 
       <input type="range" class="custom-range" id="marriageRange" min="0" max="5" value="0">
@@ -105,11 +105,11 @@
       <h2>What offspring do you have?</h2>
       <p class="pb-4">(Select all that apply.)</p>
 
-      <div class="badge bg-solid-neutral kiddos" id="check-pregnancy">I'm Currently Pregnant</div>
-      <div class="badge bg-solid-neutral kiddos" id="check-babies">Babies</div>
-      <div class="badge bg-solid-neutral kiddos" id="check-toddlers">Toddlers</div>
-      <div class="badge bg-solid-neutral kiddos" id="check-kids">Small Kids</div>
-      <div class="badge bg-solid-neutral kiddos" id="check-teens">Teenagers</div>
+      <div class="badge bg-neutral kiddos" id="check-pregnancy">I'm Currently Pregnant</div>
+      <div class="badge bg-neutral kiddos" id="check-babies">Babies</div>
+      <div class="badge bg-neutral kiddos" id="check-toddlers">Toddlers</div>
+      <div class="badge bg-neutral kiddos" id="check-kids">Small Kids</div>
+      <div class="badge bg-neutral kiddos" id="check-teens">Teenagers</div>
 
       <div id="slide-3-to-4" class="hidden mt-4 btn btn-neutral">Next Question</div>
     </section>
@@ -119,11 +119,11 @@
     <section id="slide-4" class="hidden z-depth-3 p-5 text-center">
       <h2 class="pb-4">Do you have a hard time juggling all your different responsibilities?</h2>
 
-      <div id="balance-answer-1" class="balance-answer hidden color-self">
+      <div id="balance-answer-1" class="balance-answer hidden color-pink">
         <h3>Every. Damn. Day.</h3>
       </div>
 
-      <div id="balance-answer-2" class="balance-answer hidden color-self">
+      <div id="balance-answer-2" class="balance-answer hidden color-pink">
         <h3>Yes, but I'm still hanging on.</h3>
       </div>
 
@@ -131,11 +131,11 @@
         <h3>Sometimes.</h3>
       </div>
 
-      <div id="balance-answer-4" class="balance-answer hidden color-self">
+      <div id="balance-answer-4" class="balance-answer hidden color-pink">
         <h3>Only when life gets reeeeeally busy.</h3>
       </div>
 
-      <div id="balance-answer-5" class="balance-answer hidden color-self">
+      <div id="balance-answer-5" class="balance-answer hidden color-pink">
         <h3>Nope.  I've got it all together.</h3>
       </div>
 
@@ -223,8 +223,8 @@
         $("#check-pregnancy").click(function(){
           $("#slide-3-to-4").removeClass("hidden");
           $("#check-pregnancy").toggleClass("active");
-          $("#check-pregnancy").toggleClass("bg-solid-neutral");
-          $("#check-pregnancy").toggleClass("bg-solid-kids");
+          $("#check-pregnancy").toggleClass("bg-neutral");
+          $("#check-pregnancy").toggleClass("bg-pink");
           if ( $("#check-pregnancy").hasClass("active") ) {
             $("#sorting_pregnancy").val(1);
           } else {
@@ -234,8 +234,8 @@
         $("#check-babies").click(function(){
           $("#slide-3-to-4").removeClass("hidden");
           $("#check-babies").toggleClass("active");
-          $("#check-babies").toggleClass("bg-solid-neutral");
-          $("#check-babies").toggleClass("bg-solid-kids");
+          $("#check-babies").toggleClass("bg-neutral");
+          $("#check-babies").toggleClass("bg-pink");
           if ( $("#check-babies").hasClass("active") ) {
             $("#sorting_babies").val(1);
           } else {
@@ -245,8 +245,8 @@
         $("#check-toddlers").click(function(){
           $("#slide-3-to-4").removeClass("hidden");
           $("#check-toddlers").toggleClass("active");
-          $("#check-toddlers").toggleClass("bg-solid-neutral");
-          $("#check-toddlers").toggleClass("bg-solid-kids");
+          $("#check-toddlers").toggleClass("bg-neutral");
+          $("#check-toddlers").toggleClass("bg-pink");
           if ( $("#check-toddlers").hasClass("active") ) {
             $("#sorting_toddlers").val(1);
           } else {
@@ -256,8 +256,8 @@
         $("#check-kids").click(function(){
           $("#slide-3-to-4").removeClass("hidden");
           $("#check-kids").toggleClass("active");
-          $("#check-kids").toggleClass("bg-solid-neutral");
-          $("#check-kids").toggleClass("bg-solid-kids");
+          $("#check-kids").toggleClass("bg-neutral");
+          $("#check-kids").toggleClass("bg-pink");
           if ( $("#check-kids").hasClass("active") ) {
             $("#sorting_kids").val(1);
           } else {
@@ -267,8 +267,8 @@
         $("#check-teens").click(function(){
           $("#slide-3-to-4").removeClass("hidden");
           $("#check-teens").toggleClass("active");
-          $("#check-teens").toggleClass("bg-solid-neutral");
-          $("#check-teens").toggleClass("bg-solid-kids");
+          $("#check-teens").toggleClass("bg-neutral");
+          $("#check-teens").toggleClass("bg-pink");
           if ( $("#check-teens").hasClass("active") ) {
             $("#sorting_teens").val(1);
           } else {

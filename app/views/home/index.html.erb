@@ -26,7 +26,7 @@
         <h4 class="text-center mb-5 mb-xl-2">
           Take a quick quiz to figure out just what's making you feel like you're losing your marbles.
         </h4>
-        <%= link_to "Take the Quiz", new_sorting_path, class: "mt-5 mt-xl-0 btn btn-spouse btn-lg" %>
+        <%= link_to "Take the Quiz", new_sorting_path, class: "mt-5 mt-xl-0 btn btn-pink btn-lg" %>
       </div> <!-- over-frame-text -->
     </div> <!-- over-frame-text -->
   </section>
@@ -68,10 +68,6 @@
 
 
 
-
-
-
-
     <section id="about">
       <div class="view jarallax text-center">
         <img class="jarallax-img" src="https://staysanemom.s3-us-west-1.amazonaws.com/Backgrounds/pink-fabric.jpg" alt="">
@@ -88,10 +84,10 @@
 
     <section id="popular">
       <div class="container-fluid p-5">
-        <h2 class="text-center">Most Popular Blogs</h2>
+        <h2 class="section-title">Most Popular Blogs</h2>
         <div class="row">
           <% @featured_blogs.each do |blog| %>
-            <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+            <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
           <% end %>
         </div> <!-- row -->
       </div> <!-- container -->
@@ -104,7 +100,7 @@
 
     <section id="popular">
       <div class="container-fluid p-5">
-        <h3 class="text-center pb-4">Popular Tools</h3>
+        <h3 class="section-title">Popular Tools</h3>
         <div class="row">
           <%= render "layouts/tools/tasks" %>
           <%= render "layouts/tools/recipes" %>
@@ -112,7 +108,7 @@
           <%= render "layouts/tools/birthdays" %>
         </div> <!-- row -->
         <h5 class="text-center">
-          <%= link_to "See All Tools", static_path(:tools), class: "btn btn-neutral" %>
+          <%= link_to "See All Tools", static_path(:tools), class: "btn btn-pink" %>
         </h5>
       </div> <!-- container -->
     </section>
@@ -124,13 +120,13 @@
 
     <section id="popular">
       <div class="container-fluid p-5">
-        <h2 class="text-center pb-4">Newest Blogs</h2>
+        <h2 class="section-title">Newest Blogs</h2>
         <div class="row">
           <% @recent_blogs.each do |blog| %>
-            <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
+            <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
           <% end %>
         </div> <!-- row -->
-        <h5 class="text-center"><%= link_to "See Older Posts...", blogs_path, class: "btn btn-neutral" %></h5>
+        <h5 class="text-center"><%= link_to "Go to the Blog", blogs_path, class: "btn btn-pink" %></h5>
       </div> <!-- container -->
     </section>
 
@@ -142,21 +138,22 @@
     <section id="popular">
       <div class="container-fluid p-5">
         <div class="text-center container">
-          <h2 class="pb-4">Recommended Goodies</h2>
+          <h2 class="section-title">Recommended Reading</h2>
           <script type="text/javascript">
-            amzn_assoc_placement = "adunit0";
-            amzn_assoc_search_bar = "true";
-            amzn_assoc_tracking_id = "thestaysane0e-20";
-            amzn_assoc_ad_mode = "manual";
-            amzn_assoc_ad_type = "smart";
-            amzn_assoc_marketplace = "amazon";
-            amzn_assoc_region = "US";
-            amzn_assoc_title = "My Amazon Picks";
-            amzn_assoc_linkid = "4be5ced900716142835f8920d04a1290";
-            amzn_assoc_asins = "0345472322,B01N0NXG3W,B00016XNT8,B01JFILPIS,1594484805,B077SXWSRP,B07FTN21JL,B0010TEFFQ";
+          amzn_assoc_placement = "adunit0";
+          amzn_assoc_search_bar = "true";
+          amzn_assoc_tracking_id = "thestaysane0e-20";
+          amzn_assoc_ad_mode = "manual";
+          amzn_assoc_ad_type = "smart";
+          amzn_assoc_marketplace = "amazon";
+          amzn_assoc_region = "US";
+          amzn_assoc_title = "My Amazon Picks";
+          amzn_assoc_linkid = "bd682ffb57ec7017943ea6ee08b159fd";
+          amzn_assoc_asins = "1950328791,1950328813,0345472322,1582706557";
           </script>
           <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-        </div>      </div> <!-- container -->
+        </div>
+      </div> <!-- container -->
     </section>
 
 

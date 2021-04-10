@@ -1,16 +1,5 @@
 <section id="breadcrumbs" class="mb-5">
-  <% case @blog.category %>
-  <% when "House" %>
-    <nav aria-label="breadcrumb" class="nav-breadcrumb house">
-  <% when "Spouse" %>
-    <nav aria-label="breadcrumb" class="nav-breadcrumb spouse">
-  <% when "Kids" %>
-    <nav aria-label="breadcrumb" class="nav-breadcrumb kids">
-  <% when "Self" %>
-    <nav aria-label="breadcrumb" class="nav-breadcrumb self">
-  <% else %>
     <nav aria-label="breadcrumb" class="nav-breadcrumb">
-  <% end %>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><%= link_to "Blog", blogs_path %></li>
         <% case @blog.category %>
@@ -29,7 +18,7 @@
         <li class="breadcrumb-item"><%= @blog.title %></li>
         <div style="position: absolute; right: 0; margin-right: 25px">
           <% if current_user && current_user.admin %>
-            <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "color-self" %>
+            <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "color-pink" %>
           <% end %>
         </div> <!-- right -->
       </ol>

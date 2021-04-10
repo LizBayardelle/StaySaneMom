@@ -27,9 +27,9 @@
           <% n = 1 %>
           <% v.downloadable_file.each do |d| %>
             <% if n = 1 %>
-              <li><%= link_to v.name, rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
+              <li><%= link_to v.name, rails_blob_path(d, disposition: 'attachment'), class: "color-pink" %></li>
             <% else %>
-              <li><%= link_to v.name + " (" + n.to_s + ")", rails_blob_path(d, disposition: 'attachment'), class: "color-spouse" %></li>
+              <li><%= link_to v.name + " (" + n.to_s + ")", rails_blob_path(d, disposition: 'attachment'), class: "color-pink" %></li>
             <% end %>
             <% n += 1 %>
           <% end %> <!-- basket items each -->

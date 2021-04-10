@@ -4,7 +4,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <h2 class="text-center mt-5 thin uppercase color-spouse">The Basics</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">The Basics</h2>
     <%= f.input :name %>
     <%= f.input :short_description %>
     <div class="form-group">
@@ -12,7 +12,7 @@
     </div>
     <%= f.input :active %>
 
-    <h2 class="text-center mt-5 thin uppercase color-spouse">Sales Jargon</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">Sales Jargon</h2>
     <%= f.input :top_question %>
     <%= f.input :main_heading %>
     <%= f.input :main_subheading, as: :text %>
@@ -20,7 +20,7 @@
     <%= f.input :outcome_2, label: "Final Outcome" %>
 
 
-    <h2 class="text-center mt-5 thin uppercase color-spouse">Testimonial</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">Testimonial</h2>
     <%= f.input :t1_short, label: "Short Blurb" %>
     <%= f.input :t1_long, label: "Full Testimonial" %>
     <%= f.input :t1_name, label: "Person Name" %>
@@ -30,15 +30,15 @@
       <%= f.file_field :t1_image %>
     </div>
 
-    <h2 class="text-center mt-5 thin uppercase color-spouse">Features</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">Features</h2>
     <%= f.input :wyg1, label: "What you get... (Feature #1)" %>
     <%= f.input :wyg2, label: "What you get... (Feature #2)" %>
     <%= f.input :wyg3, label: "What you get... (Feature #3)" %>
 
-    <h2 class="text-center mt-5 thin uppercase color-spouse">ConvertKit Link</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">ConvertKit Link</h2>
     <%= f.input :convertkit_url, as: :string, label: "HTML for ConvertKit Embed" %>
 
-    <h2 class="text-center mt-5 thin uppercase color-spouse">Images</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">Images</h2>
     <div class="form-group">
       <%= f.label "Mockup Image" %><br />
       <%= f.file_field :image %>
@@ -51,6 +51,6 @@
   </div>
 
   <div class="form-actions text-center">
-    <%= f.button :submit, class: "btn btn-spouse" %>
+    <%= f.button :submit, class: "btn btn-pink" %>
   </div>
 <% end %>

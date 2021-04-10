@@ -10,9 +10,9 @@
           </a>
         </div>
         <div class="col-12 p-bottom-margin">
-          <h3 class="color-spouse"><a href="" target="_blank"><%= printable.name %></a><h3>
+          <h3 class="color-pink"><a href="" target="_blank"><%= printable.name %></a><h3>
           <%= simple_format(printable.description) %>
-          <button type="button" class="btn btn-spouse btn-lg" data-toggle="modal" data-target="#modal<%= printable.id %>">
+          <button type="button" class="btn btn-pink btn-lg" data-toggle="modal" data-target="#modal<%= printable.id %>">
             <%= number_to_currency(printable.price) %>
           </button>
           <% if current_user && current_user.admin %>

@@ -1,9 +1,9 @@
 <section id="blog-body" class="container">
-  <div class="blog-itself blog-headings">
+  <div class="blog-itself">
     <% if @blog.affiliate_links %>
-      <p class="text-center"><em>
+      <p class="text-center"><small><em>
         This post contains some affiliate links for your convenience. Click <a href="#affiliate">here</a> to read my&nbsp;full&nbsp;disclosure&nbsp;policy.
-      </em></p>
+      </em></small></p>
     <% end %>
     <%= raw(@blog.body) %>
   </div>

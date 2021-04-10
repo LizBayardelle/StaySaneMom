@@ -1,5 +1,5 @@
 
-<section class="bg-solid-spouse p-4 text-center">
+<section class="bg-pink p-4 text-center">
   <h2 class="color-white"><%= @freebie.top_question %></h2>
 </section>
 
@@ -19,16 +19,16 @@
   <div class="row py-4">
 
     <div class="col-sm-8">
-      <h1 class="thin uppercase color-spouse display-4"><%= @freebie.main_heading %></h1>
+      <h1 class="thin uppercase color-pink display-4"><%= @freebie.main_heading %></h1>
       <h3 class="bold landing-subheading"><%= simple_format(@freebie.main_subheading) %></h3>
-      <a class="btn btn-spouse btn-lg my-3 mt-5" href="#ck-embed">Download <%= @freebie.short_description %></a>
+      <a class="btn btn-pink btn-lg my-3 mt-5" href="#ck-embed">Download <%= @freebie.short_description %></a>
     </div> <!-- col -->
 
     <div class="col-sm-4 text-center">
       <img src="<%= rails_blob_url(@freebie.sample_image) if @freebie.sample_image.attached? %>" class="z-depth-5" style="max-width: 80%; max-height: 30vh; transform: rotate(10deg)">
       <div class="w-100 pt-4">
       <img src="<%= asset_url("Arrow.png") %>" class="pr-5" style="height: 50px">
-      <h3 class="font-script color-spouse mt-2 text-left">Free <%= @freebie.name %></h3>
+      <h3 class="font-script color-pink mt-2 text-left">Free <%= @freebie.name %></h3>
     </div> <!-- col -->
 
   </div> <!-- row -->
@@ -36,7 +36,7 @@
 
 
 <% if @freebie.t1_long != "" %>
-  <section class="bg-solid-spouse py-5">
+  <section class="bg-pink py-5">
     <div class="container">
       <div class="row">
         <div class="col-12 text-center pb-4">
@@ -53,7 +53,7 @@
           <p class="boldest color-white">"<%= @freebie.t1_long %>"</p>
         </div> <!-- col -->
         <div class="col-12 text-center">
-          <a class="btn bg-white color-spouse btn-lg" href="#ck-embed">Download <%= @freebie.short_description %></a>
+          <a class="btn bg-white color-pink btn-lg" href="#ck-embed">Download <%= @freebie.short_description %></a>
         </div>
       </div> <!-- row -->
     </div> <!-- container -->

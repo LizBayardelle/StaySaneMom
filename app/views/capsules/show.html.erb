@@ -7,7 +7,7 @@
 
 <div class="container capsule">
   <div class="text-center">
-    <h1 class="font-script color-self"><%= @capsule.name %></h1>
+    <h1 class="font-script color-pink"><%= @capsule.name %></h1>
     <h2>Every <% if @capsule.interval == "Yearly" %>Year on <%= @capsule.capsule_date.strftime("%B %e") %><% else %>Month on the <%= @capsule.capsule_date.strftime("#{@capsule.capsule_date.day.ordinalize}") %><% end %></h2>
     <p><% if @capsule.comments != "" %><%= @capsule.comments %><br /><% end %>
       <small><em>
@@ -57,8 +57,8 @@
               </h4>
               <p class="card-text"><%= item.caption if item.caption != nil && item.caption != "" %></p>
               <p class="text-center boldest" style="margin: 0"><small>
-                <a href="#editPhoto<%= item.id %>" class="open-popup-link color-spouse">Edit</a> |&nbsp;
-                <%= link_to "Delete", capsule_capsule_item_path(@capsule, item), method: :delete, data: { confirm: 'Are you sure?' }, class: "color-spouse" %>
+                <a href="#editPhoto<%= item.id %>" class="open-popup-link color-pink">Edit</a> |&nbsp;
+                <%= link_to "Delete", capsule_capsule_item_path(@capsule, item), method: :delete, data: { confirm: 'Are you sure?' }, class: "color-pink" %>
               </small></p>
             </div> <!-- card body -->
           </div> <!-- card -->

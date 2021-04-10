@@ -8,21 +8,21 @@
         <h1>My Homepage</h1>
       <% end %>
       <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
-      <%= link_to 'Edit My Info', edit_user_registration_path, class: "btn btn-sm btn-spouse" %>
-      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-sm btn-spouse" %>
+      <%= link_to 'Edit My Info', edit_user_registration_path, class: "btn btn-sm btn-pink" %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-sm btn-pink" %>
 
       <% if ( @user.contributor || @user.admin ) && @user == current_user %>
         <h4 class="pt-4 font-weight-bold">(And all your contributor superpowers.)</h4>
-        <%= link_to "Contributor Welcome", page_path("contributor_welcome"), class: "btn btn-sm btn-self" %>
-        <%= link_to "My Drafts", admin_drafts_path, class: "btn btn-sm btn-self" %>
+        <%= link_to "Contributor Welcome", page_path("contributor_welcome"), class: "btn btn-sm btn-pink" %>
+        <%= link_to "My Drafts", admin_drafts_path, class: "btn btn-sm btn-pink" %>
       <% end %>
     <% else %>
       <h1><%= @user.first_name %> <%= @user.last_name %></h1>
       <h2><strong>
         <% if @user.admin %>
-          <i class="fas fa-glasses color-spouse"></i> &nbsp;Stay Sane Mom Founder
+          <i class="fas fa-glasses color-pink"></i> &nbsp;Stay Sane Mom Founder
         <% elsif @user.contributor %>
-          <i class="fas fa-keyboard color-spouse"></i> &nbsp;Stay Sane Mom Contributor
+          <i class="fas fa-keyboard color-pink"></i> &nbsp;Stay Sane Mom Contributor
         <% end %>
       </strong></h2>
     <% end %>
@@ -222,7 +222,7 @@
  <div class="buffer"></div>
 <% else %>
   <div class="half-buffer"></div>
-  <h2 class="text-center color-spouse">- - <%= link_to 'Complete My Profile', edit_user_registration_path, class: "color-spouse" %> - -</h2>
+  <h2 class="text-center color-pink">- - <%= link_to 'Complete My Profile', edit_user_registration_path, class: "color-pink" %> - -</h2>
 <% end %>
 
 

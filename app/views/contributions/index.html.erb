@@ -6,7 +6,7 @@
 
   <div class="half-buffer"></div>
 
-  <h2 class="text-center font-script color-spouse">Guest Post Ideas</h2>
+  <h2 class="text-center font-script color-pink">Guest Post Ideas</h2>
   <% if @contributions.count != 0 %>
     <table class="lined-table">
       <thead>
@@ -78,7 +78,7 @@
     <% end %>
   <% end %>
 
-  <h2 class="text-center font-script color-spouse">Current Guest Posts</h2>
+  <h2 class="text-center font-script color-pink">Current Guest Posts</h2>
 
   <h3>WIP Guest Posts</h3>
   <% @wip_blogs = Blog.where.not(user_id: 1).where(submitted: false) %>

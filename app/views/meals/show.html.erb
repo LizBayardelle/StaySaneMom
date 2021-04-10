@@ -34,7 +34,7 @@
 
   <div class="row">
       <div class="col-sm-6">
-        <h2 class="color-spouse font-script">Ingredients</h2>
+        <h2 class="color-pink font-script">Ingredients</h2>
         <ul>
         <% @meal.ingredients.each do |string, amount, name| %>
           <li>
@@ -47,7 +47,7 @@
       </div> <!-- col -->
 
       <div class="col-sm-6">
-        <h2 class="color-spouse font-script">Instructions</h2>
+        <h2 class="color-pink font-script">Instructions</h2>
         <ol>
         <% @meal.instructions.each do |number, step| %>
           <li><%= step[8..-1] %></li>
