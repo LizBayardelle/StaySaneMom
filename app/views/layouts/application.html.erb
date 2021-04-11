@@ -144,7 +144,7 @@
           <div class="row">
             <div class="col-sm-8">
               <p class="text-center font-serif">Stay Sane Mom gives support to the over-worked, under-slept, marker-stained, soul-hungry moms of the world, so they can be more&nbspthan&nbspjust&nbsp"mom".</p>
-              <p class="text-center font-serif">You just want to keep the house clean, have a happy marriage, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
+              <p class="text-center font-serif">You just want to keep the house clean, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
               <p class="text-center font-serif">I'm here for you.</p>
               <div class="text-center">
                 <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><i class="fab fa-facebook social-icon"></i></a>
@@ -156,11 +156,11 @@
               </div> <!-- centered sm -->
             </div> <!-- left bit -->
             <div class="col-sm-4 side-links">
-              <p class="font-bold"><%= link_to "About Us", static_path(:AboutMe), class: "font-serif color-black" %></p>
-              <p class="font-bold"><%= link_to "Let's Collaborate", static_path(:Collaborate), class: "font-serif color-black" %></p>
-              <p class="font-bold"><%= link_to "Speaking Engagements", static_path(:Speaking), class: "font-serif color-black" %></p>
-              <p class="font-bold"><%= link_to "Guest Posting", new_contribution_path, class: "font-serif color-black" %></p>
-              <p class="font-bold"><%= link_to "Privacy Policy", static_path(:PrivacyPolicy), class: "font-serif color-black" %></p>
+              <p class="font-bold"><%= link_to "About Us", static_path(:AboutMe), class: "color-pink thin" %></p>
+              <p class="font-bold"><%= link_to "Let's Collaborate", static_path(:Collaborate), class: "color-pink thin" %></p>
+              <p class="font-bold"><%= link_to "Speaking Engagements", static_path(:Speaking), class: "color-pink thin" %></p>
+              <p class="font-bold"><%= link_to "Guest Posting", new_contribution_path, class: "color-pink thin" %></p>
+              <p class="font-bold"><%= link_to "Privacy Policy", static_path(:PrivacyPolicy), class: "color-pink thin" %></p>
             </div> <!-- left bit -->
           </div> <!-- row -->
         </div> <!-- container -->
@@ -170,8 +170,8 @@
 
       <div class="bg-transparent-neutral copyright text-center">
         <div class="container">
-          <p id="affiliate">As an Amazon Associate I earn from qualifying purchases.  I also participate in other linking programs, but will never link to anything I don't like.</p>
-          <p class="color-neutral">Copyright &copy; <%= Time.current.year %> <em class="color-neutral">The Stay Sane Mom</em></p>
+          <p id="affiliate" style="line-height: 1.1"><small>As an Amazon Associate I earn from qualifying purchases and occasionally participate in other linking programs, but I will never link to anything I don't like.</small></p>
+          <p class="color-neutral"><small>Copyright &copy; <%= Time.current.year %> <em class="color-neutral">The Stay Sane Mom</em></small></p>
         </div> <!-- container -->
       </div> <!-- container -->
     <% end %>

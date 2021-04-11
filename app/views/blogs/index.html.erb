@@ -28,34 +28,20 @@
 
 
 <% if current_user && current_user.admin %>
-  <div class="bg-transparent-neutral"><div class="container">
+  <div class="bg-transparent-neutral py-5 mb-5"><div class="container">
     <% if @unpublished.count > 0 %>
-      <div class="half-buffer"></div>
-      <h2 class="font-script">Unpublished Blogs</h2>
+      <h2 class="section-title">Unpublished Blogs</h2>
       <% @unpublished.each do |blog| %>
         <h5><%= link_to blog.title, blog_path(blog) %></h5>
       <% end %>
-      <div class="half-buffer"></div>
     <% end %>
   </div></div>
 <% end %>
 
-<div class="half-buffer"></div>
-
-<!-- tag cloud -->
-<div class="text-center full-width bg-transparent-neutral padded"><div id="tag_cloud">
-  <h2 class="font-script">Looking for a specific topic?</h2>
-  <% tag_cloud Blog.tag_counts, %w{s m l} do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div></div>
-<!-- end tag cloud -->
-
-<div class="buffer"></div>
 
 <div class="container">
 
-  <h2 class="font-script text-center">Most Popular Blogs</h2>
+  <h2 class="section-title">Most Popular Blogs</h2>
   <div class="row">
     <% @featured_blogs.each do |blog| %>
       <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
@@ -64,7 +50,7 @@
 
   <div class="buffer"></div>
 
-  <h2 class="font-script text-center">Newest Blogs</h2>
+  <h2 class="section-title">Newest Blogs</h2>
   <div class="row">
     <% @blogs.each do |blog| %>
       <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
