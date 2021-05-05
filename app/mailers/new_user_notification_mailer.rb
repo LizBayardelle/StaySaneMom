@@ -3,7 +3,7 @@ class NewUserNotificationMailer < ApplicationMailer
 
   def send_new_user_email(user)
     @user = user
-    mail( :to => "lizbayardelle@gmail.com",
+    mail( :to => "liz@thestaysanemom.com",
     :subject => 'New SSM User Alert!' )
   end
 end
