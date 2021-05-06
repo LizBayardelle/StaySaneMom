@@ -7,27 +7,27 @@
 
   <body>
     <hr style="border: 0; border-top: solid 2px #fd1270;" />
-    <h1 style="text-align: center">Guest Post Submitted</h1>
+    <h1 style="text-align: center">Get reviewing, biyatch!</h1>
     <hr style="border: 0; border-top: solid 2px #fd1270; margin-bottom: 25px" />
     <p>
-      Yo slacker,
+      Greetings internet goddess,
     </p>
     <p>
-      <%= @blog.user.full_name %> has submitted a guest post!
+      <%= @blog.user.full_name %> has finished writing their guest post!
     </p>
 
     <p>
-      Head on over to <%= link_to "the website", contributions_url, style: "color: #fd1270; font-weight: 700; text-decoration: none" %> and get editing!  The fate of this blog rests in your humble hands.
+      Head on over to <%= link_to @blog.title, blog_url(@blog), style: "color: #fd1270; font-weight: 700; text-decoration: none" %> and get editing!  The fate of this blog rests in your humble hands.
     </p>
     <p>
       Thanks,
-      <br>Lizbot
+      <br>Your digital alterego
     </p>
     <p>
       If you have any issues, feel free to email us at <a href="mailto:liz@theStaySaneMom.com" style="color: #fd1270; font-weight: 700; text-decoration: none">liz@theStaySaneMom.com</a>.
     </p>
     <hr style="border: 0; border-top: solid 2px #fd1270; margin-top: 25px" />
-    <img src="https://staysanemom.s3-us-west-1.amazonaws.com/111-images/SSM+Logo.jpg" style="width: 150px; display: block; margin-right: auto; margin-left: auto">
+    <img src="https://staysanemom.s3-us-west-1.amazonaws.com/111-images/SSM+Logo.jpg" style="width: 50px; display: block; margin-right: auto; margin-left: auto">
     <hr style="border: 0; border-top: solid 2px #fd1270;" />
   </body>
 

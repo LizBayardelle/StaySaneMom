@@ -69,7 +69,7 @@ class BlogsController < ApplicationController
           @blog.pin_image.attach(pin_images)
         end
 
-        if @blog.user_id != 1 && @blog.submitted
+        if User.find(@blog.user.id).contributor && @blog.submitted
           GuestPostMailer.post_submitted(@blog).deliver
         end
 
@@ -113,7 +113,7 @@ class BlogsController < ApplicationController
     respond_to do |format|
       if @blog.update(blog_params)
 
-        if @blog.user_id != 1 && @blog.submitted
+        if User.find(@blog.user.id).contributor && @blog.submitted
           GuestPostMailer.post_submitted(@blog).deliver
         end
 
