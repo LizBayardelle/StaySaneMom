@@ -6,9 +6,9 @@ before_action :admin_only
   end
 
   def blogs
-    @blogs = Blog.where(published: true).order('created_at DESC')
-    @drafts = Blog.where(published: false)
-    @guest_blogs = Blog.where.not(user_id: 1)
+    @blogs = Blog.where(user_id: 1, published: true).order('created_at DESC')
+    @drafts = Blog.where(user_id: 1, published: false)
+    @guest_blogs = Blog.where(user_id: 1).where.not(user_id: 1)
     @other_blogs = Blog.where(published: true, pillar: false, user_id: 1)
   end
 

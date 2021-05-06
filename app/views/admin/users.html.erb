@@ -1,40 +1,42 @@
 <main class="mb-5 container">
-  <header class="text-center mb-4">
-    <h1 class="font-weight-bold">Users and Superusers</h1>
+  <header class="text-center mt-3">
+    <h1 class="font-script color-pink">Users and Superusers</h1>
   </header>
 
 
   <section class="text-center mb-5 my-"> <!-- admin -->
-    <h2>Superusers</h2>
+    <h2 id="superuser-header">Superusers</h2>
+    <div id="superuser-container">
 
-    <div class="table-responsive" style="width: 100%">
-      <table id="tableSuperusers" class="table table-striped table-bordered" width="100%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contributor</th>
-            <th>Admin</th>
-            <th>Since</th>
-            <th><i class="fas fa-times"></i></th>
-          </tr>
-        </thead>
-
-        <tbody class="text-left">
-          <% @superusers.each do |user| %>
+      <div class="table-responsive" style="width: 100%">
+        <table id="tableSuperusers" class="table thin table-striped table-bordered" width="100%">
+          <thead>
             <tr>
-              <td><%= user.full_name %></td>
-              <td><%= mail_to user.email, user.email, target: "_blank" %></td>
-              <td class="text-center"><% if user.contributor %><i class="fas fa-check"></i><% end %></td>
-              <td class="text-center"><% if user.admin %><i class="fas fa-check"></i><% end %></td>
-              <td><%= user.created_at.year %></td>
-              <th class="text-center"><%= link_to '<i class="fas fa-times"></i>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contributor</th>
+              <th>Admin</th>
+              <th>Since</th>
+              <th><i class="fas fa-times"></i></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div> <!-- table responsive -->
+          </thead>
 
+          <tbody class="text-left">
+            <% @superusers.each do |user| %>
+              <tr>
+                <td><%= user.full_name %></td>
+                <td><%= mail_to user.email, user.email, target: "_blank" %></td>
+                <td class="text-center"><% if user.contributor %><i class="fas fa-check"></i><% end %></td>
+                <td class="text-center"><% if user.admin %><i class="fas fa-check"></i><% end %></td>
+                <td><%= user.created_at.year %></td>
+                <th class="text-center"><%= link_to '<i class="fas fa-times"></i>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!-- table responsive -->
+
+    </div> <!-- superuser container -->
   </section>
 
 
@@ -45,121 +47,122 @@
 
 
   <section class="text-center mb-5 my-"> <!-- admin -->
-    <h2>Preauthorizations</h2>
+    <h2 id="preauthorization-header">Preauthorizations</h2>
+    <div id="preauthorization-container">
 
-    <button type="button" class="btn btn-pink btn-sm mb-3" data-toggle="modal" data-target="#newPreauthorization">
-      New Preauthorization
-    </button>
+      <button type="button" class="btn btn-pink btn-sm mb-3" data-toggle="modal" data-target="#newPreauthorization">
+        New Preauthorization
+      </button>
 
-    <div class="table-responsive" style="width: 100%">
-      <table id="tablePreauthorizations" class="table table-striped table-bordered" width="100%">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Admin</th>
-            <th>Contributor</th>
-            <th>Account Created</th>
-            <th><i class="fas fa-times"></i></th>
-          </tr>
-        </thead>
-
-        <tbody class="text-left">
-          <% @preauthorizations.each do |preauthorization| %>
+      <div class="table-responsive" style="width: 100%">
+        <table id="tablePreauthorizations" class="table thin table-striped table-bordered" width="100%">
+          <thead>
             <tr>
-              <td><%= mail_to preauthorization.email, preauthorization.email, target: "_blank" %></td>
-              <td class="text-center"><% if preauthorization.admin %><i class="fas fa-check"></i><% end %></td>
-              <td class="text-center"><% if preauthorization.contributor %><i class="fas fa-check"></i><% end %></td>
-              <td class="text-center"><% if preauthorization.fulfilled %><i class="fas fa-check"></i><% end %></td>
-              <th class="text-center"><%= link_to '<i class="fas fa-times"></i>'.html_safe, preauthorization, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+              <th>Email</th>
+              <th>Admin</th>
+              <th>Contributor</th>
+              <th>Account Created</th>
+              <th><i class="fas fa-times"></i></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div> <!-- table responsive -->
+          </thead>
 
+          <tbody class="text-left">
+            <% @preauthorizations.each do |preauthorization| %>
+              <tr>
+                <td><%= mail_to preauthorization.email, preauthorization.email, target: "_blank" %></td>
+                <td class="text-center"><% if preauthorization.admin %><i class="fas fa-check"></i><% end %></td>
+                <td class="text-center"><% if preauthorization.contributor %><i class="fas fa-check"></i><% end %></td>
+                <td class="text-center"><% if preauthorization.fulfilled %><i class="fas fa-check"></i><% end %></td>
+                <th class="text-center"><%= link_to '<i class="fas fa-times"></i>'.html_safe, preauthorization, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!-- table responsive -->
+
+    </div> <!-- preauthorization container -->
   </section>
 
 
 
+  <section class="mb-5 my-"> <!-- users -->
+    <h2 id="sm-header" class="text-center">SM to Approve</h2>
+    <div id="sm-container">
+      <% @contributors.each do |user| %>
+        <% sm_not_blank = user.website_name != "" || user.website_url != "" || user.sm_facebook != "" || user.sm_pinterest != "" || user.sm_instagram != "" || user.sm_twitter != "" || user.sm_youtube != "" || user.sm_email != "" || user.sm_other != "" %>
+        <% if sm_not_blank && user.sm_approved == false %>
 
-
-
-
-    <section class="text-center mb-5 my-"> <!-- users -->
-      <h2>Contributors</h2>
-
-      <div class="table-responsive" style="width: 100%">
-        <table id="tableMembers" class="table table-striped table-bordered" width="100%">
-          <thead>
-            <tr>
-              <td></td>
-              <td class="font-bold">Contributor</td>
-              <td class="font-bold">Social Media</td>
-            </tr>
-          </thead>
-
-          <% @contributors.each do |user| %>
-            <tr class="text-left">
-              <td>
-                <%= user.id %>
-              </td>
-              <td>
-                <%= link_to user_path(user) do %>
-                  <span class="font-bold color-pink"><%= user.first_name %> <%= user.last_name %><br /></span>
-                <% end %>
-                <%= mail_to user.email %><br>
-                <%= pluralize(user.blogs.where(published: true).count, "Published Blog") %><br />
-                <% if !user.admin %>
-                  <%= pluralize(user.blogs.where(published: false, approved: true, submitted: true).count, "Approved Blog") %><br />
-                  <%= pluralize(user.blogs.where(published: false, approved: false, submitted: true).count, "Submitted Blog") %><br />
-                <% end %>
-                <%= pluralize(user.blogs.where(published: false, approved: false, submitted: false).count, "WIP Blog") %>
-
-              </td>
-              <td>
-                <% if user.sm_approved %>
-                  <span class="font-bold"><i class="fas fa-user-check color-pink"></i> SM Approved</span>
-                <% end %>
-                <% sm_not_blank = user.website_name || user.website_url || user.sm_facebook || user.sm_pinterest || user.sm_instagram || user.sm_twitter || user.sm_youtube || user.sm_email || user.sm_other %>
-                <% if sm_not_blank && user.sm_approved == false %>
-                  <%= link_to approve_sm_path(user), method: :post do %>
-                    <span class="font-bold"><i class="fas fa-exclamation color-pink"></i> Approve SM Links</span><br />
-                  <% end %>
-                <% end %>
-                <% if user.website_name != "" %>
-                  <br />Website Name: <%= user.website_name %>
-                <% end %>
-                <% if user.website_url != "" %>
-                  <br />Website URL: <%= link_to user.website_url %>
-                <% end %>
-                <% if user.sm_facebook != "" %>
-                  <br />Facebook: <%= link_to user.sm_facebook %>
-                <% end %>
-                <% if user.sm_pinterest != "" %>
-                  <br />Pinterest: <%= link_to user.sm_pinterest %>
-                <% end %>
-                <% if user.sm_instagram != "" %>
-                  <br />Instagram: <%= link_to user.sm_instagram %>
-                <% end %>
-                <% if user.sm_twitter != "" %>
-                  <br />Twitter: <%= link_to user.sm_twitter %>
-                <% end %>
-                <% if user.sm_youtube != "" %>
-                  <br />YouTube: <%= link_to user.sm_youtube %>
-                <% end %>
-                <% if user.sm_email != "" %>
-                  <br />Email: <%= mail_to user.sm_email %>
-                <% end %>
-                <% if user.sm_other != "" %>
-                  <br />Other: <%= link_to user.sm_other %>
-                <% end %>
-              </td>
-            </tr>
+          <%= link_to user_path(user) do %>
+            <h3 class="font-script color-pink h1" style="margin-bottom: -10px"><%= user.first_name %> <%= user.last_name %></h3>
           <% end %>
 
+          <div class="pl-4">
+            <% if user.website_name != "" %>
+              Website Name: <%= user.website_name %><br />
+            <% end %>
+            <% if user.website_url != "" %>
+              Website URL: <%= link_to user.website_url %><br />
+            <% end %>
+            <% if user.sm_facebook != "" %>
+              Facebook: <%= link_to user.sm_facebook %><br />
+            <% end %>
+            <% if user.sm_pinterest != "" %>
+              Pinterest: <%= link_to user.sm_pinterest %><br />
+            <% end %>
+            <% if user.sm_instagram != "" %>
+              Instagram: <%= link_to user.sm_instagram %><br />
+            <% end %>
+            <% if user.sm_twitter != "" %>
+              Twitter: <%= link_to user.sm_twitter %><br />
+            <% end %>
+            <% if user.sm_youtube != "" %>
+              YouTube: <%= link_to user.sm_youtube %><br />
+            <% end %>
+            <% if user.sm_email != "" %>
+              Email: <%= mail_to user.sm_email %><br />
+            <% end %>
+            <% if user.sm_other != "" %>
+              Other: <%= link_to user.sm_other %><br />
+            <% end %>
+          </div>
 
-        </table>
-      </div> <!-- table responsive -->
+          <%= link_to approve_sm_path(user), method: :post, class: "btn btn-sm btn-pink" do %>
+            Approve SM Links
+          <% end %>
+
+        <% end %>
+      <% end %>
+    </div> <!-- sm container -->
+  </section>
+
+
+
+    <section class="mb-5 my-"> <!-- users -->
+      <h2 id="contributor-header" class="text-center">Contributors</h2>
+      <div id="contributor-container">
+
+        <% @contributors.order("created_at DESC").each do |user| %>
+          <%= link_to user_path(user) do %>
+            <h3 class="thin mt-3" style="margin-bottom: 0px">
+              <span class="thin uppercase color-black"><%= user.first_name %> <%= user.last_name %></span>
+              <span class="thin color-black"> (
+                <%= user.created_at.year %>
+                <% if user.website_name != "" && user.website_url != "" %>
+                , <%= link_to user.website_name, user.website_url, class: "thin color-black" %>
+              <% end %>)</span>
+            </h3>
+          <% end %>
+
+          <div class="pl-4">
+            <% blogs = Blog.where(user_id: user.id) %>
+            <% blogs.each do |blog| %>
+              <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
+            <% end %>
+
+          </div> <!-- contributor's stuff -->
+        <% end %>
+
+      </div> <!-- contributor container -->
     </section>
 
 
@@ -171,31 +174,35 @@
 
 
   <section class="text-center mb-5 my-"> <!-- users -->
-    <h2>Members</h2>
+    <h2 id="member-header">Members</h2>
+    <div id="member-container">
 
-    <div class="table-responsive" style="width: 100%">
-      <table id="tableMembers" class="table table-striped table-bordered" width="100%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Admin</th>
-            <th>Contributor</th>
-          </tr>
-        </thead>
-
-        <tbody class="text-left">
-          <% @users.each do |user| %>
+      <div class="table-responsive" style="width: 100%">
+        <table id="tableMembers" class="table thin table-striped table-bordered" width="100%">
+          <thead>
             <tr>
-              <td><%= link_to user.full_name, user %></td>
-              <td><%= user.email %></td>
-              <td class="text-center"><% if user.admin %><i class="fas fa-check"></i><% end %></td>
-              <td class="text-center"><% if user.contributor %><i class="fas fa-check"></i><% else %><%= link_to "Make Contributor", make_contributor_path(user), method: :post %><% end %></td>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contributor</th>
+              <th>X</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div> <!-- table responsive -->
+          </thead>
+
+          <tbody class="text-left">
+            <% @users.where(admin: false, contributor: false).order("created_at DESC").each do |user| %>
+              <tr>
+                <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
+                <td><%= link_to user.full_name, user %></td>
+                <td><%= user.email %></td>
+                <td class="text-center"><% if user.contributor %><i class="fas fa-check"></i><% else %><%= link_to "Contributor!", make_contributor_path(user), method: :post %><% end %></td>
+                <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!-- table responsive -->
+    </div> <!-- member container -->
 
   </section>
 
@@ -237,14 +244,32 @@
 
 
 
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function () {
+      $('#tableSuperusers').DataTable();
+      $('#tableContributors').DataTable();
+      $('#tablePreauthorizations').DataTable();
+      $('#tableMembers').DataTable();
 
-<script>
-  $(document).ready(function () {
-    $('#tableSuperusers').DataTable();
-    $('#tableContributors').DataTable();
-    $('#tablePreauthorizations').DataTable();
-    $('#tableMembers').DataTable();
+      $('.dataTables_length').addClass('bs-select');
 
-    $('.dataTables_length').addClass('bs-select');
-  });
-</script>
+      $("#superuser-header").click(function() {
+        $("#superuser-container").toggleClass("hidden");
+      })
+      $("#preauthorization-header").click(function() {
+        $("#preauthorization-container").toggleClass("hidden");
+      })
+      $("#sm-header").click(function() {
+        $("#sm-container").toggleClass("hidden");
+      })
+      $("#contributor-header").click(function() {
+        $("#contributor-container").toggleClass("hidden");
+      })
+      $("#member-header").click(function() {
+        $("#member-container").toggleClass("hidden");
+      })
+
+    });
+  </script>
+<% end %>

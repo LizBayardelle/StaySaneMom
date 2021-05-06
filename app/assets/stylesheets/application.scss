@@ -325,6 +325,10 @@ table.lined-table td {
   border-bottom: solid thin $color-neutral;
 }
 
+table.table.thin th, table.table.thin td {
+  padding-top: 0.1px;
+  padding-bottom: 0px;
+}
 
 
 

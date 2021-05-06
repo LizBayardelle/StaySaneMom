@@ -132,7 +132,8 @@
       <% @published_blogs = Blog.where.not(user_id: 1).where(published: true) %>
       <% if @published_blogs.count != 0 %>
         <% @published_blogs.each do |blog| %>
-          <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
+        <%= link_to blog.title, blog_path(blog), class: "color-pink" %>
+        (<%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %>)<br>
         <% end %>
       <% else %>
         <p>You currently have no published guest posts.</p>
