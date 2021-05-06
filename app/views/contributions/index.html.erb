@@ -1,130 +1,191 @@
-<h1 class="text-center font-script">Guest Post Dashboard</h1>
+<main class="container mt-3">
+  <header class="text-center">
+    <h1 class="display-4 thin">Guest Post Dashboard</h1>
+  </header>
 
-<%= render "layouts/quadborder" %>
 
-<div class="container">
+  <h2 id="ideas-header" class="font-script color-pink mt-4 text-center">Guest Post Ideas</h2>
+  <section id="ideas-container" class="mb-5">
 
-  <div class="half-buffer"></div>
+    <% unresponded = @contributions.where(responded: false) %>
+    <% responded = @contributions.where(responded: true) %>
 
-  <h2 class="text-center font-script color-pink">Guest Post Ideas</h2>
-  <% if @contributions.count != 0 %>
-    <table class="lined-table">
-      <thead>
-        <tr>
-          <th colspan="1"></th>
-          <th><h3 class="color-neutral font-script">Contributor</h3></th>
-          <th><h3 class="color-neutral font-script">Idea</h3></th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
+    <% if unresponded.count != 0 %>
+      <h3 id="needing-replies-header" class="thin uppercase text-center">Ideas Needing Replies</h3>
+      <div id="needing-replies-container">
+        <table class="lined-table">
+          <thead>
+            <tr>
+              <th colspan="1"></th>
+              <th>Contributor</th>
+              <th>Idea</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-      <tbody>
-        <% @contributions.each do |contribution| %>
-          <tr>
-            <td style="border-right: none"><% if contribution.responded %><%= fa_icon "check-square" %><% else %><%= mail_to contribution.email do %><%= fa_icon "reply" %><% end %><% end %></td>
-            <td style="border-left: none">
-              <strong><%= contribution.name %></strong><br />
-              <%= mail_to contribution.email %><br />
-              <%= contribution.blog %>
-            </td>
-            <td>
-              <strong>For the <%= contribution.category %> Category</strong><br />
-              <%= contribution.idea %><% if contribution.comments != "" %><br />
-              <em>Comments: <%= contribution.comments %><% end %>
-            </td>
-            <td>
-              <% if contribution.responded %>
-                <%= link_to unreplied_contribution_path(contribution), method: :post do %>Mark&nbsp;Unreplied<% end %><br />
-              <% else %>
-                <%= link_to replied_contribution_path(contribution), method: :post do %>Mark&nbsp;Replied<% end %><br />
-              <% end %>
-              <% if contribution.archived %>Archived<% else %>Not&nbsp;Archived<% end %><br />
-              <%= link_to 'Delete', contribution, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </td>
-          </tr>
+          <tbody>
+            <% unresponded.each do |contribution| %>
+              <tr>
+                <td style="border-right: none" class="color-pink"><% if contribution.responded %><%= fa_icon "check-square" %><% else %><%= mail_to contribution.email, class: "color-pink" do %><%= fa_icon "reply" %><% end %><% end %></td>
+                <td style="border-left: none">
+                  <span class="color-pink"><strong><%= contribution.name %></strong></span><br />
+                  <%= mail_to contribution.email %><br />
+                  <%= contribution.blog %>
+                </td>
+                <td>
+                  <span class="color-pink"><strong>For the <%= contribution.category %> Category</strong></span><br />
+                  <%= contribution.idea %><% if contribution.comments != "" %><br />
+                  <em>Comments: <%= contribution.comments %><% end %>
+                </td>
+                <td>
+                  <% if contribution.responded %>
+                    <%= link_to unreplied_contribution_path(contribution), class: "color-pink", method: :post do %>Mark&nbsp;Unreplied<% end %><br />
+                  <% else %>
+                    <%= link_to replied_contribution_path(contribution), class: "color-pink", method: :post do %>Mark&nbsp;Replied<% end %><br />
+                  <% end %>
+                  <% if contribution.archived %>Archived<% else %>Not&nbsp;Archived<% end %><br />
+                  <%= link_to 'Delete', contribution, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>You currently have no outstanding guest post ideas.</p>
+      <% end %>
+    </div> <!-- needing replies container -->
+
+
+
+    <% if responded.count != 0 %>
+      <h3 id="replied-header" class="thin uppercase text-center mt-5">Ideas Already Replied</h3>
+      <div id="replied-container">
+        <% responded.each do |contribution| %>
+          <p style="line-height: 1.2"><small>
+            <span class="color-pink"><strong><%= contribution.name %></strong></span> (<%= link_to contribution.blog %>)<br />
+            <%= contribution.idea %><% if contribution.comments != "" %><br />
+            <em>Comments: <%= contribution.comments %><% end %>
+            <br>
+            <%= link_to unreplied_contribution_path(contribution), method: :post do %>Mark&nbsp;Unreplied<% end %>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to 'Delete', contribution, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </small></p>
         <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>You currently have no outstanding guest post ideas.</p>
-  <% end %>
-
-</div> <!-- container -->
-
-<%= render "layouts/quadborder" %>
-
-<div class="container">
-
-  <div class="half-buffer"></div>
-
-  <% @wip_blogs = [] %>
-  <% @submitted_blogs = [] %>
-  <% @approved_blogs = [] %>
-  <% @published_blogs = [] %>
-  <% @blogs.each do |blog| %>
-    <% if blog.user.contributor && !blog.user.admin %>
-      <% if !blog.submitted %>
-        <% @wip_blogs << blog %>
+      <% else %>
+        <p>You currently have no outstanding guest post ideas.</p>
       <% end %>
-      <% if blog.submitted && !blog.approved %>
-        <% @submitted_blogs << blog %>
-      <% end %>
-      <% if blog.approved && !blog.published %>
-        <% @approved_blogs << blog %>
-      <% end %>
-      <% if blog.published && blog.published_on >= Date.today %>
-        <% @published_blogs << blog %>
+    </div> <!-- replied container -->
+
+
+  </section>
+
+
+
+  <h2 id="existing-header" class="font-script color-pink mt-4 text-center">Existing Guest Posts</h2>
+  <section id="existing-container" class="mb-5">
+
+    <% @wip_blogs = [] %>
+    <% @submitted_blogs = [] %>
+    <% @approved_blogs = [] %>
+    <% @published_blogs = [] %>
+    <% @blogs.each do |blog| %>
+      <% if blog.user.contributor && !blog.user.admin %>
+        <% if !blog.submitted %>
+          <% @wip_blogs << blog %>
+        <% end %>
+        <% if blog.submitted && !blog.approved %>
+          <% @submitted_blogs << blog %>
+        <% end %>
+        <% if blog.approved && !blog.published %>
+          <% @approved_blogs << blog %>
+        <% end %>
+        <% if blog.published && blog.published_on >= Date.today %>
+          <% @published_blogs << blog %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
 
-  <h2 class="text-center font-script color-pink">Current Guest Posts</h2>
-
-  <h3>WIP Guest Posts</h3>
-  <% @wip_blogs = Blog.where.not(user_id: 1).where(submitted: false) %>
-  <% if @wip_blogs.count != 0 %>
-    <ul>
-      <% @wip_blogs.each do |blog| %>
-        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %></li>
+    <h3 id="wip-header" class="section-header">WIP Guest Posts</h3>
+    <div id="wip-container" class="section-container">
+      <% @wip_blogs = Blog.where.not(user_id: 1).where(submitted: false) %>
+      <% if @wip_blogs.count != 0 %>
+        <% @wip_blogs.each do |blog| %>
+          <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
+        <% end %>
+      <% else %>
+        <p>You currently have no WIP guest posts.</p>
       <% end %>
-    </ul>
-  <% else %>
-    <p>You currently have no WIP guest posts.</p>
-  <% end %>
+    </div> <!-- section container -->
 
-  <h3>Submitted Guest Posts</h3>
-  <% @submitted_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: false, published: false) %>
-  <% if @submitted_blogs.count != 0 %>
-    <ul>
-      <% @submitted_blogs.each do |blog| %>
-        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %> (<%= link_to "Approve Blog", approve_blog_path(blog), method: :post %>&nbsp; | &nbsp;<%= link_to "Unsubmit Blog", unsubmit_blog_path(blog), method: :post %>)</li>
+    <h3 id="submitted-header" class="section-header">Submitted Guest Posts</h3>
+    <div id="submitted-container" class="section-container">
+      <% @submitted_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: false, published: false) %>
+      <% if @submitted_blogs.count != 0 %>
+        <% @submitted_blogs.each do |blog| %>
+          <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
+        <% end %>
+      <% else %>
+        <p>You currently have no submitted guest posts.</p>
       <% end %>
-    </ul>
-  <% else %>
-    <p>You currently have no submitted guest posts.</p>
-  <% end %>
+    </div> <!-- section container -->
 
-  <h3>Approved Guest Posts</h3>
-  <% @approved_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: true, published: false) %>
-  <% if @approved_blogs.count != 0 %>
-    <ul>
-      <% @approved_blogs.each do |blog| %>
-        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %></li>
+    <h3 id="approved-header" class="section-header">Approved/Scheduled Guest Posts</h3>
+    <div id="approved-container" class="section-container">
+      <% @approved_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: true, published: false) %>
+      <% if @approved_blogs.count != 0 %>
+        <% @approved_blogs.each do |blog| %>
+          <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
+        <% end %>
+      <% else %>
+        <p>You currently have no accepted guest posts.</p>
       <% end %>
-    </ul>
-  <% else %>
-    <p>You currently have no accepted guest posts.</p>
-  <% end %>
+    </div> <!-- section container -->
 
-  <h3>Published Guest Posts</h3>
-  <% @published_blogs = Blog.where.not(user_id: 1).where(published: true) %>
-  <% if @published_blogs.count != 0 %>
-    <ul>
-      <% @published_blogs.each do |blog| %>
-        <li><%= link_to blog.title, blog_path(blog) %> by <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user) %></li>
+    <h3 id="published-header" class="section-header">Published Guest Posts</h3>
+    <div id="published-container" class="section-container">
+      <% @published_blogs = Blog.where.not(user_id: 1).where(published: true) %>
+      <% if @published_blogs.count != 0 %>
+        <% @published_blogs.each do |blog| %>
+          <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
+        <% end %>
+      <% else %>
+        <p>You currently have no published guest posts.</p>
       <% end %>
-    </ul>
-  <% else %>
-    <p>You currently have no published guest posts.</p>
-  <% end %>
-</div> <!-- container -->
+    </div> <!-- section container -->
+
+  </section>
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#wip-header").click(function() {
+        $("#wip-container").toggleClass("hidden");
+      })
+      $("#submitted-header").click(function() {
+        $("#submitted-container").toggleClass("hidden");
+      })
+      $("#approved-header").click(function() {
+        $("#approved-container").toggleClass("hidden");
+      })
+      $("#published-header").click(function() {
+        $("#published-container").toggleClass("hidden");
+      })
+      $("#ideas-header").click(function() {
+        $("#ideas-container").toggleClass("hidden");
+      })
+      $("#existing-header").click(function() {
+        $("#existing-container").toggleClass("hidden");
+      })
+      $("#needing-replies-header").click(function() {
+        $("#needing-replies-container").toggleClass("hidden");
+      })
+      $("#replied-header").click(function() {
+        $("#replied-container").toggleClass("hidden");
+      })
+    });
+  </script>
+<% end %>

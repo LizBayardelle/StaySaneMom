@@ -1,0 +1,22 @@
+<p style="line-height: 1"><small>
+  <%= link_to blog.title, blog_path(blog), class: "color-pink" %>
+  <br>
+  <%= link_to blog.user.first_name + " " + blog.user.last_name, user_path(blog.user), class: "thin" %>
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <% if blog.published %>
+    Published
+  <% elsif !blog.published && blog.approved %>
+    Approved
+  <% elsif !blog.approved && blog.submitted %>
+    Submitted
+  <% else %>
+    Draft
+  <% end %>
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+
+  <%= link_to edit_blog_path(blog) do %><%= fa_icon "pencil-alt" %><% end %>
+  <%= link_to blog, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
+</small></p>

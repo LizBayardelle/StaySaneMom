@@ -136,7 +136,7 @@ strong { font-weight: 900 }
 .btn.btn-pink:hover { background-color: $color-white; color: $color-pink; }
 .btn.btn-neutral:hover { background-color: $color-white; color: $color-neutral; }
 
-.thin { font-weight: 200 }
+.thin, .thin:hover { font-weight: 200 }
 .uppercase { text-transform: uppercase; }
 
 ul.checkmarks {
