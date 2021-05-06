@@ -7,6 +7,11 @@ class GuestPostMailer < ApplicationMailer
     :subject => 'New Guest Post Idea Alert!' )
   end
 
+  def idea_accepted(contribution)
+    @contribution = contribution
+    mail( :to => contribution.email,
+    :subject => 'Welcome to the SSM Team!' )
+  end
 
   def post_submitted(blog)
     @blog = blog

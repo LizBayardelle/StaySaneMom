@@ -1,7 +1,8 @@
+<header class="header-stripe">
+  <h1 class="display-4 thin">Guest Post Dashboard</h1>
+</header>
+
 <main class="container mt-3">
-  <header class="text-center">
-    <h1 class="display-4 thin">Guest Post Dashboard</h1>
-  </header>
 
 
   <h2 id="ideas-header" class="font-script color-pink mt-4 text-center">Guest Post Ideas</h2>
@@ -11,22 +12,16 @@
     <% responded = @contributions.where(responded: true) %>
 
     <% if unresponded.count != 0 %>
-      <h3 id="needing-replies-header" class="thin uppercase text-center">Ideas Needing Replies</h3>
+      <h3 id="needing-replies-header" class="thin uppercase mb-2 text-center">Ideas Needing Replies</h3>
       <div id="needing-replies-container">
         <table class="lined-table">
-          <thead>
-            <tr>
-              <th colspan="1"></th>
-              <th>Contributor</th>
-              <th>Idea</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
           <tbody>
             <% unresponded.each do |contribution| %>
               <tr>
-                <td style="border-right: none" class="color-pink"><% if contribution.responded %><%= fa_icon "check-square" %><% else %><%= mail_to contribution.email, class: "color-pink" do %><%= fa_icon "reply" %><% end %><% end %></td>
+                <td style="border-right: none" class="color-pink">
+                  <%= link_to replied_contribution_path(contribution), class: "color-pink", method: :post do %><%= fa_icon "thumbs-up" %><% end %>
+                  <%= link_to contribution, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %><% end %>
+                </td>
                 <td style="border-left: none">
                   <span class="color-pink"><strong><%= contribution.name %></strong></span><br />
                   <%= mail_to contribution.email %><br />
@@ -36,15 +31,6 @@
                   <span class="color-pink"><strong>For the <%= contribution.category %> Category</strong></span><br />
                   <%= contribution.idea %><% if contribution.comments != "" %><br />
                   <em>Comments: <%= contribution.comments %><% end %>
-                </td>
-                <td>
-                  <% if contribution.responded %>
-                    <%= link_to unreplied_contribution_path(contribution), class: "color-pink", method: :post do %>Mark&nbsp;Unreplied<% end %><br />
-                  <% else %>
-                    <%= link_to replied_contribution_path(contribution), class: "color-pink", method: :post do %>Mark&nbsp;Replied<% end %><br />
-                  <% end %>
-                  <% if contribution.archived %>Archived<% else %>Not&nbsp;Archived<% end %><br />
-                  <%= link_to 'Delete', contribution, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </td>
               </tr>
             <% end %>

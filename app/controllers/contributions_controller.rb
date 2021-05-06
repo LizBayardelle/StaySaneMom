@@ -62,9 +62,12 @@ class ContributionsController < ApplicationController
 
   def replied_contribution
       @contribution = Contribution.find(params[:id])
+      GuestPostMailer.idea_accepted(@contribution).deliver
+      p = Preauthorization.new(email: @contribution.email, contributor: true)
+      p.save
       if @contribution.update_attributes(responded: true)
           respond_to do |format|
-            format.html { redirect_to contributions_url, notice: "Boom!  That's now marked as responded." }
+            format.html { redirect_to contributions_url, notice: "Boom! It's been approved, emails have been sent, magic has occurred." }
             format.json { head :no_content }
           end
       else

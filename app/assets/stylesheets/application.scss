@@ -139,6 +139,15 @@ strong { font-weight: 900 }
 .thin, .thin:hover { font-weight: 200 }
 .uppercase { text-transform: uppercase; }
 
+.header-stripe {
+  text-align: center;
+  background-color: $color-pink;
+  font-weight: 200;
+  color: $color-white;
+  padding: 30px;
+  line-height: 1;
+}
+
 ul.checkmarks {
   list-style: none;
 }
