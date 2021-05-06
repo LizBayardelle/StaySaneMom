@@ -13,6 +13,12 @@ class GuestPostMailer < ApplicationMailer
     :subject => 'Welcome to the SSM Team!' )
   end
 
+  def sm_approval_needed(user)
+    @user = user
+    mail( :to => "liz@theStaySaneMom.com",
+    :subject => 'Time to Approve Some Links, Lady!' )
+  end
+
   def post_submitted(blog)
     @blog = blog
     mail( :to => "liz@theStaySaneMom.com",

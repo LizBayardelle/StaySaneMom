@@ -12,10 +12,15 @@
       Blog:  <%= @contribution.blog %><br />
     </p>
     <h4>Here's the Idea (for the <%= @contribution.category %>)</h4>
-    <p><%= @contribution.blog %></p>
+    <p><%= @contribution.idea %></p>
 
     <% if @contribution.comments %>
       <p><em>Comments:  <%= @contribution.comments %></em></p>
     <% end %>
+
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-top: 25px" />
+    <img src="https://staysanemom.s3-us-west-1.amazonaws.com/111-images/SSM+Logo.jpg" style="width: 150px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+
   </body>
 </html>

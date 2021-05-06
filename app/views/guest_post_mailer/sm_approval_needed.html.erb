@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <p>
+      Hey gorgeous,
+    </p>
+    <p>
+      It looks like <%= @user.first_name %> has updated their SM links.
+    </p>
+    <p>
+      Want to, you know, <%= link_to "approve some stuff", admin_users_url, style: "color: #fd1270; font-weight: 700; text-decoration: none" %>?
+    </p>
+    <p>
+      You got this,<br>
+      Your digital alterego
+    </p>
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-top: 25px" />
+    <img src="https://staysanemom.s3-us-west-1.amazonaws.com/111-images/SSM+Logo.jpg" style="width: 150px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+  </body>
+
+</html>

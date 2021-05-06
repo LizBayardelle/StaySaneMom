@@ -57,6 +57,9 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.sm_other != @old_other
       @user.update_attributes(sm_approved: false)
     end
+    if @user.contributor
+      GuestPostMailer.sm_approval_needed(@contribution).deliver
+    end
   end
 
 
