@@ -6,7 +6,7 @@
 
 
   <h2 id="ideas-header" class="font-script color-pink mt-4 text-center">Guest Post Ideas</h2>
-  <section id="ideas-container" class="mb-5">
+  <section id="ideas-container" class=" container mb-5">
 
     <% unresponded = @contributions.where(responded: false) %>
     <% responded = @contributions.where(responded: true) %>
@@ -45,7 +45,7 @@
 
     <% if responded.count != 0 %>
       <h3 id="replied-header" class="thin uppercase text-center mt-5">Ideas Already Replied</h3>
-      <div id="replied-container">
+      <div id="replied-container" class="hidden">
         <% responded.each do |contribution| %>
           <p style="line-height: 1.2"><small>
             <span class="color-pink"><strong><%= contribution.name %></strong></span> (<%= link_to contribution.blog %>)<br />
@@ -68,7 +68,7 @@
 
 
   <h2 id="existing-header" class="font-script color-pink mt-4 text-center">Existing Guest Posts</h2>
-  <section id="existing-container" class="mb-5">
+  <section id="existing-container" class="mb-5 container">
 
     <% @wip_blogs = [] %>
     <% @submitted_blogs = [] %>
@@ -91,7 +91,7 @@
       <% end %>
     <% end %>
 
-    <h3 id="wip-header" class="section-header">WIP Guest Posts</h3>
+    <h3 id="wip-header" class="section-header">WIP Guest Posts (<%= @wip_blogs.count %>)</h3>
     <div id="wip-container" class="section-container">
       <% @wip_blogs = Blog.where.not(user_id: 1).where(submitted: false) %>
       <% if @wip_blogs.count != 0 %>
@@ -103,7 +103,7 @@
       <% end %>
     </div> <!-- section container -->
 
-    <h3 id="submitted-header" class="section-header">Submitted Guest Posts</h3>
+    <h3 id="submitted-header" class="section-header">Submitted Guest Posts (<%= @submitted_blogs.count %>)</h3>
     <div id="submitted-container" class="section-container">
       <% @submitted_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: false, published: false) %>
       <% if @submitted_blogs.count != 0 %>
@@ -115,7 +115,7 @@
       <% end %>
     </div> <!-- section container -->
 
-    <h3 id="approved-header" class="section-header">Approved/Scheduled Guest Posts</h3>
+    <h3 id="approved-header" class="section-header">Approved/Scheduled Guest Posts (<%= @approved_blogs.count %>)</h3>
     <div id="approved-container" class="section-container">
       <% @approved_blogs = Blog.where.not(user_id: 1).where(submitted: true, approved: true, published: false) %>
       <% if @approved_blogs.count != 0 %>
@@ -127,7 +127,7 @@
       <% end %>
     </div> <!-- section container -->
 
-    <h3 id="published-header" class="section-header">Published Guest Posts</h3>
+    <h3 id="published-header" class="section-header">Published Guest Posts (<%= @published_blogs.count %>)</h3>
     <div id="published-container" class="section-container">
       <% @published_blogs = Blog.where.not(user_id: 1).where(published: true) %>
       <% if @published_blogs.count != 0 %>
