@@ -1,0 +1,108 @@
+<div class="user-edit">
+  <div class="half-buffer"></div>
+  <h1 class="text-center font-bold">Edit My Information</h1>
+
+  <div class="half-buffer"></div>
+  <%= render "layouts/quadborder" %>
+  <div class="half-buffer"></div>
+
+  <%= simple_form_for(@user) do |f| %>
+
+    <div class="container">
+      <h2>Basic Info</h2>
+      <div class="form-inputs row">
+        <div class="form-group col-sm-6">
+          <%= f.label "First Name (Visible to Other Members)" %>
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Last Name" %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-12">
+          <%= f.label "Email (Not Visible to Other Members)" %>
+          <%= f.text_field :email, class: "form-control", required: true, autofocus: true %>
+        </div> <!-- form-group -->
+        <div class="form-group">
+          <%= f.input :subscribed, label: "Subscribed to Blog" %>
+          <%= f.input :contributor_request, label: "Request to become a contributor to The Stay Sane Mom (aka Guest Blogger)" %>
+        </div>
+      </div> <!-- form inputs row -->
+    </div> <!-- container -->
+
+    <%= render "layouts/quadborder" %>
+    <div class="buffer"></div>
+
+    <div class="container">
+      <h2>Public Profile</h2>
+      <div class="form-inputs row">
+        <div class="form-group col-sm-12">
+          <%= f.label "What's your life philosophy, in one sentence? (Visible to Other Members)" %>
+          <%= f.text_field :tagline, class: "form-control" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-12">
+          <%= f.label "Short Description of Yourself (Visible to Other Members)" %>
+          <%= f.text_area :bio, class: "form-control" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-12">
+          <%= f.label "Profile Picture" %><br />
+          <%= f.file_field :avatar, label: false %>
+        </div> <!-- form-group -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+
+
+    <div class="half-buffer"></div>
+    <%= render "layouts/quadborder" %>
+    <div class="half-buffer"></div>
+
+    <div class="container">
+      <h2>Links</h2>
+      <div class="form-inputs row">
+        <div class="form-group col-sm-6">
+          <%= f.label "Site's Name" %>
+          <%= f.text_field :website_name, class: "form-control", placeholder: "The Stay Sane Mom" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Site's URL" %>
+          <%= f.text_field :website_url, class: "form-control", placeholder: "www.theStaySaneMom.com" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Facebook Link" %>
+          <%= f.text_field :sm_facebook, class: "form-control", placeholder: "www.facebook.com/TheStaySaneMom" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Pinterest Link" %>
+          <%= f.text_field :sm_pinterest, class: "form-control", placeholder: "www.pinterest.com/TheStaySaneMom" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Instagram Link" %>
+          <%= f.text_field :sm_instagram, class: "form-control", placeholder: "www.instagram.com/TheStaySaneMom" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Twitter Link" %>
+          <%= f.text_field :sm_twitter, class: "form-control", placeholder: "www.twitter.com/TheStaySaneMom" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "YouTube Link" %>
+          <%= f.text_field :sm_youtube, class: "form-control", placeholder: "www.youtube.com/TheStaySaneMom" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-6">
+          <%= f.label "Business Email" %>
+          <%= f.text_field :sm_email, class: "form-control", placeholder: "liz@theStaySaneMom.com" %>
+        </div> <!-- form-group -->
+        <div class="form-group col-sm-12">
+          <%= f.label "Other Social Media Link" %>
+          <%= f.text_field :sm_other, class: "form-control", placeholder: "" %>
+        </div> <!-- form-group -->
+      </div> <!-- form inputs -->
+    </div> <!-- container -->
+
+
+
+      <div class="form-actions text-center">
+        <%= f.button :submit, "Update", class: "btn-outline-danger submit-form" %>
+      </div>
+    </div> <!-- container -->
+  <% end %>
+</div> <!-- user edit page -->

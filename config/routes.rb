@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  devise_for :users, :controllers => { registrations: 'registrations' }, path_prefix: "my"
+  resources :users, only: [:show, :index, :edit, :update]
+
   get 'admin/store_manager'
   get 'admin/blogs'
   get 'admin/freebies'
@@ -14,8 +17,6 @@ Rails.application.routes.draw do
   post 'recipes/search' => 'recipes#index', as: "recipes_search"
   resources :recipes
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users, only: [:show, :index]
   post "users/:id/approve_contributor" => "users#approve_contributor", as: "approve_contributor"
   post "users/:id/make_contributor" => "users#make_contributor", as: "make_contributor"
   post "users/:id/approve_sm" => "users#approve_sm", as: "approve_sm"

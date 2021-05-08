@@ -88,82 +88,65 @@
   <section class="mb-5 my-"> <!-- users -->
     <h2 id="sm-header" class="text-center">SM to Approve</h2>
     <div id="sm-container">
+      <% to_approve = 0 %>
       <% @contributors.each do |user| %>
-        <% sm_not_blank = user.website_name != "" || user.website_url != "" || user.sm_facebook != "" || user.sm_pinterest != "" || user.sm_instagram != "" || user.sm_twitter != "" || user.sm_youtube != "" || user.sm_email != "" || user.sm_other != "" %>
+        <% sm_not_blank = ( user.website_name && user.website_name != "" ) || ( user.website_url && user.website_url != "" ) || ( user.sm_facebook && user.sm_facebook != "" ) || ( user.sm_pinterest && user.sm_pinterest != "" ) || ( user.sm_instagram && user.sm_instagram != "" ) || ( user.sm_twitter && user.sm_twitter != "" ) || ( user.sm_youtube && user.sm_youtube != "" ) || ( user.sm_email && user.sm_email != "" ) || ( user.sm_other && user.sm_other != "" ) %>
         <% if sm_not_blank && user.sm_approved == false %>
 
           <%= link_to user_path(user) do %>
             <h3 class="font-script color-pink h1" style="margin-bottom: -10px"><%= user.first_name %> <%= user.last_name %></h3>
           <% end %>
 
-          <div class="pl-4">
-            <% if user.website_name != "" %>
-              Website Name: <%= user.website_name %><br />
-            <% end %>
-            <% if user.website_url != "" %>
-              Website URL: <%= link_to user.website_url %><br />
-            <% end %>
-            <% if user.sm_facebook != "" %>
-              Facebook: <%= link_to user.sm_facebook %><br />
-            <% end %>
-            <% if user.sm_pinterest != "" %>
-              Pinterest: <%= link_to user.sm_pinterest %><br />
-            <% end %>
-            <% if user.sm_instagram != "" %>
-              Instagram: <%= link_to user.sm_instagram %><br />
-            <% end %>
-            <% if user.sm_twitter != "" %>
-              Twitter: <%= link_to user.sm_twitter %><br />
-            <% end %>
-            <% if user.sm_youtube != "" %>
-              YouTube: <%= link_to user.sm_youtube %><br />
-            <% end %>
-            <% if user.sm_email != "" %>
-              Email: <%= mail_to user.sm_email %><br />
-            <% end %>
-            <% if user.sm_other != "" %>
-              Other: <%= link_to user.sm_other %><br />
-            <% end %>
-          </div>
+          <%= render partial: "users/sm_links", locals: { user: user } %>
 
-          <%= link_to approve_sm_path(user), method: :post, class: "btn btn-sm btn-pink" do %>
-            Approve SM Links
-          <% end %>
+          <% to_approve += 1 %>
+        <% end %>  <!-- if sm not blank -->
+      <% end %>  <!-- contributors each do -->
 
-        <% end %>
+      <% if to_approve == 0 %>
+        <p>You have no SM links to approve at this time. Woohoo!</p>
       <% end %>
     </div> <!-- sm container -->
   </section>
 
 
 
-    <section class="mb-5 my-"> <!-- users -->
-      <h2 id="contributor-header" class="text-center">Contributors</h2>
-      <div id="contributor-container">
 
-        <% @contributors.order("created_at DESC").each do |user| %>
+
+
+
+
+  <section class="mb-5 my-"> <!-- users -->
+    <h2 id="contributor-header" class="text-center">Contributors</h2>
+    <div id="contributor-container">
+
+      <% @contributors.order("created_at DESC").each do |user| %>
+        <h3 class="thin" style="margin-bottom: 0px">
           <%= link_to user_path(user) do %>
-            <h3 class="thin mt-3" style="margin-bottom: 0px">
-              <span class="thin uppercase color-black"><%= user.first_name %> <%= user.last_name %></span>
-              <span class="thin color-black"> (
-                <%= user.created_at.year %>
-                <% if user.website_name != "" && user.website_url != "" %>
-                , <%= link_to user.website_name, user.website_url, class: "thin color-black" %>
-              <% end %>)</span>
-            </h3>
+            <span class="thin uppercase color-black"><%= user.first_name %> <%= user.last_name %></span>
+          <% end %>
+           ( <%= user.created_at.year %>
+            <% if user.website_name != "" && user.website_url != "" %>
+              , <%= link_to user.website_name, user.website_url, class: "thin color-black" %>
+            <% end %>,
+            <div id="toggle-sm-<%= user.id %>" class="h3" style="display: inline-block">🔍&nbsp;</div>)
+        </h3>
+
+        <div id="sm-container-<%= user.id %>" class="hidden outline-box z-depth-1 mb-3">
+          <%= render partial: "users/sm_links", locals: { user: user } %>
+        </div>
+
+        <div class="pl-4">
+          <% blogs = Blog.where(user_id: user.id) %>
+          <% blogs.each do |blog| %>
+            <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
           <% end %>
 
-          <div class="pl-4">
-            <% blogs = Blog.where(user_id: user.id) %>
-            <% blogs.each do |blog| %>
-              <%= render partial: "contributions/blog_line", locals: { blog: blog } %>
-            <% end %>
+        </div> <!-- contributor's stuff -->
+      <% end %>
 
-          </div> <!-- contributor's stuff -->
-        <% end %>
-
-      </div> <!-- contributor container -->
-    </section>
+    </div> <!-- contributor container -->
+  </section>
 
 
 
@@ -269,6 +252,12 @@
       $("#member-header").click(function() {
         $("#member-container").toggleClass("hidden");
       })
+
+      <% @contributors.each do |user| %>
+        $("#toggle-sm-<%= user.id %>").click(function() {
+          $("#sm-container-<%= user.id %>").toggleClass("hidden");
+        })
+      <% end %>
 
     });
   </script>

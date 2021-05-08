@@ -8,15 +8,6 @@
   <% end %>
 </td>
 <td>
-  <% if blog.marriage %>
-    <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "marriage", value: false), method: :patch, remote: true do %>
-      <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/2+++Marriage.png" style="height: 20px">
-    <% end %>
-  <% else %>
-    <%= link_to "--", toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "marriage", value: true), method: :patch, remote: true %>
-  <% end %>
-</td>
-<td>
   <% if blog.pregnancy %>
     <%= link_to toggle_category_path(controller: "blogs", action: "toggle_category", method: :patch, id: blog.id, category: "pregnancy", value: false), method: :patch, remote: true do %>
       <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 20px">

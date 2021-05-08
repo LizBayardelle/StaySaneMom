@@ -35,7 +35,9 @@ class RegistrationsController < Devise::RegistrationsController
     @old_youtube = @user.sm_youtube
     @old_email = @user.sm_email
     @old_other = @user.sm_other
+
     super
+    
     if @user.sm_facebook != @old_facebook
       @user.update_attributes(sm_approved: false)
     end

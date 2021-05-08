@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
+  before_action :admin_only, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -9,7 +10,6 @@ class UsersController < ApplicationController
     else
       @new_members = []
     end
-
 
     @done_onetime_tasks = Task.where(user_id: @user.id, completed: true, frequency: "OneTime")
     @onetime_tasks = Task.where(user_id: @user.id, frequency: "OneTime")
@@ -36,6 +36,21 @@ class UsersController < ApplicationController
     @subscribers = @client.subscribers.body
     @sequences = @client.sequences.body['courses']
     @tags = @client.tags.body['tags']
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to  admin_users_path, notice: 'User was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   def approve_contributor
@@ -67,5 +82,39 @@ class UsersController < ApplicationController
         redirect_to users_path
         flash[:warning] = "Oops! Something went wrong!"
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :password_confirmation,
+      :current_password,
+      :admin,
+      :subscribed,
+      :avatar,
+      :tagline,
+      :bio,
+      :website_name,
+      :website_url,
+      :sm_youtube,
+      :sm_email,
+      :sm_facebook,
+      :sm_pinterest,
+      :sm_instagram,
+      :sm_twitter,
+      :sm_other,
+      :sm_youtube,
+      :sm_email,
+      :contributor,
+      :contributor_request,
+      :sm_approved,
+      :sm_needs_approval,
+      :source
+    )
   end
 end

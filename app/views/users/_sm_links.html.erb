@@ -1,0 +1,37 @@
+<div class="pl-4">
+  <% if user.website_name && user.website_name != "" %>
+    Website Name: <%= user.website_name %><br />
+  <% end %>
+  <% if user.website_url && user.website_url != "" %>
+    Website URL: <%= user.website_url %><br />
+  <% end %>
+  <% if user.sm_facebook && user.sm_facebook != "" %>
+    Facebook: <%= user.sm_facebook %><br />
+  <% end %>
+  <% if user.sm_pinterest && user.sm_pinterest != "" %>
+    Pinterest: <%= user.sm_pinterest %><br />
+  <% end %>
+  <% if user.sm_instagram && user.sm_instagram != "" %>
+    Instagram: <%= user.sm_instagram %><br />
+  <% end %>
+  <% if user.sm_twitter && user.sm_twitter != "" %>
+    Twitter: <%= user.sm_twitter %><br />
+  <% end %>
+  <% if user.sm_youtube && user.sm_youtube != "" %>
+    YouTube: <%= user.sm_youtube %><br />
+  <% end %>
+  <% if user.sm_email && user.sm_email != "" %>
+    Email: <%= user.sm_email %><br />
+  <% end %>
+  <% if user.sm_other && user.sm_other != "" %>
+    Other: <%= user.sm_other %><br />
+  <% end %>
+</div>
+
+<%= link_to approve_sm_path(user), method: :post, class: "btn btn-sm btn-pink" do %>
+  Approve SM Links
+<% end %>
+
+<%= link_to edit_user_path(user), class: "btn btn-sm btn-grey" do %>
+  Edit SM Links
+<% end %>
