@@ -15,28 +15,38 @@
   <h2 class="text-center">Basic Blog Info</h2>
   <div class="form-inputs">
     <div class="form-group">
-      <%= f.label :title %>
+      <h5>Blog Title</h5>
       <%= f.text_field :title, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :teaser %>
+      <h5>One-Sentence Teaser</h5>
       <%= f.text_area :teaser, class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= f.label "Tag List (Comma Separated List of Topics)" %>
-      <%= f.text_field :tag_list, value: @blog.tag_list.join(", "), class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.input :category, label: "Main Category", input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
-    </div>
+
     <% if current_user && current_user.admin %>
-      <div class="row field form-check pb-4">
-        <%= f.check_box :pillar, class: "form-check-input", id: "pillar" %>
-        <%= f.label "This blog is pillar content.", class: "form-check-label", for: "pillar" %>
+      <h5>Blog Placement</h5>
+      <div class="form-group">
+        <%= f.input :pillar, label: "Pillar Content" %>
+        <%= f.input :featured_home, label: "Feature on Homepage" %>
+        <%= f.input :featured_category, label: "Feature on Category Page" %>
+      </div> <!-- form group -->
+    <% end %>
+
+    <div class="form-group">
+      <h5>Main Category</h5>
+      <%= f.input :category, label: false, input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
+    </div>
+
+    <% if current_user && current_user.admin %>
+      <div class="form-group">
+        <h5>Author</h5>
+        <% possible_users = User.where(contributor: true).or(User.where(admin: true)) %>
+        <%= f.input :user_id, collection: possible_users, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.user_id, input_html: {class: 'browser-default'} %>
       </div>
     <% end %>
+
     <div class="form-group">
-      <h5>Categories</h5>
+      <h5>All Applicable Categories</h5>
       <div class="row">
         <div class="col-4 col-lg-2 field form-check">
           <%= f.check_box :house, class: "form-check-input", id: "house" %>
@@ -79,12 +89,19 @@
       </div> <!-- row -->
     </div>
     <div class="form-group">
-      <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: "Subcategory", include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
+      <h5>Subcategory</h5>
+      <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
     </div>
   </div> <!-- form inupts -->
 </div> <!-- container -->
 
+
+
+
   <%= render "layouts/quadborder" %>
+
+
+
 
 <% if current_user.admin %>
   <div class="container">
@@ -92,30 +109,55 @@
       <div class="half-buffer"></div>
       <h2 class="text-center">Images</h2>
 
-        <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <%= f.label "External Photo URL" %>
+          <%= f.text_field :photo_url, class: "form-control mb-2" %>
+          <%= f.input :photo_external %>
+        </div>
+        <div class="col-sm-6 form-group">
           <%= f.label "Blog Image" %><br />
           <%= f.file_field :image %>
         </div>
-        <div class="form-group">
-          <%= f.label "External Photo URL" %>
-          <%= f.text_field :photo_url, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.input :photo_external %>
-        </div>
-        <div class="form-group">
-          <%= f.label "Pinterest Images" %><br />
-          <%= f.file_field :pin_image, multiple: true %>
-        </div>
-        <div class="form-group">
-          <%= f.label "Pinterest Description" %>
-          <%= f.text_area :data_pin_description, class: "form-control" %>
-        </div>
+      </div> <!-- row -->
+
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <%= f.label "Pinterest Images" %><br />
+            <%= f.file_field :pin_image, multiple: true %>
+          </div>
+          <div class="col-sm-6 form-group">
+            <%= f.label "Pinterest Description" %>
+            <%= f.text_area :data_pin_description, class: "form-control" %>
+          </div>
+        </div> <!-- row -->
+
+        <% freebie_collection = [] %>
+        <% Freebie.where(active: true).each do |freebie| %>
+          <% freebie_collection << ["#{freebie.name}", "#{freebie.id}"] %>
+        <% end %>
+
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <%= f.label "Lead Magnet" %>
+            <%= f.input :freebie_id, label: false, prompt: "Choose a Related Goody", input_html: { class: 'browser-default' }, collection: freebie_collection, required: false %>
+          </div>
+          <div class="col-sm-6 form-inputs">
+            <%= f.label "Video Link" %>
+            <%= f.text_field :video_link, class: "form-control" %>
+          </div> <!-- form inputs -->
+        </div> <!-- row -->
+
     </div> <!-- form inputs -->
   </div> <!-- basic blog info container -->
+
+
+
+
+  <%= render "layouts/quadborder" %>
 <% end %> <!-- end admin only images section -->
 
-<%= render "layouts/quadborder" %>
+
 
 <div class="container">
   <div class="half-buffer"></div>
@@ -129,29 +171,42 @@
       <% else %>
         <%= f.input :submitted, label: "Submit Blog as Final Draft (Cannot be Undone without Admin Assistance)" %>
       <% end %>
+      <% if current_user.admin %>
+        <div class="form-group">
+          <%= f.input :approved, label: "Approved by Admin" %>
+        </div> <!-- form group -->
+      <% end %>
     </div> <!-- form group -->
+
     <% if current_user.admin %>
       <h5>Admin Actions</h5>
-      <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <%= f.input :published %>
+        </div> <!-- form group -->
+        <div class="col-sm-6 form-group">
+          <input placeholder="Published on Date" type="text" id="date" class="form-control datepicker"></input>
+          <%= f.hidden_field :published_on, id: "dateHolder", class: "hiddenDateField" %>
+        </div> <!-- form group -->
+      </div> <!-- row -->
 
-        <%= f.input :approved %>
-        <%= f.input :published %>
+      <div class="form-group">
+        <h5>Affiliate Links</h5>
         <%= f.input :affiliate_links, label: "This blog contains affiliate links." %>
       </div> <!-- form group -->
-      <div class="form-group">
-        <%= f.label :published_on %>
-        <input placeholder="Published on Date" type="text" id="date" class="form-control datepicker"></input>
-        <%= f.hidden_field :published_on, id: "dateHolder", class: "hiddenDateField" %>
-      </div> <!-- form group -->
-      <div class="form-group">
-        <%= f.input :featured_home %>
-        <%= f.input :featured_category %>
-      </div> <!-- form group -->
     <% end %>
+
+
   </div> <!-- form inputs -->
 </div> <!-- basic blog info container -->
 
+
+
+
 <%= render "layouts/quadborder" %>
+
+
+
 
 <div class="container">
   <div class="half-buffer"></div>
@@ -165,69 +220,20 @@
   </div> <!-- form inputs -->
 </div> <!-- basic blog info container -->
 
-<%= render "layouts/quadborder" %>
 
-<% if current_user.admin %>
-  <div class="container">
-    <div class="half-buffer"></div>
-    <h2 class="text-center">CTAs and Media</h2>
-
-    <div class="form-inputs">
-      <div class="row">
-        <div class="form-group col-sm-4">
-          <%= f.label "Read More CTA" %>
-          <%= f.text_field :cta_read_more, class: "form-control" %>
-        </div>
-        <div class="form-group col-sm-4">
-          <%= f.label "CTA for PDF Downloads" %>
-          <%= f.text_field :cta_pdf, class: "form-control" %>
-        </div>
-        <div class="form-group col-sm-4">
-          <%= f.label "CTA for Free Video" %>
-          <%= f.text_field :cta_video, class: "form-control" %>
-        </div>
-        <div class="form-group col-sm-4">
-          <%= f.label "Linked Module" %>
-          <%= f.text_field :linked_module, class: "form-control" %>
-        </div>
-        <div class="form-group col-sm-4">
-          <%= f.label "Convertkit Href" %>
-          <%= f.text_field :convertkit_href, class: "form-control" %>
-        </div>
-        <div class="form-group col-sm-4">
-          <%= f.label "Video Link" %>
-          <%= f.text_field :video_link, class: "form-control" %>
-        </div>
-      </div> <!-- row -->
-    </div> <!-- form inputs -->
-  </div> <!-- basic blog info container -->
-
-  <%= render "layouts/quadborder" %>
-
-  <div class="container">
-    <div class="half-buffer"></div>
-    <h2 class="text-center">Freebie Info</h2>
-
-    <% freebie_collection = [] %>
-    <% Freebie.where(active: true).each do |freebie| %>
-      <% freebie_collection << ["#{freebie.name}", "#{freebie.id}"] %>
-    <% end %>
-    <div class="row text-left">
-      <div class="form-group col-12">
-        <%= f.input :freebie_id, label: false, prompt: "Choose a Related Goody", input_html: { class: 'browser-default' }, collection: freebie_collection, required: false %>
-      </div>
-    </div> <!-- row -->
-
-  </div> <!-- container -->
-<% end %> <!-- if admin -->
 
 <%= render "layouts/quadborder" %>
+
+
+
 
 <div class="container">
   <div class="half-buffer"></div>
 
-  <div class="form-actions text-center">
-    <p>Unless you checked the "Submit Blog as Final Draft" checkbox, this will be saved as a <strong>draft</strong>.<br />You can find and edit it at any time from your <%= link_to "My Account", user_path(current_user) %> page if you want to make changes.</p>
+  <div class="form-actions text-center narrow">
+    <p>
+      Unless you checked the "Submit Blog as Final Draft" checkbox, this will be saved as a <strong>draft</strong>. You can find and edit it at any time from <%= link_to "My Account", user_path(current_user) %> if&nbsp;you&nbsp;want&nbsp;to&nbsp;make&nbsp;changes.
+    </p>
     <%= f.button :submit, class: "btn btn-neutral" %>
   </div>
 </div> <!-- container -->
