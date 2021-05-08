@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_235240) do
+ActiveRecord::Schema.define(version: 2021_05_08_234639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_235240) do
     t.bigint "variation_id"
     t.bigint "freebie_id"
     t.boolean "pillar", default: false
+    t.boolean "nondisplayed", default: false
     t.index ["freebie_id"], name: "index_blogs_on_freebie_id"
     t.index ["image_id"], name: "index_blogs_on_image_id"
     t.index ["pdf_id"], name: "index_blogs_on_pdf_id"

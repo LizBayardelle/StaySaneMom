@@ -8,12 +8,12 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').page(params[:page])
+    @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today + 1).order('published_on DESC').page(params[:page])
     @featured_blogs = Blog.where(published: true, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     if params[:tag]
-      @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').tagged_with(params[:tag]).page(params[:page])
+      @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today + 1).order('published_on DESC').tagged_with(params[:tag]).page(params[:page])
     else
-      @blogs = Blog.where(published: true).where("published_on <= ?", Date.today).order('published_on DESC').page(params[:page])
+      @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today + 1).order('published_on DESC').page(params[:page])
     end
     @unpublished = Blog.where(published: false)
     @tags = Blog.tag_counts_on(:tags)
@@ -143,9 +143,9 @@ class BlogsController < ApplicationController
 
   def tagged
     if params[:tag].present?
-      @blogs = Blog.where("published_on <= ?", Date.today).tagged_with(params[:tag]).order('published_on DESC')
+      @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today).tagged_with(params[:tag]).order('published_on DESC')
     else
-      @blogs = Blog.where("published_on <= ?", Date.today).order('published_on DESC')
+      @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today).order('published_on DESC')
     end
   end
 
@@ -262,6 +262,7 @@ class BlogsController < ApplicationController
 
                   :published,
                   :published_on,
+                  :nondisplayed,
 
                   :user_id,
                   :affiliate_links,

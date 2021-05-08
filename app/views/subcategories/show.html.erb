@@ -29,7 +29,7 @@
 
 
 <!-- related blogs -->
-<% @related = Blog.where(subcategory_id: @subcategory.id, published: true, ).where("published_on <= ?", Date.today).order("comments_count DESC") %>
+<% @related = Blog.where(subcategory_id: @subcategory.id, published: true, nondisplayed: false ).where("published_on <= ?", Date.today).order("comments_count DESC") %>
 <% if @related != [] %>
   <div class="container">
     <!-- <h2>Blogs on <%#= @subcategory.name %></h2> -->
