@@ -16,7 +16,7 @@
     <div class="container">
       <% if current_user && (current_user.admin || current_user.contributor) %>
         <div class="half-buffer"></div>
-        <%= link_to 'New Blog', new_blog_path, class: "btn my-btn-outline-secondary" %>
+        <%= link_to 'Start Writing a New Blog', new_blog_path, class: "btn btn-pink btn-lg" %>
         <div class="buffer"></div>
       <% end %>
     </div> <!-- over frame bottom row -->
@@ -29,9 +29,9 @@
 
 <% if current_user && current_user.admin %>
   <div class="bg-transparent-neutral py-5 mb-5"><div class="container">
-    <% if @unpublished.count > 0 %>
-      <h2 class="section-title">Unpublished Blogs</h2>
-      <% @unpublished.each do |blog| %>
+    <% if @drafts.count > 0 %>
+      <h2 class="section-title">My Drafts</h2>
+      <% @drafts.each do |blog| %>
         <h5><%= link_to blog.title, blog_path(blog) %></h5>
       <% end %>
     <% end %>

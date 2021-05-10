@@ -548,6 +548,35 @@ table.table.thin th, table.table.thin td {
   font-weight: 700;
 }
 
+.about-me-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  padding-bottom: 20px
+}
+
+.tilted-card {
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(183, 173, 153,0.30), 0 10px 10px rgba(183, 173, 153,0.22);
+  transform: rotate(-2deg);
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.tilted-card p {
+  color: black;
+  font-size: .9rem;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.tilted-card h3 {
+  text-align: center;
+  font-family: $font-script;
+  color: $color-pink;
+  font-size: 4rem;
+}
+
 .category-div {
   position: relative;
   padding-bottom: 10px;
