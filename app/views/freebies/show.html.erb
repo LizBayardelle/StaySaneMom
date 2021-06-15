@@ -1,3 +1,12 @@
+<%= content_for :pinterest do %>
+  <script>
+    pintrk('track', 'pagevisit', {
+    property: 'Freebie Show: <%= @freebie.name %>'
+    });
+  </script>
+<% end %>
+
+
 
 <section class="bg-pink p-4 text-center">
   <h2 class="color-white"><%= @freebie.top_question %></h2>

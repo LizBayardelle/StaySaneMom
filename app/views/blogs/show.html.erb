@@ -1,5 +1,14 @@
 <main id="blog" class="<%= @blog.category.downcase %>">
   <!-- page-specific content -->
+
+  <%= content_for :pinterest do %>
+    <script>
+      pintrk('track', 'pagevisit', {
+      property: 'Blog: <%= @blog.title %>'
+      });
+    </script>
+  <% end %>
+
     <% title @blog.title %>
     <%= content_for :head do %>
       <meta name="description" content="<%= @blog.teaser %>" />

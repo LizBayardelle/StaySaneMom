@@ -122,7 +122,16 @@
         src="https://ct.pinterest.com/v3/?event=init&tid=2612558898129&pd[em]=<hashed_email_address>&noscript=1" />
       </noscript>
       <!-- end Pinterest Tag -->
-      
+
+      <!-- Pinterest event code (page visit) -->
+      <% if content_for?(:pinterest) %>
+        <% yield(:pinterest) %>
+      <% else %>
+        <script>
+          pintrk('track', 'pagevisit');
+        </script>
+      <% end %>
+      <!-- end -->
   </head>
 
   <body class="hidden-sn white-skin w-100">
