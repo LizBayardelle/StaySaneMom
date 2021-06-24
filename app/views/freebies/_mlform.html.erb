@@ -1,0 +1,45 @@
+<div id="mlb2-<%= freebie.ml_id %>" class="w-100 ml-form-embedContainer ml-subscribe-form ml-subscribe-form-<%= freebie.ml_id %>">
+
+    <form action="https://static.mailerlite.com/webforms/submit/<%= freebie.ml_submit_code %>" data-code="<%= freebie.ml_submit_code %>" method="post" target="_blank">
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" placeholder="First Name" data-inputmask="" name="fields[name]" placeholder="" autocomplete="name">
+        </div>
+        <div class="col-sm-6 py-2 py-sm-0 ml-field-email ml-validate-email ml-validate-required">
+          <input type="email" class="form-control" placeholder="Email" data-inputmask="" name="fields[email]" placeholder="" autocomplete="email">
+        </div>
+      </div> <!-- row -->
+
+      <div class="ml-form-recaptcha ml-validate-required pt-3">
+        <style type="text/css">
+          .ml-form-recaptcha{margin-bottom:20px}.ml-form-recaptcha.ml-error iframe{border:solid 1px red}@media screen and (max-width:480px){.ml-form-recaptcha{width:220px!important}.g-recaptcha{transform:scale(.78);-webkit-transform:scale(.78);transform-origin:0 0;-webkit-transform-origin:0 0}}
+        </style>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
+      </div>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+
+      <div class="pb-3">
+        <button type="submit" class="btn btn-pink">Download My <%= freebie.name %></button>
+        <button disabled="disabled" style="display:none" type="button" class="loading"> <div class="ml-form-embedSubmitLoad"></div> <span class="sr-only">Loading...</span> </button>
+      </div>
+
+    </form>
+  </div>
+
+
+  <div class="ml-form-successBody row-success" style="display:none">
+    <div class="ml-form-successContent">
+      <h4>Thank you!</h4>
+      <p>Check your email for the PDF of your printable chore chart.</p>
+      <p>Want to teach your kids financial skills?<a href="<%= freebie.after_download_url %>" target="_blank"><br>Check this out.</a></p>
+    </div>
+  </div>
+
+
+<script>
+  function ml_webform_success_<%= freebie.ml_id %>(){try{window.top.location.href="https://links.thestaysanemom.com/financial-skills"}catch(s){window.location.href="https://links.thestaysanemom.com/financial-skills"}}
+</script>
+<img src="<%= freebie.ml_img_track_url %>" width="1" height="1" style="max-width:1px;max-height:1px;visibility:hidden;padding:0;margin:0;display:block" alt="." border="0">
+<script src="https://static.mailerlite.com/js/w/webforms.min.js?v0c75f831c56857441820dcec3163967c" type="text/javascript"></script>

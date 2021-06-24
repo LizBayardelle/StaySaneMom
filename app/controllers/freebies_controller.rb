@@ -108,9 +108,11 @@ class FreebiesController < ApplicationController
         :short_description,
         :convertkit_url,
         :active,
+        
         :image,
         :sample_image,
         :t1_image,
+
         :top_question,
         :main_heading,
         :main_subheading,
@@ -122,7 +124,12 @@ class FreebiesController < ApplicationController
         :wyg2,
         :wyg3,
         :outcome,
-        :outcome_2
+        :outcome_2,
+
+        :ml_id,
+        :ml_submit_code,
+        :after_download_url,
+        :ml_img_track_url
       )
     end
 end

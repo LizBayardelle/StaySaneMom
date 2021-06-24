@@ -35,8 +35,12 @@
     <%= f.input :wyg2, label: "What you get... (Feature #2)" %>
     <%= f.input :wyg3, label: "What you get... (Feature #3)" %>
 
-    <h2 class="text-center mt-5 thin uppercase color-pink">ConvertKit Link</h2>
+    <h2 class="text-center mt-5 thin uppercase color-pink">Subscribe Info</h2>
     <%= f.input :convertkit_url, as: :string, label: "HTML for ConvertKit Embed" %>
+    <%= f.input :ml_id, as: :string, label: "Mailerlite ID (Top Div Tag, e.g. '4302418')" %>
+    <%= f.input :ml_submit_code, as: :string, label: "Mailerlite Submit Code (Action in Form Tag, e.g. 'b8s2s0')" %>
+    <%= f.input :after_download_url, as: :string, label: "After Download URL (Usually Rebrand.ly)" %>
+    <%= f.input :ml_img_track_url, as: :string, label: "Mailerlite Img Tracking URL (Last IMG, e.g. 'https://track.mailerlite.com/webforms...')" %>
 
     <h2 class="text-center mt-5 thin uppercase color-pink">Images</h2>
     <div class="form-group">

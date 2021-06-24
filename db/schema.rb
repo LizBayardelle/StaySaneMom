@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_234639) do
+ActiveRecord::Schema.define(version: 2021_06_22_220756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,10 @@ ActiveRecord::Schema.define(version: 2021_05_08_234639) do
     t.string "category"
     t.string "outcome_2"
     t.string "slug"
+    t.string "ml_id"
+    t.string "ml_submit_code"
+    t.string "after_download_url"
+    t.string "ml_img_track_url"
     t.index ["slug"], name: "index_freebies_on_slug", unique: true
   end
 

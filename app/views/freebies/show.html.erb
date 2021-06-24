@@ -30,7 +30,9 @@
     <div class="col-sm-8">
       <h1 class="thin uppercase color-pink display-4"><%= @freebie.main_heading %></h1>
       <h3 class="bold landing-subheading"><%= simple_format(@freebie.main_subheading) %></h3>
-      <a class="btn btn-pink btn-lg my-3 mt-5" href="#ck-embed">Download <%= @freebie.short_description %></a>
+      <% if @freebie.ml_id && @freebie.ml_id != "" %>
+        <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
+      <% end %>
     </div> <!-- col -->
 
     <div class="col-sm-4 text-center">
@@ -91,9 +93,16 @@
 
 
 
-<section id="ck-embed" class="py-3">
-  <%= @freebie.convertkit_url.html_safe %>
-</section>
+  <% if @freebie.ml_id && @freebie.ml_id != "" %>
+    <section class="w-50 mx-auto z-depth-3 px-5 pt-5 pb-3 text-center">
+      <h3 class="h1 pb-3">Get the Goods</h3>
+      <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
+    </section>
+  <% else %>
+    <section id="ck-embed" class="py-3">
+      <%= @freebie.convertkit_url.html_safe %>
+    </section>
+  <% end %>
 
 
 
