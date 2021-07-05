@@ -4,13 +4,21 @@
         <li class="breadcrumb-item"><%= link_to "Blog", blogs_path %></li>
         <% case @blog.category %>
         <% when "House" %>
-          <li class="breadcrumb-item"><%= link_to "House", home_house_path %></li>
-        <% when "Spouse" %>
-          <li class="breadcrumb-item"><%= link_to "Spouse", home_spouse_path %></li>
+          <li class="breadcrumb-item"><%= link_to "House", pages_path("house") %></li>
+        <% when "Marriage" %>
+          <li class="breadcrumb-item"><%= link_to "Marriage", pages_path("marriage") %></li>
+        <% when "Pregnancy" %>
+          <li class="breadcrumb-item"><%= link_to "Pregnancy", pages_path("pregnancy") %></li>
+        <% when "Babies" %>
+          <li class="breadcrumb-item"><%= link_to "Babies", pages_path("babies") %></li>
+        <% when "Toddlers" %>
+          <li class="breadcrumb-item"><%= link_to "Babies", pages_path("toddlers") %></li>
         <% when "Kids" %>
-          <li class="breadcrumb-item"><%= link_to "Kids", home_kids_path %></li>
-        <% when "Self" %>
-          <li class="breadcrumb-item"><%= link_to "Self", home_self_path %></li>
+          <li class="breadcrumb-item"><%= link_to "Kids", pages_path("kids") %></li>
+        <% when "Teens" %>
+          <li class="breadcrumb-item"><%= link_to "Babies", pages_path("teens") %></li>
+        <% when "Balance" %>
+          <li class="breadcrumb-item"><%= link_to "Balance", pages_path("balance") %></li>
         <% else %>
           <li class="breadcrumb-item">Other</li>
         <% end %>
