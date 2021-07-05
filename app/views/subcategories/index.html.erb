@@ -16,7 +16,7 @@
             <%= image_tag rails_blob_url(subcategory.image), style: "width: 100px; height: auto; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); padding: 3px" if subcategory.image.attached? %>
           </td>
           <td>
-            <%= link_to subcategory.category + " :: " + subcategory.name, subcategory, class: "color-pink boldest" %> (<%= Blog.where(subcategory_id: subcategory.id, published: true).count %>)<br />
+            <%= link_to subcategory.name, subcategory, class: "color-pink boldest" %> (<%= Blog.where(subcategory_id: subcategory.id, published: true).count %>)<br />
             <%= subcategory.description %><br />
             <span class="boldest"><%= if subcategory.active then "Active" else "Inactive" end %></span>&nbsp; | &nbsp;
             <%= link_to 'Edit', edit_subcategory_path(subcategory) %>&nbsp; | &nbsp;

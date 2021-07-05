@@ -5,27 +5,11 @@
   <% end %>
 <!-- page-specific content -->
 
-<nav aria-label="breadcrumb" class="nav-breadcrumb">
-  <ol class="breadcrumb">
-    <% case @subcategory.category %>
-      <% when "House" %>
-        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_house_path %></li>
-      <% when "Spouse" %>
-        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_spouse_path %></li>
-      <% when "Kids" %>
-        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_kids_path %></li>
-      <% when "Self" %>
-        <li class="breadcrumb-item"><%= link_to @subcategory.category, home_self_path %></li>
-    <% end %>
-    <li class="breadcrumb-item"><%= @subcategory.name %></li>
-  </ol>
-</nav>
 <div class="container text-center">
   <h1 class="font-script"><%= @subcategory.name %></h1>
   <p><%= @subcategory.description %></p>
   <h2 class="color-pink"><% if !@subcategory.active %>INACTIVE<% end %></h2>
 </div>
-
 
 
 <!-- related blogs -->
@@ -35,7 +19,7 @@
     <!-- <h2>Blogs on <%#= @subcategory.name %></h2> -->
     <div class="row">
       <% @related.each do |blog| %>
-        <%= render partial: "layouts/blogcard2", locals: { blog: blog } %>
+        <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
       <% end %>
     </div> <!-- row -->
   </div>
@@ -47,10 +31,10 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.height').matchHeight();
-      $('.blog-text').matchHeight();
-      $('.blog-teaser').matchHeight();
-      $('.blog-description').matchHeight();
-      $('.blog-info').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
     });
   </script>
 <% end %>

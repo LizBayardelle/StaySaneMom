@@ -90,7 +90,7 @@
     </div>
     <div class="form-group">
       <h5>Subcategory</h5>
-      <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.category} :: #{sub.name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
+      <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
     </div>
   </div> <!-- form inupts -->
 </div> <!-- container -->
