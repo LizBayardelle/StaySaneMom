@@ -4,28 +4,37 @@
     <p class="text-right"><%= link_to 'New Subcategory', new_subcategory_path %></p>
   <% end %>
 
-  <h1 class="text-center font-script">Subcategories</h1>
+  <section class="py-3">
+    <h1 class="text-center font-script">Subcategories</h1>
+    <table>
+      <tbody>
+        <% @subcategories.each do |subcategory| %>
+          <tr>
+            <td>
+              <%= image_tag rails_blob_url(subcategory.image), style: "width: 100px; height: auto; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); padding: 3px" if subcategory.image.attached? %>
+            </td>
+            <td>
+              <%= link_to subcategory.name, subcategory, class: "color-pink boldest" %> (<%= Blog.where(subcategory_id: subcategory.id, published: true).count %>)<br />
+              <%= subcategory.description %><br />
+              <span class="boldest"><%= if subcategory.active then "Active" else "Inactive" end %></span>&nbsp; | &nbsp;
+              <%= link_to 'Edit', edit_subcategory_path(subcategory) %>&nbsp; | &nbsp;
+              <%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
 
-  <div class="half-buffer"></div>
 
-  <table>
-    <tbody>
-      <% @subcategories.each do |subcategory| %>
-        <tr>
-          <td>
-            <%= image_tag rails_blob_url(subcategory.image), style: "width: 100px; height: auto; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); padding: 3px" if subcategory.image.attached? %>
-          </td>
-          <td>
-            <%= link_to subcategory.name, subcategory, class: "color-pink boldest" %> (<%= Blog.where(subcategory_id: subcategory.id, published: true).count %>)<br />
-            <%= subcategory.description %><br />
-            <span class="boldest"><%= if subcategory.active then "Active" else "Inactive" end %></span>&nbsp; | &nbsp;
-            <%= link_to 'Edit', edit_subcategory_path(subcategory) %>&nbsp; | &nbsp;
-            <%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+  <section class="py-3">
+    <h1 class="text-center font-script">Uncategorized Blogs</h1>
+    <ul>
+      <% Blog.all.each do |blog| %>
+        <% blog.subcategory_id == nil %>
+          <li><%= link_to blog.name, blog %></li>
+        <% end %>
       <% end %>
-    </tbody>
-  </table>
-
-  <br>
+    </ul>
+  </section>
 
 </div> <!-- container -->
