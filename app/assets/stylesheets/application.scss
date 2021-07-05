@@ -1383,6 +1383,17 @@ h3.landing-subheading {
 }
 
 
+.product-image {
+  height: 300px;
+  width: auto;
+  transform: rotate(10deg);
+  box-shadow: $z-depth-5;
+}
+
+.auto-height {
+  height: auto;
+}
+
 
 
 // ---------------------------

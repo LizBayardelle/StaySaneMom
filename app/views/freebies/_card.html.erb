@@ -1,6 +1,6 @@
 <div class="col-sm-6 col-lg-4 text-center p-3">
   <a href="<%= url_for(freebie) %>" target="_blank" onclick="dataLayer.push({'category': 'Funnels', 'action': 'Button to Freebie Landing Page', 'label': 'Freebie: <%= freebie.name %>', 'value':0});">
-    <h2 class="card-title pb-0 mb-0 h1 thin uppercase color-pink"><%= freebie.name %></h2>
+    <h3 class="card-title pb-0 mb-0 h1 thin uppercase color-pink"><%= freebie.name %></h3>
   </a>
 
   <% if current_user && current_user.admin %>
@@ -8,7 +8,8 @@
       <h2>INACTIVE</h2>
     <% end %>
   <% end %>
-  <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4" style="max-width: 100%; max-height: 30vh">
+
+  <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4 w-100 auto-height">
 
   <div class="text-center pb-5 mb-5">
     <%= link_to freebie.short_description, freebie_path(freebie), class: "btn btn-pink" %>

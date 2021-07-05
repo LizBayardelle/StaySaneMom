@@ -27,20 +27,23 @@
 
   <div class="row py-4">
 
-    <div class="col-sm-8">
-      <h1 class="thin uppercase color-pink display-4"><%= @freebie.main_heading %></h1>
+    <div class="col-12 col-sm-5 text-center pull-sm-7">
+      <img src="<%= rails_blob_url(@freebie.sample_image) if @freebie.sample_image.attached? %>" class="product-image">
+      <div class="w-100 pt-4">
+        <img src="<%= asset_url("Arrow.png") %>" class="pr-5" style="height: 50px">
+        <h3 class="font-script color-pink mt-2 text-center text-sm-left">Free <%= @freebie.name %></h3>
+      </div>
+    </div> <!-- col -->
+
+    <div class="col-12 col-sm-7 text-center text-sm-left push-sm-5">
+      <h1 class="thin uppercase color-pink"><%= @freebie.main_heading %></h1>
       <h3 class="bold landing-subheading"><%= simple_format(@freebie.main_subheading) %></h3>
       <% if @freebie.ml_id && @freebie.ml_id != "" %>
         <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
       <% end %>
     </div> <!-- col -->
 
-    <div class="col-sm-4 text-center">
-      <img src="<%= rails_blob_url(@freebie.sample_image) if @freebie.sample_image.attached? %>" class="z-depth-5" style="max-width: 80%; max-height: 30vh; transform: rotate(10deg)">
-      <div class="w-100 pt-4">
-      <img src="<%= asset_url("Arrow.png") %>" class="pr-5" style="height: 50px">
-      <h3 class="font-script color-pink mt-2 text-left">Free <%= @freebie.name %></h3>
-    </div> <!-- col -->
+
 
   </div> <!-- row -->
 </section>
@@ -94,7 +97,7 @@
 
 
   <% if @freebie.ml_id && @freebie.ml_id != "" %>
-    <section class="w-50 mx-auto z-depth-3 px-5 pt-5 pb-3 text-center">
+    <section class="w-75 w-sm-50 mx-auto z-depth-3 px-5 pt-5 pb-3 text-center">
       <h3 class="h1 pb-3">Get the Goods</h3>
       <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
     </section>
