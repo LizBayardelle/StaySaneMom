@@ -27,8 +27,11 @@
     <% end %>
   <!-- page-specific content -->
 
-
-  <%= render partial: "blogs/breadcrumbs", locals: { blog: @blog, subcategory: @subcategory } %>
+  <% if @subcategory %>
+    <%= render partial: "blogs/breadcrumbs", locals: { blog: @blog, subcategory: @subcategory } %>
+  <% else %>
+    <%= render partial: "blogs/breadcrumbs", locals: { blog: @blog, subcategory: false } %>
+  <% end %>
   <%= render partial: "blogs/hero", locals: { blog: @blog } %>
 
   <% if @blog.published != false %>

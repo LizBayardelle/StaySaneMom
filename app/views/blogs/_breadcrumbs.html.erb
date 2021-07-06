@@ -22,7 +22,9 @@
         <% else %>
           <li class="breadcrumb-item">Other</li>
         <% end %>
-        <li class="breadcrumb-item"><%= link_to @subcategory.name, subcategory_path(@subcategory) %></li>
+        <% if @subcategory %>
+          <li class="breadcrumb-item"><%= link_to @subcategory.name, subcategory_path(@subcategory) %></li>
+        <% end %>
         <li class="breadcrumb-item"><%= @blog.title %></li>
         <div style="position: absolute; right: 0; margin-right: 25px">
           <% if current_user && current_user.admin %>
