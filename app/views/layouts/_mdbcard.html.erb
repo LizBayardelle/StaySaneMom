@@ -16,6 +16,19 @@
       <p class="card-text">
         <%= blog.teaser %><br><%= link_to "Read More...", blog_path(blog), id: blog.id.to_s + "readMore" %>
       </p>
+
+      <%= link_to blog.user do %>
+        <div class="circle-cropper">
+          <% if blog.user.avatar.attached? %>
+            <%= image_tag rails_blob_url(blog.user.avatar), class: "z-depth-1" %>
+          <% else %>
+            <%= image_tag "missing_avatar.jpg", class: "z-depth-1" %>
+          <% end %>
+        </div>
+
+        <span class="pl-1 thin"><%= blog.user.first_name + " " + blog.user.last_name %></span>
+      <% end %>
+
     </div>
   </div> <!-- card -->
 </div> <!-- col -->

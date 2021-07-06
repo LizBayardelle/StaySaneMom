@@ -73,7 +73,7 @@ $transparent-black: rgba(0, 0, 0, 0.4);
 
 .font-sans { font-family: $font-sans }
 .font-serif { font-family: $font-serif }
-.font-script { font-family: $font-script }
+.font-script, .font-cursive { font-family: $font-script }
 .font-bold { font-weight: 700 }
 
 h1.font-script { font-size: 70px }
@@ -1659,7 +1659,24 @@ bottom: .5em;
 #blog.self p a, #blog.self li a { color: $color-pink; }
 
 
+.circle-cropper {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
 
+.circle-cropper img {
+  display: inline;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
 
 
 .stepper-horizontal {
