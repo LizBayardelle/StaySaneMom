@@ -30,7 +30,7 @@
     <h1 class="text-center font-script">Uncategorized Blogs</h1>
     <ul>
       <% Blog.all.each do |blog| %>
-        <% if blog.subcategory_id == nil %>
+        <% unless blog.subcategory %>
           <li><%= link_to blog.name, blog %></li>
         <% end %>
       <% end %>
