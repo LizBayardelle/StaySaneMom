@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.string "freebie_type", default: "None"
     t.string "freebie_description"
     t.integer "comments_count"
-    t.bigint "subcategory_id"
     t.boolean "affiliate_links", default: true
     t.boolean "approved", default: false
     t.boolean "submitted", default: false
@@ -89,17 +88,12 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
     t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
-    t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
     t.index ["variation_id"], name: "index_blogs_on_variation_id"
   end
 
   create_table "capsule_items", force: :cascade do |t|
     t.date "item_date"
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.integer "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string "title"
     t.text "caption"
     t.bigint "user_id"
@@ -223,15 +217,11 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
   end
 
   create_table "occasions", force: :cascade do |t|
-    t.bigint "person_id"
-    t.bigint "user_id"
     t.string "name"
     t.date "date"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_occasions_on_person_id"
-    t.index ["user_id"], name: "index_occasions_on_user_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -412,8 +402,6 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
   add_foreign_key "capsules", "users"
   add_foreign_key "gifts", "users"
   add_foreign_key "meals", "users"
-  add_foreign_key "occasions", "people"
-  add_foreign_key "occasions", "users"
   add_foreign_key "people", "users"
   add_foreign_key "responses", "users"
   add_foreign_key "sortings", "users"

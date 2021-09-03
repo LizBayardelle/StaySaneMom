@@ -35,7 +35,7 @@ class ChangeResourcesToStore < ActiveRecord::Migration[5.2]
     drop_table :spree_promotion_action_line_items, force: :cascade
     drop_table :spree_promotion_actions, force: :cascade
     drop_table :spree_promotion_categories, force: :cascade
-    drop_table :spree_promotion_codes, force: :cascade
+    # drop_table :spree_promotion_codes, force: :cascade
     drop_table :spree_promotion_rule_taxons, force: :cascade
     drop_table :spree_promotion_rules, force: :cascade
     drop_table :spree_promotion_rules_users, force: :cascade
@@ -88,7 +88,7 @@ class ChangeResourcesToStore < ActiveRecord::Migration[5.2]
     drop_table :spree_variant_property_rule_values, force: :cascade
     drop_table :spree_variant_property_rules, force: :cascade
     drop_table :spree_variants, force: :cascade
-    drop_table :spree_wallet_payment_sources, force: :cascade
+    # drop_table :spree_wallet_payment_sources, force: :cascade
     drop_table :spree_zone_members, force: :cascade
     drop_table :spree_zones, force: :cascade
   end

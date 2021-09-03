@@ -3,7 +3,6 @@ class CreateMeals < ActiveRecord::Migration[5.2]
     create_table :meals do |t|
       t.string :title
       t.integer :ready_in_minutes
-      t.attachment :image
       t.boolean :gluten_free, default: false
       t.boolean :dairy_free, default: false
       t.boolean :vegetarian, default: false

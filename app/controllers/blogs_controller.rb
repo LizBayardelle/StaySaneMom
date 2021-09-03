@@ -15,7 +15,9 @@ class BlogsController < ApplicationController
     else
       @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today + 1).order('published_on DESC').page(params[:page])
     end
-    @drafts = Blog.where(user_id: current_user.id, published: false, submitted: false)
+    if current_user
+      @drafts = Blog.where(user_id: current_user.id, published: false, submitted: false)
+    end 
     @tags = Blog.tag_counts_on(:tags)
     respond_to do |format|
       format.html
