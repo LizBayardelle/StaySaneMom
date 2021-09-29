@@ -53,7 +53,7 @@
 }
 
 
-$font-sans: 'Roboto', sans-sans;
+$font-sans: 'Roboto', sans-serif;
 $font-script: 'Madelyn', 'Arizonia', cursive;
 $font-script-caps: 'PlaylistCaps', sans-serif;
 
@@ -74,8 +74,8 @@ $transparent-black: rgba(0, 0, 0, 0.4);
 .font-script, .font-cursive { font-family: $font-script }
 .font-bold { font-weight: 700 }
 
-h1.font-script { font-size: 70px }
-h2.font-script { font-size: 50px }
+h1, .h1 { font-size: 70px; font-family: $font-sans; }
+h2, .h2 { font-size: 50px; font-family: $font-sans; }
 .h2-pink h2 { color: $color-pink; border-bottom: solid thin $color-pink; margin-bottom: 15px; margin-top: 30px; }
 
 .color-white, .color-white * { color: #FFFFFF !important; }
@@ -134,7 +134,7 @@ strong { font-weight: 900 }
 .btn.btn-pink:hover { background-color: $color-white; color: $color-pink; }
 .btn.btn-neutral:hover { background-color: $color-white; color: $color-neutral; }
 
-.thin, .thin:hover { font-weight: 200 }
+.thin, .thin:hover { font-weight: 100 }
 .uppercase { text-transform: uppercase; }
 
 .header-stripe {
@@ -1141,28 +1141,33 @@ footer p, footer p em {
 .blog-show-header h1, .blog-show em h1 {
   color: $color-pink !important;
   font-weight: 900 !important;
+  font-family: $font-sans;
 }
 
 #blog-body .blog-itself h2, #blog-body .blog-itself em h2 {
   color: $color-pink;
   font-size: 2.6rem;
   font-weight: 200;
+  font-family: $font-sans;
 }
 
 #blog-body .blog-itself h3, #blog-body .blog-itself em h3 {
   color: $color-pink;
   font-weight: 900;
+  font-family: $font-sans;
 }
 
 #blog-body .blog-itself h3 a {
   color: $color-pink !important;
   font-weight: 900 !important;
   text-decoration: underline;
+  font-family: $font-sans;
 }
 
 #blog-body .blog-itself h4, #blog-body .blog-itself em h4 {
   color: $color-neutral !important;
   font-weight: 900 !important;
+  font-family: $font-sans;
 }
 
 #blog-body .blog-itself h5, #blog-body .blog-itself em h5 {
