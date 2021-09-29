@@ -45,15 +45,16 @@
         <%= @blog.user.first_name %> <%= @blog.user.last_name %>
       <% end %>
       &nbsp; | &nbsp;
-      <% if @blog.user.admin %>
-        <i class="fas fa-glasses color-<%= @blog.category.downcase %>"></i> &nbsp;Stay Sane Mom Founder
-      <% elsif @blog.user.contributor %>
-        <i class="fas fa-keyboard color-<%= @blog.category.downcase %>"></i> &nbsp;Stay Sane Mom Contributor
-      <% end %></strong>
-      &nbsp;&nbsp|&nbsp;&nbsp
       <a href="#comments"><span class="disqus-comment-count" data-disqus-identifier="<%= @blog.id %>" data-disqus-url="<%= polymorphic_url(@blog) %>">See Comments</span></a>
       <br />
-      <% if @blog.published_on %>Published <% if @blog.category %>in <span class="color-<%= @blog.category.downcase %> boldest"><%= @blog.category %></span><% end %><% if @subcategory %>, <span class="color-<%= @blog.category.downcase %> boldest"><%= @subcategory.name %></span><% end %> on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
+      <% if @blog.published_on %>Published 
+        <% if @blog.category %>in 
+          <span class="color-pink boldest"><%= @blog.category %></span>
+        <% end %>
+        <% if @subcategory %>, 
+          <%= link_to @subcategory.name, subcategory_path(@subcategory) %>
+        <% end %>
+         on <%= @blog.published_on.in_time_zone("America/Los_Angeles").strftime("%B %d, %Y")  %><br /><% end %>
     </p>
   </div> <!-- container -->
 </section> <!-- header -->
