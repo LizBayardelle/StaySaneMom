@@ -114,9 +114,6 @@
             <% end %>
           </td>
           <td>
-            <%= pluralize(user.comments.count, "Comment") %>
-          </td>
-          <td>
             <% if user.contributor || user.admin %>
               <%= pluralize(user.blogs.where(published: true).count, "Published Blog") %><br />
               <% if !user.admin %>

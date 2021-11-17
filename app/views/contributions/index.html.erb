@@ -85,8 +85,10 @@
         <% if blog.approved && !blog.published %>
           <% @approved_blogs << blog %>
         <% end %>
-        <% if blog.published && blog.published_on >= Date.today %>
-          <% @published_blogs << blog %>
+        <% if blog.published && blog.published_on %>
+          <% if blog.published_on >= Date.today %>
+            <% @published_blogs << blog %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
