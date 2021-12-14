@@ -38,7 +38,7 @@
     <div class="col-12 col-sm-7 text-center text-sm-left push-sm-5">
       <h1 class="thin h2 uppercase color-pink"><%= @freebie.main_heading %></h1>
       <h3 class="bold landing-subheading"><%= simple_format(@freebie.main_subheading) %></h3>
-      <% if @freebie.thrivelink != "" %>
+      <% if @freebie.thrivelink && @freebie.thrivelink != "" %>
         <%= @freebie.thrivelink.html_safe %>
       <% elsif @freebie.ml_id && @freebie.ml_id != "" %>
         <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
