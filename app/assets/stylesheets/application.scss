@@ -667,6 +667,9 @@ table.table.thin th, table.table.thin td {
 .tilt-left { transform: rotate(-3deg); }
 .tilt-right.extra { transform: rotate(6deg); }
 .tilt-left.extra { transform: rotate(-6deg); }
+@media screen and (max-width: 1100px) {
+  .no-tilt-sm { transform: rotate(0deg); }
+}
 
 .texture-paint {
   min-height:100%;
@@ -788,6 +791,12 @@ section.texture-hands:before {
   transform: rotate(-2deg);
   padding: 15px;
   margin: 20px 0;
+}
+
+@media screen and (max-width: 1100px) {
+  .tilted-card {
+    transform: rotate(0deg);
+  }
 }
 
 .tilted-card p {

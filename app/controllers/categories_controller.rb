@@ -70,7 +70,6 @@ class CategoriesController < ApplicationController
         :active,
         :i_statement,
         :cta,
-        :cta_url,
         :cta_desc,
         :description,
         :intro,
