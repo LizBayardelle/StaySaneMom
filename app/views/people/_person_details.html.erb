@@ -1,0 +1,25 @@
+<p class="color-neutral"><em>
+  <% if person.birthday %>
+    <%= person.birthday.strftime("%B %e") %> (Birthday)
+  <% else %>
+    <em>No birthday listed</em>
+  <% end %>
+  
+
+  <% if person.anniversary %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= person.anniversary.strftime("%B %e") %> (Anniversary)
+  <% end %>
+  
+
+  <% if person.other %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)
+  <% end %>
+  
+
+  <small>
+    <%= link_to '✎', edit_person_path(person) %>
+    <%= link_to 'X', person, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </small>
+</em></p>

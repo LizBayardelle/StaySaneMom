@@ -2,61 +2,60 @@
   <div class="biobox">
     <div class="container">
 
-      <h2 class="section-title"><%= header %></h2>
-      <% if header != nil %>
-        <div class="half-buffer"></div>
-      <% end %>
+        <h2 class="section-title"><%= header %></h2>
+        <% if header != nil %>
+        <% end %>
 
-      <div class="z-depth-3 p-5">
-        <div class="row">
-          <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
-            <% if @user.avatar.attached? %>
-              <%= image_tag rails_blob_url(@user.avatar), class: "img-fluid z-depth-1 rounded-circle" %>
-            <% else %>
-              <%= image_tag "missing_avatar.jpg", class: "img-fluid z-depth-1 rounded-circle" %>
+        <div class="z-depth-3 bg-white p-5">
+          <div class="row">
+            <div class="biobox-image col-xs-10 col-xs-push-1 col-sm-3 text-center">
+              <% if @user.avatar.attached? %>
+                <%= image_tag rails_blob_url(@user.avatar), class: "img-fluid z-depth-1 rounded-circle" %>
+              <% else %>
+                <%= image_tag "missing_avatar.jpg", class: "img-fluid z-depth-1 rounded-circle" %>
+              <% end %>
+            </div> <!-- biobox-image -->
+            <div class="biobox-bio col-sm-9">
+              <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+              <% if @user.id == 1 %>
+                <p class="font-bold"><i class="fas fa-glasses color-pink"></i> &nbsp;Founder &nbsp;&nbsp;| &nbsp;&nbsp;<i class="fas fa-keyboard color-pink"></i> &nbsp;Contributor</p>
+              <% elsif @user.contributor %>
+                <p class="font-bold"><i class="fas fa-keyboard color-pink"></i> &nbsp;Contributor</p>
+              <% end %>
+              <p style="color: black"><%= @user.bio %></p>
+              <% if @user.tagline != "" %><h4 class="text-center thin d-none d-lg-block">My Motto: <%= @user.tagline %></h4><% end %>
+            </div> <!-- biobox-image -->
+          </div> <!-- row -->
+
+          <h4 class="text-center thin d-lg-none">Motto: <%= @user.tagline %></h4>
+
+          <div class="text-center sm-links" style="margin-top: 15px">
+            <% if @user.website_url != "" && @user.sm_approved %>
+              <a href="<%= @user.website_url %>" target="_blank"><i class="color-pink fas fa-link social-icon"></i></a>
             <% end %>
-          </div> <!-- biobox-image -->
-          <div class="biobox-bio col-sm-9">
-            <h4><%= @user.first_name %> <%= @user.last_name %></h4>
-            <% if @user.id == 1 %>
-              <p class="font-bold"><i class="fas fa-glasses color-pink"></i> &nbsp;Founder &nbsp;&nbsp;| &nbsp;&nbsp;<i class="fas fa-keyboard color-pink"></i> &nbsp;Contributor</p>
-            <% elsif @user.contributor %>
-              <p class="font-bold"><i class="fas fa-keyboard color-pink"></i> &nbsp;Contributor</p>
+            <% if @user.sm_facebook != "" && @user.sm_approved %>
+              <a href="<%= @user.sm_facebook %>" target="_blank"><i class="color-pink fab fa-facebook social-icon"></i></a>
             <% end %>
-            <p style="color: black"><%= @user.bio %></p>
-            <% if @user.tagline != "" %><h4 class="text-center thin d-none d-lg-block">My Motto: <%= @user.tagline %></h4><% end %>
-          </div> <!-- biobox-image -->
-        </div> <!-- row -->
-
-        <h4 class="text-center thin d-lg-none">Motto: <%= @user.tagline %></h4>
-
-        <div class="text-center sm-links" style="margin-top: 15px">
-          <% if @user.website_url != "" && @user.sm_approved %>
-            <a href="<%= @user.website_url %>" target="_blank"><i class="color-pink fas fa-link social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_facebook != "" && @user.sm_approved %>
-            <a href="<%= @user.sm_facebook %>" target="_blank"><i class="color-pink fab fa-facebook social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_pinterest != "" && @user.sm_approved %>
-            <a href="<%= @user.sm_pinterest %>" target="_blank"><i class="color-pink fab fa-pinterest-square social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_instagram != "" && @user.sm_approved %>
-            <a href="<%= @user.sm_instagram %>" target="_blank"><i class="color-pink fab fa-instagram social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_twitter != "" && @user.sm_approved %>
-            <a href="<%= @user.sm_twitter %>" target="_blank"><i class="color-pink fab fa-twitter social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_youtube != "" && @user.sm_approved %>
-            <a href="<%= @user.sm_youtube %>" target="_blank"><i class="color-pink fab fa-youtube social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_other != "" && @user.sm_approved %>
-            <a href="<%= @user.sm_other %>" target="_blank"><i class="color-pink fas fa-mouse-pointer social-icon"></i></a>
-          <% end %>
-          <% if @user.sm_email != "" && @user.sm_approved %>
-            <%= mail_to(@user.sm_email) do %><%= fa_icon "envelope", class: "color-pink social-icon" %><% end %>
-          <% end %>
-        </div> <!-- sm -->
-      </div> <!-- z depth -->
+            <% if @user.sm_pinterest != "" && @user.sm_approved %>
+              <a href="<%= @user.sm_pinterest %>" target="_blank"><i class="color-pink fab fa-pinterest-square social-icon"></i></a>
+            <% end %>
+            <% if @user.sm_instagram != "" && @user.sm_approved %>
+              <a href="<%= @user.sm_instagram %>" target="_blank"><i class="color-pink fab fa-instagram social-icon"></i></a>
+            <% end %>
+            <% if @user.sm_twitter != "" && @user.sm_approved %>
+              <a href="<%= @user.sm_twitter %>" target="_blank"><i class="color-pink fab fa-twitter social-icon"></i></a>
+            <% end %>
+            <% if @user.sm_youtube != "" && @user.sm_approved %>
+              <a href="<%= @user.sm_youtube %>" target="_blank"><i class="color-pink fab fa-youtube social-icon"></i></a>
+            <% end %>
+            <% if @user.sm_other != "" && @user.sm_approved %>
+              <a href="<%= @user.sm_other %>" target="_blank"><i class="color-pink fas fa-mouse-pointer social-icon"></i></a>
+            <% end %>
+            <% if @user.sm_email != "" && @user.sm_approved %>
+              <%= mail_to(@user.sm_email) do %><%= fa_icon "envelope", class: "color-pink social-icon" %><% end %>
+            <% end %>
+          </div> <!-- sm -->
+        </div> <!-- z depth -->
 
     </div> <!-- container -->
   </div> <!-- biobox -->

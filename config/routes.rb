@@ -4,11 +4,22 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }, path_prefix: "my"
   resources :users, only: [:show, :index, :edit, :update]
 
+  get 'admin/dashboard'
   get 'admin/store_manager'
   get 'admin/blogs'
   get 'admin/freebies'
   get 'admin/drafts'
   get 'admin/users'
+  get 'admin/categories'
+  get 'admin/messages'
+
+  get 'home/old'
+
+  resources :categories
+  resources :messages
+  post "messages/:id/mark_answered" => "messages#mark_answered", as: "mark_answered"
+  post "messages/:id/mark_unanswered" => "messages#mark_unanswered", as: "mark_unanswered"
+
 
   resources :meals
   post "meals/:id/favorite" => "meals#favorite", as: "favorite_meal"
@@ -64,7 +75,7 @@ Rails.application.routes.draw do
   end
 
   resources :freebies
-  resources :printables
+  resources :solutions
 
   resources :preauthorizations
   resources :sortings

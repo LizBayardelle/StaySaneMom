@@ -1,0 +1,104 @@
+<main>
+
+    <section class="masthead texture-leaves">
+        <div class="container px-xl-5">
+            <div class="row gx-5 p-md-0 align-items-center">
+
+            	<% if current_user && current_user.admin %>
+            		<div class="col-12 text-right" style="margin-top: -30px;">
+						<%= link_to 'Edit Category', edit_category_path(@category) %>
+						&nbsp;&nbsp;|&nbsp;&nbsp;
+						<%= link_to 'Category Admin Page', admin_categories_path %>
+					</div>
+				<% end %>
+
+                <div class="col-md-6 text-center mb-5">
+                    <h1 class="display-1 lh-1"><%= @category.i_statement %></h1>
+                    <h3><%= @category.description %></h3>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img class="classy-pic extra tilt-right" src="<%= @category.main_photo_url %>">
+                </div>
+                 <div class="col-12 text-center">
+                   <%= link_to @category.cta, Freebie.find(@category.freebie_id), class: "btn btn-pink btn-lg mt-5" %>
+                </div>
+
+			</div>
+        </div>
+    </section>
+
+
+
+    <section class="z-over bg-white z-depth-2-y py-5">
+    	<div class="container">
+    		<h2 class="display-1 color-pink font-script text-center">
+    			<%= @category.good_adjective %>, not <%= @category.bad_adjective.downcase %>.
+    		</h2>
+    		<div class="text-center">
+                <img class="classy-pic tilt-left w-50 mb-5" src="<%= @category.photo_2_url %>">
+            </div>
+	    	<%= raw(@category.intro) %>
+	    </div>
+    </section>
+
+
+
+    <section class="z-under py-5">
+    	<div class="container">
+    		<div class="text-center">
+                <h2 class="pb-4">How to <%= @category.cta.titleize %></h2>
+    		</div> <!-- col -->
+
+    		<div class="row align-items-center">
+
+	    		<div class="col-sm-6 text-center">
+	                <img class="classy-pic tilt-left mb-5 w-75" src="<%= @category.photo_3_url %>">
+	    		</div> <!-- col -->
+
+	    		<div class="col-sm-6">
+	                <p class="h3"><%= @category.cta_desc %></p>
+                    <%= Freebie.find(@category.freebie_id).thrivelink.html_safe %>
+	    		</div> <!-- col -->
+	    	</div> <!-- row -->
+    	</div> <!-- container -->
+    </section>
+
+
+    <% freebie_categorizations = CategorizationFreebie.where(category_id: @category.id) %>
+    <% if freebie_categorizations.count != 0 %>
+        <section class="z-over bg-white z-depth-2-y py-5">
+            <div class="container">
+                <div class="row">
+                    <h2 class="display-1 color-pink font-script text-center">
+                        Quick Fixes for Your <%= @category.name %>
+                    </h2>
+                    <% freebie_categorizations.each do |categorization| %>
+                        <% freebie = Freebie.find(categorization.freebie_id) %>
+                            <%= render partial: "freebies/card", locals: { freebie: freebie } %>
+                    <% end %>
+                </div> <!-- row -->
+            </div>
+        </section>
+    <% end %>
+
+
+    <% blog_categorizations = CategorizationBlog.where(category_id: @category.id) %>
+    <% if blog_categorizations.count != 0 %>
+        <section class="z-under py-5">
+            <div class="container">
+                <div class="row">
+                    <h2 class="display-1 color-pink font-script text-center">
+                        More about <%= @category.name %>
+                    </h2>
+                    <% blog_categorizations.each do |categorization| %>
+                        <% blog = Blog.find(categorization.blog_id) %>
+                        <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
+                    <% end %>
+                </div> <!-- row -->
+            </div>
+        </section>
+    <% end %>
+
+</main>
+
+

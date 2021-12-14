@@ -1,0 +1,74 @@
+<div class="modal fade" id="newMessageModal" tabindex="-1" role="dialog" aria-labelledby="newMessageModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="z-index: 1500;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newMessageModalLabel"><%= message_type %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for(message) do |f| %>
+
+        <div class="modal-body">
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <%= f.invisible_captcha :subtitle %>
+
+          <div class="form-inputs">
+            <div class="row">
+              <div class="col-12 col-sm-6 pb-3">
+                <div class="form-group">
+                  <%= f.label "Your Name", style: "display: block; text-align: left" %>
+                  <%= f.text_field :from_name, class: "form-control" %>
+                </div> <!-- form group -->
+              </div> <!-- col -->
+
+              <div class="col-12 col-sm-6  pb-3">
+                <div class="form-group">
+                  <%= f.label "Your Email Address", style: "display: block; text-align: left" %>
+                  <%= f.text_field :from_email, class: "form-control" %>
+                </div> <!-- form group -->
+              </div> <!-- col -->
+
+              <div class="col-12 pb-3">
+                <div class="form-group">
+                  <%= f.label "Subject", style: "display: block; text-align: left" %>
+                  <%= f.text_field :subject, class: "form-control" %>
+                </div> <!-- form group -->
+              </div> <!-- col -->
+
+              <div class="col-12">
+                <div class="form-group">
+                  <%= f.label "Message", style: "display: block; text-align: left" %>
+                  <%= f.text_area :body, class: "form-control" %>
+                </div> <!-- form group -->
+              </div> <!-- col -->
+
+              <%= f.hidden_field :type, value: message_type %>
+            </div> <!-- row -->
+          </div> <!-- form inputs -->
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-neutral-light" data-dismiss="modal">Close</button>
+          <%= f.submit "Send Message", class: "btn btn-pink" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(button).click(function() {
+        $(".modal-backdrop").css("z-index", 0);
+      })
+    });
+  </script>
+<% end %>

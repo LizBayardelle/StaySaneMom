@@ -1,0 +1,113 @@
+<section id="hero-and-header">
+
+  <div class="container py-5 text-center">
+    <h1 class="d-xl-none">You are not alone.</h1>
+    <div class="row">
+
+      <div class="col-xl-6 order-xl-1">
+          <img class="match-height classy-pic tilt-right mb-4" src="https://staysanemom.s3.us-west-1.amazonaws.com/111-images/Girl+Hands.jpeg" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+
+      <div class="col-xl-6 order-xl-0">
+        <h1 class="d-none d-xl-block">You are not alone.</h1>
+        <h3 class="text-black mb-4">
+            It does suck. Momming is a 24/7 job with no breaks, no HR department, and&nbsp;(often)&nbsp;no&nbsp;mercy.
+        </h3>
+        <h3 class="text-black mb-4">
+            This does not mean you love your kids any less.  It just means you&nbsp;need&nbsp;some&nbsp;support&nbsp;too.
+        </h3>
+        <h3 class="text-black">
+            That's where we come in.
+        </h3>
+        <a data-thrivecart-account="linchpin-industries" data-thrivecart-tpl="v2" data-thrivecart-product="39" class="thrivecart-button thrivecart-button-styled thrivecart-button_style-rounded thrivecart-button-custom ">
+            Call In the Cavalry
+        </a>
+      </div> <!-- col -->
+
+    </div> <!-- row -->
+
+
+  </div>
+
+</section>
+
+
+
+
+
+<section class="bg-white z-depth-2-y z-over py-5">
+    <div class="container text-center w-100">
+        <h2 class="display-4 lh-1 mb-4">
+            Need immediate help?
+        </h2>
+        <p class="text-black">
+        	Do you feel overwhelmed and stressed all the time?  Are you going crazy doing EVERYTHING for your kids?  Do you wonder if it's possible to do all the "mom" things and still have time for your work and yourself?
+        </p>
+    </div>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+
+            <div class="col-lg-4 py-5">
+                <img class="classy-pic tilt-left extra w-md-75" src="https://staysanemom.s3.us-west-1.amazonaws.com/111-images/SSM++Course++Sanity+Saver.png" class="w-100">
+            </div> <!-- col -->
+
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="container-fluid px-5">
+                    <div class="row gx-5">
+                        <div class="col-md-6 mb-5">
+                            <!-- Feature item-->
+                            <div class="text-center">
+                                <h3 class="font-alt">7 days of help, right to your inbox.</h3>
+                                <p class="text-muted lh-sm mb-3">
+                                    This free email course gives you a small boost of sanity each day.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-5">
+                            <!-- Feature item-->
+                            <div class="text-center">
+                                <h3 class="font-alt">Free, quick, and easy.</h3>
+                                <p class="text-muted lh-sm mb-0">                                    
+                                    Each day's video is 5 minutes or less, but is battle-tested to make your life as a mom a little bit easier.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- col -->
+
+            <div class="col-12 text-center">
+                <script async src="//tinder.thrivecart.com/embed/v1/thrivecart.js"></script>
+                <a data-thrivecart-account="linchpin-industries" data-thrivecart-tpl="v2" data-thrivecart-product="39" class="thrivecart-button thrivecart-button-styled thrivecart-button_style-rounded thrivecart-button-custom ">
+                	Sanity Starts Now
+                </a>
+            </div> <!-- col -->
+
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+
+
+
+<section class="z-under py-5">
+    <div class="container text-center w-100">
+        <h2 class="display-4 lh-1 mb-4">
+            Suffering from more specific feels?
+        </h2>
+        <p class="text-black">
+        	There are a lot of very distinct emotions that are unique to being a mom.  Check out some of our most common issues.  You really <em>aren't</em> the only one who feels that way.
+        </p>
+        <% Category.where(active: true).each do |category| %>
+        	<%= link_to category.i_statement, category_path(category), class: "btn btn-outline-black py-3 px-4 rounded-pill" %>
+        <% end %>
+    </div> <!-- container -->
+</section>
+
+
+
+
+
+
+
+

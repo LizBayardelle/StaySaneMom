@@ -16,6 +16,17 @@
     <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
 
+
+
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#fd1270">
+    <meta name="msapplication-TileColor" content="#e7dfd3">
+    <meta name="theme-color" content="#ffffff">
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -37,10 +48,17 @@
         }(document, 'script', 'ti-js'));
     </script>
 
+    <!-- MailerLite Universal -->
+    <script>
+    (function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+    var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+    f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+    var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+    _.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
 
-    <!-- Froala: Include external CSS. -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+    var ml_account = ml('accounts', '3055105', 'z6s9g0w4p8', 'load');
+    </script>
+    <!-- End MailerLite Universal -->
 
     <!-- PRIVACY AND COOKIES -->
     <script type="text/javascript">
@@ -49,7 +67,7 @@
     </script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="p:domain_verify" content="ef1c9dc3c7715b05ab4552ab0e404289"/>
@@ -75,15 +93,6 @@
 
       <!-- reCAPTCHA -->
       <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-      <!-- orbi -->
-      <script type="application/javascript">
-        (function(b, o, n, g, s, r, c) { if (b[s]) return; b[s] = {}; b[s].scriptToken = "XzU3NDM0ODkxNA"; r = o.createElement(n); c = o.getElementsByTagName(n)[0]; r.async = 1; r.src = g; r.id = s + n; c.parentNode.insertBefore(r, c); })(window, document, "script", "//cdn.oribi.io/XzU3NDM0ODkxNA/oribi.js", "ORIBI");
-      </script>
-
-      <!-- braintree -->
-      <script src="https://js.braintreegateway.com/web/dropin/1.16.0/js/dropin.min.js"></script>
-      <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 
       <!-- rss feed -->
       <%= auto_discovery_link_tag :rss, blogs_url(:format => :rss) %>
@@ -134,7 +143,11 @@
       <!-- end -->
   </head>
 
-  <body class="hidden-sn white-skin w-100">
+
+
+
+
+  <body id="page-top" class="hidden-sn white-skin w-100">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5B4MB9N"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -152,10 +165,11 @@
 
 <!--- good from here down -->
 
+  <%= render "layouts/navbar3" %>
 
-  <% if @headernav != false %>
-    <%= render "layouts/navbar2" %>
-  <% end %>
+  <%# if @headernav != false %>
+    <%#= render "layouts/navbar2" %>
+  <%# end %>
 
 
 
@@ -165,43 +179,8 @@
     </div> <!-- non-footer -->
 
     <% if @footer != false %>
-      <div class="post-footer text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8">
-              <p class="text-center font-serif">Stay Sane Mom gives support to the over-worked, under-slept, marker-stained, soul-hungry moms of the world, so they can be more&nbspthan&nbspjust&nbsp"mom".</p>
-              <p class="text-center font-serif">You just want to keep the house clean, raise functional kids, and still have a little left in the tank to be a real&nbsp;person&nbsp;as&nbsp;well.</p>
-              <p class="text-center font-serif">I'm here for you.</p>
-              <div class="text-center">
-                <a href="https://www.facebook.com/TheStaySaneMom/" target="_blank"><i class="fab fa-facebook social-icon"></i></a>
-                <a href="https://www.pinterest.com/theStaySaneMom/" target="_blank"><i class="fab fa-pinterest-square social-icon"></i></a>
-                <a href="https://www.instagram.com/theStaySaneMom/" target="_blank"><i class="fab fa-instagram social-icon"></i></a>
-                <a href="https://www.twitter.com/TheStaySaneMom/" target="_blank"><i class="fab fa-twitter social-icon"></i></a>
-                <a href="https://www.youtube.com/channel/UC_g4NFVoQi4t2PbA23q0_VQ" target="_blank"><i class="fab fa-youtube social-icon"></i></a>
-                <%= mail_to("liz@theStaySaneMom.com") do %><%= fa_icon "envelope", class: "social-icon color-black" %><% end %>
-              </div> <!-- centered sm -->
-            </div> <!-- left bit -->
-            <div class="col-sm-4 side-links">
-              <p class="font-bold"><%= link_to "About Us", static_path(:AboutMe), class: "color-pink thin" %></p>
-              <p class="font-bold"><%= link_to "Let's Collaborate", static_path(:Collaborate), class: "color-pink thin" %></p>
-              <p class="font-bold"><%= link_to "Speaking Engagements", static_path(:Speaking), class: "color-pink thin" %></p>
-              <p class="font-bold"><%= link_to "Guest Posting", new_contribution_path, class: "color-pink thin" %></p>
-              <p class="font-bold"><%= link_to "Privacy Policy", static_path(:PrivacyPolicy), class: "color-pink thin" %></p>
-            </div> <!-- left bit -->
-          </div> <!-- row -->
-        </div> <!-- container -->
-
-
-      </div> <!-- container -->
-
-      <div class="bg-transparent-neutral copyright text-center">
-        <div class="container">
-          <p id="affiliate" style="line-height: 1.1"><small>As an Amazon Associate I earn from qualifying purchases and occasionally participate in other linking programs, but I will never link to anything I don't like.</small></p>
-          <p class="color-neutral"><small>Copyright &copy; <%= Time.current.year %> <em class="color-neutral">The Stay Sane Mom</em></small></p>
-        </div> <!-- container -->
-      </div> <!-- container -->
+      <%= render partial: "layouts/footer" %>
     <% end %>
-
 
     <%= render "layouts/scripts" %>
     <%= javascript_include_tag 'mdb_framework'%>

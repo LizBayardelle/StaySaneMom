@@ -1,0 +1,213 @@
+<!-- page-specific content -->
+  <% title "The Stay Sane Mom" %>
+  <%= content_for :head do %>
+    <meta name="description" content="Helping overworked moms keep clean house, a healthy marriage, balanced kids, and stay sane on top of it all." />
+  <% end %>
+<!-- page-specific content -->
+
+
+
+
+
+
+<main class="p-0">
+
+  <section id="hero-image">
+    <div class="header-frame frame" style="background-image: url(https://staysanemom.s3-us-west-1.amazonaws.com/stay-sane-mom.jpg)" role="img" aria-label="Overwhelmed mom acting like she's tearing her hair out."><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
+
+    <div class="over-frame-text">
+      <div class="container text-center px-5">
+        <h1 class="color-black pb-2">
+          Feel like you're going&nbsp;crazy?
+        </h1>
+        <h4 class="text-center mb-3">
+          Being a mom is no joke.
+        </h4>
+        <h4 class="text-center mb-3">
+          It's not just the sleep-deprivation, tantrums, eye rolls, and 24/7 requests for snacks.
+        </h4>
+        <h4 class="text-center mb-5 mb-xl-2">
+          No, no, no...it's like your identity all the sudden disappeared the second you became "mom".
+        </h4>
+        <%= link_to "Take the Quiz", new_sorting_path, class: "mt-5 mt-xl-0 btn btn-pink btn-lg" %>
+      </div> <!-- over-frame-text -->
+    </div> <!-- over-frame-text -->
+  </section>
+
+
+
+
+  <section id="as-seen-on" class="text-center row">
+    <div class="col-12">
+      <h2 class="pt-3">As Seen On</h2>
+    </div>
+    <div class="col-12 pt-2 pb-4">
+      <a href="https://www.scarymommy.com/losing-mom-even-harder-when-youre-mom-too/" rel="nofollow" title="Scary Mommy">
+        <img src="https://3a60h1vxk0ezoe7oqzr8fl8l-wpengine.netdna-ssl.com/wp-content/uploads/2015/08/SM_logo_transparent_PNG.jpg" alt="Scary Mommy" style="height: 35px; padding-bottom: 5px; display: inline-block;" />
+      </a>
+      <a href="https://filterfreeparents.com/author/elizabeth-bayardelle/" rel="nofollow" title="Filter Free parents">
+        <%= image_tag "FFPLogo.png", alt: "Filter Free Parents", style: "height: 40px; display: inline-block;" %>
+      </a>
+      <a href="https://www.sammichespsychmeds.com/how-i-survived-my-first-thousand-repetitions-of-baby-shark-7-rules-for-toddler-moms/" rel="nofollow" title="Sammiches & Psych Meds">
+        <%= image_tag "SPMLogo.png", alt: "Sammiches & Psych Meds", style: "height: 40px; margin-right: 30px; display: inline-block;" %>
+      </a>
+      <a href="https://www.imperfectlyperfectmama.com/author/liz-bayardelle/" rel="nofollow" title="Imperfectly Perfect Mama">
+        <%= image_tag "IPMLogo.svg", alt: "Imperfectly Perfect Mama", style: "height: 40px; padding-bottom: 5px; display: inline-block;" %>
+      </a>
+    </div> <!-- col -->
+  </section> <!-- as seen on -->
+
+
+  <hr class="w-25" />
+
+
+  <section id="how-we-help">
+    <div class="container-fluid px-5 pb-5">
+      <%= render partial: "home/services" %>
+    </div> <!-- container -->
+  </section>
+
+
+
+
+
+  <section id="about" class="bg-pink">
+    <div class="container py-5">
+      <%= render partial: "home/about" %>
+    </div>
+  </section>
+
+
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <h2 class="section-title">Most Popular Blogs</h2>
+        <div class="row">
+          <% @featured_blogs.each do |blog| %>
+            <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
+          <% end %>
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </section>
+
+
+
+
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <h3 class="section-title">Popular Tools</h3>
+        <div class="row">
+          <%= render "layouts/tools/tasks" %>
+          <%= render "layouts/tools/recipes" %>
+          <%= render "layouts/tools/capsules" %>
+          <%= render "layouts/tools/birthdays" %>
+        </div> <!-- row -->
+        <h5 class="text-center">
+          <%= link_to "See All Tools", static_path(:tools), class: "btn btn-pink" %>
+        </h5>
+      </div> <!-- container -->
+    </section>
+
+
+
+
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <h2 class="section-title">Newest Blogs</h2>
+        <div class="row">
+          <% @recent_blogs.each do |blog| %>
+            <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
+          <% end %>
+        </div> <!-- row -->
+        <h5 class="text-center"><%= link_to "Go to the Blog", blogs_path, class: "btn btn-pink" %></h5>
+      </div> <!-- container -->
+    </section>
+
+
+
+
+
+
+    <section id="popular">
+      <div class="container-fluid p-5">
+        <div class="text-center container">
+          <h2 class="section-title">Recommended Reading</h2>
+          <script type="text/javascript">
+          amzn_assoc_placement = "adunit0";
+          amzn_assoc_search_bar = "true";
+          amzn_assoc_tracking_id = "thestaysane0e-20";
+          amzn_assoc_ad_mode = "manual";
+          amzn_assoc_ad_type = "smart";
+          amzn_assoc_marketplace = "amazon";
+          amzn_assoc_region = "US";
+          amzn_assoc_title = "My Amazon Picks";
+          amzn_assoc_linkid = "bd682ffb57ec7017943ea6ee08b159fd";
+          amzn_assoc_asins = "1950328791,1950328813,0345472322,1582706557";
+          </script>
+          <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+        </div>
+      </div> <!-- container -->
+    </section>
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- form itself -->
+  <div id="convertkitPopup" class="white-popup mfp-hide">
+    <script async data-uid="fcce48a626" src="https://f.convertkit.com/fcce48a626/999d19a7ee.js"></script>
+  </div>
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      // object-fit polyfill run
+      objectFitImages();
+      /* init Jarallax */
+      jarallax(document.querySelectorAll('.jarallax'));
+      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+      });
+
+      $('.height').matchHeight();
+      $('.category-div').matchHeight();
+      $('.card').matchHeight();
+      $('.view').matchHeight();
+      $('.card-text').matchHeight();
+      $('.open-popup-link').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+      });
+      $('.hero-button').click(function() {
+          ga('send', 'event', 'Subscription', 'Hero Button Subscription', 'Homepage Hero Button Subscription');
+      });
+    });
+  </script>
+<% end %>

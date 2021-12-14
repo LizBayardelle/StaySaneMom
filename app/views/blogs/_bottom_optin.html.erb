@@ -1,20 +1,30 @@
-<section id="bottom_optin">
-  <div class="container py-5">
-    <div class="z-depth-3 p-5 text-center">
+<% freebie = Freebie.find(@blog.freebie_id) %>
 
-      <% freebie = Freebie.find(@blog.freebie_id) %>
+<section id="freebie" class="z-under py-5">
+  <div class="container text-center">
+    <div class="row align-items-center">
 
-      <h4 class="text-center">Start Your Next Step</h4>
-      <h2 class="h1 thin uppercase color-<%= @blog.category.downcase %>">Free <%= freebie.name %></h2>
+      <div class="col-md-4">
+        <div class="d-md-none">
+          <h4 class="text-center">Start Your Next Step</h4>
+          <h2 class="thin uppercase color-<%= @blog.category.downcase %>"><%= freebie.name %></h2>
+        </div>
+        <img src="<%= rails_blob_path(freebie.image) %>" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+      <div class="col-md-8">
+        <div class="d-none d-md-block">
+          <h4 class="text-center">Start Your Next Step</h4>
+          <h2 class="thin uppercase color-<%= @blog.category.downcase %>"><%= freebie.name %></h2>
+        </div>
 
-      <img src="<%= rails_blob_path(freebie.image) %>" class="mt-1 mb-4" style="max-height: 150px">
-      <h2>Get My Free <span class="font-weight-bold"><%= freebie.short_description %></span>&nbsp;Now</h2>
+        <h4>Get the Free <span class="font-weight-bold"><%= freebie.short_description %></span>&nbsp;Now</h4>
 
-      <%= link_to freebie, class: "btn btn-pink" do %>
-        Get it Now
-      <% end %>
+        <%= link_to freebie, class: "btn btn-pink" do %>
+          Get it Now
+        <% end %>
+      </div> <!-- col -->
 
-    </div> <!-- z depth -->
+
+    </div> <!-- row -->
   </div> <!-- container -->
-
 </section> <!-- freebie -->

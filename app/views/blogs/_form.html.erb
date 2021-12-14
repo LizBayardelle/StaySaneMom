@@ -8,7 +8,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 </div> <!-- header container -->
 
-<%= render "layouts/quadborder" %>
+
+
+
+
 
 <div class="container">
   <div class="half-buffer"></div>
@@ -87,7 +90,15 @@
         </div>
 
       </div> <!-- row -->
-    </div>
+    </div> <!-- form-group -->
+
+    <div class="form-group form-check jsItUp">
+      <h5>Categories</h5>
+      <div class="row">
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
+      </div>
+     </div>
+
     <div class="form-group">
       <h5>Subcategory</h5>
       <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
@@ -98,7 +109,10 @@
 
 
 
-  <%= render "layouts/quadborder" %>
+  
+
+
+
 
 
 
@@ -154,7 +168,10 @@
 
 
 
-  <%= render "layouts/quadborder" %>
+  
+
+
+
 <% end %> <!-- end admin only images section -->
 
 
@@ -204,7 +221,10 @@
 
 
 
-<%= render "layouts/quadborder" %>
+
+
+
+
 
 
 
@@ -223,7 +243,10 @@
 
 
 
-<%= render "layouts/quadborder" %>
+
+
+
+
 
 
 
@@ -248,20 +271,13 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+      $(".jsItUp input").addClass("form-check-input");
+      $(".jsItUp label").addClass("form-check-label");
       $('.datepicker').pickadate();
       $('#date').on('change', function() {
         var date = $('#date').val();
         $('#dateHolder').val(date);
       });
     });
-    $('#wysiwyg').froalaEditor({
-      key: '<%= ENV['FROALA_ACTIVATION_KEY'] %>',
-      inlineMode: false,
-      heightMin: '200px',
-      toolbarButtons: [
-          'bold', 'italic', 'underline', 'paragraphFormat', 'formatOL',
-          'formatUL', 'insertHTML', 'undo', 'redo', 'html'
-        ]
-    })
   </script>
 <% end %>

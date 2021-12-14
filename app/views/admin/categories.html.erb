@@ -1,0 +1,35 @@
+<main>
+  <header class="text-center">
+    <h1 class="font-script color-pink display-1 mt-3 mb-0">Categories</h1>
+    <p><small>
+      <%= link_to "Create a New Category", new_category_path %>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= link_to "Public Category Page", new_category_path %>
+    </small></p>
+  </header>
+
+</main>
+
+
+<section class="container">
+  <% @categories.each do |category| %>
+    <div class="content-box mb-3">
+      <h2 class="text-center"><%= link_to category.name, category_path(category) %>
+        <% unless category.active %> (Inactive)<% end %>
+      </h2>
+      <p><%= category.description %><p>
+      <p>
+        <strong>Adjectives: </strong>
+        <%= category.bad_adjective %> / <%= category.good_adjective %>
+      <br>
+        <strong>I Statement: </strong>
+        <%= category.i_statement %>
+      <br>
+        <strong>CTA: </strong>
+        <%= category.cta %> (<%= category.cta_url %>)
+      <br><small><em>
+        <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </em></small></p>
+    </div>
+  <% end %>
+</section>

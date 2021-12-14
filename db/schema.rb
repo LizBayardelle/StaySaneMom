@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_220756) do
+ActiveRecord::Schema.define(version: 2021_12_13_212834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.string "freebie_type", default: "None"
     t.string "freebie_description"
     t.integer "comments_count"
+    t.bigint "subcategory_id"
     t.boolean "affiliate_links", default: true
     t.boolean "approved", default: false
     t.boolean "submitted", default: false
@@ -88,12 +89,17 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.index ["pin_image_id"], name: "index_blogs_on_pin_image_id"
     t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["subcategory_id"], name: "index_blogs_on_subcategory_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
     t.index ["variation_id"], name: "index_blogs_on_variation_id"
   end
 
   create_table "capsule_items", force: :cascade do |t|
     t.date "item_date"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.string "title"
     t.text "caption"
     t.bigint "user_id"
@@ -116,6 +122,52 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.string "photo_orientation", default: "Square"
     t.string "interval", default: "Yearly"
     t.index ["user_id"], name: "index_capsules_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active", default: true
+    t.string "i_statement"
+    t.string "cta"
+    t.text "description"
+    t.text "intro"
+    t.string "bad_adjective"
+    t.string "good_adjective"
+    t.string "main_photo_url"
+    t.string "photo_2_url"
+    t.string "photo_3_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "cta_desc"
+    t.bigint "freebie_id"
+    t.index ["freebie_id"], name: "index_categories_on_freebie_id"
+  end
+
+  create_table "categorization_blogs", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_categorization_blogs_on_blog_id"
+    t.index ["category_id"], name: "index_categorization_blogs_on_category_id"
+  end
+
+  create_table "categorization_freebies", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "freebie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorization_freebies_on_category_id"
+    t.index ["freebie_id"], name: "index_categorization_freebies_on_freebie_id"
+  end
+
+  create_table "categorization_solutions", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "solution_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorization_solutions_on_category_id"
+    t.index ["solution_id"], name: "index_categorization_solutions_on_solution_id"
   end
 
   create_table "contributions", force: :cascade do |t|
@@ -158,6 +210,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.string "ml_submit_code"
     t.string "after_download_url"
     t.string "ml_img_track_url"
+    t.string "thrivelink"
     t.index ["slug"], name: "index_freebies_on_slug", unique: true
   end
 
@@ -216,12 +269,27 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "message_type"
+    t.string "from_name"
+    t.string "from_email"
+    t.string "subject"
+    t.text "body"
+    t.boolean "answered", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "occasions", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "user_id"
     t.string "name"
     t.date "date"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_occasions_on_person_id"
+    t.index ["user_id"], name: "index_occasions_on_user_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -250,7 +318,21 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "printables", force: :cascade do |t|
+  create_table "responses", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.boolean "read"
+    t.boolean "approved"
+    t.boolean "email"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_responses_on_comment_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
+  end
+
+  create_table "solutions", force: :cascade do |t|
     t.string "name"
     t.decimal "price", precision: 8, scale: 2
     t.text "description"
@@ -266,20 +348,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "responses", force: :cascade do |t|
-    t.text "body"
-    t.bigint "user_id"
-    t.bigint "comment_id"
-    t.boolean "read"
-    t.boolean "approved"
-    t.boolean "email"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_responses_on_comment_id"
-    t.index ["user_id"], name: "index_responses_on_user_id"
+    t.string "thrivelink"
   end
 
   create_table "sortings", force: :cascade do |t|
@@ -400,8 +469,17 @@ ActiveRecord::Schema.define(version: 2021_06_22_220756) do
   add_foreign_key "capsule_items", "capsules"
   add_foreign_key "capsule_items", "users"
   add_foreign_key "capsules", "users"
+  add_foreign_key "categories", "freebies"
+  add_foreign_key "categorization_blogs", "blogs"
+  add_foreign_key "categorization_blogs", "categories"
+  add_foreign_key "categorization_freebies", "categories"
+  add_foreign_key "categorization_freebies", "freebies"
+  add_foreign_key "categorization_solutions", "categories"
+  add_foreign_key "categorization_solutions", "solutions"
   add_foreign_key "gifts", "users"
   add_foreign_key "meals", "users"
+  add_foreign_key "occasions", "people"
+  add_foreign_key "occasions", "users"
   add_foreign_key "people", "users"
   add_foreign_key "responses", "users"
   add_foreign_key "sortings", "users"

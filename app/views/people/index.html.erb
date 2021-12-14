@@ -1,5 +1,5 @@
 <!-- page-specific content -->
-  <% title "My Tribe | SSM" %>
+  <% title "My Tribe&nbsp;&nbsp;|&nbsp;&nbsp;SSM" %>
   <%= content_for :head do %>
     <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
   <% end %>
@@ -12,39 +12,33 @@
   </div> <!-- container -->
   <div class="over-frame-bottom-row">
     <div class="container text-center">
-      <a href="#newPersonPopup" class="open-popup-link btn my-btn-outline-secondary">Add New Person</a>
+      <a href="#newPersonPopup" class="open-popup-link btn btn-pink">Add New Person</a>
       <div class="buffer"></div>
     </div> <!-- container -->
   </div> <!-- over-frame-text -->
 </div> <!-- over-frame-text -->
 
-<div class="half-buffer"></div>
 
-<div class="container">
+<section class="bg-white w-100 z-depth-2-y py-5">
+  <div class="container">
 
-  <h1 class="text-center" style="margin-bottom: 0">My Tribe</h1>
+  <h1 class="text-center mb-0">My Tribe</h1>
 
-  <div class="text-center">
+  <div class="text-center pb-5">
     <div id="relationshipTarget" class="sortingTarget color-neutral">Sort by Relationship</div> |
     <div id="groupTarget" class="sortingTarget font-bold color-neutral">Sort by Family Group</div> |
     <div id="lastNameTarget" class="sortingTarget color-neutral">Sort by Last Name</div> |
     <div id="birthdayTarget" class="sortingTarget color-neutral">Sort by Birthday</div>
   </div>
 
-  <div class="half-buffer"></div>
 
   <div id="relationship" class="sortingGroup d-none">
     <% @relationships.each do |relationship| %>
-      <h4 class="color-neutral"><%= relationship.pluralize(2) %></h4>
+      <h4 class="color-pink"><%= relationship.pluralize(2) %></h4>
       <% @people_last_name.each do |person| %>
         <% if person.relationship == relationship %>
-          <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
-          <p>
-            <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-            <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-            <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
-            <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </p>
+          <h5 class="mb-0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+          <%= render partial: "people/person_details", locals: { person: person } %>
         <% end %>
       <% end %>
     <% end %>
@@ -52,43 +46,27 @@
 
   <div id="group" class="sortingGroup">
     <% @groups.each do |group| %>
-      <h4 class="color-neutral"><%= group %></h4>
+      <h4 class="color-pink"><%= group %></h4>
       <% @people_last_name.each do |person| %>
         <% if person.group == group %>
-          <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
-          <p>
-            <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-            <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-            <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
-            <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </p>
+          <h5 class="mb-0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+          <%= render partial: "people/person_details", locals: { person: person } %>
         <% end %>
       <% end %>
     <% end %>
 
-    <div class="half-buffer"></div>
 
-    <h4 class="color-neutral">No Group Listed</h4>
+    <h4 class="mt-4 color-neutral">No Group Listed</h4>
     <% @people_no_group.each do |person| %>
-      <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
-      <p>
-        <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-        <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-        <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
-        <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+      <h5 class="mb-0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+      <%= render partial: "people/person_details", locals: { person: person } %>
     <% end %>
   </div>
 
   <div id="lastName" class="sortingGroup d-none">
     <% @people_last_name.each do |person| %>
-      <h5 style="margin-bottom: 0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
-      <p>
-        <% if person.birthday %><%= person.birthday.strftime("%B %e") %> (Birthday)<span class="color-neutral"> | </span><% end %>
-        <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-        <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
-        <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+      <h5 class="mb-0"><strong><%= person.last_name %></strong>, <%= person.first_name %> <%= person.middle_name %> (<%= person.relationship %>)</h5>
+      <%= render partial: "people/person_details", locals: { person: person } %>
     <% end %>
   </div>
 
@@ -98,32 +76,25 @@
         <tr>
           <td><h5><%= person.birthday.strftime("%B %e") %></h5></td>
           <td>
-            <h5 style="margin-bottom: 0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
-            <p>
-              <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-              <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
-              <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </p>
+            <h5 class="mb-0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
+            <%= render partial: "people/person_details", locals: { person: person } %>
+          </td>
         </tr>
       <% end %>
     </table>
 
-    <div class="half-buffer"></div>
 
-    <h4 class="color-neutral">No Birthday Listed</h4>
+    <h4 class="mt-4 color-neutral">No Birthday Listed</h4>
     <% @people_no_birthday.each do |person| %>
-      <h5 style="margin-bottom: 0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
-      <p>
-        <% if person.anniversary %><%= person.anniversary.strftime("%B %e") %> (Anniversary)<span class="color-neutral"> | </span><% end %>
-        <% if person.other %><%= person.other.strftime("%B %e") %> (<% if person.other_date_name != "" %><%= person.other_date_name %><% else %>Other<% end %>)<span class="color-neutral"> | </span><% end %>
-        <%= link_to 'Show', person %><span class="color-neutral"> | </span><%= link_to 'Edit', edit_person_path(person) %><span class="color-neutral"> | </span><%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+      <h5 class="mb-0"><%= person.first_name %> <%= person.middle_name %> <%= person.last_name %> (<%= person.relationship %>)</h5>
+      <%= render partial: "people/person_details", locals: { person: person } %>
     <% end %>
   </div> <!-- birthday -->
 
 
 
-</div> <!-- container -->
+  </div> <!-- container -->
+</section> 
 
 
 

@@ -1,0 +1,26 @@
+<p>
+  <strong>
+    <% if message.answered %>
+      <%= link_to mark_unanswered_path(message), method: :post do %>
+        <i class="far fa-circle color-pink pe-1"></i>
+      <% end %>
+    <% else %>
+      <%= link_to mark_answered_path(message), method: :post do %>
+        <i class="fas fa-circle color-pink pe-1"></i>
+      <% end %>
+    <% end %>
+    <% if message.subject != "" %>
+      <%= message.subject %>
+    <% else %>
+      No Subject
+    <% end %>
+  </strong>
+  <br>
+  <%= message.body %>
+  <br>
+  <em>
+    From <%= message.from_name %>
+    <% if message.from_email != "" %>, <a href="mailto:<%= message.from_email %>"><%= message.from_email %></a><% end %>
+    , <%= link_to 'Delete Message',  message, data: { confirm: 'Are you sure you want to delete that?' }, method: :delete %>
+  </em>
+</p>

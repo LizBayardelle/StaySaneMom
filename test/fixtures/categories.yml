@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  active: MyString
+  description: MyText
+  intro: MyText
+  bad_adjective: MyString
+  good_adjective: MyString
+  main_photo_url: MyString
+  photo_2_url: MyString
+  photo_3_url: MyString
+
+two:
+  name: MyString
+  active: MyString
+  description: MyText
+  intro: MyText
+  bad_adjective: MyString
+  good_adjective: MyString
+  main_photo_url: MyString
+  photo_2_url: MyString
+  photo_3_url: MyString

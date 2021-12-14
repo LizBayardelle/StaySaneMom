@@ -1,12 +1,19 @@
-<div class="container pt-2">
-  <header class="text-center pb-4">
-    <h1 class="big-title">Free Resources</h1>
-    <% if current_user && current_user.admin %>
-      <%= link_to 'New', new_freebie_path, class: "btn btn-grey-light btn-sm" %>
-      <%= link_to 'Admin Page', admin_freebies_path, class: "btn btn-grey-light btn-sm" %>
-    <% end %>
-  </header>
+<!-- page-specific content -->
+  <% title "Solutions | SSM" %>
+<!-- page-specific content -->
 
+
+<div class="text-right px-5">
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Input a New Freebie', new_freebie_path, class: "mt-2 btn btn-grey-light btn-sm"  %>
+    <%= link_to 'Admin Page', admin_freebies_path, class: "mt-2 btn btn-grey-light btn-sm" %>
+  <% end %>
+</div> <!-- right -->
+
+<div class="container">
+  <h1 class="pt-3 mb-0 text-center big-title">Quick Fixes</h1>
+  <p class="text-center lh-sm pb-0">Are you in a pinch? Need something in the next 15 seconds?</p>
+  <p class="text-center lh-sm pb-2">We've got your back...whether it's a homework organizer for the 7th grader, a tantrum survival guide for the toddler, or a financial tracker for your high schooler.</p>
 
   <div class="row">
     <% @freebies.each do |freebie| %>

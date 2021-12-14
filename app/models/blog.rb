@@ -8,6 +8,10 @@ class Blog < ApplicationRecord
   has_many :subcategories, through: :subcategorizations
   belongs_to :freebie, optional: true
 
+  has_many :categorization_blogs
+  has_many :categories, through: :categorization_blogs
+
+
 
   has_one_attached :image
   has_many_attached :pin_image

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @message.from_name %> has sent a message!</h1>
+    <h4>Here's Who You're Dealing With</h4>
+    <p>
+      Name:  <%= @message.from_name %><br />
+      Email:  <%= mail_to @message.from_email %><br />
+      About:  <%= @message.message_type %><br />
+    </p>
+    <h4><%= @message.subject %></h4>
+    <%= simple_format(@message.body) %>
+
+    <hr style="border: 0; border-top: solid 2px #fd1270; margin-top: 25px" />
+    <img src="https://staysanemom.s3-us-west-1.amazonaws.com/111-images/SSM+Logo.jpg" style="width: 150px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #fd1270;" />
+
+  </body>
+</html>

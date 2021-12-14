@@ -5,43 +5,60 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame text-center" style="background-image: url(<%= asset_path "best-parenting-blog.jpg" %>)"><div class="image-overlay image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
-  <div class="container text-center">
-    <h1>Make Momming Easier</h1>
-    <h4>Tips, research, how to guides...We got you.</h4>
-    <script async data-uid="229e74784f" src="https://f.convertkit.com/229e74784f/ac0fba8d30.js"></script>
-  </div> <!-- container -->
-  <div class="over-frame-bottom-row text-center">
-    <div class="container">
-      <% if current_user && (current_user.admin || current_user.contributor) %>
-        <div class="half-buffer"></div>
-        <%= link_to 'Start Writing a New Blog', new_blog_path, class: "btn btn-pink btn-lg" %>
-        <div class="buffer"></div>
-      <% end %>
-    </div> <!-- over frame bottom row -->
-  </div> <!-- over-frame-text -->
-</div> <!-- over-frame-text -->
 
+    <header class="container py-5 px-xl-5">
+      <div class="row gx-5 p-md-0 align-items-center">
+          <div class="col-12 text-center mb-5">
+              <h1 class="display-1 lh-1">The wisdom of many moms, at&nbsp;your&nbsp;service.</h1>
+          </div>
+          <div class="col-md-6">
+            <h4 class="pb-2">Remember how it takes a village?</h4>
+            <h4 class="pb-2">Yeah, that wasn't for the kid's benefit.  It&nbsp;was&nbsp;for&nbsp;yours.</h4>
+            <h4 class="pb-2">We may not be able to help watch your kids at the park, but here is your virtual&nbsp;mom&nbsp;village.</h4>
+            <h4 class="pb-2">Experience, commiseration, sympathy, research, sarcasm...</h4>
+            <h4>Ready, go.</h4>
+          </div>
+          <div class="col-md-6 text-center">
+              <img class="match-height classy-pic extra tilt-right" src="<%= asset_path 'best-parenting-blog.jpg' %>" class="w-100">
+          </div>
+      </div>
+    </header>
 
-<div class="half-buffer"></div>
 
 
 <% if current_user && current_user.admin %>
-  <div class="bg-transparent-neutral py-5 mb-5"><div class="container">
+  <div class="bg-transparent-neutral py-5"><div class="container">
     <% if @drafts.count > 0 %>
-      <h2 class="section-title">My Drafts</h2>
+      <h2 class="section-title">Contributor Hub</h2>
       <% @drafts.each do |blog| %>
-        <h5><%= link_to blog.title, blog_path(blog) %></h5>
+        <%= link_to blog_path(blog) do %>
+          <h5>DRAFT: <% if blog.title && blog.title != "" %><%= blog.title %><% else %> [ untitled ]<% end %></h5>
+        <% end %>
       <% end %>
     <% end %>
+    <div class="text-center">
+      <%= link_to "Start a New Blog", new_blog_path, class: "btn btn-pink btn-sm mb-3" %>
+    </div>
   </div></div>
 <% end %>
 
 
+<section class="bg-pink text-center">
+  <div class="container py-5">
+    <h2 class="color-white">Want all the free goodies delivered&nbsp;to&nbsp;you?</h2>
+    <p class="color-white">Real life is hard work.  This is the internet.  Let us come to you.</p>
+    <button type="button" class="btn btn-white z-depth-5 mb-2" data-toggle="modal" data-target="#subscribeModal">
+      Just Give Me the Fish
+    </button>
+
+  </div>
+</section>
+
+
+
 <div class="container">
 
-  <h2 class="section-title">Most Popular Blogs</h2>
+  <h2 class="section-title pt-5">Most Popular Blogs</h2>
   <div class="row">
     <% @featured_blogs.each do |blog| %>
       <%= render partial: "layouts/mdbcard", locals: { blog: blog, color: blog.category.downcase } %>
@@ -60,6 +77,25 @@
   <div class="text-center"><%= paginate @blogs %></div>
 
 </div> <!-- page container -->
+
+
+
+
+
+
+
+<div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="z-index: 1500;">
+        <div class="modal-body">
+          <div class="ml-form-embed"
+            data-account="3055105:z6s9g0w4p8"
+            data-form="5149808:o5m0b2">
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 
 <%= content_for :additional_js do %>
   <script type="text/javascript">

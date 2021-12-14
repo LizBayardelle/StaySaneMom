@@ -1,0 +1,40 @@
+<%= content_for :title do %>
+  Messages
+<% end %>
+
+
+<section class="breadcrumbs px-4 py-3">
+  <p>
+    <%= link_to "Admin Dashboard", admin_dashboard_path %>
+    &nbsp;&nbsp;>&nbsp;&nbsp;
+    Messages
+  </p>
+</section>
+
+
+<main class="container pb-5">
+
+  <header class="text-center">
+    <h1 class="bolder color-midnight">Messages</h1>
+  </header>
+
+  <section>
+      <% message_type_array = [] %>
+      <% @messages.each do |message| %>
+        <% unless message_type_array.include? message.message_type %>
+          <% message_type_array.unshift(message.message_type) %>
+        <% end %>
+      <% end %>
+      <% message_type_array.each do |message_type| %>
+        <h3><%= message_type %></h3>
+        <% @messages.each do |message| %>
+          <% if message.message_type == message_type %>
+            <div class="content-box bg-white">
+              <%= render partial: "messages/show", locals: { message: message } %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+  </section>
+
+</main>

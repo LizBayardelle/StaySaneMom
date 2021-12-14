@@ -1,33 +1,51 @@
-<div class="header-frame frame" style="background-image: url(<%= asset_path "tools-for-homepage.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
-  <div class="container text-center">
+
+<section id="hero-and-header">
+
+  <div class="container py-5 text-center">
+
     <% if current_user && current_user == @user %>
       <% if @user.first_name %>
-        <h1><%= @user.first_name %>'s Homepage</h1>
+        <h1 class="d-md-none"><%= @user.first_name %>'s Homepage</h1>
       <% else %>
-        <h1>My Homepage</h1>
+        <h1 class="d-md-none">My Homepage</h1>
       <% end %>
-      <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
-      <%= link_to 'Edit My Info', edit_user_registration_path, class: "btn btn-sm btn-pink" %>
-      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-sm btn-pink" %>
-
-      <% if ( @user.contributor || @user.admin ) && @user == current_user %>
-        <h4 class="pt-4 font-weight-bold">(And all your contributor superpowers.)</h4>
-        <%= link_to "Contributor Welcome", page_path("contributor_welcome"), class: "btn btn-sm btn-pink" %>
-        <%= link_to "My Drafts", admin_drafts_path, class: "btn btn-sm btn-pink" %>
-      <% end %>
-    <% else %>
-      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-      <h2><strong>
-        <% if @user.admin %>
-          <i class="fas fa-glasses color-pink"></i> &nbsp;Stay Sane Mom Founder
-        <% elsif @user.contributor %>
-          <i class="fas fa-keyboard color-pink"></i> &nbsp;Stay Sane Mom Contributor
-        <% end %>
-      </strong></h2>
     <% end %>
+
+    <div class="row align-items-center">
+
+      <div class="col-md-6 order-md-1">
+          <img class="match-height classy-pic tilt-right mb-4" src="<%= asset_path "tools-for-homepage.jpg" %>" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+
+      <div class="col-md-6 order-md-0">
+        <% if current_user && current_user == @user %>
+          <% if @user.first_name %>
+            <h1 class="d-none d-md-block"><%= @user.first_name %>'s Homepage</h1>
+          <% else %>
+            <h1 class="d-none d-md-block">My Homepage</h1>
+          <% end %>
+        
+          <h4><strong>Here's where you find all your personalized tools and goodies.</strong></h4>
+          <%= link_to 'Edit My Info', edit_user_registration_path, class: "btn btn-sm btn-pink" %>
+          <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-sm btn-pink" %>
+
+          <% if ( @user.contributor || @user.admin ) && @user == current_user %>
+            <h4 class="pt-4 font-weight-bold">(And all your contributor superpowers.)</h4>
+            <%= link_to "Contributor Welcome", page_path("contributor_welcome"), class: "btn btn-sm btn-pink" %>
+            <%= link_to "My Drafts", admin_drafts_path, class: "btn btn-sm btn-pink" %>
+          <% end %>
+        <% end %>
+      </div> <!-- col -->
+
+    </div> <!-- row -->
   </div> <!-- container -->
-</div> <!-- over-frame-text -->
+
+</section>
+
+
+
+
+
 
 
 
@@ -35,10 +53,6 @@
 
 <!-- BLOGS BY USER IF NOT OWN PAGE -->
 <% if !current_user || ( current_user && current_user.id != @user.id) %>
-  <div class="half-buffer"></div>
-  <%= render "layouts/quadborder" %>
-  <div class="half-buffer"></div>
-
   <div class="container">
     <% blogsbyuser = Blog.where(user_id: @user.id) %>
     <% if blogsbyuser.count != 0 %>
@@ -55,154 +69,10 @@
 
 
 
-<% if current_user && current_user.admin && current_user == @user %>
-  <div class="half-buffer"></div>
-  <%= render "layouts/quadborder" %>
-  <div class="half-buffer"></div>
-
-  <div class="container"> <!-- admin stuff -->
-		<h2 class="text-center font-script">Admin Stuff</h2>
-
-		<div class="half-buffer"></div>
-
-    <div class="row">
-      <div class="col-sm-6 col-lg-4">
-        <%= link_to users_path do %>
-          <div id="subscribers" class="mycard padded">
-            <h3 class="text-center">Subscribers</h3>
-            <p>Total Subscribers: <%= @subscribers['total_subscribers'] %></p>
-          </div>
-        <% end %>
-      </div>
-
-  		<div class="col-sm-6 col-lg-4">
-        <%= link_to users_path do %>
-    			<div id="members" class="mycard padded">
-    				<h3 class="text-center">Members</h3>
-    				<p>Member Count: <%= @members.count - 1 %>
-              <br />New Members (This Week): <%= @new_members.count %></p>
-    			</div>
-    		<% end %>
-      </div>
-
-      <div class="col-sm-6 col-lg-4">
-        <%= link_to contributions_path do %>
-          <div id="members" class="mycard padded">
-            <h3 class="text-center">Guest Posts</h3>
-            <p>
-              Unread Guest Post Ideas: <%= @contributions.count %><br />
-              Contributor Requests: <%= User.where(contributor: false, contributor_request: true).count %><br />
-              Posts Awaiting Approval: <%= Blog.where(submitted: true, approved: false).count %>
-            </p>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="col-sm-6 col-lg-4">
-        <%= link_to admin_blogs_path do %>
-          <div id="members" class="mycard padded">
-            <h3 class="text-center">Blog Posts</h3>
-            <p>Published Posts: <%= Blog.where(published: true).count %>
-              <br />Unpublished Posts: <%= Blog.where(published: false).count %></p>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="col-sm-6 col-lg-4">
-          <div id="members" class="mycard padded">
-            <h3 class="text-center">Admin Only Pages</h3>
-            <%= link_to "Blog Posts Index", admin_blogs_path %>
-            <%= link_to "Subcategories Index", subcategories_path %>
-          </div>
-      </div>
-  </div> <!-- row -->
-
-  </div> <!-- container -->
-<% end %>
-
-
-<% if @user == current_user && @user.contributor %>
-  <div class="half-buffer"></div>
-  <%= render "layouts/quadborder" %>
-  <div class="half-buffer"></div>
-
-  <div class="container">
-    <h2 class="text-center font-script">My Contributor Area</h2>
-    <div class="text-center">
-      <%= link_to "Start a New Blog Post", new_blog_path, class: "btn btn-outline-danger" %>
-    </div> <!-- text center -->
-    <div class="half-buffer"></div>
-    <div class="row">
-      <div class="col-lg-6">
-        <h3>My WIP Posts</h3>
-          <% @wip_posts = @user.blogs.where(published: false, submitted: false, approved: false) %>
-          <% if @wip_posts != [] %>
-            <ul>
-              <% @wip_posts.each do |blog| %>
-                <li><%= link_to blog.title, blog_path(blog) %></li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p>You currently don't have any WIP posts.</p>
-          <% end %>
-      </div> <!-- col -->
-
-      <div class="col-lg-6">
-        <h3>My Submitted Posts</h3>
-          <% @submitted_posts = @user.blogs.where(published: false, submitted: true, approved: false) %>
-          <% if @submitted_posts != [] %>
-            <ul>
-              <% @submitted_posts.each do |blog| %>
-                <li><%= link_to blog.title, blog_path(blog) %></li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p>You currently don't have any submitted posts.</p>
-          <% end %>
-      </div> <!-- col -->
-
-      <div class="col-lg-6">
-        <h3>My Approved Posts</h3>
-        <% @approved_posts = @user.blogs.where(published: false, submitted: true, approved: true) %>
-        <% if @approved_posts != [] %>
-          <ul>
-            <% @approved_posts.each do |blog| %>
-              <li><%= link_to blog.title, blog_path(blog) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          <p>You currently don't have any published posts.</p>
-        <% end %>
-      </div> <!-- col -->
-
-      <div class="col-lg-6">
-        <h3>My Published Posts</h3>
-        <% @published_posts = @user.blogs.where(published: true) %>
-        <% if @published_posts != [] %>
-          <ul>
-            <% @published_posts.each do |blog| %>
-              <li><%= link_to blog.title, blog_path(blog) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          <p>You currently don't have any published posts.</p>
-        <% end %>
-      </div> <!-- col -->
-
-    </div> <!-- row -->
-  </div> <!-- container -->
-<% end %>
-
-
 <% if @user == current_user %>
-  <div class="half-buffer"></div>
-    <%= render "layouts/quadborder" %>
-  <div class="half-buffer"></div>
-
   <div class="container">
-    <h2 class="text-center font-script">My Tools</h2>
-    <div class="half-buffer"></div>
-    <div class="row">
+    <h2 class="mt-3 text-center color-pink display-2 font-script">My Tools</h2>
+        <div class="row">
       <%= render "layouts/tools/tasks" %>
       <%= render "layouts/tools/recipes" %>
       <%= render "layouts/tools/meals" %>
@@ -215,14 +85,12 @@
 
 
 
-<div class="half-buffer"></div>
 
 <% if @user.bio %>
  <%= render partial: "layouts/biobox", locals: { user: @user, header: nil } %>
  <div class="buffer"></div>
 <% else %>
-  <div class="half-buffer"></div>
-  <h2 class="text-center color-pink">- - <%= link_to 'Complete My Profile', edit_user_registration_path, class: "color-pink" %> - -</h2>
+    <h2 class="mt-3 text-center color-pink">- - <%= link_to 'Complete My Profile', edit_user_registration_path, class: "color-pink" %> - -</h2>
 <% end %>
 
 

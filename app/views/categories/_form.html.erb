@@ -1,0 +1,125 @@
+
+<%= simple_form_for(@category) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+
+    <h2>The Basics</h2>
+    <div class="row mx-5 mb-5 py-4 bg-white z-depth-3">
+      <div class="col-12">
+        <%= f.input :name, placeholder: "Works with 'your ____'..." %>
+        <%= f.input :active %>
+      </div> <!-- col -->
+
+      <div class="col-sm-12">
+        <%= f.input :i_statement %>
+      </div> <!-- col -->
+      <div class="col-sm-6">
+        <%= f.input :bad_adjective %>
+      </div> <!-- col -->
+      <div class="col-sm-6">
+        <%= f.input :good_adjective %>
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+
+
+    <h2>Top Lead Magnet</h2>
+    <div class="row mx-5 mb-5 py-4 bg-white z-depth-3">
+      <div class="col-sm-6">
+        <%= f.input :cta %>
+      </div> <!-- col -->
+      <div class="col-sm-6 form-group">
+        <% freebie_collection = [] %>
+        <% Freebie.where(active: true).each do |freebie| %>
+          <% freebie_collection << ["#{freebie.name}", "#{freebie.id}"] %>
+        <% end %>
+        <%= f.label "Lead Magnet" %>
+        <%= f.input :freebie_id, label: false, prompt: "Choose a Related Freebie", input_html: { class: 'browser-default' }, collection: freebie_collection, required: false %>
+      </div>
+      <div class="col-sm-12">
+        <%= f.input :cta_desc %>
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+
+
+
+
+    <h2>Long-Winded Ramblings</h2>
+    <div class="row mx-5 mb-5 py-4 bg-white z-depth-3">
+      <div class="col-12">
+        <%= f.input :description %>
+      </div> <!-- col -->
+      <div class="col-12 tinymce mb-3">
+        <%= f.label "Introduction" %>
+        <%= f.text_area :intro, class: "tinymce", rows: 20, style: "width: 100%" %>
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+
+
+
+    <h2>Images</h2>
+    <div class="row mx-5 mb-5 py-4 bg-white z-depth-3">
+      <div class="col-sm-4">
+        <%= f.input :main_photo_url %>
+      </div> <!-- col -->
+      <div class="col-sm-4">
+        <%= f.input :photo_2_url %>
+      </div> <!-- col -->
+      <div class="col-sm-4">
+        <%= f.input :photo_3_url %>
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+
+    <h2>Products</h2>
+    <div class="mx-5 mb-5 bg-white z-depth-3" style="height: 300px; overflow-y: scroll;">
+      <div class="form-group form-check jsItUp">
+        <%= f.collection_check_boxes(:solution_ids, Solution.all, :id, :name ) %>
+      </div>
+    </div>
+
+
+    <h2>Quick Fixes</h2>
+    <div class="mx-5 mb-5 bg-white z-depth-3" style="height: 300px; overflow-y: scroll;">
+      <div class="form-group form-check jsItUp">
+        <%= f.collection_check_boxes(:freebie_ids, Freebie.all, :id, :name ) %>
+      </div>
+    </div>
+
+
+
+    <h2>Blogs</h2>
+    <div class="mx-5 mb-5 bg-white z-depth-3" style="height: 300px; overflow-y: scroll;">
+      <div class="form-group form-check jsItUp">
+        <%= f.collection_check_boxes(:blog_ids, Blog.where(nondisplayed: false), :id, :title ) %>
+      </div>
+    </div>
+
+
+
+  </div> <!-- form inputs -->
+
+  <div class="form-actions text-center pt-4">
+    <%= f.button :submit, class: "btn-pink" %>
+  </div>
+<% end %>
+
+
+
+
+<%= content_for :additional_js_partial do %>
+  <%= tinymce_assets %>
+  <%= tinymce plugins: ["wordcount", "code", "anchor", "casechange", "codesample", "hr", "link", "preview"] %>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".jsItUp input").before("<br>");
+      $(".jsItUp input").addClass("form-check-input");
+      $(".jsItUp label").addClass("form-check-label");
+    });
+  </script>
+<% end %>

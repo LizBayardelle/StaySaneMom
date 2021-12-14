@@ -1,0 +1,41 @@
+<!-- page-specific content -->
+  <% title "Solutions | SSM" %>
+<!-- page-specific content -->
+
+
+<div class="text-right px-5">
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Input a New Product', new_solution_path, class: "mt-2 btn btn-grey-light btn-sm" %>
+  <% end %>
+</div> <!-- right -->
+
+<div class="container">
+  <h1 class="pt-3 mb-0 text-center big-title">Actual Solutions</h1>
+  <p class="text-center lh-sm pb-0">As you may have discovered (the hard way) not everything can be fixed in under 10 minutes.</p>
+  <p class="text-center lh-sm pb-2">These bad boys are the deep-dive, getting at the root of the problem, no punches pulled kind of solutions. Because there are only two ways of doing things: right and again.</p>
+
+  <section class="mt-5 pt-0">
+    <div class="row">
+      <% @solutions.each do |solution| %>
+        <%= render partial: 'solutions/card', locals: { solution: solution } %>
+      <% end %>
+    </div>
+
+  </section> <!-- Section: Products v.5 -->
+
+
+</div> <!-- container -->
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.view').matchHeight();
+      $('.card-title').matchHeight();
+      $('.card-text').matchHeight();
+      $('.card').matchHeight();
+    });
+  </script>
+<% end %>

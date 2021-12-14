@@ -5,34 +5,73 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "tools.jpg" %>)"><div class="image-overlay-black"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
-  <div class="container text-center">
-  	<h1 class="display-1 pt-5 mt-5 color-white">Mom Tools</h1>
-    <div class="half-buffer"></div>
-    <a class="btn btn-pink tool-subscribe" style="font-weight: 700; border: solid medium; margin-bottom: 20px" data-formkit-toggle="cd10cef13b" href="https://pages.convertkit.com/6e409b399f/68d10a4da2">Get notified when a new tool is born.</a>
-  </div> <!-- container -->
-	<div class="over-frame-bottom-row">
-		<div class="container text-center">
-		</div>
-	</div> <!-- over-frame-text -->
-</div>
 
-<div class="half-buffer"></div>
+
+
+
+<section id="hero-and-header">
+
+  <div class="container py-5 text-center">
+    <h1 class="d-md-none">Mom Tools</h1>
+    <div class="row align-items-center">
+
+      <div class="col-md-6 order-md-1">
+          <img class="match-height classy-pic tilt-right mb-4" src="<%= asset_path "tools.jpg" %>" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+
+      <div class="col-md-6 order-md-0">
+        <h1 class="d-none d-md-block">Mom Tools</h1>
+        <h3 class="text-black mb-4">
+            Here lies a library of online lifesavers.
+        </h3>
+        <h3 class="text-black mb-4">
+            Can't remember a birthday to save your soul?  Need a recipe? Want to remember to take holiday pictures of your kids?
+        </h3>
+        <h3 class="text-black">
+            We got you.
+        </h3>
+        <button type="button" class="btn btn-pink z-depth-5 mb-2" data-toggle="modal" data-target="#notificationModal">
+          Get Notified for New Tools
+        </button>
+      </div> <!-- col -->
+
+    </div> <!-- row -->
+  </div> <!-- container -->
+
+</section>
+
+
 
 <div class="container">
 	<div class="row">
-
     <%= render "layouts/tools/tasks" %>
     <%= render "layouts/tools/recipes" %>
     <%= render "layouts/tools/capsules" %>
     <%= render "layouts/tools/birthdays" %>
     <%= render "layouts/tools/gifts" %>
     <%= render "layouts/tools/meals" %>
-
-
 	</div> <!-- row -->
 </div> <!-- container -->
+
+
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="z-index: 1500;">
+        <div class="modal-body">
+          <div class="ml-form-embed"
+            data-account="3055105:z6s9g0w4p8"
+            data-form="5154623:g1y9n2">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 <%= content_for :additional_js do %>

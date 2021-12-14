@@ -1,0 +1,108 @@
+<section id="hero-and-header">
+
+  <div class="container py-5 text-center">
+    <h1 class="d-md-none">Admin Dashboard</h1>
+    <div class="row align-items-center">
+
+      <div class="col-md-6 order-md-1">
+          <img class="match-height classy-pic tilt-right mb-4" src="<%= asset_path "tools-for-homepage.jpg" %>" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+     
+
+      <div class="col-md-6 order-md-0">
+        <h1 class="d-none d-md-block">Admin Dashboard</h1>
+        <h3 class="text-black mb-4">
+            Here's all the crap you need to run this thing.
+        </h3>
+        <h3 class="text-black mb-4">
+            Deep breaths.  It's not a dream.
+        </h3>
+        <h3 class="text-black">
+            You really are the president.
+        </h3>
+      </div> <!-- col -->
+
+    </div> <!-- row -->
+  </div> <!-- container -->
+
+</section>
+
+
+
+
+
+<div class="row my-5">
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to main_app.admin_blogs_path do %>
+				<h3 class="color-pink thin text-center">My Blogs</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to main_app.contributions_path do %>
+				<h3 class="color-pink thin text-center">Guest Blogs</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to main_app.admin_users_path do %>
+				<h3 class="color-pink thin text-center">Users Control Center</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to admin_freebies_path do %>
+				<h3 class="color-pink thin text-center">Lead Magnets</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to main_app.subcategories_path do %>
+				<h3 class="color-pink thin text-center">Subcategory Manager</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to main_app.admin_categories_path do %>
+				<h3 class="color-pink thin text-center">Category Manager</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+	<div class="col-sm-6 col-lg-4">
+		<div class="link-box bg-white z-depth-3 m-3 py-3 px-2">
+			<%= link_to main_app.admin_messages_path do %>
+				<h3 class="color-pink thin text-center">Messages</h3>
+			<% end %>
+		</div> <!-- bg white -->
+	</div> <!-- col -->
+
+</div>
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script type="text/javascript">
+    $(function() {
+      $('.link-box').matchHeight();
+    });
+  </script>
+<% end %>
+
+
+
+

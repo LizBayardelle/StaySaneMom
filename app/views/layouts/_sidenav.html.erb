@@ -26,24 +26,28 @@
 
         <li>
           <%= link_to main_app.blogs_path, class: "waves-effect arrow-r" do %>
+            <i class="fas fa-book-open color-pink me-2"></i>
             The SSM Blog
           <% end %>
         </li>
 
         <li>
-          <%= link_to printables_path, class: "waves-effect arrow-r" do %>
-            Printables & Organization
+          <%= link_to freebies_path, class: "waves-effect arrow-r" do %>
+            <i class="fas fa-band-aid color-pink me-2"></i>
+            Quick Fixes
           <% end %>
         </li>
 
         <li>
-          <%= link_to page_path("planners"), class: "waves-effect arrow-r" do %>
-            Custom Designed Planners
+          <%= link_to solutions_path, class: "waves-effect arrow-r" do %>
+            <i class="fas fa-briefcase-medical color-pink me-2"></i>
+            Actual Solutions
           <% end %>
         </li>
 
         <li><a class="collapsible-header waves-effect arrow-r">
-          Tools
+          <i class="fas fa-tools color-pink me-2"></i>
+          Online Tools
           <i class="fas fa-angle-down rotate-icon"></i></a>
           <div class="collapsible-body">
             <ul>
@@ -57,13 +61,24 @@
           </div> <!-- collapsable body -->
         </li>
 
+
+        <li>
+          <%= link_to page_path("planners"), class: "waves-effect arrow-r" do %>
+            <i class="fas fa-palette color-pink me-2"></i>
+            Custom Designed Planners
+          <% end %>
+        </li>
+
+        <div class="sidenav-divider"></div>
+
+
         <% if current_user && ( current_user.admin || current_user.contributor ) %>
           <li><a class="collapsible-header waves-effect arrow-r">
             Contributor Actions<i class="fas fa-angle-down rotate-icon"></i></a>
             <div class="collapsible-body">
               <ul>
                 <li><%= link_to "Contributor Welcome", main_app.page_path("contributor_welcome"), class: "waves-effect" %></li>
-                <li><%= link_to "My Submissions", main_app.admin_drafts_path, class: "waves-effect" %></li>
+                <li><%= link_to "Drafts and Submissions", main_app.admin_drafts_path, class: "waves-effect" %></li>
               </ul>
             </div> <!-- collapsable body -->
           </li>
@@ -75,11 +90,14 @@
               Admin Actions<i class="fas fa-angle-down rotate-icon"></i></a>
               <div class="collapsible-body">
                 <ul>
-                  <li><%= link_to "Users Control Center", main_app.admin_users_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Admin Dashboard", main_app.admin_dashboard_path, class: "waves-effect" %></li>
+                  <li><%= link_to "My Blogs", main_app.admin_blogs_path, class: "waves-effect" %></li>
                   <li><%= link_to "Guest Blogs", main_app.contributions_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Users Control Center", main_app.admin_users_path, class: "waves-effect" %></li>
                   <li><%= link_to "Lead Magnets", admin_freebies_path, class: "waves-effect" %></li>
                   <li><%= link_to "Subcategory Manager", main_app.subcategories_path, class: "waves-effect" %></li>
-                  <li><%= link_to "My Blogs", main_app.admin_blogs_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Category Manager", main_app.admin_categories_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Messages", main_app.admin_messages_path, class: "waves-effect" %></li>
                 </ul>
               </div> <!-- collapsable body -->
             </li>
@@ -112,54 +130,9 @@
     <!-- Side navigation links -->
     <li>
       <ul class="collapsible collapsible-accordion">
-        <li>
-          <%= link_to page_path("house"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/1+++House.png" style="height: 25px; display: inline-block">
-            House
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to page_path("pregnancy"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/3+++Pregnancy.png" style="height: 25px; display: inline-block">
-            Pregnancy
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to page_path("babies"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/4+++Babies.png" style="height: 25px; display: inline-block">
-            Babies
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to page_path("toddlers"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/5+++Toddlers.png" style="height: 25px; display: inline-block">
-            Toddlers
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to page_path("kids"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/6+++Kids.png" style="height: 25px; display: inline-block">
-            Kids
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to page_path("teens"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/7+++Teens.png" style="height: 25px; display: inline-block">
-            Teens
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to page_path("balance"), class: "waves-effect arrow-r" do %>
-            <img src="https://staysanemom.s3-us-west-1.amazonaws.com/Stick+Figures/8+++Balance.png" style="height: 25px; display: inline-block">
-            Balance
-          <% end %>
-        </li>
+        <% Category.where(active: true).each do |category| %>
+          <li><%= link_to category.i_statement, category_path(category), class: "waves-effect arrow-r" %></li>
+        <% end %>
 
 
         <div class="sidenav-divider"></div>

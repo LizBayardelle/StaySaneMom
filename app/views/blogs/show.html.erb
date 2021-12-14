@@ -27,34 +27,38 @@
     <% end %>
   <!-- page-specific content -->
 
+
+
   <% if @subcategory %>
     <%= render partial: "blogs/breadcrumbs", locals: { blog: @blog, subcategory: @subcategory } %>
   <% else %>
     <%= render partial: "blogs/breadcrumbs", locals: { blog: @blog, subcategory: false } %>
   <% end %>
+
+
   <%= render partial: "blogs/hero", locals: { blog: @blog } %>
-
-  <% if @blog.published != false %>
-    <%= render partial: "blogs/share", locals: { blog: @blog } %>
-  <% end %> <!-- end skip if unpublished -->
-
-  <% if @blog.video_link != nil && @blog.video_link != "" %>
-    <%= render partial: "blogs/video", locals: { blog: @blog } %>
-  <% end %>
 
   <% if @blog.freebie_id != nil %>
     <%= render partial: "blogs/top_optin", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
 
-  <%= render partial: "blogs/blog_body", locals: { blog: @blog } %>
+
+  <% if @blog.published != false %>
+    <%= render partial: "blogs/share", locals: { blog: @blog } %>
+  <% end %> <!-- end skip if unpublished -->
+
+  <div class="bg-white z-over z-depth-2-y py-5">
+    <%= render partial: "blogs/blog_body", locals: { blog: @blog } %>
+  </div>
 
   <% if @blog.freebie_id != nil %>
     <%= render partial: "blogs/bottom_optin", locals: { blog: @blog } %>
   <% end %> <!-- end skip if unpublished -->
 
+  <%= render partial: "blogs/subscribe", locals: { blog: @blog } %>
+  
   <%= render partial: "blogs/related", locals: { blog: @blog } %>
   <%= render partial: "blogs/pinterest", locals: { blog: @blog } %>
-  <%= render partial: "blogs/subscribe", locals: { blog: @blog } %>
   <%= render partial: "layouts/biobox", locals: { user: @blog.user, header: "About the Author" } %>
 
   <% if @blog.published %>

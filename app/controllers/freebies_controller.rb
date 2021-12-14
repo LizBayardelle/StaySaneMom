@@ -108,6 +108,7 @@ class FreebiesController < ApplicationController
         :short_description,
         :convertkit_url,
         :active,
+        :thrivelink,
         
         :image,
         :sample_image,
@@ -129,7 +130,9 @@ class FreebiesController < ApplicationController
         :ml_id,
         :ml_submit_code,
         :after_download_url,
-        :ml_img_track_url
+        :ml_img_track_url,
+
+        category_ids: []
       )
     end
 end

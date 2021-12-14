@@ -1,5 +1,11 @@
 <section id="blog-body" class="container">
   <div class="blog-itself">
+    <h1 class="text-center lh-1 mb-5 thin"><%= @blog.title %></h1>
+
+    <% if @blog.video_link != nil && @blog.video_link != "" %>
+      <%= render partial: "blogs/video", locals: { blog: @blog } %>
+    <% end %>
+
     <% if @blog.affiliate_links %>
       <p class="text-center"><small><em>
         This post contains some affiliate links for your convenience. Click <a href="#affiliate">here</a> to read my&nbsp;full&nbsp;disclosure&nbsp;policy.

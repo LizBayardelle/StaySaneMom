@@ -1,0 +1,40 @@
+
+<%= simple_form_for(@solution) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <div class="form-group">
+      <%= f.label "Sample Image" %><br />
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="form-group form-check jsItUp">
+      <h5>Categories</h5>
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
+    </div>
+
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :link %>
+
+    <%= f.input :active %>
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, class: "btn btn-pink" %>
+  </div>
+<% end %>
+
+
+
+<%= content_for :additional_js_partial do %>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".jsItUp input").addClass("form-check-input");
+      $(".jsItUp label").addClass("form-check-label");
+    });
+  </script>
+<% end %>

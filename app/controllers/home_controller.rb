@@ -1,5 +1,14 @@
 class HomeController < ApplicationController
 
+  def old
+    @blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC").limit(8)
+    @all_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC")
+    @featured_blogs = Blog.where(published: true, nondisplayed: false, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
+    @commented_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order('comments_count DESC').limit(8)
+    @recent_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC").limit(8)
+    @homepageCSS = true
+  end
+
   def index
     # @headernav = true
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC").limit(8)
@@ -7,6 +16,7 @@ class HomeController < ApplicationController
     @featured_blogs = Blog.where(published: true, nondisplayed: false, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
     @commented_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order('comments_count DESC').limit(8)
     @recent_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC").limit(8)
+    @homepageCSS = true
   end
 
   def redirect

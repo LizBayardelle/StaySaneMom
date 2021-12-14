@@ -5,8 +5,7 @@ class BlogsController < ApplicationController
   before_action :admin_or_author, only: %i[update edit]
   before_action :admin_only, only: %i[destroy]
 
-  # GET /blogs
-  # GET /blogs.json
+
   def index
     @blogs = Blog.where(published: true, nondisplayed: false).where("published_on <= ?", Date.today + 1).order('published_on DESC').page(params[:page])
     @featured_blogs = Blog.where(published: true, featured_home: true).where("published_on <= ?", Date.today).order('published_on DESC').limit(4)
@@ -26,12 +25,14 @@ class BlogsController < ApplicationController
   end
 
 
+
+
   def autocomplete
     render json: Blog.search(params[:term], fields: [{title: :text_start}], limit: 10).map(&:title)
   end
 
-  # GET /blogs/1
-  # GET /blogs/1.json
+
+
   def show
     @subcategory = Subcategory.where(id: @blog.subcategory_id).first
     @user = User.where(id: @blog.user_id).first
@@ -42,22 +43,21 @@ class BlogsController < ApplicationController
     @tags = Blog.tag_counts_on(:tags)
   end
 
-  # GET /blogs/new
+
   def new
     @blog = Blog.new
     @subcategories = Subcategory.all
   end
 
-  # GET /blogs/1/edit
+
+
   def edit
     @subcategories = Subcategory.all
   end
 
-  # POST /blogs
-  # POST /blogs.json
+
   def create
     @blog = Blog.new(blog_params)
-    @blog.user_id = current_user.id
     @subcategories = Subcategory.all
 
     image = blog_params[:image]
@@ -84,10 +84,9 @@ class BlogsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /blogs/1
-  # PATCH/PUT /blogs/1.json
-  def update
 
+
+  def update
     image = blog_params[:image]
     pin_images = params[:blog][:pin_image]
     @subcategories = Subcategory.all
@@ -132,8 +131,8 @@ class BlogsController < ApplicationController
     end
   end
 
-  # DELETE /blogs/1
-  # DELETE /blogs/1.json
+
+
   def destroy
     @blog.destroy
     respond_to do |format|
@@ -277,7 +276,9 @@ class BlogsController < ApplicationController
                   :approved,
                   :submitted,
                   :tag_list,
-                  :freebie_id
+                  :freebie_id,
+
+                  category_ids: []
                 )
   end
 end

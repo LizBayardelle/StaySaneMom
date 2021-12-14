@@ -8,7 +8,7 @@
 
 
 
-<section class="bg-pink p-4 text-center">
+<section class="bg-pink p-4 text-center z-depth-3">
   <h2 class="h3 color-white"><%= @freebie.top_question %></h2>
 </section>
 
@@ -38,7 +38,9 @@
     <div class="col-12 col-sm-7 text-center text-sm-left push-sm-5">
       <h1 class="thin h2 uppercase color-pink"><%= @freebie.main_heading %></h1>
       <h3 class="bold landing-subheading"><%= simple_format(@freebie.main_subheading) %></h3>
-      <% if @freebie.ml_id && @freebie.ml_id != "" %>
+      <% if @freebie.thrivelink != "" %>
+        <%= @freebie.thrivelink.html_safe %>
+      <% elsif @freebie.ml_id && @freebie.ml_id != "" %>
         <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
       <% end %>
     </div> <!-- col -->
@@ -50,7 +52,7 @@
 
 
 <% if @freebie.t1_long != "" %>
-  <section class="bg-pink py-5">
+  <section class="bg-pink py-5 z-depth-3-y">
     <div class="container">
       <div class="row">
         <div class="col-12 text-center pb-4">
@@ -66,15 +68,12 @@
         <div class="col-sm-9">
           <p class="boldest color-white">"<%= @freebie.t1_long %>"</p>
         </div> <!-- col -->
-        <div class="col-12 text-center">
-          <a class="btn bg-white color-pink btn-lg" href="#ck-embed">Download <%= @freebie.short_description %></a>
-        </div>
       </div> <!-- row -->
     </div> <!-- container -->
   </section>
 <% end %>
 
-<section id="pain-points" class="container py-5">
+<section id="pain-points" class="container pt-5">
   <div class="text-center">
     <h2><%= @freebie.outcome %></h2>
     <img src="<%= rails_blob_url(@freebie.image) if @freebie.image.attached? %>" class="my-3" style="max-width: 80%; max-height: 30vh;">
@@ -92,21 +91,22 @@
   <% end %>
 
   <h2 class="text-center pt-5"><%= @freebie.outcome_2 %></h2>
+
+  <div class="text-center bottom-link pt-3">
+    <% if @freebie.thrivelink != "" %>
+      <%= @freebie.thrivelink.html_safe %>
+    <% elsif @freebie.ml_id && @freebie.ml_id != "" %>
+      <section class="w-75 w-sm-50 mx-auto z-depth-3 px-5 pt-5 pb-3 text-center">
+        <h3 class="h1 pb-3">Get the Goods</h3>
+        <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
+      </section>
+    <% else %>
+      <section id="ck-embed" class="py-3">
+        <%= @freebie.convertkit_url.html_safe %>
+      </section>
+    <% end %>
+  </div>
 </section>
-
-
-
-  <% if @freebie.ml_id && @freebie.ml_id != "" %>
-    <section class="w-75 w-sm-50 mx-auto z-depth-3 px-5 pt-5 pb-3 text-center">
-      <h3 class="h1 pb-3">Get the Goods</h3>
-      <%= render partial: "freebies/mlform", locals: { freebie: @freebie } %>
-    </section>
-  <% else %>
-    <section id="ck-embed" class="py-3">
-      <%= @freebie.convertkit_url.html_safe %>
-    </section>
-  <% end %>
-
 
 
 

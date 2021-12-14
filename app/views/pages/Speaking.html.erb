@@ -5,58 +5,71 @@
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "hire-liz-as-a-speaker.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
+
+<%= render partial: "messages/message_modal", locals: { message: Message.new, message_type: "Speaking Engagements"} %>
+
+
+
+<section class="z-under texture-crumpled-paper py-5">
+  <div class="container px-5">
+    <div class="row gx-5 align-items-center">
+        <div class="col-12">
+            <h2 class="display-1 font-script color-pink text-center">
+                Book Liz for a Speaking Engagement
+            </h2>
+        </div>
+        <div class="col-12 col-lg-6">
+            <p class="lead mb-3">
+               Need an authentic, engaging, nerdy, sarcastic, and (mostly) well-mannered speaker for next your event?
+            </p>
+            <p class="lead mb-3">
+               Liz loves speaking both online and in person to groups of overwhelmed moms who need both support and adult human contact.
+            </p>
+        </div>
+        <div class="col-sm-8 col-lg-6 mt-5 text-center">
+            <img class="classy-pic tilt-right w-md-75" src="https://lizbayardelle.s3.us-west-1.amazonaws.com/Images/zoom-backdrop.jpg" class="w-100">
+        </div>
+        <div class="col-12 text-center">
+          <button type="button" class="btn btn-pink my-5" data-toggle="modal" data-target="#newMessageModal">
+            Get In Touch
+          </button>
+        </div>
+    </div>
+  </div> <!-- container -->
+</section>
+
+
+
+
+<section class="bg-white z-depth-2-y z-over py-5">
+  <div class="container font-sans">
+    <h3 class="text-center color-pink pb-4">
+      What kind of event are you throwing?
+    </h3>
+    <p>If you're putting together an event for parents, you want a speaker who is not going to put your audience to sleep (I'm hoping...these are parents we're talking about).  Liz is your gal.</p>
+    <ul>
+      <li><p>An authentic, real, no-pulled-punches view on parenting, individual purpose, and keeping your house from looking like the war zone it is.</p></li>
+      <li><p>A research-based approach to life's big (and little) problems, drawn from a strong academic background in psychology (BA, MA, and PhD) and author of multiple award-winning books on parenting.</p></li>
+      <li><p>Humor and sarcasm, carefully cultivated through decades of self-deprocation.</p></li>
+      <li><p>A clear picture of the problems facing "modern" women, who are expected to be perfect moms, have successful careers, and be doting wives...all at the same time.</p></li>
+      <li><p>Someone experienced in everything from leading small groups to presenting in front of large audiences.  (Equal opportunity snark, as they say in the biz.)</p></li>
+    </ul>
+
+    <h3 class="text-center">Sound like what you're looking for?</h3>
+  </div> <!-- container -->
+</section>
+
+
+
+
+<section class="z-under mt-5">
   <div class="container text-center">
-    <h1>Book Liz for a Speaking Engagement</h1>
-    <h5 style="font-weight: 700">Need an authentic, engaging, nerdy, sarcastic, <br />and (mostly) well-mannered speaker  <br />for next your event?</h5>
-  </div>
-  <div class="over-frame-bottom-row">
-    <div class="container">
-      <div class="text-center">
-        <div class="half-buffer"></div>
-        <a href="https://pages.convertkit.com/9707fd5b3f/7df8beea02" class="btn btn-pink">Get in Touch</a>
-        <div class="buffer"></div>
-      </div> <!-- text center -->
-    </div> <!-- container -->
-  </div> <!-- over-frame-bottom-row -->
-</div>
-
-<div class="half-buffer"></div>
-<div class="container font-sans">
-  <h2>What kind of event are you throwing?</h2>
-  <p>If you're putting together an event, you a speaker who brings a unique perspective, some real-world expertise, and is not going to put your audience to sleep (I'm hoping).  If your attendees need any or all of the following things, Liz might be your gal:</p>
-  <ul>
-    <li><p>An authentic, real, no-pulled-punches view on parenting, individual purpose, and keeping your house from looking like the war zone it is.</p></li>
-    <li><p>A research-based approach to life's big (and little) problems, drawn from a strong academic background in psychology (BA, MA, and PhD) and author of multiple award-winning books on parenting.</p></li>
-    <li><p>Humor and sarcasm, carefully cultivated through decades of self deprocation.</p></li>
-    <li><p>A clear picture of the problems facing "modern" women, who are expected to be perfect moms, have successful careers, and be doting wives...all at the same time.</p></li>
-    <li><p>Someone experienced in everything from leading small groups to presenting in front of large audiences.  (Equal opportunity snark, as they say in the biz.)</p></li>
-  </ul>
-
-  <h2>Sound like what you're looking for?</h2>
-  <p>If this sounds like a good fit for your event, please <a href="https://pages.convertkit.com/9707fd5b3f/7df8beea02" target="_blank">contact me</a> so we can go over details and rates.  I'll get back to you by email within 48 hours.</p>
-
-  <div class="half-buffer"></div>
-  <hr>
-  <div class="half-buffer"></div>
-
-  <div class="text-center">
-    <h2>To book Liz for your next conference, workshop, or seminar, just click the magic button below:</h2>
-    <div class="half-buffer"></div>
-    <a href="https://pages.convertkit.com/9707fd5b3f/7df8beea02" target="_blank" class="btn btn-lg btn-pink">Book Liz to Speak</a>
-  </div>
-</div> <!-- container -->
+    <h3>To book Liz for your next conference, workshop, or seminar, just click the magic button below.</h3>
+    <button type="button" class="btn btn-pink my-5" data-toggle="modal" data-target="#newMessageModal">
+      Book Liz to Speak
+    </button>
+  </div> <!-- container -->
+</section>
 
 
 
-<%= content_for :additional_js do %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.content-box').matchHeight();
-      $('.hero-button').click(function() {
-          ga('send', 'event', 'Subscription', 'Specialty Inquiry', 'Speaking Engagements');
-      });
-    });
-  </script>
-<% end %>

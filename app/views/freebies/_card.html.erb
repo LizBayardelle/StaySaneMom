@@ -12,7 +12,12 @@
   <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4 w-100 auto-height">
 
   <div class="text-center pb-5 mb-5">
-    <%= link_to freebie.short_description, freebie_path(freebie), class: "btn btn-pink" %>
+    <% if freebie.thrivelink && freebie.thrivelink != "" %>
+      <%= link_to "See More", freebie_path(freebie), class: "btn btn-neutral-light" %>
+      <%= freebie.thrivelink.html_safe %>
+    <% else %>
+      <%= link_to freebie.short_description, freebie_path(freebie), class: "btn btn-pink" %>
+    <% end %>
     <br>
     <% if current_user && current_user.admin %>
       <%= link_to 'Edit', edit_freebie_path(freebie), class: "btn btn-grey-light btn-sm" %>

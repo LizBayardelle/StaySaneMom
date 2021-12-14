@@ -6,7 +6,7 @@
 <!-- page-specific content -->
 
 <div class="container">
-  <p class="text-center">Bored?  You can always <%= link_to "Create Your Own Recipe", new_meal_path %> or <%= link_to "Browse Our Recipe Library", recipes_path %></p>
+  <p class="text-center pt-3">Bored?  You can always <%= link_to "Create Your Own Recipe", new_meal_path %> or <%= link_to "Browse Our Recipe Library", recipes_path %></p>
 
   <h1 class="text-center font-script">My Recipe Box</h1>
 
@@ -17,9 +17,9 @@
     <div class="text-center">
       <h4>Uh oh!  You don't have any meals inputted!</h4>
       <div class="half-buffer"></div>
-      <%= link_to "Create Your Own Recipe", new_meal_path, class: "btn btn-danger" %>
+      <%= link_to "Create Your Own Recipe", new_meal_path, class: "btn btn-pink" %>
       <h4>or</h4>
-      <%= link_to "Browse Our Recipe Library", recipes_path, class: "btn btn-danger" %>
+      <%= link_to "Browse Our Recipe Library", recipes_path, class: "btn btn-pink" %>
     </div> <!-- centered -->
   <% else %>
     <div class="row">
@@ -44,7 +44,7 @@
                   <% end %>
                 </h4>
                 <p class="card-text">Ready in <%= pluralize(meal.ready_in_minutes, "Minute") %></p>
-                <%= link_to "See Recipe", meal_path(meal.id), class: "btn btn-danger" %>
+                <%= link_to "See Recipe", meal_path(meal.id), class: "btn btn-pink" %>
               </div> <!-- card body -->
             </div> <!-- Card -->
         </div> <!-- col -->

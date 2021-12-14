@@ -15,12 +15,11 @@
       &nbsp;&nbsp;</em>|<em>&nbsp;&nbsp;
       Reminders <% if @capsule.reminder_email %>On<% else %>Off<% end %>
     </em></small></p>
-    <a href="#newPhotoPopup" class="open-popup-link btn btn-danger">Add a New Photo</a>
+    <a href="#newPhotoPopup" class="open-popup-link btn btn-pink">Add a New Photo</a>
     <div class="half-buffer"></div>
   </div> <!-- header -->
 </div> <!-- container -->
 
-  <%= render "layouts/quadborder" %>
 
 <div class="container capsule">
   <div class="buffer"></div>
@@ -88,7 +87,7 @@
             </div>
 
             <div class="form-actions text-center">
-              <%= f.button :submit, value: "Confirm Changes", class: "btn btn-danger" %>
+              <%= f.button :submit, value: "Confirm Changes", class: "btn btn-pink" %>
             </div>
           <% end %>
         </div> <!-- end popup -->
@@ -100,17 +99,15 @@
 
 </div> <!-- container -->
 
-<%= render "layouts/quadborder" %>
 
   <div class="text-center container">
     <div class="half-buffer"></div>
-    <%= link_to 'Edit Capsule Info', edit_capsule_path(@capsule), class: "btn btn-danger" %>
-    <%= link_to 'Delete Time Capsule', @capsule, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-    <%= link_to 'Time Capsules Homepage', capsules_path, class: "btn btn-danger" %>
+    <%= link_to 'Edit Capsule Info', edit_capsule_path(@capsule), class: "btn btn-pink" %>
+    <%= link_to 'Delete Time Capsule', @capsule, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-pink" %>
+    <%= link_to 'Time Capsules Homepage', capsules_path, class: "btn btn-pink" %>
     <div class="half-buffer"></div>
   </div> <!-- center -->
 
-  <%= render "layouts/quadborder" %>
 
 
 
@@ -134,7 +131,7 @@
     </div>
 
     <div class="form-actions text-center">
-      <%= f.button :submit, value: "Add Photo to Time Capsule", class: "btn btn-danger" %>
+      <%= f.button :submit, value: "Add Photo to Time Capsule", class: "btn btn-pink" %>
     </div>
   <% end %>
 </div> <!-- end popup -->

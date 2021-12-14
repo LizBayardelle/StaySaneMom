@@ -7,9 +7,20 @@
     <h2 class="text-center mt-5 thin uppercase color-pink">The Basics</h2>
     <%= f.input :name %>
     <%= f.input :short_description %>
+    <%= f.input :thrivelink, label: "Thrivecart Popup Code" %>
+
+    
+    <div class="form-group form-check jsItUp">
+      <div class="row">
+        <h5>Categories</h5>
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
+      </div>
+    </div>
+
     <div class="form-group">
       <%= f.input :category, label: "Main Category", input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
     </div>
+
     <%= f.input :active %>
 
     <h2 class="text-center mt-5 thin uppercase color-pink">Sales Jargon</h2>
@@ -57,4 +68,17 @@
   <div class="form-actions text-center">
     <%= f.button :submit, class: "btn btn-pink" %>
   </div>
+<% end %>
+
+
+
+
+
+<%= content_for :additional_js_partial do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".jsItUp input").addClass("form-check-input");
+      $(".jsItUp label").addClass("form-check-label");
+    });
+  </script>
 <% end %>
