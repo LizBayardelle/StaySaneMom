@@ -93,7 +93,7 @@
   <h2 class="text-center pt-5"><%= @freebie.outcome_2 %></h2>
 
   <div class="text-center bottom-link pt-3">
-    <% if @freebie.thrivelink != "" %>
+    <% if @freebie.thrivelink && @freebie.thrivelink != "" %>
       <%= @freebie.thrivelink.html_safe %>
     <% elsif @freebie.ml_id && @freebie.ml_id != "" %>
       <section class="w-75 w-sm-50 mx-auto z-depth-3 px-5 pt-5 pb-3 text-center">
