@@ -13,7 +13,7 @@
 
   <div class="text-center pb-5 mb-5">
     <% if freebie.thrivelink && freebie.thrivelink != "" %>
-      <%= freebie.thrivelink.html_safe %><br>
+      <%= freebie.thrivelink.html_safe %>
       <%= link_to "See More", freebie_path(freebie), class: "btn btn-neutral-light" %>
     <% else %>
       <%= link_to freebie.short_description, freebie_path(freebie), class: "btn btn-pink" %>
