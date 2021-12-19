@@ -1,6 +1,22 @@
 <!-- page-specific content -->
-  <% title "Solutions | SSM" %>
+  <% title "Quick Fixes" %>
+
+
+  <%= content_for :head do %>
+    <% description = "
+      Sometimes you just need a quick win.  No fuss, no educating, don't teach me to fish...just give me the dang fish.  We've got your back.
+    " %>
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="Quick Fixes for Moms" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://staysanemom.s3.us-west-1.amazonaws.com/111-Share+Images/Quick+Fixes.jpeg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+  <% end %>
 <!-- page-specific content -->
+
+
+
 
 
 <div class="text-right px-5">
