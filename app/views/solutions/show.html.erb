@@ -1,69 +1,95 @@
-<p id="notice"><%= notice %></p>
+<!-- page-specific content -->
+  <% title @solution.name %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @solution.name %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @solution.price %>
-</p>
+  <%= content_for :head do %>
+    <% description = @solution.description %>
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<%= @solution.name %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="<%= rails_blob_url(@solution.fb_share_image) if @solution.fb_share_image.attached? %>" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product.group" />
+  <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @solution.description %>
-</p>
 
-<p>
-  <strong>Link:</strong>
-  <%= @solution.link %>
-</p>
 
-<p>
-  <strong>House:</strong>
-  <%= @solution.house %>
-</p>
+<%= content_for :pinterest do %>
+  <script>
+    pintrk('track', 'pagevisit', {
+    property: 'solution Show: <%= @solution.name %>'
+    });
+  </script>
+<% end %>
 
-<p>
-  <strong>Marriage:</strong>
-  <%= @solution.marriage %>
-</p>
+<!-- page-specific content -->
 
-<p>
-  <strong>Pregnancy:</strong>
-  <%= @solution.pregnancy %>
-</p>
 
-<p>
-  <strong>Babies:</strong>
-  <%= @solution.babies %>
-</p>
 
-<p>
-  <strong>Toddlers:</strong>
-  <%= @solution.toddlers %>
-</p>
 
-<p>
-  <strong>Kids:</strong>
-  <%= @solution.kids %>
-</p>
+<section id="hero" class="container py-4">
 
-<p>
-  <strong>Teens:</strong>
-  <%= @solution.teens %>
-</p>
+  <% if current_user && current_user.admin %>
+    <div id="adminbuttons" class="text-center">
+      <% unless @solution.active %>
+        <h2>INACTIVE</h2>
+      <% end %>
+      <%= link_to 'Edit solution', edit_solution_path(@solution), class: "btn btn-grey-light btn-sm" %>
+      <%= link_to 'Public Index', solutions_path, class: "btn btn-grey-light btn-sm" %>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Balance:</strong>
-  <%= @solution.balance %>
-</p>
+  <div class="row py-4">
 
-<p>
-  <strong>Active:</strong>
-  <%= @solution.active %>
-</p>
+    <div class="col-12 col-sm-5 text-center pull-sm-7">
+      <img src="<%= rails_blob_url(@solution.image) if @solution.image.attached? %>" style="max-width: 100%; max-height: 30vh;"> 
+    </div> <!-- col -->
 
-<%= link_to 'Edit', edit_solution_path(@solution) %> |
-<%= link_to 'Back', solutions_path %>
+    <div class="col-12 col-sm-7 text-center text-sm-left push-sm-5">
+      <h1 class="thin h2 uppercase color-pink"><%= @solution.name %></h1>
+      <h3 class="bold landing-subheading"><%= simple_format(@solution.description) %></h3>
+      <button type="button" class="btn btn-pink" data-toggle="modal" data-target="#modal<%= @solution.id %>">
+        <%= number_to_currency(@solution.price) %>
+      </button>
+
+    </div> <!-- col -->
+  </div> <!-- row -->
+</section>
+
+
+
+<% if @solution.pin_image.attached? %>
+  <section id="pins" class="mt-5 bg-white z-depth-2-y py-5 text-center">
+    <h2 class="display-2 color-pink font-script mb-0">Save It, Share It</h2>
+    <div class="pinterest-image row padded pin-image-stripe">
+      <div class="container">
+        <% @solution.pin_image.each do |image| %>
+          <%= image_tag url_for(image)%>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal<%= @solution.id %>" tabindex="-1" role="dialog" aria-labelledby="modal<%= @solution.id %>Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal<%= @solution.id %>Label"><%= @solution.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= @solution.link.html_safe %>
+      </div>
+    </div>
+  </div>
+</div>

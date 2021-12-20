@@ -54,14 +54,24 @@
     <%= f.input :ml_img_track_url, as: :string, label: "Mailerlite Img Tracking URL (Last IMG, e.g. 'https://track.mailerlite.com/webforms...')" %>
 
     <h2 class="text-center mt-5 thin uppercase color-pink">Images</h2>
-    <div class="form-group">
-      <%= f.label "Mockup Image" %><br />
-      <%= f.file_field :image %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Sample Page" %><br />
-      <%= f.file_field :sample_image %>
-    </div>
+    <div class="row">
+      <div class="col-sm-3 form-group">
+        <%= f.label "Mockup Image" %><br />
+        <%= f.file_field :image %>
+      </div>
+      <div class="col-sm-3 form-group">
+        <%= f.label "Sample Page" %><br />
+        <%= f.file_field :sample_image %>
+      </div>
+      <div class="col-sm-3 form-group">
+        <%= f.label "FB Share Image" %><br />
+        <%= f.file_field :fb_share_image %>
+      </div>
+      <div class="col-sm-3 form-group">
+        <%= f.label "Pinterest Images" %><br />
+        <%= f.file_field :pin_image, multiple: true %>
+      </div>
+    </div> <!-- row -->
 
   </div>
 

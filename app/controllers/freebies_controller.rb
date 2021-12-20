@@ -1,35 +1,33 @@
 class FreebiesController < ApplicationController
   before_action :set_freebie, only: [:show, :edit, :update, :destroy]
 
-  # GET /freebies
-  # GET /freebies.json
+
   def index
     @freebies = Freebie.all
     @navtimeline = false
   end
 
-  # GET /freebies/1
-  # GET /freebies/1.json
+
   def show
     @headernav = false
     @footer = false
   end
 
-  # GET /freebies/new
+
   def new
     @freebie = Freebie.new
     @navtimeline = false
   end
 
-  # GET /freebies/1/edit
+
   def edit
     @navtimeline = false
   end
 
-  # POST /freebies
-  # POST /freebies.json
+
   def create
     @freebie = Freebie.new(freebie_params)
+    pin_images = params[:freebie][:pin_image]
 
     respond_to do |format|
       if @freebie.save
@@ -45,7 +43,15 @@ class FreebiesController < ApplicationController
           @freebie.t1_image.attach(params[:freebie][:t1_image])
           @freebie.save
         end
-
+        if params[:freebie][:fb_share_image].present?
+          @freebie.fb_share_image.purge
+          @freebie.fb_share_image.attach(params[:freebie][:fb_share_image])
+          @freebie.save
+        end
+        if pin_images
+          @freebie.pin_image.purge
+          @freebie.pin_image.attach(pin_images)
+        end
         format.html { redirect_to @freebie, notice: 'Freebie was successfully created.' }
         format.json { render :show, status: :created, location: @freebie }
       else
@@ -55,9 +61,10 @@ class FreebiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /freebies/1
-  # PATCH/PUT /freebies/1.json
+
   def update
+    pin_images = params[:freebie][:pin_image]
+
     respond_to do |format|
       if @freebie.update(freebie_params)
         if params[:freebie][:image].present?
@@ -75,6 +82,15 @@ class FreebiesController < ApplicationController
           @freebie.t1_image.attach(params[:freebie][:t1_image])
           @freebie.save
         end
+        if params[:freebie][:fb_share_image].present?
+          @freebie.fb_share_image.purge
+          @freebie.fb_share_image.attach(params[:freebie][:fb_share_image])
+          @freebie.save
+        end
+        if pin_images
+          @freebie.pin_image.purge
+          @freebie.pin_image.attach(pin_images)
+        end
         format.html { redirect_to @freebie, notice: 'Freebie was successfully updated.' }
         format.json { render :show, status: :ok, location: @freebie }
       else
@@ -84,8 +100,7 @@ class FreebiesController < ApplicationController
     end
   end
 
-  # DELETE /freebies/1
-  # DELETE /freebies/1.json
+
   def destroy
     @freebie.destroy
     respond_to do |format|
@@ -95,12 +110,12 @@ class FreebiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_freebie
       @freebie = Freebie.friendly.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+
     def freebie_params
       params.require(:freebie).permit(
         :name,
@@ -113,6 +128,8 @@ class FreebiesController < ApplicationController
         :image,
         :sample_image,
         :t1_image,
+        :fb_share_image,
+        :pin_image,
 
         :top_question,
         :main_heading,

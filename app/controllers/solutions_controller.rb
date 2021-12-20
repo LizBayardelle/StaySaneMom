@@ -26,12 +26,24 @@ class SolutionsController < ApplicationController
   # POST /solutions.json
   def create
     @solution = category.new(solution_params)
+    pin_images = params[:solution][:pin_image]
 
     respond_to do |format|
       if @solution.save
         @solution.image.attach(params[:solution][:image])
 
-        format.html { redirect_to solutions_path, notice: 'category was successfully created.' }
+        if params[:solution][:fb_share_image].present?
+          @solution.fb_share_image.attach(params[:solution][:fb_share_image])
+          @solution.save
+        end
+        # if @solution.pin_image.attached? && solution_params[:pin_image].present?
+        #   @solution.pin_images.attach(pin_images)
+        # end
+        if pin_images
+          @solution.pin_image.attach(pin_images)
+        end
+
+        format.html { redirect_to solutions_path, notice: 'Solution was successfully created.' }
         format.json { render :show, status: :created, location: @solution }
       else
         format.html { render :new }
@@ -43,14 +55,25 @@ class SolutionsController < ApplicationController
   # PATCH/PUT /solutions/1
   # PATCH/PUT /solutions/1.json
   def update
+    pin_images = params[:solution][:pin_image]
+
     respond_to do |format|
       if @solution.update(solution_params)
         if @solution.image.attached? && solution_params[:image].present?
           @solution.image.purge
           @solution.image.attach(solution_params[:image])
         end
+        if params[:solution][:fb_share_image].present?
+          @solution.fb_share_image.purge
+          @solution.fb_share_image.attach(params[:solution][:fb_share_image])
+          @solution.save
+        end
+        if pin_images
+          @solution.pin_image.purge
+          @solution.pin_image.attach(pin_images)
+        end
 
-        format.html { redirect_to solutions_path, notice: 'solution was successfully updated.' }
+        format.html { redirect_to solutions_path, notice: 'Solution was successfully updated.' }
         format.json { render :show, status: :ok, location: @solution }
       else
         format.html { render :edit }
@@ -92,8 +115,12 @@ class SolutionsController < ApplicationController
         :kids,
         :teens,
         :balance,
+
         :active,
+
         :image,
+        :fb_share_image,
+        :pin_image,
 
         category_ids: []
       )

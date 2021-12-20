@@ -1,3 +1,20 @@
+<!-- page-specific content -->
+  <% title @freebie.name %>
+
+
+  <%= content_for :head do %>
+    <% description = @freebie.main_subheading %>
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<%= @freebie.name %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="<%= rails_blob_url(@freebie.fb_share_image) if @freebie.fb_share_image.attached? %>" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product.group" />
+  <% end %>
+
+
+
 <%= content_for :pinterest do %>
   <script>
     pintrk('track', 'pagevisit', {
@@ -5,6 +22,8 @@
     });
   </script>
 <% end %>
+
+<!-- page-specific content -->
 
 
 
@@ -111,7 +130,18 @@
 
 
 
-
+<% if @freebie.pin_image.attached? %>
+  <section id="pins" class="mt-5 bg-white z-depth-2-y py-5 text-center">
+    <h2 class="display-2 color-pink font-script mb-0">Save It, Share It</h2>
+    <div class="pinterest-image row padded pin-image-stripe">
+      <div class="container">
+        <% @freebie.pin_image.each do |image| %>
+          <%= image_tag url_for(image)%>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
 
 
 

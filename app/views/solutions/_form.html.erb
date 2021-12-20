@@ -3,23 +3,43 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <div class="form-group">
-      <%= f.label "Sample Image" %><br />
+  <div class="form-inputs row">
+    <div class="col-12">
+      <%= f.input :name %>
+    </div> <!-- col -->
+    <div class="col-sm-6">
+      <%= f.input :price %>
+    </div> <!-- col -->
+    <div class="col-sm-6">
+      <label>Display On Website</label>
+      <%= f.input :active %>
+    </div> <!-- col -->
+    <div class="col-sm-4 form-group">
+      <%= f.label "Product Mockup" %><br />
       <%= f.file_field :image %>
     </div>
+    <div class="col-sm-4 form-group">
+      <%= f.label "FB Share Image" %><br />
+      <%= f.file_field :fb_share_image %>
+    </div>
+    <div class="col-sm-4 form-group">
+      <%= f.label "Pinterest Images" %><br />
+      <%= f.file_field :pin_image, multiple: true %>
+    </div>
 
-    <div class="form-group form-check jsItUp">
+    <div class="col-6">
+      <%= f.input :description, input_html: { rows: 5 } %>
+      </div> <!-- col -->
+    <div class="col-sm-6">
+      <%= f.input :link, label: "Thrivecart Embedded Salespage Link", input_html: { rows: 5 } %>
+    </div> <!-- col -->
+
+    <div class="col-12 form-group form-check jsItUp">
       <h5>Categories</h5>
       <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
     </div>
 
-    <%= f.input :price %>
-    <%= f.input :description %>
-    <%= f.input :link %>
-
-    <%= f.input :active %>
+    
   </div>
 
   <div class="form-actions text-center">
