@@ -1,55 +1,88 @@
 <!-- page-specific content -->
-  <% title "Gift Planner | SSM" %>
+  <% pagetitle = "Gift Planner" %>
+  <% description = "Argh.  Holiday shopping sucks.  Here's to not getting that one nephew the same gift three years in a row." %>
+  
+  <% title pagetitle %>
   <%= content_for :head do %>
-    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<% pagetitle %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://staysanemom.s3.us-west-1.amazonaws.com/111-Share+Images/Holiday+Gift+Planner.jpg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product" />
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "gift-planner.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
-  <div class="container">
-    <h1>Gift Planner</h1>
-    <h4 class="text-center" style="font-weight: 900">An "occasion" is when you have to buy people gifts.<br />(Think "Christmas" or&nbsp;"Father's&nbsp;Day".)</h4>
+
+
+<section id="hero-and-header">
+
+  <div class="container py-5 text-center">
+    <h1 class="d-md-none">Mom Tools</h1>
+    <div class="row align-items-center">
+
+      <div class="col-md-6 order-md-1">
+          <img class="match-height classy-pic tilt-right mb-4" src="<%= asset_path "gift-planner.jpg" %>" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+
+      <div class="col-md-6 order-md-0">
+        <h1 class="d-none d-md-block">Gift Planner</h1>
+        <h3 class="text-black mb-4">
+            Get started by creating an occasion.
+        </h3>
+        <h3 class="text-black mb-4">
+            (An "occasion" is when you have to buy people gifts...think "Christmas" or&nbsp;"Father's&nbsp;Day".)
+        </h3>
+        <h3 class="text-black">
+            Then you can add gifts to it.
+        </h3>
+        <a href="#newOccasionPopup" class="open-popup-link btn btn-pink">Create a New Occasion</a>
+      </div> <!-- col -->
+
+    </div> <!-- row -->
   </div> <!-- container -->
-  <div class="over-frame-bottom-row">
-    <div class="container text-center">
-      <a href="#newOccasionPopup" class="open-popup-link btn btn-pink">Create a New Occasion</a>
-      <div class="buffer"></div>
-    </div> <!-- container -->
-  </div> <!-- over-frame-text -->
-</div> <!-- over-frame-text -->
 
-<div class="half-buffer"></div>
+</section>
 
-<div class="container">
 
-  <div class="text-center">
-    <div class="btn btn-pink" id="seePastButton">See Past Events</div>
-    <div class="btn btn-pink d-none" id="seeFutureButton">Back to Future Events</div>
-  </div>
 
-  <div class="half-buffer"></div>
 
-  <div id="futureEvents">
-    <% if @occasions %>
-      <% @occasions.each do |occasion| %>
+<section class="bg-white z-depth-2-y py-5">
+  <div class="container">
+
+    <div class="text-center">
+      <div class="btn btn-pink" id="seePastButton">See Past Events</div>
+      <div class="btn btn-pink d-none" id="seeFutureButton">Back to Future Events</div>
+    </div>
+
+    <div class="half-buffer"></div>
+
+    <div id="futureEvents">
+      <% if @occasions %>
+        <% @occasions.each do |occasion| %>
+          <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
+          <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
+          <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
+          <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
+        <% end %>
+      <% end %>
+    </div> <!-- future -->
+
+    <div id="pastEvents" class="d-none">
+      <% @past_occasions.each do |occasion| %>
         <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
         <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
         <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
         <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
       <% end %>
-    <% end %>
-  </div> <!-- future -->
+    </div> <!-- future -->
+  </div> <!-- container -->
+</section>
 
-  <div id="pastEvents" class="d-none">
-    <% @past_occasions.each do |occasion| %>
-      <%= link_to occasion_path(occasion) do %><h3 class="font-bold" style="margin-bottom: 0px"><%= occasion.name %> (<%= occasion.date.strftime("%B %e, %Y") %>)</h3><% end %>
-      <% @purchased_gifts = occasion.gifts.where(purchased: true) %>
-      <h4 style="font-weight: 200; margin-bottom: 0px">Gifts needed for <%= pluralize(occasion.gifts.count, "person") %> ( <%= @purchased_gifts.count %> Purchased )</h4>
-      <p><small><%= link_to 'See Details', occasion %> | <%= link_to 'Edit', edit_occasion_path(occasion) %> | <%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
-    <% end %>
-  </div> <!-- future -->
-</div> <!-- container -->
+
+
+
 
 <!-- new person popup itself -->
 <div id="newOccasionPopup" class="white-popup mfp-hide">

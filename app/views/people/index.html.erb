@@ -1,28 +1,58 @@
 <!-- page-specific content -->
-  <% title "My Tribe&nbsp;&nbsp;|&nbsp;&nbsp;SSM" %>
+  <% pagetitle = "Birthday Tracker" %>
+  <% description = "Input birthdays, anniversaries, and more. Never forget an important date again." %>
+  
+  <% title pagetitle %>
   <%= content_for :head do %>
-    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<% pagetitle %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://staysanemom.s3.us-west-1.amazonaws.com/111-Share+Images/Online+Birthday+Tracker.jpg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product" />
   <% end %>
 <!-- page-specific content -->
 
-<div class="header-frame frame" style="background-image: url(<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
-<div class="over-frame-text">
-  <div class="container">
-    <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>Family</h1>
+
+
+
+<section id="hero-and-header">
+
+  <div class="container py-5 text-center">
+    <h1 class="d-md-none">Mom Tools</h1>
+    <div class="row align-items-center">
+
+      <div class="col-md-6 order-md-1">
+          <img class="match-height classy-pic tilt-right mb-4" src="<%= asset_path "keep-track-of-family-dates-and-events.jpg" %>" style="max-width: 100%; max-height: 40vh">
+      </div> <!-- col -->
+
+      <div class="col-md-6 order-md-0">
+        <h1 class="d-none d-md-block"><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>Family</h1>
+        <h3 class="text-black mb-4">
+            Keep track of all your people.
+        </h3>
+        <h3 class="text-black mb-4">
+            Important dates, birthdays, heck, even names.
+        </h3>
+        <h3 class="text-black">
+            We got you.
+        </h3>
+        <a href="#newPersonPopup" class="open-popup-link btn btn-pink">Add New Person</a>
+      </div> <!-- col -->
+
+    </div> <!-- row -->
   </div> <!-- container -->
-  <div class="over-frame-bottom-row">
-    <div class="container text-center">
-      <a href="#newPersonPopup" class="open-popup-link btn btn-pink">Add New Person</a>
-      <div class="buffer"></div>
-    </div> <!-- container -->
-  </div> <!-- over-frame-text -->
-</div> <!-- over-frame-text -->
+
+</section>
+
+
 
 
 <section class="bg-white w-100 z-depth-2-y py-5">
   <div class="container">
 
-  <h1 class="text-center mb-0">My Tribe</h1>
+  <h1 class="text-center mb-0">My People</h1>
 
   <div class="text-center pb-5">
     <div id="relationshipTarget" class="sortingTarget color-neutral">Sort by Relationship</div> |

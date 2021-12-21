@@ -1,9 +1,23 @@
 <!-- page-specific content -->
-  <% title "Yearly Time Capsules | SSM" %>
+  <% pagetitle = "Yearly Time Capsules" %>
+  <% description = "Create adorable year-by-year photo montages...without the...remembering to do it part." %>
+  
+  <% title pagetitle %>
   <%= content_for :head do %>
-    <meta name="description" content="It's hard to keep track of the special events, dates to come, and all the other important information about one's 'tribe'." />
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<% pagetitle %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://staysanemom.s3.us-west-1.amazonaws.com/111-Share+Images/Photo+Time+Capsules.jpg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product" />
   <% end %>
 <!-- page-specific content -->
+
+
+
+
+
 
 <div class="header-frame frame" style="background-image: url(<%= asset_path "yearly-photo-time-capsules.jpg" %>)"><div class="image-overlay-white"><div class="inner-frame border-neutral"></div></div></div>
 <div class="over-frame-text">

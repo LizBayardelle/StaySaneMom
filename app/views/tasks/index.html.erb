@@ -1,7 +1,14 @@
 <!-- page-specific content -->
-  <% title "House Task Organizer | SSM" %>
+  <% title "Online Task Organizer" %>
   <%= content_for :head do %>
-    <meta name="description" content="Motherhood and house ownership come with a lot of tasks.  Keep your to do list organized and optimized here." />
+    <% description = "Motherhood and house ownership come with a lot of tasks.  Keep your to do list organized and optimized here." %>
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="Online Task Organizer" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://staysanemom.s3.us-west-1.amazonaws.com/111-Share+Images/Online+Task+Organizer.jpeg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product" />
   <% end %>
 <!-- page-specific content -->
 
@@ -9,7 +16,7 @@
 <div class="over-frame-text">
   <div class="container">
     <div class="buffer"></div>
-    <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>House Task Organizer</h1>
+    <h1><% if current_user && current_user.first_name %><%= current_user.first_name %>'s <% end %>Online Task Organizer</h1>
   </div> <!-- container -->
   <div class="over-frame-bottom-row">
     <div class="container padded">

@@ -1,7 +1,14 @@
 <!-- page-specific content -->
   <% title "Tools | SSM" %>
   <%= content_for :head do %>
-    <meta name="description" content="Running a household is hard.  Here are some tools to help you stay organized, increase your productivity, and stay sane." />
+    <% description = "Running a household is hard.  Here are some tools to help you stay organized, increase your productivity, and stay sane." %>
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="Online Tools" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://s3.console.aws.amazon.com/s3/object/staysanemom?region=us-west-1&prefix=111-Share+Images/Online+Tools.jpeg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product.group" />
   <% end %>
 <!-- page-specific content -->
 

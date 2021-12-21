@@ -1,14 +1,27 @@
 <!-- page-specific content -->
-  <% title "My Recipe Box | SSM" %>
+  <% pagetitle = "My Recipe Box" %>
+  <% description = "My personal stockpile of sophisticated culinary creations...and grilled cheeese." %>
+  
+  <% title pagetitle %>
   <%= content_for :head do %>
-    <meta name="description" content="My personal stockpile of delicious culinary creations...and grilled cheeese." />
+    <meta name="description" content="<%= description %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<% pagetitle %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="https://staysanemom.s3.us-west-1.amazonaws.com/111-Share+Images/Online+Recipe+Box.jpg" />
+    <meta property="article:author" content="Liz Bayardelle, PhD" />
+    <meta property="og:type" content="product" />
   <% end %>
 <!-- page-specific content -->
 
-<div class="container">
-  <p class="text-center pt-3">Bored?  You can always <%= link_to "Create Your Own Recipe", new_meal_path %> or <%= link_to "Browse Our Recipe Library", recipes_path %></p>
 
-  <h1 class="text-center font-script">My Recipe Box</h1>
+
+
+
+<div class="container">
+  <p class="text-center pt-3">Bored?  You can always <%= link_to "browse our recipe library", recipes_path %>.</p>
+
+  <h1 class="text-center font-script color-pink display-1">My Recipe Box</h1>
 
 
   <div class="half-buffer"></div>
