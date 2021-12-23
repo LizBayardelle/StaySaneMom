@@ -12,18 +12,14 @@
         <div class="col-12 p-bottom-margin">
           <h3 class="color-pink"><a href="" target="_blank"><%= solution.name %></a><h3>
           <p class="lh-1"><small><%= simple_format(solution.description) %></small></p>
-          <%= link_to "See More", solution_path(solution), class: "btn-grey-light btn" %>
-          <button type="button" class="btn btn-pink" data-toggle="modal" data-target="#modal<%= solution.id %>">
-            <%= number_to_currency(solution.price) %>
-          </button>
-          <% if current_user && current_user.admin %>
-            <p><small>
-              <%= link_to 'Edit', edit_solution_path(solution) %>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <%= link_to 'Destroy', solution, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </small></p>
-          <% end %>
-        </div>
+          <div class="text-center pb-5 mb-5">
+            <%= solution.link.html_safe %>
+            <%= link_to "See More", solution_path(solution), class: "btn btn-neutral-light" %>
+            <% if current_user && current_user.admin %>
+              <p><small class="pt-3"><%= link_to 'Edit', edit_solution_path(solution) %></small></p>
+            <% end %>
+          </div>
+        </div> <!-- col -->
       </div>
     </div> <!-- col -->
   </div> <!-- row -->
@@ -31,19 +27,3 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="modal<%= solution.id %>" tabindex="-1" role="dialog" aria-labelledby="modal<%= solution.id %>Label" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal<%= solution.id %>Label"><%= solution.name %></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= solution.link.html_safe %>
-      </div>
-    </div>
-  </div>
-</div>
