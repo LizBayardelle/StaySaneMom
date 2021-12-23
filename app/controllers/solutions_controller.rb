@@ -36,9 +36,10 @@ class SolutionsController < ApplicationController
           @solution.fb_share_image.attach(params[:solution][:fb_share_image])
           @solution.save
         end
-        # if @solution.pin_image.attached? && solution_params[:pin_image].present?
-        #   @solution.pin_images.attach(pin_images)
-        # end
+        if params[:solution][:t1_image].present?
+          @solution.t1_image.attach(params[:solution][:t1_image])
+          @solution.save
+        end
         if pin_images
           @solution.pin_image.attach(pin_images)
         end
@@ -62,6 +63,11 @@ class SolutionsController < ApplicationController
         if @solution.image.attached? && solution_params[:image].present?
           @solution.image.purge
           @solution.image.attach(solution_params[:image])
+        end
+        if params[:solution][:t1_image].present?
+          @solution.t1_image.purge
+          @solution.t1_image.attach(params[:solution][:t1_image])
+          @solution.save
         end
         if params[:solution][:fb_share_image].present?
           @solution.fb_share_image.purge
@@ -106,6 +112,20 @@ class SolutionsController < ApplicationController
         :description,
         :link,
         :thrivelink,
+
+        :long_description,
+        :top_question,
+        :outcome,
+        :wyg1,
+        :wyg2,
+        :wyg3,
+        :outcome_2,
+
+        :t1_image,
+        :t1_long,
+        :t1_short,
+        :t1_name,
+        :t1_title,
 
         :house,
         :marriage,

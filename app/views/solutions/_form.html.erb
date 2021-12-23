@@ -14,6 +14,56 @@
       <label>Display On Website</label>
       <%= f.input :active %>
     </div> <!-- col -->
+
+    <div class="col-12">
+      <%= f.input :link, label: "Thrivecart Link", input_html: { rows: 3 } %>
+    </div> <!-- col -->
+
+    <div class="col-12">
+      <h2 class="text-center mt-5 thin uppercase color-pink">Descriptions and Copy</h2>
+      <%= f.input :description, label: "One-sentence description" %>
+    </div> <!-- col -->
+
+    <div class="col-sm-6">
+      <%= f.input :top_question %>
+      <%= f.input :outcome %>
+      <%= f.input :outcome_2, label: "Another Outcome" %>    
+    </div> <!-- col -->
+
+    <div class="col-sm-6">
+      <%= f.input :wyg1, label: "What you get bullet #1" %>
+      <%= f.input :wyg2, label: "What you get bullet #2" %>
+      <%= f.input :wyg3, label: "What you get bullet #3" %>      
+    </div> <!-- col -->
+
+    <div class="col-12">
+      <%= f.input :long_description, label: "Longer description", input_html: { rows: 5 } %>
+    </div> <!-- col -->
+
+
+    <div class="col-12">
+      <h2 class="text-center mt-5 thin uppercase color-pink">Testimonial</h2>
+    </div>
+
+    <div class="col-sm-6">
+      <%= f.input :t1_name, label: "Person Name" %>
+    </div> <!-- col -->
+    <div class="col-sm-6">
+      <%= f.input :t1_title, label: "Person Title" %>
+    </div> <!-- col -->
+    <div class="col-12">
+      <%= f.input :t1_short, label: "Short Blurb" %>
+      <%= f.input :t1_long, label: "Full Testimonial" %>
+      <div class="form-group">
+        <%= f.label "Testimonial Avatar" %><br />
+        <%= f.file_field :t1_image %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <h2 class="text-center mt-5 thin uppercase color-pink">Images</h2>
+    </div>
+
     <div class="col-sm-4 form-group">
       <%= f.label "Product Mockup" %><br />
       <%= f.file_field :image %>
@@ -26,13 +76,6 @@
       <%= f.label "Pinterest Images" %><br />
       <%= f.file_field :pin_image, multiple: true %>
     </div>
-
-    <div class="col-6">
-      <%= f.input :description, input_html: { rows: 5 } %>
-      </div> <!-- col -->
-    <div class="col-sm-6">
-      <%= f.input :link, label: "Thrivecart Link", input_html: { rows: 5 } %>
-    </div> <!-- col -->
 
     <div class="col-12 form-group form-check jsItUp">
       <h5>Categories</h5>

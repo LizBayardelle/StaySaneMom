@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_212834) do
+ActiveRecord::Schema.define(version: 2021_12_23_214126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -349,6 +349,17 @@ ActiveRecord::Schema.define(version: 2021_12_13_212834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thrivelink"
+    t.text "long_description"
+    t.string "top_question"
+    t.string "outcome"
+    t.string "wyg1"
+    t.string "wyg2"
+    t.string "wyg3"
+    t.string "outcome_2"
+    t.text "t1_long"
+    t.string "t1_short"
+    t.string "t1_name"
+    t.string "t1_title"
   end
 
   create_table "sortings", force: :cascade do |t|
