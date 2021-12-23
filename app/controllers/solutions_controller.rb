@@ -15,7 +15,7 @@ class SolutionsController < ApplicationController
 
   # GET /solutions/new
   def new
-    @solution = category.new
+    @solution = Solution.new
   end
 
   # GET /solutions/1/edit
@@ -25,7 +25,7 @@ class SolutionsController < ApplicationController
   # POST /solutions
   # POST /solutions.json
   def create
-    @solution = category.new(solution_params)
+    @solution = Solution.new(solution_params)
     pin_images = params[:solution][:pin_image]
 
     respond_to do |format|
