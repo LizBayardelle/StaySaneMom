@@ -5,11 +5,11 @@
       <%= if content_for?(:title) then yield(:title) + ' | ' end %>
       Stay Sane Mom
     </title>
-    <%= if content_for?(:head) then yield(:head) end %>
     <meta name='description'
       content='<%= yield_meta_tag(:description, 'Helping overworked moms keep clean house, a healthy marriage, balanced kids, and stay sane on top of it all.') %>' />
     <meta name='keywords'
       content='<%= yield_meta_tag(:keywords, 'stay sane, mom, motherhood, wife, kids, sanity, happy, organization, research') %>' />
+    <%= if content_for?(:head) then yield(:head) end %>
     <%= csrf_meta_tags %>
     <%= csrf_meta_tag %>
     <%= csp_meta_tag %>
