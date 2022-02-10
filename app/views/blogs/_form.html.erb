@@ -26,83 +26,46 @@
       <%= f.text_area :teaser, class: "form-control" %>
     </div>
 
-    <% if current_user && current_user.admin %>
-      <h5>Blog Placement</h5>
-      <div class="form-group">
-        <%= f.input :pillar, label: "Pillar Content" %>
-        <%= f.input :featured_home, label: "Feature on Homepage" %>
-        <%= f.input :featured_category, label: "Feature on Category Page" %>
-      </div> <!-- form group -->
-    <% end %>
+    <div class="row">
+      <div class="col-sm-6">
+        <% if current_user && current_user.admin %>
+          <h5>Blog Placement</h5>
+          <div class="form-group">
+            <%= f.input :pillar, label: "Pillar Content" %>
+            <%= f.input :featured_home, label: "Feature on Homepage" %>
+            <%= f.input :featured_category, label: "Feature on Category Page" %>
+          </div> <!-- form group -->
+        <% end %>
+      </div> <!-- col -->
 
-    <div class="form-group">
-      <h5>Main Category</h5>
-      <%= f.input :category, label: false, input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
-    </div>
+      <div class="col-sm-6">
+        <% if current_user && current_user.admin %>
+          <div class="form-group">
+            <h5>Author</h5>
+            <% possible_users = User.where(contributor: true).or(User.where(admin: true)) %>
+            <%= f.input :user_id, collection: possible_users, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.user_id, input_html: {class: 'browser-default'} %>
+          </div>
+        <% else %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+        <% end %>
+      </div> <!-- col -->
+    </div> <!-- row -->
 
-    <% if current_user && current_user.admin %>
-      <div class="form-group">
-        <h5>Author</h5>
-        <% possible_users = User.where(contributor: true).or(User.where(admin: true)) %>
-        <%= f.input :user_id, collection: possible_users, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.user_id, input_html: {class: 'browser-default'} %>
+
+    <div class="row">
+      <div class="col-sm-6 form-group form-check jsItUp" >
+        <h5>Categories</h5>
+        <div style="margin-left: 20px">
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
+        </div>
+       </div>
+
+      <div class="col-sm-6 form-group">
+        <h5>Subcategory</h5>
+        <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
       </div>
-    <% end %>
+    </div> <!-- row -->
 
-    <div class="form-group">
-      <h5>All Applicable Categories</h5>
-      <div class="row">
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :house, class: "form-check-input", id: "house" %>
-          <%= f.label :house, class: "form-check-label", for: "house" %>
-        </div>
-
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :marriage, class: "form-check-input", id: "marriage" %>
-          <%= f.label :marriage, class: "form-check-label", for: "marriage" %>
-        </div>
-
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :pregnancy, class: "form-check-input", id: "pregnancy" %>
-          <%= f.label :pregnancy, class: "form-check-label", for: "pregnancy" %>
-        </div>
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :babies, class: "form-check-input", id: "babies" %>
-          <%= f.label :babies, class: "form-check-label", for: "babies" %>
-        </div>
-
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :toddlers, class: "form-check-input", id: "toddlers" %>
-          <%= f.label :toddlers, class: "form-check-label", for: "toddlers" %>
-        </div>
-
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :kids, class: "form-check-input", id: "kids" %>
-          <%= f.label :kids, class: "form-check-label", for: "kids" %>
-        </div>
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :teens, class: "form-check-input", id: "teens" %>
-          <%= f.label :teens, class: "form-check-label", for: "teens" %>
-        </div>
-
-        <div class="col-4 col-lg-2 field form-check">
-          <%= f.check_box :balance, class: "form-check-input", id: "balance" %>
-          <%= f.label :balance, class: "form-check-label", for: "balance" %>
-        </div>
-
-      </div> <!-- row -->
-    </div> <!-- form-group -->
-
-    <div class="form-group form-check jsItUp">
-      <h5>Categories</h5>
-      <div class="row">
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
-      </div>
-     </div>
-
-    <div class="form-group">
-      <h5>Subcategory</h5>
-      <%= f.input :subcategory_id, collection: @subcategories, label_method: lambda { |sub| "#{sub.name}" }, value_method: :id, optional: true, label: false, include_blank: false, selected: @blog.subcategory_id, input_html: {class: 'browser-default'} %>
-    </div>
   </div> <!-- form inupts -->
 </div> <!-- container -->
 
@@ -127,20 +90,16 @@
         <div class="col-sm-6 form-group">
           <%= f.label "External Photo URL" %>
           <%= f.text_field :photo_url, class: "form-control mb-2" %>
-          <%= f.input :photo_external %>
+          <%= f.hidden_field :photo_external, value: true %>
         </div>
         <div class="col-sm-6 form-group">
-          <%= f.label "Blog Image" %><br />
-          <%= f.file_field :image %>
+          <%= f.label "Pinterest Images" %><br />
+          <%= f.file_field :pin_image, multiple: true %>
         </div>
       </div> <!-- row -->
 
         <div class="row">
-          <div class="col-sm-6 form-group">
-            <%= f.label "Pinterest Images" %><br />
-            <%= f.file_field :pin_image, multiple: true %>
-          </div>
-          <div class="col-sm-6 form-group">
+          <div class="col-12 form-group">
             <%= f.label "Pinterest Description" %>
             <%= f.text_area :data_pin_description, class: "form-control" %>
           </div>

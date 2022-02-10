@@ -1,40 +1,104 @@
-<!-- page-specific content -->
-  <% title @subcategory.name + " | SSM" %>
-  <%= content_for :head do %>
-    <meta name="description" content="<%= @subcategory.description %>" />
-  <% end %>
-<!-- page-specific content -->
+<main>
 
-<div class="container text-center">
-  <h1 class="font-script"><%= @subcategory.name %></h1>
-  <p><%= @subcategory.description %></p>
-  <h2 class="color-pink"><% if !@subcategory.active %>INACTIVE<% end %></h2>
-</div>
+    <section class="masthead texture-leaves">
+        <div class="container px-xl-5">
+            <div class="row gx-5 p-md-0 align-items-center">
+
+              <% if current_user && current_user.admin %>
+                <div class="col-12 text-right" style="margin-top: -30px;">
+            <%= link_to 'Edit Category', edit_category_path(@subcategory) %>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to 'Category Admin Page', admin_categories_path %>
+          </div>
+        <% end %>
+
+                <div class="col-md-6 text-center mb-5">
+                    <h1 class="display-1 lh-1"><%= @subcategory.i_statement %></h1>
+                    <h3><%= @subcategory.description %></h3>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img class="classy-pic extra tilt-right" src="<%= @subcategory.main_photo_url %>">
+                </div>
+                 <div class="col-12 text-center">
+                   <%= link_to @subcategory.cta, Freebie.find(@subcategory.freebie_id), class: "btn btn-pink btn-lg mt-5" %>
+                </div>
+
+      </div>
+        </div>
+    </section>
 
 
-<!-- related blogs -->
-<% @related = Blog.where(subcategory_id: @subcategory.id, published: true, nondisplayed: false ).where("published_on <= ?", Date.today).order("comments_count DESC") %>
-<% if @related != [] %>
-  <div class="container">
-    <!-- <h2>Blogs on <%#= @subcategory.name %></h2> -->
-    <div class="row">
-      <% @related.each do |blog| %>
-        <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
-      <% end %>
-    </div> <!-- row -->
-  </div>
-<% end %>
-<!-- related blogs -->
+
+    <section class="z-over bg-white z-depth-2-y py-5">
+      <div class="container">
+        <h2 class="display-1 color-pink font-script text-center">
+          <%= @subcategory.good_adjective %>, not <%= @subcategory.bad_adjective.downcase %>.
+        </h2>
+        <div class="text-center">
+                <img class="classy-pic tilt-left w-50 mb-5" src="<%= @subcategory.photo_2_url %>">
+            </div>
+        <%= raw(@subcategory.intro) %>
+      </div>
+    </section>
 
 
-<%= content_for :additional_js do %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.height').matchHeight();
-      $('.card').matchHeight();
-      $('.view').matchHeight();
-      $('.card-title').matchHeight();
-      $('.card-text').matchHeight();
-    });
-  </script>
-<% end %>
+
+    <section class="z-under py-5">
+      <div class="container">
+        <div class="text-center">
+                <h2 class="pb-4">How to <%= @subcategory.cta.titleize %></h2>
+        </div> <!-- col -->
+
+        <div class="row align-items-center">
+
+          <div class="col-sm-6 text-center">
+                  <img class="classy-pic tilt-left mb-5 w-75" src="<%= @subcategory.photo_3_url %>">
+          </div> <!-- col -->
+
+          <div class="col-sm-6">
+                  <p class="h3"><%= @subcategory.cta_desc %></p>
+                    <%= Freebie.find(@subcategory.freebie_id).thrivelink.html_safe %>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </section>
+
+
+    <% freebie_categorizations = CategorizationFreebie.where(category_id: @subcategory.id) %>
+    <% if freebie_categorizations.count != 0 %>
+        <section class="z-over bg-white z-depth-2-y py-5">
+            <div class="container">
+                <div class="row">
+                    <h2 class="display-1 color-pink font-script text-center">
+                        Quick Fixes for Your <%= @subcategory.name %>
+                    </h2>
+                    <% freebie_categorizations.each do |categorization| %>
+                        <% freebie = Freebie.find(categorization.freebie_id) %>
+                            <%= render partial: "freebies/card", locals: { freebie: freebie } %>
+                    <% end %>
+                </div> <!-- row -->
+            </div>
+        </section>
+    <% end %>
+
+
+    <% blog_categorizations = CategorizationBlog.where(category_id: @subcategory.id) %>
+    <% if blog_categorizations.count != 0 %>
+        <section class="z-under py-5">
+            <div class="container">
+                <div class="row">
+                    <h2 class="display-1 color-pink font-script text-center">
+                        More about <%= @subcategory.name %>
+                    </h2>
+                    <% blog_categorizations.each do |categorization| %>
+                        <% blog = Blog.find(categorization.blog_id) %>
+                        <%= render partial: "layouts/mdbcard", locals: { blog: blog } %>
+                    <% end %>
+                </div> <!-- row -->
+            </div>
+        </section>
+    <% end %>
+
+</main>
+
+

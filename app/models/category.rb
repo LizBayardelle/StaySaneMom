@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  has_many :subcategories
+  
   has_many :categorization_blogs
   has_many :blogs, through: :categorization_blogs
 

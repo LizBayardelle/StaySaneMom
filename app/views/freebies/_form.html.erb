@@ -11,14 +11,8 @@
 
     
     <div class="form-group form-check jsItUp">
-      <div class="row">
-        <h5>Categories</h5>
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.input :category, label: "Main Category", input_html: {class: 'browser-default'}, collection: [['House', 'House'], ['Marriage', 'Marriage'], ['Pregnancy', 'Pregnancy'], ['Babies', 'Babies'], ['Toddlers', 'Toddlers'], ['Kids', 'Kids'], ['Teens', 'Teens'], ['Balance', 'Balance']] %>
+      <h5>Categories</h5>
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
     </div>
 
     <%= f.input :active %>

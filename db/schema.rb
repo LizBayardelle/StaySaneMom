@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_214126) do
+ActiveRecord::Schema.define(version: 2022_02_07_222808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -382,9 +382,48 @@ ActiveRecord::Schema.define(version: 2021_12_23_214126) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "category"
     t.text "description"
     t.boolean "active", default: true
+    t.string "i_statement"
+    t.string "cta"
+    t.text "intro"
+    t.string "bad_adjective"
+    t.string "main_photo_url"
+    t.string "photo_2_url"
+    t.string "photo_3_url"
+    t.text "cta_desc"
+    t.bigint "freebie_id"
+    t.bigint "category_id"
+    t.string "good_adjective"
+    t.index ["category_id"], name: "index_subcategories_on_category_id"
+    t.index ["freebie_id"], name: "index_subcategories_on_freebie_id"
+  end
+
+  create_table "subcategorization_blogs", force: :cascade do |t|
+    t.bigint "subcategory_id"
+    t.bigint "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_subcategorization_blogs_on_blog_id"
+    t.index ["subcategory_id"], name: "index_subcategorization_blogs_on_subcategory_id"
+  end
+
+  create_table "subcategorization_freebies", force: :cascade do |t|
+    t.bigint "subcategory_id"
+    t.bigint "freebie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["freebie_id"], name: "index_subcategorization_freebies_on_freebie_id"
+    t.index ["subcategory_id"], name: "index_subcategorization_freebies_on_subcategory_id"
+  end
+
+  create_table "subcategorization_solutions", force: :cascade do |t|
+    t.bigint "subcategory_id"
+    t.bigint "solution_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["solution_id"], name: "index_subcategorization_solutions_on_solution_id"
+    t.index ["subcategory_id"], name: "index_subcategorization_solutions_on_subcategory_id"
   end
 
   create_table "subcategorizations", force: :cascade do |t|
@@ -494,5 +533,13 @@ ActiveRecord::Schema.define(version: 2021_12_23_214126) do
   add_foreign_key "people", "users"
   add_foreign_key "responses", "users"
   add_foreign_key "sortings", "users"
+  add_foreign_key "subcategories", "categories"
+  add_foreign_key "subcategories", "freebies"
+  add_foreign_key "subcategorization_blogs", "blogs"
+  add_foreign_key "subcategorization_blogs", "subcategories"
+  add_foreign_key "subcategorization_freebies", "freebies"
+  add_foreign_key "subcategorization_freebies", "subcategories"
+  add_foreign_key "subcategorization_solutions", "solutions"
+  add_foreign_key "subcategorization_solutions", "subcategories"
   add_foreign_key "tasks", "users"
 end

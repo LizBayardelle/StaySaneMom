@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
-before_action :admin_only
+before_action :admin_only, except: :drafts
+before_action :admin_or_contributor, only: :drafts
 
   def dashboard
     @freebies = Freebie.all

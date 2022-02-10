@@ -1,11 +1,14 @@
 class Subcategory < ApplicationRecord
-  has_many :subcategorizations
-  has_many :blogs, through: :subcategorizations
+  belongs_to :category
+  has_one :freebie
 
-  has_one_attached :image
+  has_many :subcategorization_blogs
+  has_many :blogs, through: :subcategorization_blogs
 
-  has_many :resource_categorizations
-  has_many :resources, through: :resource_categorizations
+  has_many :subcategorization_freebies
+  has_many :freebies, through: :subcategorization_freebies
 
+  has_many :subcategorization_solutions
+  has_many :solutions, through: :subcategorization_solutions
 
 end
