@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
 
+  def next
+  end
+  
   def old
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC").limit(8)
     @all_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC")

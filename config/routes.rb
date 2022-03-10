@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'admin/messages'
 
   get 'home/old'
+  get 'home/next'
 
   resources :categories
   resources :messages

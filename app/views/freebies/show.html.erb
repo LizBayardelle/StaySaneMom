@@ -48,15 +48,15 @@
 
   <div class="row py-4">
 
-    <div class="col-12 col-sm-5 text-center pull-sm-7">
+    <div class="col-12 col-lg-5 text-center pull-lg-7">
       <img src="<%= rails_blob_url(@freebie.sample_image) if @freebie.sample_image.attached? %>" class="product-image">
       <div class="w-100 pt-4">
         <img src="<%= asset_url("Arrow.png") %>" class="pr-5" style="height: 50px">
-        <h3 class="font-script color-pink mt-2 text-center text-sm-left">Free <%= @freebie.name %></h3>
+        <h3 class="font-script color-pink mt-2 text-center text-lg-left">Free <%= @freebie.name %></h3>
       </div>
     </div> <!-- col -->
 
-    <div class="col-12 col-sm-7 text-center text-sm-left push-sm-5">
+    <div class="col-12 col-lg-7 text-center text-lg-left push-lg-5">
       <h1 class="thin h2 uppercase color-pink"><%= @freebie.main_heading %></h1>
       <h3 class="bold landing-subheading"><%= simple_format(@freebie.main_subheading) %></h3>
       <% if @freebie.thrivelink && @freebie.thrivelink != "" %>

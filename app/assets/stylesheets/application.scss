@@ -95,6 +95,7 @@ a:hover { color: $color-neutral; font-weight: 700; text-decoration: none; }
 a.color-pink:hover { color: $color-pink; }
 a.color-white:hover { color: $color-white; }
 
+.bold { font-weight: 600 !important;}
 
 h1, .h1 { font-size: 60px; }
 h2, .h2 { font-size: 50px; }
@@ -300,7 +301,7 @@ ul.checkmarks li:before {
 }
 
 body {
-  background:linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(https://staysanemom.s3.us-west-1.amazonaws.com/111-images/white-marble-bg.jpeg);
+  background:linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(https://staysanemom.s3.us-west-1.amazonaws.com/111-images/white-marble-bg.jpeg);
 
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -669,6 +670,14 @@ table.table.thin th, table.table.thin td {
 .tilt-left.extra { transform: rotate(-6deg); }
 @media screen and (max-width: 1100px) {
   .no-tilt-sm { transform: rotate(0deg); }
+}
+
+.bg-flying-kid {
+  min-height:100%;
+  background:linear-gradient(0deg, rgba(255, 255, 255, 0.85), 
+    rgba(255, 255, 255, 0.85)), 
+    url(https://images.pexels.com/photos/3756036/pexels-photo-3756036.jpeg);
+  background-size:cover;
 }
 
 .texture-paint {
