@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  def next
+  def index
   end
   
   def old
@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     @homepageCSS = true
   end
 
-  def index
+  def old2
     # @headernav = true
     @blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC").limit(8)
     @all_blogs = Blog.where("published_on <= ?", Date.today).where(published: true, nondisplayed: false).order("published_on DESC")

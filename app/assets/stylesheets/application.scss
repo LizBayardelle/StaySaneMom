@@ -96,6 +96,7 @@ a.color-pink:hover { color: $color-pink; }
 a.color-white:hover { color: $color-white; }
 
 .bold { font-weight: 600 !important;}
+.smallish { font-size: 95%; }
 
 h1, .h1 { font-size: 60px; }
 h2, .h2 { font-size: 50px; }
@@ -104,6 +105,8 @@ h2, .h2 { font-size: 50px; }
 .font-sans { font-family: $font-sans }
 .font-script, .font-cursive { font-family: $font-script }
 .font-bold { font-weight: 700 }
+
+.max-w-100 { max-width: 100%; height: auto; }
 
 
 .z-depth-1 { box-shadow: $z-depth-1;}
@@ -301,7 +304,7 @@ ul.checkmarks li:before {
 }
 
 body {
-  background:linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(https://staysanemom.s3.us-west-1.amazonaws.com/111-images/white-marble-bg.jpeg);
+  background:linear-gradient(0deg, rgba(250, 250, 250, 0.95), rgba(250, 250, 250, 0.95)), url(https://staysanemom.s3.us-west-1.amazonaws.com/111-images/white-marble-bg.jpeg);
 
   background-repeat: no-repeat;
   background-attachment: fixed;
