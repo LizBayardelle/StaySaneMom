@@ -242,6 +242,7 @@ strong { font-weight: 900 }
 
 .section-title { font-family: $font-script; font-size: 4.5rem; text-align: center; }
 .big-title { line-height: 1; font-family: $font-script; font-size: 7.5rem; color: $color-pink; text-align: center; }
+.h1.extra-big { font-size: calc(4rem + 4.5vw); margin-bottom: -15px; }
 
 @media screen and (max-width: 768px) {
   .big-title { font-size: 5.5rem; }
@@ -277,10 +278,14 @@ strong { font-weight: 900 }
 .btn.btn-neutral:hover { background-color: $color-white; color: $color-neutral; }
 .btn.btn-neutral-light:hover { box-shadow: none !important; border: solid medium $color-neutral !important; background-color: $color-white; color: $color-neutral; }
 
+.btn-white, .thrivecart-button.btn-white { color: $color-pink; background-color: $color-white}
+
+
 .bottom-link .thrivecart-button { padding: 1rem 2.4rem; font-size: 0.94rem; }
 
 .thin, .thin:hover { font-weight: 100 }
 .uppercase { text-transform: uppercase; }
+
 
 .header-stripe {
   text-align: center;

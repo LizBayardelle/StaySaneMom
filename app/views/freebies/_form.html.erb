@@ -2,6 +2,13 @@
 <%= simple_form_for(@freebie) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <% if @freebie.errors.any? %>
+    <ul>
+      <% @freebie.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
 
   <div class="form-inputs">
     <h2 class="text-center mt-5 thin uppercase color-pink">The Basics</h2>
@@ -13,6 +20,11 @@
     <div class="form-group form-check jsItUp">
       <h5>Categories</h5>
       <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name ) %>
+    </div>
+
+    <div class="form-group form-check jsItUp">
+      <h5>Subcategories</h5>
+      <%= f.collection_check_boxes(:subcategory_ids, Subcategory.all, :id, :name ) %>
     </div>
 
     <%= f.input :active %>

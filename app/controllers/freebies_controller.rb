@@ -30,23 +30,24 @@ class FreebiesController < ApplicationController
     pin_images = params[:freebie][:pin_image]
 
     respond_to do |format|
+      @freebie.save!
       if @freebie.save
         if params[:freebie][:image].present?
           @freebie.image.attach(params[:freebie][:image])
-          @freebie.save
+          @freebie.save!
         end
         if params[:freebie][:sample_image].present?
           @freebie.sample_image.attach(params[:freebie][:sample_image])
-          @freebie.save
+          @freebie.save!
         end
         if params[:freebie][:t1_image].present?
           @freebie.t1_image.attach(params[:freebie][:t1_image])
-          @freebie.save
+          @freebie.save!
         end
         if params[:freebie][:fb_share_image].present?
           @freebie.fb_share_image.purge
           @freebie.fb_share_image.attach(params[:freebie][:fb_share_image])
-          @freebie.save
+          @freebie.save!
         end
         if pin_images
           @freebie.pin_image.purge
@@ -149,7 +150,8 @@ class FreebiesController < ApplicationController
         :after_download_url,
         :ml_img_track_url,
 
-        category_ids: []
+        category_ids: [],
+        subcategory_ids: []
       )
     end
 end

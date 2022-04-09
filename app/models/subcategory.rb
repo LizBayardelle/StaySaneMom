@@ -1,6 +1,5 @@
 class Subcategory < ApplicationRecord
-  belongs_to :category
-  has_one :freebie
+  # belongs_to :category
 
   has_many :subcategorization_blogs
   has_many :blogs, through: :subcategorization_blogs
@@ -10,5 +9,4 @@ class Subcategory < ApplicationRecord
 
   has_many :subcategorization_solutions
   has_many :solutions, through: :subcategorization_solutions
-
 end
