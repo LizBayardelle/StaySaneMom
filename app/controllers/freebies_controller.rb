@@ -3,7 +3,7 @@ class FreebiesController < ApplicationController
 
 
   def index
-    @freebies = Freebie.all
+    @freebies = Freebie.order("created_at DESC")
     @navtimeline = false
   end
 
