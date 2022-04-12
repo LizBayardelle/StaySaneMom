@@ -1,8 +1,42 @@
 <main>
 
-    <section class="masthead texture-leaves">
+    <style>
+        .texture-main-pic {
+          min-height:100%;
+          background:linear-gradient(0deg, rgba(0,0,0, 0.5), 
+            rgba(0,0,0, 0.4)), 
+            url(<%= @category.main_photo_url %>);
+          background-size:cover;
+        }
+
+        .on-page-parallax {
+            /* The image used */
+          background:linear-gradient(0deg, rgba(0,0,0, 0.5), 
+            rgba(0,0,0, 0.4)), 
+            url(<%= @category.main_photo_url %>);
+
+              /* Set a specific height */
+              min-height: 600px; 
+
+              /* Create the parallax scrolling effect */
+              background-attachment: fixed;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+        }
+
+        .on-page-parallax-inners {
+            margin-top: -600px;
+
+            padding-top: 10rem;
+        }
+    </style>
+
+    <section class="on-page-parallax"></section>
+
+    <section class="on-page-parallax-inners color-white">
         <div class="container px-xl-5">
-            <div class="row gx-5 p-md-0 align-items-center">
+            <div class="row gx-5p-md-0 align-items-center">
 
             	<% if current_user && current_user.admin %>
             		<div class="col-12 text-right" style="margin-top: -30px;">
@@ -12,14 +46,11 @@
 					</div>
 				<% end %>
 
-                <div class="col-md-6 text-center mb-5">
+                <div class="text-center">
                     <h1 class="display-1 lh-1"><%= @category.i_statement %></h1>
                     <h3><%= @category.description %></h3>
                 </div>
-                <div class="col-md-6 text-center">
-                    <img class="classy-pic extra tilt-right" src="<%= @category.main_photo_url %>">
-                </div>
-                 <div class="col-12 text-center">
+                 <div class="col-12 text-center pb-5">
                    <%= link_to @category.cta, Freebie.find(@category.freebie_id), class: "btn btn-pink btn-lg mt-5" %>
                 </div>
 
@@ -34,16 +65,21 @@
     		<h2 class="display-1 color-pink font-script text-center">
     			<%= @category.good_adjective %>, not <%= @category.bad_adjective.downcase %>.
     		</h2>
-    		<div class="text-center">
+    		<div class="text-center d-lg-none">
                 <img class="classy-pic tilt-left w-50 mb-5" src="<%= @category.photo_2_url %>">
             </div>
-	    	<%= raw(@category.intro) %>
+	    	<img class="d-none d-lg-block classy-pic tilt-left w-25 mb-5 mr-5" style="float: left" src="<%= @category.photo_2_url %>">
+            <%= raw(@category.intro) %>
+            <div class="text-center d-lg-none">
+                <img class="classy-pic tilt-left w-50 mb-5" src="<%= @category.photo_3_url %>">
+            </div>
 	    </div>
     </section>
 
 
 
     <section class="z-under py-5">
+        <% freebie = Freebie.find(@category.freebie_id) %>
     	<div class="container">
     		<div class="text-center">
                 <h2 class="pb-4">How to <%= @category.cta.titleize %></h2>
@@ -52,12 +88,12 @@
     		<div class="row align-items-center">
 
 	    		<div class="col-sm-6 text-center">
-	                <img class="classy-pic tilt-left mb-5 w-75" src="<%= @category.photo_3_url %>">
+                  <img src="<%= rails_blob_url(freebie.image) if freebie.image.attached? %>" class="my-4 w-100 auto-height">
 	    		</div> <!-- col -->
 
 	    		<div class="col-sm-6">
-	                <p class="h3"><%= @category.cta_desc %></p>
-                    <%= Freebie.find(@category.freebie_id).thrivelink.html_safe %>
+	                <p class="h3"><%= simple_format(@category.cta_desc) %></p>
+                    <%= freebie.thrivelink.html_safe %>
 	    		</div> <!-- col -->
 	    	</div> <!-- row -->
     	</div> <!-- container -->
@@ -98,6 +134,14 @@
             </div>
         </section>
     <% end %>
+
+
+
+
+
+
+        <!-- <img class="d-none d-lg-block classy-pic tilt-right w-25 mb-5 mr-5" style="float: right" src="<%= @category.photo_3_url %>"> -->
+
 
 </main>
 
