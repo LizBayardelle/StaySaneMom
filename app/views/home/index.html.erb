@@ -1,17 +1,52 @@
+
+<style>
+
+
+    .on-page-parallax {
+        /* The image used */
+          background:linear-gradient(0deg, rgba(255, 255, 255, 0.7), 
+        rgba(255, 255, 255, 0.7)), 
+        url(https://images.pexels.com/photos/3756036/pexels-photo-3756036.jpeg);
+      background-size:cover;
+
+          /* Set a specific height */
+          min-height: 600px; 
+
+          /* Create the parallax scrolling effect */
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+    }
+
+    .on-page-parallax-inners {
+        margin-top: -600px;
+
+        padding-top: 10rem;
+    }
+</style>
+
+
+
+
+
+
 <main id="homepage">
 
     <!-- Mashead header-->
-    <header class="py-5 bg-flying-kid">
-        <div class="container px-xl-5">
+    <section class="on-page-parallax"></section>
+
+    <section class="on-page-parallax-inners py-5">
+        <div class="container py-5 px-xl-5">
             <div class="row align-items-center">
                 <div class="col-12 text-center">
-                    <h1 class="color-pink display-3 lh-1">
+                    <h1 class="color-pink display-3 lh-1 text-shadow" style="font-weight: 700">
                         Feel&nbsp;like&nbsp;yourself, even&nbsp;as the mom&nbsp;of&nbsp;small&nbsp;children.
                     </h1>
-                    <p class="color-black">
+                    <p class="large-p color-black">
                         We give moms immediate, easy-to-implement support that they can consume while cutting snacks, folding laundry, or driving to soccer practice.
                     </p>
-                    <p class="color-black">
+                    <p class="large-p color-black">
                         You deserve to feel fulfilled, happy, and whole, even while you are in the hardcore, child-dominated, bootcamp-level hellscape that is parenting.
                     </p>
                 </div>
@@ -20,14 +55,14 @@
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
 
 
 
 
     <section id="results" class="bg-white text-center py-5 z-depth-3-y z-over">
-        <div class="container">
+        <div class="container py-5">
             <div class="row">
 
                 <div class="col-12 text-center">
@@ -202,6 +237,7 @@
                 <div class="col-12 text-center pb-2">
                     <p class="bold h4">Get support from a fellow mom who has truly been there.</p>
                     <%= link_to "Get Support", root_path(anchor: "action-steps"), class: "btn btn-pink btn-lg" %>
+                    <%= link_to "About Us", page_path("AboutUs"), class: "btn btn-outline-pink" %>
                 </div> <!-- col -->
 
             </div> <!-- row -->

@@ -369,8 +369,10 @@ p, p em, p li, li p { font-weight: 300 }
 p a { font-weight: 700 }
 
 p.large-p, .large-p p {
-  font-size: 20px;
+  font-size: 22px !important;
 }
+
+.text-shadow { text-shadow: 3px 3px 2px #ababab, 1px 2px 5px rgba(179,179,179,0.18); }
 
 .buffer { height: 50px; }
 .half-buffer { height: 25px; }
