@@ -132,33 +132,6 @@
 </div> <!-- container -->
 
 
-<div class="half-buffer"></div>
-<%= render "layouts/quadborder" %>
-<div class="half-buffer"></div>
-
-
-<div class="container">
-  <h2 class="text-center">ConvertKit Info</h2>
-  <div class="row">
-    <div class="col-sm-6">
-      <h2 class="text-center">Sequences</h2>
-      <ul>
-        <% @sequences.each do |sequence| %>
-        <li><%= sequence['name'] %> (ID# <%= sequence['id'] %>)</li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="col-sm-6">
-      <h2 class="text-center">Tags</h2>
-      <ul>
-        <% @tags.each do |tag| %>
-        <li><%= tag['name'] %> (ID# <%= tag['id'] %>)</li>
-        <% end %>
-      </ul>
-    </div>
-  </div> <!-- convertkit row -->
-</div> <!-- container -->
 
 
 

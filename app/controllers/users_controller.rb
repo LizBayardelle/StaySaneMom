@@ -26,16 +26,10 @@ class UsersController < ApplicationController
     @gifts = Gift.where(user_id: @user.id, purchased: false)
 
     @contributions = Contribution.where(responded: false, archived: false)
-    @client = Convertkit::Client.new
-    @subscribers = @client.subscribers.body
   end
 
   def index
     @users = User.all
-    @client = Convertkit::Client.new
-    @subscribers = @client.subscribers.body
-    @sequences = @client.sequences.body['courses']
-    @tags = @client.tags.body['tags']
   end
 
   def edit

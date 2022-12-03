@@ -20,8 +20,6 @@ before_action :admin_or_contributor, only: :drafts
     @contributors = User.where(contributor: true)
     @preauthorizations = Preauthorization.all
     @new_preauthorization = Preauthorization.new
-    @client = Convertkit::Client.new
-    @subscribers = @client.subscribers.body
   end
 
   def freebies
@@ -56,8 +54,6 @@ before_action :admin_or_contributor, only: :drafts
     @contributors = User.where(contributor: true)
     @preauthorizations = Preauthorization.all
     @new_preauthorization = Preauthorization.new
-    @client = Convertkit::Client.new
-    @subscribers = @client.subscribers.body
   end
 
 end
